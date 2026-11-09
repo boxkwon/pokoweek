@@ -1,0 +1,40 @@
+name: Update monthly Pokémon GO events
+
+on:
+  schedule:
+    - cron: "15 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-monthly-events
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Refresh monthly calendar data
+        run: node scripts/update-monthly-events.mjs
+
+      - name: Commit changed event data
+        run: |
+          if git diff --quiet -- app/data/generated/monthly-events.json; then
+            echo "No event changes"
+            exit 0
+          fi
+          git config user.name "pokoweek calendar bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add app/data/generated/monthly-events.json
+          git commit -m "data: refresh monthly Pokémon GO events"
+          git push

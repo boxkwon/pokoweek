@@ -1,0 +1,1628 @@
+{
+  "fetchedAt": "2026-11-09T22:59:01.533Z",
+  "timezone": "Asia/Seoul",
+  "rangeStart": "2026-10",
+  "rangeEnd": "2027-03",
+  "source": {
+    "name": "Leek Duck 공개 일정 피드",
+    "url": "https://github.com/pokelitee/leak-duck",
+    "officialNewsUrl": "https://pokemongo.com/news"
+  },
+  "events": [
+    {
+      "id": "go-pass-september-2026-2026-09-08-10:00",
+      "slug": "go-pass-september-2026",
+      "title": "GO Pass: September",
+      "originalTitle": "GO Pass: September",
+      "category": "GO Pass",
+      "categoryLabel": "GO 패스",
+      "startDate": "2026-09-08",
+      "endDate": "2026-10-06",
+      "startTime": "10:00",
+      "endTime": "10:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-09-08-go-pass-september-2026/go-pass-september-2026.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/go-pass-september-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "shadow-thundurus-incarnate-forme-in-shadow-raids-september-2026-2026-09-09-06:00",
+      "slug": "shadow-thundurus-incarnate-forme-in-shadow-raids-september-2026",
+      "title": "Shadow Thundurus (Incarnate Forme) in Shadow Raids",
+      "originalTitle": "Shadow Thundurus (Incarnate Forme) in Shadow Raids",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-09-09",
+      "endDate": "2026-10-06",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/events-default-img.jpg",
+      "pokemon": [
+        {
+          "name": "Thundurus (Incarnate)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_642_11.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/shadow-thundurus-incarnate-forme-in-shadow-raids-september-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "pokemon-tcg-30th-celebration-2026-09-27-10:00",
+      "slug": "pokemon-tcg-30th-celebration",
+      "title": "Pokémon TCG: 30th Celebration",
+      "originalTitle": "Pokémon TCG: 30th Celebration",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-09-27",
+      "endDate": "2026-10-20",
+      "startTime": "10:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-09-27-pokemon-tcg-30th-celebration/pokemon-tcg-30th-celebration.jpg",
+      "pokemon": [
+        {
+          "name": "Mega Gengar",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_094_51.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/pokemon-tcg-30th-celebration/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "harvest-festival-2026-2026-09-29-10:00",
+      "slug": "harvest-festival-2026",
+      "title": "Harvest Festival 2026: Applin Picking",
+      "originalTitle": "Harvest Festival 2026: Applin Picking",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-09-29",
+      "endDate": "2026-10-05",
+      "startTime": "10:00",
+      "endTime": "20:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-09-29-harvest-festival-2026/harvest-festival-2026.jpg",
+      "pokemon": [
+        {
+          "name": "Applin",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm840.icon.png"
+        },
+        {
+          "name": "Flower Crown Cottonee",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm546.cSPRING_2024.icon.png"
+        },
+        {
+          "name": "Lechonk",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm915.icon.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/harvest-festival-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "mega-victreebel-in-mega-raids-september-2026-2026-09-30-06:00",
+      "slug": "mega-victreebel-in-mega-raids-september-2026",
+      "title": "Mega Victreebel in Mega Raids",
+      "originalTitle": "Mega Victreebel in Mega Raids",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-09-30",
+      "endDate": "2026-10-06",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/mega-default.jpg",
+      "pokemon": [
+        {
+          "name": "Mega Victreebel",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm71.fMEGA.icon.png"
+        },
+        {
+          "name": "Victreebel",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_071_00_shiny.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/mega-victreebel-in-mega-raids-september-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "xerneas-in-5-star-raid-battles-september-2026-2026-09-30-06:00",
+      "slug": "xerneas-in-5-star-raid-battles-september-2026",
+      "title": "Xerneas in 5-star Raid Battles",
+      "originalTitle": "Xerneas in 5-star Raid Battles",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-09-30",
+      "endDate": "2026-10-06",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/xerneas-woods.jpg",
+      "pokemon": [
+        {
+          "name": "Xerneas",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_716_00.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/xerneas-in-5-star-raid-battles-september-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "pokemonspotlighthour2026-10-01-2026-10-01-18:00",
+      "slug": "pokemonspotlighthour2026-10-01",
+      "title": "Seedot Spotlight Hour",
+      "originalTitle": "Seedot Spotlight Hour",
+      "category": "Pokémon Spotlight Hour",
+      "categoryLabel": "스포트라이트 아워",
+      "startDate": "2026-10-01",
+      "endDate": "2026-10-01",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg",
+      "pokemon": [
+        {
+          "name": "Seedot",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_273_00.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/pokemonspotlighthour2026-10-01/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "harvest-festival-taken-over-2026-2026-10-02-00:00",
+      "slug": "harvest-festival-taken-over-2026",
+      "title": "Harvest Festival: Taken Over",
+      "originalTitle": "Harvest Festival: Taken Over",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-10-02",
+      "endDate": "2026-10-05",
+      "startTime": "00:00",
+      "endTime": "20:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-10-02-harvest-festival-taken-over-2026/harvest-festival-taken-over-2026.jpg",
+      "pokemon": [
+        {
+          "name": "Zekrom",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_644_00.png"
+        },
+        {
+          "name": "Alolan Grimer",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_088_61.png"
+        },
+        {
+          "name": "Cubone",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_104_00.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/harvest-festival-taken-over-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "patterns-of-the-wild-2026-2026-10-02-10:00",
+      "slug": "patterns-of-the-wild-2026",
+      "title": "Patterns of the Wild",
+      "originalTitle": "Patterns of the Wild",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-10-02",
+      "endDate": "2026-10-02",
+      "startTime": "10:00",
+      "endTime": "20:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-10-02-patterns-of-the-wild-2026/patterns-of-the-wild-2026.jpg",
+      "pokemon": [
+        {
+          "name": "Batik Shirt Pikachu",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm25.fTSHIRT_03.icon.png"
+        },
+        {
+          "name": "Bellsprout",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_069_00.png"
+        },
+        {
+          "name": "Caterpie",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_010_00.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/patterns-of-the-wild-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "gigantamax-cinderace-max-battle-day-2026-2026-10-03-14:00",
+      "slug": "gigantamax-cinderace-max-battle-day-2026",
+      "title": "Gigantamax Cinderace Max Battle Day",
+      "originalTitle": "Gigantamax Cinderace Max Battle Day",
+      "category": "Max Battles",
+      "categoryLabel": "맥스배틀",
+      "startDate": "2026-10-03",
+      "endDate": "2026-10-03",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-10-03-gigantamax-cinderace-max-battle-day-2026/gigantamax-cinderace-max-battle-day.jpg",
+      "pokemon": [
+        {
+          "name": "Gigantamax Cinderace",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/poke_capture_0815_000_mf_g_00000000_f_n.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/gigantamax-cinderace-max-battle-day-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "world-space-week-2026-2026-10-04-00:00",
+      "slug": "world-space-week-2026",
+      "title": "World Space Week 2026",
+      "originalTitle": "World Space Week 2026",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-10-04",
+      "endDate": "2026-10-10",
+      "startTime": "00:00",
+      "endTime": "23:59",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-10-04-world-space-week-2026/world-space-week-2026.jpg",
+      "pokemon": [
+        {
+          "name": "Astronaut Pikachu",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm25.fGLASS_HELMET_2026.icon.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/world-space-week-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "max-mondays-2026-10-05-2026-10-05-06:00",
+      "slug": "max-mondays-2026-10-05",
+      "title": "Dynamax Sizzlipede during Max Monday",
+      "originalTitle": "Dynamax Sizzlipede during Max Monday",
+      "category": "Max Mondays",
+      "categoryLabel": "맥스 먼데이",
+      "startDate": "2026-10-05",
+      "endDate": "2026-10-05",
+      "startTime": "06:00",
+      "endTime": "21:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/max-mondays-2026-10-05/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "go-pass-october-2026-2026-10-06-10:00",
+      "slug": "go-pass-october-2026",
+      "title": "GO Pass: October",
+      "originalTitle": "GO Pass: October",
+      "category": "GO Pass",
+      "categoryLabel": "GO 패스",
+      "startDate": "2026-10-06",
+      "endDate": "2026-11-03",
+      "startTime": "10:00",
+      "endTime": "10:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-10-06-go-pass-october-2026/go-pass-october-2026.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/go-pass-october-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "mega-blastoise-in-mega-raids-october-2026-2026-10-07-06:00",
+      "slug": "mega-blastoise-in-mega-raids-october-2026",
+      "title": "Mega Blastoise in Mega Raids",
+      "originalTitle": "Mega Blastoise in Mega Raids",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-10-07",
+      "endDate": "2026-10-13",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/mega-default.jpg",
+      "pokemon": [
+        {
+          "name": "Mega Blastoise",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_009_51.png"
+        },
+        {
+          "name": "Blastoise",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_009_00_shiny.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/mega-blastoise-in-mega-raids-october-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "yveltal-in-5-star-raid-battles-october-2026-2026-10-07-06:00",
+      "slug": "yveltal-in-5-star-raid-battles-october-2026",
+      "title": "Yveltal in 5-star Raid Battles",
+      "originalTitle": "Yveltal in 5-star Raid Battles",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-10-07",
+      "endDate": "2026-10-13",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/yveltal-2.jpg",
+      "pokemon": [
+        {
+          "name": "Yveltal",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_717_00.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/yveltal-in-5-star-raid-battles-october-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "shadow-landorus-incarnate-forme-in-shadow-raids-october-2026-2026-10-07-06:00",
+      "slug": "shadow-landorus-incarnate-forme-in-shadow-raids-october-2026",
+      "title": "Shadow Landorus (Incarnate Forme) in Shadow Raids",
+      "originalTitle": "Shadow Landorus (Incarnate Forme) in Shadow Raids",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-10-07",
+      "endDate": "2026-11-03",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/events-default-img.jpg",
+      "pokemon": [
+        {
+          "name": "Landorus (Incarnate)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_645_11.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/shadow-landorus-incarnate-forme-in-shadow-raids-october-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "raidhour20261007-2026-10-07-18:00",
+      "slug": "raidhour20261007",
+      "title": "Yveltal Raid Hour",
+      "originalTitle": "Yveltal Raid Hour",
+      "category": "Raid Hour",
+      "categoryLabel": "레이드 아워",
+      "startDate": "2026-10-07",
+      "endDate": "2026-10-07",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/raidhour.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/raidhour20261007/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "pokemonspotlighthour2026-10-08-2026-10-08-18:00",
+      "slug": "pokemonspotlighthour2026-10-08",
+      "title": "Elgyem Spotlight Hour",
+      "originalTitle": "Elgyem Spotlight Hour",
+      "category": "Pokémon Spotlight Hour",
+      "categoryLabel": "스포트라이트 아워",
+      "startDate": "2026-10-08",
+      "endDate": "2026-10-08",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg",
+      "pokemon": [
+        {
+          "name": "Elgyem",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_605_00.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/pokemonspotlighthour2026-10-08/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "october-communityday2026-2026-10-10-14:00",
+      "slug": "october-communityday2026",
+      "title": "Zorua Community Day",
+      "originalTitle": "Zorua Community Day",
+      "category": "Community Day",
+      "categoryLabel": "커뮤니티 데이",
+      "startDate": "2026-10-10",
+      "endDate": "2026-10-10",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-10-10-october-communityday2026/zorua-october-cd-2026.png",
+      "pokemon": [
+        {
+          "name": "Zorua",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm570.icon.png"
+        },
+        {
+          "name": "Zoroark",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm571.s.icon.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/october-communityday2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "max-mondays-2026-10-12-2026-10-12-06:00",
+      "slug": "max-mondays-2026-10-12",
+      "title": "Dynamax Rookidee during Max Monday",
+      "originalTitle": "Dynamax Rookidee during Max Monday",
+      "category": "Max Mondays",
+      "categoryLabel": "맥스 먼데이",
+      "startDate": "2026-10-12",
+      "endDate": "2026-10-12",
+      "startTime": "06:00",
+      "endTime": "21:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/max-mondays-2026-10-12/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "fall-marathon-buddy-trek-2026-2026-10-13-10:00",
+      "slug": "fall-marathon-buddy-trek-2026",
+      "title": "Fall Marathon: Buddy Trek",
+      "originalTitle": "Fall Marathon: Buddy Trek",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-10-13",
+      "endDate": "2026-10-19",
+      "startTime": "10:00",
+      "endTime": "20:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-10-13-fall-marathon-buddy-trek-2026/fall-marathon-buddy-trek-2026.jpg",
+      "pokemon": [
+        {
+          "name": "Brambleghast",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm947.icon.png"
+        },
+        {
+          "name": "Bramblin",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm946.icon.png"
+        },
+        {
+          "name": "Mega Manectric",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_310_51.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/fall-marathon-buddy-trek-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "dialga-in-5-star-raid-battles-october-2026-2026-10-14-06:00",
+      "slug": "dialga-in-5-star-raid-battles-october-2026",
+      "title": "Dialga in 5-star Raid Battles",
+      "originalTitle": "Dialga in 5-star Raid Battles",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-10-14",
+      "endDate": "2026-10-20",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/dialgaraids.jpg",
+      "pokemon": [
+        {
+          "name": "Dialga",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_483_00.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/dialga-in-5-star-raid-battles-october-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "mega-dragonite-in-mega-raids-october-2026-2026-10-14-06:00",
+      "slug": "mega-dragonite-in-mega-raids-october-2026",
+      "title": "Mega Dragonite in Mega Raids",
+      "originalTitle": "Mega Dragonite in Mega Raids",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-10-14",
+      "endDate": "2026-10-20",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/mega-default.jpg",
+      "pokemon": [
+        {
+          "name": "Mega Dragonite",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm149.fMEGA.icon.png"
+        },
+        {
+          "name": "Dragonite",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_149_00_shiny.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/mega-dragonite-in-mega-raids-october-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "raidhour20261014-2026-10-14-18:00",
+      "slug": "raidhour20261014",
+      "title": "Dialga Raid Hour",
+      "originalTitle": "Dialga Raid Hour",
+      "category": "Raid Hour",
+      "categoryLabel": "레이드 아워",
+      "startDate": "2026-10-14",
+      "endDate": "2026-10-14",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/raidhour.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/raidhour20261014/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "pokemonspotlighthour2026-10-15-2026-10-15-18:00",
+      "slug": "pokemonspotlighthour2026-10-15",
+      "title": "Stufful Spotlight Hour",
+      "originalTitle": "Stufful Spotlight Hour",
+      "category": "Pokémon Spotlight Hour",
+      "categoryLabel": "스포트라이트 아워",
+      "startDate": "2026-10-15",
+      "endDate": "2026-10-15",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg",
+      "pokemon": [
+        {
+          "name": "Stufful",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm759.icon.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/pokemonspotlighthour2026-10-15/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "sandile-hatch-day-2026-2026-10-17-11:00",
+      "slug": "sandile-hatch-day-2026",
+      "title": "Sandile Hatch Day",
+      "originalTitle": "Sandile Hatch Day",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-10-17",
+      "endDate": "2026-10-17",
+      "startTime": "11:00",
+      "endTime": "17:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-10-17-sandile-hatch-day-2026/sandile-hatch-day-2026.jpg",
+      "pokemon": [
+        {
+          "name": "Sandile",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_551_00.png"
+        },
+        {
+          "name": "Krokorok",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_552_00_shiny.png"
+        },
+        {
+          "name": "Krookodile",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_553_00_shiny.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/sandile-hatch-day-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "max-mondays-2026-10-19-2026-10-19-06:00",
+      "slug": "max-mondays-2026-10-19",
+      "title": "Dynamax Sneasel during Max Monday",
+      "originalTitle": "Dynamax Sneasel during Max Monday",
+      "category": "Max Mondays",
+      "categoryLabel": "맥스 먼데이",
+      "startDate": "2026-10-19",
+      "endDate": "2026-10-19",
+      "startTime": "06:00",
+      "endTime": "21:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/max-mondays-2026-10-19/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "minior-showers-orionids-2026-2026-10-19-17:00",
+      "slug": "minior-showers-orionids-2026",
+      "title": "Minior Showers: Orionids 2026",
+      "originalTitle": "Minior Showers: Orionids 2026",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-10-19",
+      "endDate": "2026-10-24",
+      "startTime": "17:00",
+      "endTime": "23:59",
+      "image": "https://cdn.leekduck.com/assets/img/events/minior-showers-2026.jpg",
+      "pokemon": [
+        {
+          "name": "Minior (Green Core)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/poke_capture_0774_010_uk_n_00000000_f_n.png"
+        },
+        {
+          "name": "Minior (Meteor Form)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/poke_capture_0774_000_uk_n_00000000_f_n.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/minior-showers-orionids-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "mega-charizard-x-mega-charizard-y-in-mega-raids-october-2026-2026-10-21-06:00",
+      "slug": "mega-charizard-x-mega-charizard-y-in-mega-raids-october-2026",
+      "title": "Mega Charizard X and Mega Charizard Y in Mega Raids",
+      "originalTitle": "Mega Charizard X and Mega Charizard Y in Mega Raids",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-10-21",
+      "endDate": "2026-10-27",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/mega-default.jpg",
+      "pokemon": [
+        {
+          "name": "Mega Charizard X",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_006_51.png"
+        },
+        {
+          "name": "Mega Charizard Y",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_006_52.png"
+        },
+        {
+          "name": "Charizard",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_006_00_shiny.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/mega-charizard-x-mega-charizard-y-in-mega-raids-october-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "palkia-in-5-star-raid-battles-october-2026-2026-10-21-06:00",
+      "slug": "palkia-in-5-star-raid-battles-october-2026",
+      "title": "Palkia in 5-star Raid Battles",
+      "originalTitle": "Palkia in 5-star Raid Battles",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-10-21",
+      "endDate": "2026-10-27",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/palkiaraid.jpg",
+      "pokemon": [
+        {
+          "name": "Palkia",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_484_00.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/palkia-in-5-star-raid-battles-october-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "raidhour20261021-2026-10-21-18:00",
+      "slug": "raidhour20261021",
+      "title": "Palkia Raid Hour",
+      "originalTitle": "Palkia Raid Hour",
+      "category": "Raid Hour",
+      "categoryLabel": "레이드 아워",
+      "startDate": "2026-10-21",
+      "endDate": "2026-10-21",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/raidhour.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/raidhour20261021/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "pokemonspotlighthour2026-10-22-2026-10-22-18:00",
+      "slug": "pokemonspotlighthour2026-10-22",
+      "title": "Morelull Spotlight Hour",
+      "originalTitle": "Morelull Spotlight Hour",
+      "category": "Pokémon Spotlight Hour",
+      "categoryLabel": "스포트라이트 아워",
+      "startDate": "2026-10-22",
+      "endDate": "2026-10-22",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg",
+      "pokemon": [
+        {
+          "name": "Morelull",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm755.icon.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/pokemonspotlighthour2026-10-22/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "dynamax-uxie-mesprit-azelf-max-battle-day-2026-2026-10-24-14:00",
+      "slug": "dynamax-uxie-mesprit-azelf-max-battle-day-2026",
+      "title": "Dynamax Uxie, Mesprit, and Azelf Max Battle Day",
+      "originalTitle": "Dynamax Uxie, Mesprit, and Azelf Max Battle Day",
+      "category": "Max Battles",
+      "categoryLabel": "맥스배틀",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-24",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-10-24-dynamax-uxie-mesprit-azelf-max-battle-day-2026/dynamax-uxie-mesprit-azelf-max-battle-day.jpg",
+      "pokemon": [
+        {
+          "name": "Azelf",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_482_00.png"
+        },
+        {
+          "name": "Mesprit",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_481_00.png"
+        },
+        {
+          "name": "Uxie",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_480_00.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/dynamax-uxie-mesprit-azelf-max-battle-day-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "max-mondays-2026-10-26-2026-10-26-06:00",
+      "slug": "max-mondays-2026-10-26",
+      "title": "Dynamax Sableye during Max Monday",
+      "originalTitle": "Dynamax Sableye during Max Monday",
+      "category": "Max Mondays",
+      "categoryLabel": "맥스 먼데이",
+      "startDate": "2026-10-26",
+      "endDate": "2026-10-26",
+      "startTime": "06:00",
+      "endTime": "21:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/max-mondays-2026-10-26/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "halloween-2026-part-1-2026-10-27-10:00",
+      "slug": "halloween-2026-part-1",
+      "title": "Pokémon GO 핼러윈 2026 파트 1",
+      "originalTitle": "Pokémon GO Halloween 2026 Part I",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-10-27",
+      "endDate": "2026-11-01",
+      "startTime": "10:00",
+      "endTime": "10:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-10-27-halloween-2026-part-1/halloween-2026-part-1.jpg",
+      "pokemon": [
+        {
+          "name": "Drifblim wearing a Halloween Mischief costume",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons_crop/pm426.cHALLOWEEN_2021_NOEVOLVE.icon.png"
+        },
+        {
+          "name": "Gengar wearing a Tricks & Treats costume",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons_crop/pm94.cFALL_2023_NOEVOLVE.icon.png"
+        },
+        {
+          "name": "Noibat wearing a headband",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons_crop/pm714.cHALLOWEEN_2025.icon.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/halloween-2026-part-1/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "giratina-origin-forme-in-5-star-raid-battles-october-2026-2026-10-28-06:00",
+      "slug": "giratina-origin-forme-in-5-star-raid-battles-october-2026",
+      "title": "Giratina (Origin Forme) in 5-star Raid Battles",
+      "originalTitle": "Giratina (Origin Forme) in 5-star Raid Battles",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-10-28",
+      "endDate": "2026-11-03",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/giratinaoriginforme.jpg",
+      "pokemon": [
+        {
+          "name": "Giratina (Origin)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_487_12.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/giratina-origin-forme-in-5-star-raid-battles-october-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "mega-sableye-in-mega-raids-october-2026-2026-10-28-06:00",
+      "slug": "mega-sableye-in-mega-raids-october-2026",
+      "title": "메가깜까미 메가 레이드",
+      "originalTitle": "Mega Sableye in Mega Raids",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-10-28",
+      "endDate": "2026-11-08",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/mega-default.jpg",
+      "pokemon": [
+        {
+          "name": "Mega Sableye",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_302_51.png"
+        },
+        {
+          "name": "Sableye",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_302_00_shiny.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/mega-sableye-in-mega-raids-october-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "raidhour20261028-2026-10-28-18:00",
+      "slug": "raidhour20261028",
+      "title": "Giratina (Origin Forme) Raid Hour",
+      "originalTitle": "Giratina (Origin Forme) Raid Hour",
+      "category": "Raid Hour",
+      "categoryLabel": "레이드 아워",
+      "startDate": "2026-10-28",
+      "endDate": "2026-10-28",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/raidhour.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/raidhour20261028/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "pokemonspotlighthour2026-10-29-2026-10-29-18:00",
+      "slug": "pokemonspotlighthour2026-10-29",
+      "title": "Gastly Spotlight Hour",
+      "originalTitle": "Gastly Spotlight Hour",
+      "category": "Pokémon Spotlight Hour",
+      "categoryLabel": "스포트라이트 아워",
+      "startDate": "2026-10-29",
+      "endDate": "2026-10-29",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg",
+      "pokemon": [
+        {
+          "name": "Gastly",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_092_00.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/pokemonspotlighthour2026-10-29/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "chandelure-super-mega-raid-day-2026-2026-10-31-14:00",
+      "slug": "chandelure-super-mega-raid-day-2026",
+      "title": "Chandelure Super Mega Raid Day",
+      "originalTitle": "Chandelure Super Mega Raid Day",
+      "category": "Raid Day",
+      "categoryLabel": "레이드 데이",
+      "startDate": "2026-10-31",
+      "endDate": "2026-10-31",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/chandelure-super-mega-raid-day-2026.jpg",
+      "pokemon": [
+        {
+          "name": "Mega Chandelure",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm609.fMEGA.icon.png"
+        },
+        {
+          "name": "Chandelure",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_609_00_shiny.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/chandelure-super-mega-raid-day-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "halloween-2026-part-2-2026-11-01-10:00",
+      "slug": "halloween-2026-part-2",
+      "title": "Pokémon GO 핼러윈 2026 파트 2",
+      "originalTitle": "Pokémon GO Halloween 2026 Part II",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-05",
+      "startTime": "10:00",
+      "endTime": "20:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-11-01-halloween-2026-part-2/halloween-2026-part-2.jpg",
+      "pokemon": [
+        {
+          "name": "Mega Sableye",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_302_51.png"
+        },
+        {
+          "name": "Froakie wearing a Pokémon Halloween costume",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons_crop/pm656.cFALL_2024.icon.png"
+        },
+        {
+          "name": "Gengar wearing a Spooky Festival costume",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons_crop/pm94.cFALL_2022_NOEVOLVE.icon.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/halloween-2026-part-2/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "max-mondays-2026-11-02-2026-11-02-06:00",
+      "slug": "max-mondays-2026-11-02",
+      "title": "다이맥스 알통몬 맥스 먼데이",
+      "originalTitle": "Dynamax Machop during Max Monday",
+      "category": "Max Mondays",
+      "categoryLabel": "맥스 먼데이",
+      "startDate": "2026-11-02",
+      "endDate": "2026-11-02",
+      "startTime": "06:00",
+      "endTime": "21:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/max-mondays-2026-11-02/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "go-pass-november-2026-2026-11-03-10:00",
+      "slug": "go-pass-november-2026",
+      "title": "GO 패스: 11월",
+      "originalTitle": "GO Pass: November",
+      "category": "GO Pass",
+      "categoryLabel": "GO 패스",
+      "startDate": "2026-11-03",
+      "endDate": "2026-12-01",
+      "startTime": "10:00",
+      "endTime": "10:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-11-03-go-pass-november-2026/go-pass-november-2026.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/go-pass-november-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "giratina-altered-forme-in-5-star-raid-battles-november-2026-2026-11-04-06:00",
+      "slug": "giratina-altered-forme-in-5-star-raid-battles-november-2026",
+      "title": "어나더폼 기라티나 5성 레이드",
+      "originalTitle": "Giratina (Altered Forme) in 5-star Raid Battles",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-11-04",
+      "endDate": "2026-11-08",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/giratinaaltered.jpg",
+      "pokemon": [
+        {
+          "name": "Giratina (Altered)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_487_11.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/giratina-altered-forme-in-5-star-raid-battles-november-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "shadow-tornadus-incarnate-forme-in-shadow-raids-november-4-2026-2026-11-04-06:00",
+      "slug": "shadow-tornadus-incarnate-forme-in-shadow-raids-november-4-2026",
+      "title": "그림자 화신폼 토네로스 레이드",
+      "originalTitle": "Shadow Tornadus (Incarnate Forme) in Shadow Raids",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-11-04",
+      "endDate": "2026-11-08",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/tornadus.jpg",
+      "pokemon": [
+        {
+          "name": "Tornadus (Incarnate)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_641_11.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/shadow-tornadus-incarnate-forme-in-shadow-raids-november-4-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "raidhour20261104-2026-11-04-18:00",
+      "slug": "raidhour20261104",
+      "title": "어나더폼 기라티나 레이드 아워",
+      "originalTitle": "Giratina (Altered Forme) Raid Hour",
+      "category": "Raid Hour",
+      "categoryLabel": "레이드 아워",
+      "startDate": "2026-11-04",
+      "endDate": "2026-11-04",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/raidhour.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/raidhour20261104/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "pokemonspotlighthour2026-11-05-2026-11-05-18:00",
+      "slug": "pokemonspotlighthour2026-11-05",
+      "title": "마녀 모자 깜지곰 스포트라이트 아워",
+      "originalTitle": "Teddiursa wearing a witch hat Spotlight Hour",
+      "category": "Pokémon Spotlight Hour",
+      "categoryLabel": "스포트라이트 아워",
+      "startDate": "2026-11-05",
+      "endDate": "2026-11-05",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg",
+      "pokemon": [
+        {
+          "name": "Teddiursa wearing a witch hat",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm216.cHALLOWEEN_2025.icon.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/pokemonspotlighthour2026-11-05/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "go-wild-area-gigantamax-machamp-power-up-timed-research-2026-11-06-10:00",
+      "slug": "go-wild-area-gigantamax-machamp-power-up-timed-research",
+      "title": "와일드 에리어: 거다이맥스 괴력몬 강화 리서치",
+      "originalTitle": "GO Wild Area: Gigantamax Machamp Power Up! Timed Research",
+      "category": "Timed Research",
+      "categoryLabel": "시간제한 리서치",
+      "startDate": "2026-11-06",
+      "endDate": "2026-11-15",
+      "startTime": "10:00",
+      "endTime": "23:59",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2025/2025-05-25-gigantamax-machamp-max-battle-day-may-2025/gigantamax-machamp-max-battles.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/go-wild-area-gigantamax-machamp-power-up-timed-research/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "into-the-wild-2026-2026-11-09-10:00",
+      "slug": "into-the-wild-2026",
+      "title": "Into the Wild 2026",
+      "originalTitle": "Into the Wild 2026",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-11-09",
+      "endDate": "2026-11-13",
+      "startTime": "10:00",
+      "endTime": "20:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-11-09-into-the-wild-2026/into-the-wild-2026.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://pokemongo.com/news/into-the-wild-2026",
+      "sourceKind": "official",
+      "internalHref": "/events/into-the-wild-2026"
+    },
+    {
+      "id": "zacian-crowned-sword-zamazenta-crowned-shield-in-5-star-raid-battles-november-2026-2026-11-09-10:00",
+      "slug": "zacian-crowned-sword-zamazenta-crowned-shield-in-5-star-raid-battles-november-2026",
+      "title": "검왕 자시안·방패왕 자마젠타 5성 레이드",
+      "originalTitle": "Zacian (Crowned Sword) and Zamazenta (Crowned Shield) in 5-star Raid Battles",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-11-09",
+      "endDate": "2026-11-13",
+      "startTime": "10:00",
+      "endTime": "20:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/zacian-and-zamazenta-2.jpg",
+      "pokemon": [
+        {
+          "name": "Zacian (Crowned Sword)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm888.fCROWNED_SWORD.icon.png"
+        },
+        {
+          "name": "Zamazenta (Crowned Shield)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm889.fCROWNED_SHIELD.icon.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/zacian-crowned-sword-zamazenta-crowned-shield-in-5-star-raid-battles-november-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "pokemon-go-wild-area-2026-global-2026-11-14-10:00",
+      "slug": "pokemon-go-wild-area-2026-global",
+      "title": "Pokémon GO 와일드 에리어 2026: 글로벌",
+      "originalTitle": "Pokémon GO Wild Area 2026: Global",
+      "category": "Wild Area",
+      "categoryLabel": "와일드 에리어",
+      "startDate": "2026-11-14",
+      "endDate": "2026-11-15",
+      "startTime": "10:00",
+      "endTime": "18:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-11-14-pokemon-go-wild-area-2026-global/key-art.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://pokemongo.com/news/save-the-date-go-wild-area-2026",
+      "sourceKind": "official",
+      "internalHref": "/events/go-wild-area-global-2026"
+    },
+    {
+      "id": "minior-showers-leonids-2026-2026-11-14-17:00",
+      "slug": "minior-showers-leonids-2026",
+      "title": "메테노 유성우: 사자자리 2026",
+      "originalTitle": "Minior Showers: Leonids 2026",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-11-14",
+      "endDate": "2026-11-19",
+      "startTime": "17:00",
+      "endTime": "23:59",
+      "image": "https://cdn.leekduck.com/assets/img/events/minior-showers-2026.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/minior-showers-leonids-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "max-mondays-2026-11-16-2026-11-16-06:00",
+      "slug": "max-mondays-2026-11-16",
+      "title": "맥스 먼데이: 포켓몬 발표 전",
+      "originalTitle": "Max Monday: Pokémon to be announced",
+      "category": "Max Mondays",
+      "categoryLabel": "맥스 먼데이",
+      "startDate": "2026-11-16",
+      "endDate": "2026-11-16",
+      "startTime": "06:00",
+      "endTime": "21:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg",
+      "pokemon": [],
+      "announced": false,
+      "sourceUrl": "https://leekduck.com/events/max-mondays-2026-11-16/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "cresselia-darkrai-in-5-star-raid-battles-november-2026-2026-11-16-06:00",
+      "slug": "cresselia-darkrai-in-5-star-raid-battles-november-2026",
+      "title": "크레세리아·다크라이 5성 레이드",
+      "originalTitle": "Cresselia and Darkrai in 5-star Raid Battles",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-11-16",
+      "endDate": "2026-11-24",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/legendary-cresselia.jpg",
+      "pokemon": [
+        {
+          "name": "Cresselia",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_488_00.png"
+        },
+        {
+          "name": "Darkrai",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_491_00.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/cresselia-darkrai-in-5-star-raid-battles-november-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "mega-banette-in-mega-raids-november-2026-2026-11-16-06:00",
+      "slug": "mega-banette-in-mega-raids-november-2026",
+      "title": "메가다크펫 메가 레이드",
+      "originalTitle": "Mega Banette in Mega Raids",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-11-16",
+      "endDate": "2026-11-24",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/mega-default.jpg",
+      "pokemon": [
+        {
+          "name": "Mega Banette",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm354.fMEGA.icon.png"
+        },
+        {
+          "name": "Banette",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_354_00_shiny.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/mega-banette-in-mega-raids-november-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "shadow-tornadus-incarnate-forme-in-shadow-raids-november-16-2026-2026-11-16-06:00",
+      "slug": "shadow-tornadus-incarnate-forme-in-shadow-raids-november-16-2026",
+      "title": "그림자 화신폼 토네로스 레이드",
+      "originalTitle": "Shadow Tornadus (Incarnate Forme) in Shadow Raids",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-11-16",
+      "endDate": "2026-12-01",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/tornadus.jpg",
+      "pokemon": [
+        {
+          "name": "Tornadus (Incarnate)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_641_11.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/shadow-tornadus-incarnate-forme-in-shadow-raids-november-16-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "dynamax-trails-2026-2026-11-16-10:00",
+      "slug": "dynamax-trails-2026",
+      "title": "다이맥스 트레일",
+      "originalTitle": "Dynamax Trails",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-11-16",
+      "endDate": "2026-11-23",
+      "startTime": "10:00",
+      "endTime": "20:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-11-16-dynamax-trails-2026/dynamax-trails-2026.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/dynamax-trails-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "raidhour20261118-2026-11-18-18:00",
+      "slug": "raidhour20261118",
+      "title": "크레세리아·다크라이 레이드 아워",
+      "originalTitle": "Cresselia and Darkrai Raid Hour",
+      "category": "Raid Hour",
+      "categoryLabel": "레이드 아워",
+      "startDate": "2026-11-18",
+      "endDate": "2026-11-18",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/raidhour.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/raidhour20261118/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "pokemonspotlighthour2026-11-19-2026-11-19-18:00",
+      "slug": "pokemonspotlighthour2026-11-19",
+      "title": "흥나숭·염버니·울머기 스포트라이트 아워",
+      "originalTitle": "Grookey, Scorbunny, and Sobble Spotlight Hour",
+      "category": "Pokémon Spotlight Hour",
+      "categoryLabel": "스포트라이트 아워",
+      "startDate": "2026-11-19",
+      "endDate": "2026-11-19",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg",
+      "pokemon": [
+        {
+          "name": "Grookey",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm810.icon.png"
+        },
+        {
+          "name": "Scorbunny",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm813.icon.png"
+        },
+        {
+          "name": "Sobble",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm816.icon.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/pokemonspotlighthour2026-11-19/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "eternamax-eternatus-max-battles-2026-2026-11-21-11:00",
+      "slug": "eternamax-eternatus-max-battles-2026",
+      "title": "무한다이노 맥스배틀",
+      "originalTitle": "Eternamax Eternatus Returns",
+      "category": "Max Battles",
+      "categoryLabel": "맥스배틀",
+      "startDate": "2026-11-21",
+      "endDate": "2026-11-21",
+      "startTime": "11:00",
+      "endTime": "14:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-11-16-dynamax-trails-2026/dynamax-trails-2026.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/eternamax-eternatus-max-battles-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "november-communityday2026-2026-11-21-14:00",
+      "slug": "november-communityday2026",
+      "title": "자망칼 커뮤니티 데이",
+      "originalTitle": "Pawniard Community Day",
+      "category": "Community Day",
+      "categoryLabel": "커뮤니티 데이",
+      "startDate": "2026-11-21",
+      "endDate": "2026-11-21",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/article-images/2026/2026-11-21-november-communityday2026/pawniard-november-cd-2026.jpg",
+      "pokemon": [
+        {
+          "name": "Pawniard",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_624_00.png"
+        },
+        {
+          "name": "Bisharp",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_625_00_shiny.png"
+        },
+        {
+          "name": "Kingambit",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm983.s.icon.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/november-communityday2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "max-mondays-2026-11-23-2026-11-23-06:00",
+      "slug": "max-mondays-2026-11-23",
+      "title": "다이맥스 냐스퍼 맥스 먼데이",
+      "originalTitle": "Dynamax Espurr during Max Monday",
+      "category": "Max Mondays",
+      "categoryLabel": "맥스 먼데이",
+      "startDate": "2026-11-23",
+      "endDate": "2026-11-23",
+      "startTime": "06:00",
+      "endTime": "21:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/max-mondays-2026-11-23/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "twilight-wishes-2026-2026-11-24-10:00",
+      "slug": "twilight-wishes-2026",
+      "title": "황혼의 소원",
+      "originalTitle": "Twilight Wishes",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-11-24",
+      "endDate": "2026-11-30",
+      "startTime": "10:00",
+      "endTime": "20:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/twilight-wishes-2026.jpg?v2",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/twilight-wishes-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "deoxys-normal-defense-attack-speed-formes-in-5-star-raid-battles-november-2026-2026-11-25-06:00",
+      "slug": "deoxys-normal-defense-attack-speed-formes-in-5-star-raid-battles-november-2026",
+      "title": "테오키스 전 폼 5성 레이드",
+      "originalTitle": "Deoxys (Normal, Defense, Attack, and Speed Formes) in 5-star Raid Battles",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-11-25",
+      "endDate": "2026-12-01",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/deoxys-all-formes.jpg",
+      "pokemon": [
+        {
+          "name": "Deoxys (Normal)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_386_11.png"
+        },
+        {
+          "name": "Deoxys (Defense)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_386_13.png"
+        },
+        {
+          "name": "Deoxys (Attack)",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_386_12.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/deoxys-normal-defense-attack-speed-formes-in-5-star-raid-battles-november-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "mega-metagross-in-mega-raids-november-2026-2026-11-25-06:00",
+      "slug": "mega-metagross-in-mega-raids-november-2026",
+      "title": "메가메타그로스 메가 레이드",
+      "originalTitle": "Mega Metagross in Mega Raids",
+      "category": "Raid Battles",
+      "categoryLabel": "레이드",
+      "startDate": "2026-11-25",
+      "endDate": "2026-12-01",
+      "startTime": "06:00",
+      "endTime": "22:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/mega-default.jpg",
+      "pokemon": [
+        {
+          "name": "Mega Metagross",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pm376.fMEGA.icon.png"
+        },
+        {
+          "name": "Metagross",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_376_00_shiny.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/mega-metagross-in-mega-raids-november-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "raidhour20261125-2026-11-25-18:00",
+      "slug": "raidhour20261125",
+      "title": "테오키스 전 폼 레이드 아워",
+      "originalTitle": "Deoxys (Normal, Defense, Attack, and Speed Formes) Raid Hour",
+      "category": "Raid Hour",
+      "categoryLabel": "레이드 아워",
+      "startDate": "2026-11-25",
+      "endDate": "2026-11-25",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/raidhour.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/raidhour20261125/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "pokemonspotlighthour2026-11-26-2026-11-26-18:00",
+      "slug": "pokemonspotlighthour2026-11-26",
+      "title": "음뱃 스포트라이트 아워",
+      "originalTitle": "Noibat Spotlight Hour",
+      "category": "Pokémon Spotlight Hour",
+      "categoryLabel": "스포트라이트 아워",
+      "startDate": "2026-11-26",
+      "endDate": "2026-11-26",
+      "startTime": "18:00",
+      "endTime": "19:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/pokemonspotlighthour.jpg",
+      "pokemon": [
+        {
+          "name": "Noibat",
+          "image": "https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_714_00.png"
+        }
+      ],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/pokemonspotlighthour2026-11-26/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "clefable-super-mega-raid-day-2026-2026-11-28-14:00",
+      "slug": "clefable-super-mega-raid-day-2026",
+      "title": "픽시 슈퍼 메가 레이드 데이",
+      "originalTitle": "Clefable Super Mega Raid Day",
+      "category": "Raid Day",
+      "categoryLabel": "레이드 데이",
+      "startDate": "2026-11-28",
+      "endDate": "2026-11-28",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/clefable-super-mega-raid-day-2026.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/clefable-super-mega-raid-day-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "max-mondays-2026-11-30-2026-11-30-06:00",
+      "slug": "max-mondays-2026-11-30",
+      "title": "다이맥스 프리지오 맥스 먼데이",
+      "originalTitle": "Dynamax Cryogonal during Max Monday",
+      "category": "Max Mondays",
+      "categoryLabel": "맥스 먼데이",
+      "startDate": "2026-11-30",
+      "endDate": "2026-11-30",
+      "startTime": "06:00",
+      "endTime": "21:00",
+      "image": "https://cdn.leekduck.com/assets/img/events/max-battles-kanto.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/max-mondays-2026-11-30/",
+      "sourceKind": "community",
+      "internalHref": null
+    },
+    {
+      "id": "minior-showers-geminids-2026-2026-12-11-17:00",
+      "slug": "minior-showers-geminids-2026",
+      "title": "Minior Showers: Geminids 2026",
+      "originalTitle": "Minior Showers: Geminids 2026",
+      "category": "Event",
+      "categoryLabel": "이벤트",
+      "startDate": "2026-12-11",
+      "endDate": "2026-12-16",
+      "startTime": "17:00",
+      "endTime": "23:59",
+      "image": "https://cdn.leekduck.com/assets/img/events/minior-showers-2026.jpg",
+      "pokemon": [],
+      "announced": true,
+      "sourceUrl": "https://leekduck.com/events/minior-showers-geminids-2026/",
+      "sourceKind": "community",
+      "internalHref": null
+    }
+  ]
+}
