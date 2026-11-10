@@ -14,7 +14,7 @@ export function RaidExplorer({ initialDate }: { initialDate: string }) {
   const [showComingSoon, setShowComingSoon] = useState(false);
 
   return (
-    <>
+    <div className="raid-explorer">
       <div className="schedule-view-switcher raid-view-switcher" aria-label="레이드 일정 보기 방식">
         <button type="button" className={view === "week" ? "active" : ""} aria-pressed={view === "week"} onClick={() => setView("week")}>
           <ClockIcon />
@@ -46,6 +46,6 @@ export function RaidExplorer({ initialDate }: { initialDate: string }) {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

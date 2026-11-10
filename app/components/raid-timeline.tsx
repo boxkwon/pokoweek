@@ -5,7 +5,8 @@ import { schedule } from "../data/events";
 import { monthlyEvents, type MonthlyEvent } from "../data/monthly";
 import { getPokemonTypes } from "../data/pokemon-types";
 import { getTypePalette } from "../lib/pokemon";
-import { BoltIcon, ClockIcon, RaidHeadIcon } from "./icons";
+import { ClockIcon } from "./icons";
+import { BattleBadge } from "./battle-badge";
 
 const weekDays = ["월", "화", "수", "목", "금", "토", "일"];
 
@@ -124,12 +125,6 @@ function placeInLanes(items: TimelineItem[], weekStart: string, weekEnd: string)
   });
 }
 
-function CategoryIcon({ item }: { item: TimelineItem }) {
-  if (item.kind === "max") return <BoltIcon />;
-  if (item.tier) return <>{Array.from({ length: item.tier }, (_, index) => <RaidHeadIcon key={index} />)}</>;
-  return <RaidHeadIcon />;
-}
-
 export function RaidTimeline({ initialDate, weekOffset }: { initialDate: string; weekOffset: 0 | 1 }) {
   const weekStart = weekMonday(initialDate, weekOffset);
   const weekEnd = addDays(weekStart, 6);
@@ -153,9 +148,6 @@ export function RaidTimeline({ initialDate, weekOffset }: { initialDate: string;
               <b>{date.date}</b><span>{date.day}</span>
             </div>
           ))}
-          {dates.map((date, index) => (
-            <span className="raid-timeline-column" style={{ gridColumn: index + 1, gridRow: `2 / span ${laneCount}` }} key={`column-${date.key}`} />
-          ))}
           {items.map((item) => {
             const palette = getTypePalette(item.pokemon[0]?.types[0] ?? (item.kind === "max" ? "전기" : "불꽃"));
             const style: TimelineBarStyle = { "--timeline-color": palette.color, "--timeline-color-deep": palette.deep };
@@ -169,7 +161,9 @@ export function RaidTimeline({ initialDate, weekOffset }: { initialDate: string;
                 style={{ ...style, gridColumn: `${(item.startIndex ?? 0) + 1} / span ${span}`, gridRow: (item.lane ?? 0) + 2 }}
                 key={item.id}
               >
-                <span className="raid-timeline-kind" aria-hidden="true"><CategoryIcon item={item} /></span>
+                <span className="raid-timeline-kind">
+                  <BattleBadge tone={item.kind} tier={item.tier} label={item.kind === "max" ? "맥스배틀" : "레이드"} compact />
+                </span>
                 {item.pokemon.length > 0 ? (
                   <span className={`raid-timeline-pokemon count-${Math.min(item.pokemon.length, 4)}`}>
                     {item.pokemon.slice(0, 4).map((pokemon) => (

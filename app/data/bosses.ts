@@ -1,7 +1,7 @@
 import { Boss } from "./types";
 
 const sprite = (dex: number) =>
-  `https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_${String(dex).padStart(3, "0")}_00.png`;
+  `https://cdn.leekduck.com/assets/img/pokemon_icons/pm${dex}.icon.png`;
 
 export const bosses: Boss[] = [
   {

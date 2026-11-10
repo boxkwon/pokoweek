@@ -6,6 +6,7 @@ import type { MonthlyEvent } from "../data/monthly";
 import { getPokemonTypes } from "../data/pokemon-types";
 import { ChevronIcon, ExternalIcon } from "./icons";
 import { PokemonThumbnail } from "./pokemon-thumbnail";
+import { BattleBadge, type BattleBadgeTone } from "./battle-badge";
 
 const weekDays = ["월", "화", "수", "목", "금", "토", "일"];
 
@@ -35,7 +36,7 @@ function shortDate(value: string) {
   return `${month}월 ${day}일`;
 }
 
-function categoryTone(category: string) {
+function categoryTone(category: string): BattleBadgeTone {
   if (category.includes("Raid")) return "raid";
   if (category.includes("Max")) return "max";
   if (category.includes("Community")) return "community";
@@ -177,12 +178,12 @@ export function NextWeekPreview({
               <article className={`schedule-row next-week-schedule-row ${tone}`} key={event.id}>
                 <div className="schedule-visual">
                   <EventArtwork event={event} href={detailHref} />
-                  <span className="visual-label">{event.categoryLabel}</span>
+                  <span className="visual-label"><BattleBadge tone={tone} label={event.categoryLabel} /></span>
                 </div>
                 <Link className="schedule-content" href={detailHref}>
                   <div className="schedule-meta">
                     <time>{timeLabel(event, selectedDate)}</time>
-                    <span className={`schedule-kind ${tone}`}>[{event.categoryLabel}]</span>
+                    <BattleBadge tone={tone} label={event.categoryLabel} />
                   </div>
                   <strong>{event.title}</strong>
                   <p className={event.announced ? "" : "announcement-pending"}>

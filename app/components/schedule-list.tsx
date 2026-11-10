@@ -5,9 +5,10 @@ import Link from "next/link";
 import { events, schedule } from "../data/events";
 import { bosses } from "../data/bosses";
 import { dateKey, formatTime, WEEK_DAYS } from "../lib/format";
-import { ChevronIcon, RaidHeadIcon } from "./icons";
+import { ChevronIcon } from "./icons";
 import { PokemonThumbnail } from "./pokemon-thumbnail";
 import { TypeIcons } from "./type-icons";
+import { BattleBadge } from "./battle-badge";
 
 const dates = Array.from({ length: 7 }, (_, index) => {
   const date = new Date(`2026-11-${String(9 + index).padStart(2, "0")}T00:00:00+09:00`);
@@ -23,15 +24,6 @@ function kindLabel(kind: keyof typeof kindName, title: string) {
 
 function TypeSymbols({ types }: { types: string[] }) {
   return <TypeIcons types={types} size="medium" label="추천 타입" />;
-}
-
-function RaidTierFaces({ tier }: { tier?: number }) {
-  if (!tier) return null;
-  return (
-    <span className="raid-tier-faces" aria-label={`${tier}성 난이도`}>
-      {Array.from({ length: tier }, (_, index) => <RaidHeadIcon key={index} />)}
-    </span>
-  );
 }
 
 export function ScheduleList({
@@ -106,13 +98,13 @@ export function ScheduleList({
                     />
                   ))}
                 </div>
-                <span className="visual-label"><RaidTierFaces tier={raidTier} />{label}</span>
+                <span className="visual-label"><BattleBadge tone={item.kind === "raid" ? "raid" : item.kind === "max" ? "max" : "event"} tier={raidTier} label={label} /></span>
               </div>
               <div className="schedule-content">
                 <Link className="schedule-content-main" href={href}>
                   <div className="schedule-meta">
                     <time>{formatTime(item.start)}–{formatTime(item.end)}</time>
-                    <span className={`schedule-kind ${item.kind}`}><RaidTierFaces tier={raidTier} />[{label}]</span>
+                    <BattleBadge tone={item.kind === "raid" ? "raid" : item.kind === "max" ? "max" : "event"} tier={raidTier} label={label} />
                   </div>
                   <strong>{displayTitle}</strong>
                   {weaknesses.length === 0 && <p>{item.summary}</p>}
