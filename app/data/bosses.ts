@@ -1,17 +1,17 @@
 import { Boss } from "./types";
 
 const sprite = (dex: number) =>
-  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${dex}.png`;
+  `https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_${String(dex).padStart(3, "0")}_00.png`;
 
 export const bosses: Boss[] = [
   {
-    slug: "zacian-crowned-sword", name: "자시안", form: "검왕", dex: 888, sprite: sprite(888),
+    slug: "zacian-crowned-sword", name: "자시안", form: "검왕", dex: 888, sprite: "https://cdn.leekduck.com/assets/img/pokemon_icons/pm888.fCROWNED_SWORD.icon.png",
     types: ["페어리", "강철"], weaknesses: ["불꽃", "땅"], battleType: "레이드", difficulty: "5성 · 여럿이 권장",
     counters: [{ name: "원시그란돈", note: "단애의칼" }, { name: "메가리자몽Y", note: "회오리불꽃 · 블라스트번" }, { name: "그란돈", note: "머드샷 · 단애의칼" }],
     tip: "11월 9일 18~19시 레이드아워. 검왕 에너지도 함께 모으세요.", sourceIds: ["official-into-wild"]
   },
   {
-    slug: "zamazenta-crowned-shield", name: "자마젠타", form: "방패왕", dex: 889, sprite: sprite(889),
+    slug: "zamazenta-crowned-shield", name: "자마젠타", form: "방패왕", dex: 889, sprite: "https://cdn.leekduck.com/assets/img/pokemon_icons/pm889.fCROWNED_SHIELD.icon.png",
     types: ["격투", "강철"], weaknesses: ["불꽃", "격투", "땅"], battleType: "레이드", difficulty: "5성 · 여럿이 권장",
     counters: [{ name: "원시그란돈", note: "머드샷 · 단애의칼" }, { name: "메가루카리오", note: "발경 · 파동탄" }, { name: "메가리자몽Y", note: "회오리불꽃 · 블라스트번" }],
     tip: "11월 10일 18~19시 레이드아워. 방패왕 에너지를 얻을 수 있어요.", sourceIds: ["official-into-wild"]
@@ -89,7 +89,7 @@ export const bosses: Boss[] = [
     tip: "GO Wild Area 토요일 10~18시에 등장해요.", sourceIds: ["official-wild-area"]
   },
   {
-    slug: "white-kyurem-raid", name: "화이트큐레무", dex: 646, sprite: sprite(10023),
+    slug: "white-kyurem-raid", name: "화이트큐레무", dex: 646, sprite: "https://cdn.leekduck.com/assets/img/pokemon_icons/pm646.fWHITE.icon.png",
     types: ["드래곤", "얼음"], weaknesses: ["격투", "바위", "강철", "드래곤", "페어리"], battleType: "레이드", difficulty: "5성 · 여럿이 권장",
     counters: [{ name: "메가루카리오", note: "발경 · 파동탄" }, { name: "메타그로스", note: "불릿펀치 · 코멧펀치" }, { name: "메가가디안", note: "애교부리기 · 매지컬샤인" }],
     tip: "GO Wild Area 토요일 10~18시에 등장하며 융합 에너지를 얻을 수 있어요.", sourceIds: ["official-wild-area"]
@@ -101,7 +101,7 @@ export const bosses: Boss[] = [
     tip: "GO Wild Area 일요일 10~18시에 등장해요.", sourceIds: ["official-wild-area"]
   },
   {
-    slug: "black-kyurem-raid", name: "블랙큐레무", dex: 646, sprite: sprite(10022),
+    slug: "black-kyurem-raid", name: "블랙큐레무", dex: 646, sprite: "https://cdn.leekduck.com/assets/img/pokemon_icons/pm646.fBLACK.icon.png",
     types: ["드래곤", "얼음"], weaknesses: ["격투", "바위", "강철", "드래곤", "페어리"], battleType: "레이드", difficulty: "5성 · 여럿이 권장",
     counters: [{ name: "메가루카리오", note: "발경 · 파동탄" }, { name: "메타그로스", note: "불릿펀치 · 코멧펀치" }, { name: "메가가디안", note: "애교부리기 · 매지컬샤인" }],
     tip: "GO Wild Area 일요일 10~18시에 등장하며 융합 에너지를 얻을 수 있어요.", sourceIds: ["official-wild-area"]

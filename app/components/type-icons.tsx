@@ -6,7 +6,7 @@ export function TypeIcons({
   label = "타입",
 }: {
   types: string[];
-  size?: "medium" | "large";
+  size?: "small" | "medium" | "large";
   label?: string;
 }) {
   return (

@@ -1,5 +1,5 @@
 const artwork = (dex: number) =>
-  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${dex}.png`;
+  `https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_${String(dex).padStart(3, "0")}_00.png`;
 
 export const typeIds: Record<string, number> = {
   노말: 1,
@@ -83,4 +83,20 @@ const counterArtworkIds: Record<string, number> = {
 export function counterArtworkUrl(name: string) {
   const dex = counterArtworkIds[name];
   return dex ? artwork(dex) : undefined;
+}
+
+const counterTypeMap: Record<string, string[]> = {
+  원시그란돈: ["땅", "불꽃"], 메가리자몽Y: ["불꽃", "비행"], 그란돈: ["땅"],
+  메가루카리오: ["격투", "강철"], "다이맥스 리자몽": ["불꽃", "비행"],
+  "다이맥스 괴력몬": ["격투"], "다이맥스 몰드류": ["땅", "강철"],
+  "다이맥스 메타그로스": ["강철", "에스퍼"], "다이맥스 라프라스": ["물", "얼음"],
+  "다이맥스 망나뇽": ["드래곤", "비행"], "다이맥스 팬텀": ["고스트", "독"],
+  맘모꾸리: ["얼음", "땅"], 가디안: ["에스퍼", "페어리"], 망나뇽: ["드래곤", "비행"],
+  루카리오: ["격투", "강철"], 리자몽: ["불꽃", "비행"], "다이맥스 두랄루돈": ["강철", "드래곤"],
+  메가가디안: ["에스퍼", "페어리"], 메가디안시: ["바위", "페어리"], 펄기아: ["물", "드래곤"],
+  메타그로스: ["강철", "에스퍼"], 메가레쿠쟈: ["드래곤", "비행"], 뮤츠: ["에스퍼"],
+};
+
+export function counterTypes(name: string) {
+  return counterTypeMap[name] ?? ["노말"];
 }

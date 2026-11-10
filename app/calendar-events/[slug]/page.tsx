@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeftIcon, ClockIcon, ExternalIcon } from "../../components/icons";
 import { monthlyEvents } from "../../data/monthly";
+import { getPokemonTypes } from "../../data/pokemon-types";
+import { PokemonThumbnail } from "../../components/pokemon-thumbnail";
 
 export function generateStaticParams() {
   return monthlyEvents.map((event) => ({ slug: event.slug }));
@@ -18,21 +20,26 @@ export default async function CalendarEventDetail({ params }: { params: Promise<
   const { slug } = await params;
   const event = monthlyEvents.find((item) => item.slug === slug);
   if (!event) notFound();
+  const isRaid = event.category === "Raid Battles"
+    || event.category === "Raid Hour"
+    || event.category === "Raid Day"
+    || event.category === "Max Battles";
 
   return (
     <div className="page-shell detail-page calendar-event-detail">
-      <Link href="/schedule" className="back-link"><ArrowLeftIcon />일정으로 돌아가기</Link>
+      <Link href={isRaid ? "/raids" : "/events"} className="back-link"><ArrowLeftIcon />{isRaid ? "레이드" : "이벤트"}로 돌아가기</Link>
 
       <section className="calendar-event-hero">
         <div className="calendar-event-art">
           {event.pokemon.length > 0 ? (
             <div className={`calendar-event-pokemon count-${Math.min(event.pokemon.length, 3)}`}>
               {event.pokemon.slice(0, 3).map((pokemon) => (
-                <span key={pokemon.name}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={pokemon.image} alt={pokemon.name} />
-                  <b>{pokemon.name}</b>
-                </span>
+                <PokemonThumbnail
+                  image={pokemon.image}
+                  name={pokemon.name}
+                  types={getPokemonTypes(pokemon.name)}
+                  key={pokemon.name}
+                />
               ))}
             </div>
           ) : event.image ? (
@@ -64,11 +71,12 @@ export default async function CalendarEventDetail({ params }: { params: Promise<
           <h2>등장 포켓몬</h2>
           <div className="calendar-pokemon-list">
             {event.pokemon.map((pokemon) => (
-              <div key={pokemon.name}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={pokemon.image} alt="" />
-                <strong>{pokemon.name}</strong>
-              </div>
+              <PokemonThumbnail
+                image={pokemon.image}
+                name={pokemon.name}
+                types={getPokemonTypes(pokemon.name)}
+                key={pokemon.name}
+              />
             ))}
           </div>
         </section>

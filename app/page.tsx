@@ -6,6 +6,7 @@ import { BossCard } from "./components/boss-card";
 import { EventCard } from "./components/event-card";
 import { BoltIcon, CalendarIcon, CheckIcon, ChevronIcon, InfoIcon } from "./components/icons";
 import { formatDateTime } from "./lib/format";
+import { PokemonThumbnail } from "./components/pokemon-thumbnail";
 
 const priorityBosses = ["dialga-dynamax", "palkia-dynamax", "duraludon-gigantamax"]
   .map((slug) => bosses.find((boss) => boss.slug === slug))
@@ -20,11 +21,18 @@ export default function Home() {
           <span className="hero-kicker">11월 9일 – 15일</span>
           <h1>이번 주엔<br/><em>강철과 드래곤!</em></h1>
           <p>평일엔 준비하고, 주말엔<br/>다이맥스 디아루가·펄기아를 노려요.</p>
-          <Link href="/schedule" className="primary-button"><CalendarIcon/>이번 주 일정 보기<ChevronIcon/></Link>
+          <Link href="/raids" className="primary-button"><CalendarIcon/>이번 주 레이드 보기<ChevronIcon/></Link>
         </div>
-        <div className="hero-pokemon">
-          {/* eslint-disable-next-line @next/next/no-img-element */}<img className="dialga" src={bosses.find((b) => b.slug === "dialga-dynamax")?.sprite} alt="다이맥스 디아루가"/>
-          {/* eslint-disable-next-line @next/next/no-img-element */}<img className="palkia" src={bosses.find((b) => b.slug === "palkia-dynamax")?.sprite} alt="다이맥스 펄기아"/>
+        <div className="hero-pokemon-thumbnails">
+          {priorityBosses.slice(0, 2).map((boss) => (
+            <PokemonThumbnail
+              href={`/bosses/${boss.slug}`}
+              image={boss.sprite}
+              name={`${boss.form ?? ""} ${boss.name}`.trim()}
+              types={boss.types}
+              key={boss.slug}
+            />
+          ))}
         </div>
       </section>
 
@@ -44,7 +52,7 @@ export default function Home() {
       </section>
 
       <section className="section-block">
-        <div className="section-heading"><div><span className="section-kicker">이번 주 큰 일정</span><h2>놓치면 아쉬워요</h2></div><Link href="/schedule" className="text-link">전체 보기<ChevronIcon/></Link></div>
+        <div className="section-heading"><div><span className="section-kicker">이번 주 큰 일정</span><h2>놓치면 아쉬워요</h2></div><Link href="/events" className="text-link">전체 보기<ChevronIcon/></Link></div>
         <div className="event-grid">{events.map((event) => <EventCard event={event} key={event.slug}/>)}</div>
       </section>
 
@@ -57,7 +65,7 @@ export default function Home() {
         <span><CheckIcon/>다음 주 예고</span>
         <h2>무한다이노가 돌아와요</h2>
         <p>11월 21일(토) 11:00–14:00<br/>이번 주 디아루가·펄기아를 준비해 두세요.</p>
-        <a href="https://pokemongo.com/news/dynamax-trails-eternamax-eternatus-2026" target="_blank" rel="noreferrer">공식 공지 보기<ChevronIcon/></a>
+        <Link href="/raids">다음 주 미리보기<ChevronIcon/></Link>
       </section>
     </div>
   );

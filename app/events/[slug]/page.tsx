@@ -18,7 +18,7 @@ export default async function EventDetail({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="page-shell detail-page">
-      <Link href="/schedule" className="back-link"><ArrowLeftIcon/>주간 일정</Link>
+      <Link href="/events" className="back-link"><ArrowLeftIcon/>이벤트로 돌아가기</Link>
       <section className={`detail-hero ${event.color}`}>
         <span>{event.eyebrow}</span>
         <h1>{event.title}</h1>

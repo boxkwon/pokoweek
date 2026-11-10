@@ -1,38 +1,7 @@
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { bosses } from "../data/bosses";
 import { weeklyOverview } from "../data/weekly";
-
-const typePalette: Record<string, { color: string; deep: string }> = {
-  노말: { color: "#A8A77A", deep: "#77774F" },
-  불꽃: { color: "#EE8130", deep: "#B94C16" },
-  물: { color: "#6390F0", deep: "#315FBE" },
-  전기: { color: "#F7D02C", deep: "#C59B05" },
-  풀: { color: "#7AC74C", deep: "#478E25" },
-  얼음: { color: "#96D9D6", deep: "#4FA5A2" },
-  격투: { color: "#C22E28", deep: "#7F1915" },
-  독: { color: "#A33EA1", deep: "#692268" },
-  땅: { color: "#E2BF65", deep: "#A77D2A" },
-  비행: { color: "#A98FF3", deep: "#6D50C0" },
-  에스퍼: { color: "#F95587", deep: "#BA2050" },
-  벌레: { color: "#A6B91A", deep: "#69780A" },
-  바위: { color: "#B6A136", deep: "#78671A" },
-  고스트: { color: "#735797", deep: "#45315F" },
-  드래곤: { color: "#6F35FC", deep: "#3F18A9" },
-  악: { color: "#705746", deep: "#443128" },
-  강철: { color: "#A8A8C0", deep: "#66677F" },
-  페어리: { color: "#D685AD", deep: "#9B4E76" },
-};
-
-type RosterStyle = CSSProperties & {
-  "--roster-color": string;
-  "--roster-color-deep": string;
-};
-
-function rosterStyle(type: string): RosterStyle {
-  const palette = typePalette[type] ?? { color: "#8B83C5", deep: "#555083" };
-  return { "--roster-color": palette.color, "--roster-color-deep": palette.deep };
-}
+import { PokemonThumbnail } from "./pokemon-thumbnail";
 
 export function WeeklyOverview() {
   return (
@@ -68,12 +37,13 @@ export function WeeklyOverview() {
                       className="weekly-roster-item"
                       href={`/bosses/${boss.slug}`}
                       aria-label={`${boss.form ? `${boss.form} ` : ""}${boss.name} 공략 보기`}
-                      style={rosterStyle(boss.types[0])}
                       key={boss.slug}
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={boss.sprite} alt="" />
-                      <span>{boss.form ? `${boss.form} ` : ""}{boss.name}</span>
+                      <PokemonThumbnail
+                        image={boss.sprite}
+                        name={boss.form ? `${boss.form} ${boss.name}` : boss.name}
+                        types={boss.types}
+                      />
                     </Link>
                   ))}
                 </div>

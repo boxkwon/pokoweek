@@ -1,17 +1,12 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import type { CSSProperties } from "react";
 import { bosses, getBoss } from "../../data/bosses";
 import { getSources } from "../../data/sources";
 import { ArrowLeftIcon, ShieldIcon } from "../../components/icons";
 import { SourceList } from "../../components/source-list";
 import { TypeIcons } from "../../components/type-icons";
-import { counterArtworkUrl, getTypePalette } from "../../lib/pokemon";
-
-type BossHeroStyle = CSSProperties & {
-  "--boss-color": string;
-  "--boss-color-deep": string;
-};
+import { counterArtworkUrl, counterTypes } from "../../lib/pokemon";
+import { PokemonThumbnail } from "../../components/pokemon-thumbnail";
 
 export function generateStaticParams() { return bosses.map((boss) => ({ slug: boss.slug })); }
 
@@ -19,20 +14,17 @@ export default async function BossDetail({ params }: { params: Promise<{ slug: s
   const { slug } = await params;
   const boss = getBoss(slug);
   if (!boss) notFound();
-  const palette = getTypePalette(boss.types[0]);
-  const heroStyle: BossHeroStyle = {
-    "--boss-color": palette.color,
-    "--boss-color-deep": palette.deep,
-  };
-
   return (
     <div className="page-shell detail-page boss-detail">
-      <Link href="/schedule" className="back-link boss-back-link"><ArrowLeftIcon/>주간 일정으로 돌아가기</Link>
+      <Link href="/raids" className="back-link boss-back-link"><ArrowLeftIcon/>레이드로 돌아가기</Link>
 
-      <section className="boss-guide-hero" style={heroStyle}>
+      <section className="boss-guide-hero">
         <div className="boss-guide-visual">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={boss.sprite} alt={`${boss.form ? `${boss.form} ` : ""}${boss.name}`} />
+          <PokemonThumbnail
+            image={boss.sprite}
+            name={boss.form ? `${boss.form} ${boss.name}` : boss.name}
+            types={boss.types}
+          />
         </div>
         <div className="boss-guide-copy">
           <span className="battle-pill">{boss.battleType} 공략</span>
@@ -69,12 +61,7 @@ export default async function BossDetail({ params }: { params: Promise<{ slug: s
             return (
               <article className="counter-card" key={counter.name}>
                 <span className="counter-rank">추천 {index + 1}</span>
-                <div className="counter-art">
-                  {image && (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img src={image} alt={counter.name} />
-                  )}
-                </div>
+                <PokemonThumbnail className="counter-art" image={image} name={counter.name} types={counterTypes(counter.name)} />
                 <h3>{counter.name}</h3>
                 <p>{counter.note}</p>
               </article>

@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { MonthlyEvent } from "../data/monthly";
+import { getPokemonTypes } from "../data/pokemon-types";
 import { ChevronIcon, ExternalIcon } from "./icons";
+import { PokemonThumbnail } from "./pokemon-thumbnail";
 
 const weekDays = ["월", "화", "수", "목", "금", "토", "일"];
 
@@ -22,10 +24,10 @@ function addDays(value: string, days: number) {
   return toDateKey(date);
 }
 
-function nextMonday(value: string) {
+function weekMonday(value: string, weekOffset: number) {
   const date = parseDateKey(value);
   const daysSinceMonday = (date.getUTCDay() + 6) % 7;
-  return addDays(value, 7 - daysSinceMonday);
+  return addDays(value, (weekOffset * 7) - daysSinceMonday);
 }
 
 function shortDate(value: string) {
@@ -53,21 +55,26 @@ function timeLabel(event: MonthlyEvent, selectedDate: string) {
   return "진행 중";
 }
 
-function EventArtwork({ event, href, tone }: { event: MonthlyEvent; href: string; tone: string }) {
+function isRaidEvent(event: MonthlyEvent) {
+  return event.category === "Raid Battles"
+    || event.category === "Raid Hour"
+    || event.category === "Raid Day"
+    || event.category === "Max Battles";
+}
+
+function EventArtwork({ event, href }: { event: MonthlyEvent; href: string }) {
   if (event.pokemon.length > 0) {
     return (
       <div className={`schedule-pokemon count-${Math.min(event.pokemon.length, 3)}`}>
         {event.pokemon.slice(0, 3).map((pokemon) => (
-          <Link
-            className={`pokemon-poster-panel feed-pokemon-panel ${tone}`}
+          <PokemonThumbnail
+            className="schedule-pokemon-thumbnail"
             href={href}
-            aria-label={`${pokemon.name} 일정 상세 보기`}
+            image={pokemon.image}
+            name={pokemon.name}
+            types={getPokemonTypes(pokemon.name)}
             key={`${event.id}-${pokemon.name}`}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="pokemon-poster-image" src={pokemon.image} alt="" />
-            <span className="pokemon-poster-name">{pokemon.name}</span>
-          </Link>
+          />
         ))}
       </div>
     );
@@ -80,9 +87,23 @@ function EventArtwork({ event, href, tone }: { event: MonthlyEvent; href: string
   ) : <Link className="feed-schedule-placeholder" href={href}>일정 자세히 보기</Link>;
 }
 
-export function NextWeekPreview({ events, initialDate }: { events: MonthlyEvent[]; initialDate: string }) {
+export function NextWeekPreview({
+  events,
+  initialDate,
+  weekOffset = 1,
+  filter = "all",
+  eyebrow,
+  description,
+}: {
+  events: MonthlyEvent[];
+  initialDate: string;
+  weekOffset?: 0 | 1;
+  filter?: "all" | "raid" | "event";
+  eyebrow?: string;
+  description?: string;
+}) {
   const [selectedDate, setSelectedDate] = useState("all");
-  const weekStart = useMemo(() => nextMonday(initialDate), [initialDate]);
+  const weekStart = useMemo(() => weekMonday(initialDate, weekOffset), [initialDate, weekOffset]);
   const dates = useMemo(
     () => weekDays.map((day, index) => {
       const key = addDays(weekStart, index);
@@ -92,25 +113,29 @@ export function NextWeekPreview({ events, initialDate }: { events: MonthlyEvent[
   );
   const weekEnd = dates[6].key;
   const weekEvents = useMemo(
-    () => events.filter((event) => event.startDate <= weekEnd && event.endDate >= weekStart),
-    [events, weekEnd, weekStart],
+    () => events.filter((event) => {
+      const inWeek = event.startDate <= weekEnd && event.endDate >= weekStart;
+      if (!inWeek || filter === "all") return inWeek;
+      return filter === "raid" ? isRaidEvent(event) : !isRaidEvent(event);
+    }),
+    [events, filter, weekEnd, weekStart],
   );
   const visibleEvents = selectedDate === "all"
     ? weekEvents
     : weekEvents.filter((event) => event.startDate <= selectedDate && event.endDate >= selectedDate);
 
   return (
-    <section className="next-week-preview" aria-label="다음 주 Pokémon GO 일정 미리보기">
+    <section className="next-week-preview" aria-label={`${weekOffset === 0 ? "이번 주" : "다음 주"} Pokémon GO 일정`}>
       <div className="next-week-preview-heading">
         <div>
-          <span>자동 수집 미리보기</span>
+          <span>{eyebrow ?? (weekOffset === 0 ? "이번 주 일정" : "자동 수집 미리보기")}</span>
           <h2>{shortDate(weekStart)}–{shortDate(weekEnd)}</h2>
-          <p>공개된 다음 주 일정을 요일별로 먼저 확인해요.</p>
+          <p>{description ?? `공개된 ${weekOffset === 0 ? "이번 주" : "다음 주"} 일정을 요일별로 확인해요.`}</p>
         </div>
         <b>{weekEvents.length}개 일정</b>
       </div>
 
-      <div className="date-strip" role="tablist" aria-label="다음 주 날짜 선택">
+      <div className="date-strip" role="tablist" aria-label={`${weekOffset === 0 ? "이번 주" : "다음 주"} 날짜 선택`}>
         <button
           type="button"
           className={`all-dates ${selectedDate === "all" ? "active" : ""}`}
@@ -147,7 +172,7 @@ export function NextWeekPreview({ events, initialDate }: { events: MonthlyEvent[
             return (
               <article className={`schedule-row next-week-schedule-row ${tone}`} key={event.id}>
                 <div className="schedule-visual">
-                  <EventArtwork event={event} href={detailHref} tone={tone} />
+                  <EventArtwork event={event} href={detailHref} />
                   <span className="visual-label">{event.categoryLabel}</span>
                 </div>
                 <Link className="schedule-content" href={detailHref}>

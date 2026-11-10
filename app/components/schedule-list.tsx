@@ -1,11 +1,12 @@
 "use client";
 
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { events, schedule } from "../data/events";
 import { bosses } from "../data/bosses";
 import { dateKey, formatTime, WEEK_DAYS } from "../lib/format";
 import { ChevronIcon, RaidHeadIcon } from "./icons";
+import { PokemonThumbnail } from "./pokemon-thumbnail";
 
 const dates = Array.from({ length: 7 }, (_, index) => {
   const date = new Date(`2026-11-${String(9 + index).padStart(2, "0")}T00:00:00+09:00`);
@@ -34,40 +35,6 @@ const typeIds: Record<string, number> = {
   악: 17,
   페어리: 18,
 };
-
-const typePalette: Record<string, { color: string; deep: string }> = {
-  노말: { color: "#A8A77A", deep: "#77774F" },
-  불꽃: { color: "#EE8130", deep: "#B94C16" },
-  물: { color: "#6390F0", deep: "#315FBE" },
-  전기: { color: "#F7D02C", deep: "#C59B05" },
-  풀: { color: "#7AC74C", deep: "#478E25" },
-  얼음: { color: "#96D9D6", deep: "#4FA5A2" },
-  격투: { color: "#C22E28", deep: "#7F1915" },
-  독: { color: "#A33EA1", deep: "#692268" },
-  땅: { color: "#E2BF65", deep: "#A77D2A" },
-  비행: { color: "#A98FF3", deep: "#6D50C0" },
-  에스퍼: { color: "#F95587", deep: "#BA2050" },
-  벌레: { color: "#A6B91A", deep: "#69780A" },
-  바위: { color: "#B6A136", deep: "#78671A" },
-  고스트: { color: "#735797", deep: "#45315F" },
-  드래곤: { color: "#6F35FC", deep: "#3F18A9" },
-  악: { color: "#705746", deep: "#443128" },
-  강철: { color: "#A8A8C0", deep: "#66677F" },
-  페어리: { color: "#D685AD", deep: "#9B4E76" },
-};
-
-type PokemonPanelStyle = CSSProperties & {
-  "--type-color": string;
-  "--type-color-deep": string;
-};
-
-function pokemonPanelStyle(types: string[]): PokemonPanelStyle {
-  const palette = typePalette[types[0]] ?? { color: "#8B83C5", deep: "#555083" };
-  return {
-    "--type-color": palette.color,
-    "--type-color-deep": palette.deep,
-  };
-}
 
 function kindLabel(kind: keyof typeof kindName, title: string) {
   if (kind === "raid" && title.includes("레이드아워")) return "레이드아워";
@@ -104,13 +71,19 @@ function RaidTierFaces({ tier }: { tier?: number }) {
   );
 }
 
-export function ScheduleList({ initialDay = "all" }: { initialDay?: string }) {
+export function ScheduleList({
+  initialDay = "all",
+  allowedKinds,
+}: {
+  initialDay?: string;
+  allowedKinds?: Array<"event" | "raid" | "max" | "community">;
+}) {
   const [selected, setSelected] = useState(initialDay);
   const items = useMemo(
     () => selected === "all"
-      ? schedule
-      : schedule.filter((item) => dateKey(item.start) <= selected && dateKey(item.end) >= selected),
-    [selected],
+      ? schedule.filter((item) => !allowedKinds || allowedKinds.includes(item.kind))
+      : schedule.filter((item) => (!allowedKinds || allowedKinds.includes(item.kind)) && dateKey(item.start) <= selected && dateKey(item.end) >= selected),
+    [allowedKinds, selected],
   );
 
   return (
@@ -146,7 +119,7 @@ export function ScheduleList({ initialDay = "all" }: { initialDay?: string }) {
             ? itemBosses
             : bosses.filter((boss) => linkedEvent?.bossSlugs.includes(boss.slug)).slice(0, 3);
           const weaknesses = [...new Set(itemBosses.flatMap((boss) => boss.weaknesses))].slice(0, 4);
-          const href = item.eventSlug ? `/events/${item.eventSlug}` : itemBosses[0] ? `/bosses/${itemBosses[0].slug}` : "/schedule";
+          const href = item.eventSlug ? `/events/${item.eventSlug}` : itemBosses[0] ? `/bosses/${itemBosses[0].slug}` : "/raids";
           const label = item.label ?? kindLabel(item.kind, item.title);
           const raidTier = item.kind === "raid"
             ? itemBosses.some((boss) => boss.difficulty.startsWith("5성")) ? 5
@@ -158,17 +131,14 @@ export function ScheduleList({ initialDay = "all" }: { initialDay?: string }) {
               <div className="schedule-visual">
                 <div className={`schedule-pokemon count-${Math.min(visualBosses.length, 3)}`}>
                   {visualBosses.slice(0, 3).map((boss) => (
-                    <Link
-                      className="pokemon-poster-panel"
+                    <PokemonThumbnail
+                      className="schedule-pokemon-thumbnail"
                       href={`/bosses/${boss.slug}`}
-                      aria-label={`${boss.form ? `${boss.form} ` : ""}${boss.name} 공략 보기`}
+                      image={boss.sprite}
+                      name={boss.form ? `${boss.form} ${boss.name}` : boss.name}
+                      types={boss.types}
                       key={boss.slug}
-                      style={pokemonPanelStyle(boss.types)}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img className="pokemon-poster-image" src={boss.sprite} alt="" />
-                      <span className="pokemon-poster-name">{boss.name}</span>
-                    </Link>
+                    />
                   ))}
                 </div>
                 <span className="visual-label"><RaidTierFaces tier={raidTier} />{label}</span>
