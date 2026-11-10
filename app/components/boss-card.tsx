@@ -4,20 +4,22 @@ import { ChevronIcon } from "./icons";
 import { PokemonThumbnail } from "./pokemon-thumbnail";
 
 export function BossCard({ boss, compact = false }: { boss: Boss; compact?: boolean }) {
+  const href = `/bosses/${boss.slug}`;
   return (
-    <Link href={`/bosses/${boss.slug}`} className={`boss-card ${compact ? "compact" : ""}`}>
+    <article className={`boss-card ${compact ? "compact" : ""}`}>
       <PokemonThumbnail
         className="boss-art"
         image={boss.sprite}
         name={boss.form ? `${boss.form} ${boss.name}` : boss.name}
         types={boss.types}
+        href={href}
       />
-      <div className="boss-copy">
+      <Link className="boss-copy" href={href}>
         <div className="boss-topline"><span>{boss.battleType}</span><span>·</span><span>{boss.difficulty.split("·")[0]}</span></div>
         <strong>{boss.form ? `${boss.form} ` : ""}{boss.name}</strong>
         {!compact && <p>약점 {boss.weaknesses.slice(0, 3).join(" · ")}</p>}
-      </div>
-      <ChevronIcon className="card-chevron" />
-    </Link>
+      </Link>
+      <Link className="boss-card-chevron" href={href} aria-label={`${boss.name} 공략 보기`}><ChevronIcon className="card-chevron" /></Link>
+    </article>
   );
 }

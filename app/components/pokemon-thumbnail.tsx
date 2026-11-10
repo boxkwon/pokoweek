@@ -28,7 +28,7 @@ export function PokemonThumbnail({
     "--thumb-color": palette.color,
     "--thumb-color-deep": palette.deep,
   };
-  const content = (
+  const visual = (
     <>
       <span className="pokemon-thumbnail-glow" />
       {image && (
@@ -37,17 +37,19 @@ export function PokemonThumbnail({
       )}
       {badge && <span className="pokemon-thumbnail-top-badge">{badge}</span>}
       <span className="pokemon-thumbnail-name">{name}</span>
-      <TypeIcons types={types} size="small" label={`${name} 타입`} />
     </>
   );
 
-  return href ? (
-    <Link className={`pokemon-thumbnail ${className}`} href={href} style={style} aria-label={`${name} 자세히 보기`}>
-      {content}
-    </Link>
-  ) : (
+  return (
     <div className={`pokemon-thumbnail ${className}`} style={style}>
-      {content}
+      {href ? (
+        <Link className="pokemon-thumbnail-main" href={href} aria-label={`${name} 자세히 보기`}>
+          {visual}
+        </Link>
+      ) : (
+        <div className="pokemon-thumbnail-main">{visual}</div>
+      )}
+      <TypeIcons types={types} size="small" label={`${name} 타입`} />
     </div>
   );
 }

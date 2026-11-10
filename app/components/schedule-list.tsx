@@ -7,6 +7,7 @@ import { bosses } from "../data/bosses";
 import { dateKey, formatTime, WEEK_DAYS } from "../lib/format";
 import { ChevronIcon, RaidHeadIcon } from "./icons";
 import { PokemonThumbnail } from "./pokemon-thumbnail";
+import { TypeIcons } from "./type-icons";
 
 const dates = Array.from({ length: 7 }, (_, index) => {
   const date = new Date(`2026-11-${String(9 + index).padStart(2, "0")}T00:00:00+09:00`);
@@ -15,51 +16,13 @@ const dates = Array.from({ length: 7 }, (_, index) => {
 
 const kindName = { event: "이벤트", raid: "레이드", max: "맥스배틀", community: "커뮤니티" };
 
-const typeIds: Record<string, number> = {
-  노말: 1,
-  격투: 2,
-  비행: 3,
-  독: 4,
-  땅: 5,
-  바위: 6,
-  벌레: 7,
-  고스트: 8,
-  강철: 9,
-  불꽃: 10,
-  물: 11,
-  풀: 12,
-  전기: 13,
-  에스퍼: 14,
-  얼음: 15,
-  드래곤: 16,
-  악: 17,
-  페어리: 18,
-};
-
 function kindLabel(kind: keyof typeof kindName, title: string) {
   if (kind === "raid" && title.includes("레이드아워")) return "레이드아워";
   return kindName[kind];
 }
 
 function TypeSymbols({ types }: { types: string[] }) {
-  return (
-    <div className="schedule-type-icons" aria-label={`추천 타입 ${types.join(", ")}`}>
-      {types.map((type) => {
-        const id = typeIds[type];
-        return id ? (
-          <span className="schedule-type-icon" title={`${type} 타입`} key={type}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-viii/sword-shield/small/${id}.png`}
-              alt=""
-              aria-hidden="true"
-            />
-            <span className="sr-only">{type} 타입</span>
-          </span>
-        ) : null;
-      })}
-    </div>
-  );
+  return <TypeIcons types={types} size="medium" label="추천 타입" />;
 }
 
 function RaidTierFaces({ tier }: { tier?: number }) {
@@ -143,21 +106,22 @@ export function ScheduleList({
                 </div>
                 <span className="visual-label"><RaidTierFaces tier={raidTier} />{label}</span>
               </div>
-              <Link className="schedule-content" href={href}>
-                <div className="schedule-meta">
-                  <time>{formatTime(item.start)}–{formatTime(item.end)}</time>
-                  <span className={`schedule-kind ${item.kind}`}><RaidTierFaces tier={raidTier} />[{label}]</span>
-                </div>
-                <strong>{displayTitle}</strong>
+              <div className="schedule-content">
+                <Link className="schedule-content-main" href={href}>
+                  <div className="schedule-meta">
+                    <time>{formatTime(item.start)}–{formatTime(item.end)}</time>
+                    <span className={`schedule-kind ${item.kind}`}><RaidTierFaces tier={raidTier} />[{label}]</span>
+                  </div>
+                  <strong>{displayTitle}</strong>
+                  {weaknesses.length === 0 && <p>{item.summary}</p>}
+                </Link>
                 {weaknesses.length > 0 ? (
                   <div className="schedule-matchup">
                     <span>추천 공략 타입</span>
                     <TypeSymbols types={weaknesses} />
                   </div>
-                ) : (
-                  <p>{item.summary}</p>
-                )}
-              </Link>
+                ) : null}
+              </div>
               <Link className="schedule-action" href={href}>자세히 <ChevronIcon /></Link>
             </article>
           );

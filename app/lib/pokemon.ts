@@ -22,6 +22,36 @@ export const typeIds: Record<string, number> = {
   페어리: 18,
 };
 
+export const typeOrder = [
+  "노말", "불꽃", "물", "전기", "풀", "얼음", "격투", "독", "땅",
+  "비행", "에스퍼", "벌레", "바위", "고스트", "드래곤", "악", "강철", "페어리",
+] as const;
+
+export const typeMatchups: Record<string, { strong: string[]; weak: string[] }> = {
+  노말: { strong: [], weak: ["격투"] },
+  불꽃: { strong: ["풀", "얼음", "벌레", "강철"], weak: ["물", "땅", "바위"] },
+  물: { strong: ["불꽃", "땅", "바위"], weak: ["전기", "풀"] },
+  전기: { strong: ["물", "비행"], weak: ["땅"] },
+  풀: { strong: ["물", "땅", "바위"], weak: ["불꽃", "얼음", "독", "비행", "벌레"] },
+  얼음: { strong: ["풀", "땅", "비행", "드래곤"], weak: ["불꽃", "격투", "바위", "강철"] },
+  격투: { strong: ["노말", "얼음", "바위", "악", "강철"], weak: ["비행", "에스퍼", "페어리"] },
+  독: { strong: ["풀", "페어리"], weak: ["땅", "에스퍼"] },
+  땅: { strong: ["불꽃", "전기", "독", "바위", "강철"], weak: ["물", "풀", "얼음"] },
+  비행: { strong: ["풀", "격투", "벌레"], weak: ["전기", "얼음", "바위"] },
+  에스퍼: { strong: ["격투", "독"], weak: ["벌레", "고스트", "악"] },
+  벌레: { strong: ["풀", "에스퍼", "악"], weak: ["불꽃", "비행", "바위"] },
+  바위: { strong: ["불꽃", "얼음", "비행", "벌레"], weak: ["물", "풀", "격투", "땅", "강철"] },
+  고스트: { strong: ["에스퍼", "고스트"], weak: ["고스트", "악"] },
+  드래곤: { strong: ["드래곤"], weak: ["얼음", "드래곤", "페어리"] },
+  악: { strong: ["에스퍼", "고스트"], weak: ["격투", "벌레", "페어리"] },
+  강철: { strong: ["얼음", "바위", "페어리"], weak: ["불꽃", "격투", "땅"] },
+  페어리: { strong: ["격투", "드래곤", "악"], weak: ["독", "강철"] },
+};
+
+export function getTypeMatchup(type: string) {
+  return typeMatchups[type] ?? { strong: [], weak: [] };
+}
+
 export const typePalette: Record<string, { color: string; deep: string }> = {
   노말: { color: "#A8A77A", deep: "#77774F" },
   불꽃: { color: "#EE8130", deep: "#B94C16" },

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { bosses } from "../data/bosses";
 import { weeklyOverview } from "../data/weekly";
 import { PokemonThumbnail } from "./pokemon-thumbnail";
@@ -33,18 +32,17 @@ export function WeeklyOverview() {
               ) : (
                 <div className={`weekly-roster count-${Math.min(groupBosses.length, 4)}`}>
                   {groupBosses.map((boss) => (
-                    <Link
+                    <div
                       className="weekly-roster-item"
-                      href={`/bosses/${boss.slug}`}
-                      aria-label={`${boss.form ? `${boss.form} ` : ""}${boss.name} 공략 보기`}
                       key={boss.slug}
                     >
                       <PokemonThumbnail
+                        href={`/bosses/${boss.slug}`}
                         image={boss.sprite}
                         name={boss.form ? `${boss.form} ${boss.name}` : boss.name}
                         types={boss.types}
                       />
-                    </Link>
+                    </div>
                   ))}
                 </div>
               )}
