@@ -34,10 +34,10 @@ export function CountdownBadge({ children }: { children: ReactNode }) {
   return <span className="countdown-badge"><ClockIcon />{children}</span>;
 }
 
-export function PreparationChecklist({ items }: { items: string[] }) {
-  return <ul className="preparation-checklist">{items.map((item) => <li key={item}><CheckIcon /><span>{item}</span></li>)}</ul>;
+export function PreparationChecklist({ items, variant = "done" }: { items: string[]; variant?: "done" | "todo" }) {
+  return <ul className={`preparation-checklist ${variant}`}>{items.map((item) => <li key={item}>{variant === "done" ? <CheckIcon /> : <i aria-hidden="true" />}<span>{item}</span></li>)}</ul>;
 }
 
-export function ValueRating({ label, value }: { label: string; value: number }) {
-  return <div className="value-rating"><span>{label}</span><div>{Array.from({ length: 5 }, (_, index) => <i className={index < value ? "active" : ""} key={index} />)}</div><b>{value}/5</b></div>;
+export function ValueRating({ label, value, reason }: { label: string; value: number; reason?: string }) {
+  return <div className="value-rating"><span>{label}</span><div>{Array.from({ length: 5 }, (_, index) => <StarIcon className={index < value ? "active" : ""} key={index} />)}</div><p>{reason}</p></div>;
 }

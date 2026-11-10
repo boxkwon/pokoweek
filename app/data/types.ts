@@ -62,6 +62,18 @@ export type GameEvent = {
   sourceIds: string[];
   color: "violet" | "orange" | "blue";
   eventHero?: string;
+  days?: { label: string; dateLabel: string; bossSlugs: string[] }[];
+};
+
+export type PokemonGuideMeta = {
+  rating: number;
+  reason: string;
+  values: {
+    max: { score: number; reason: string };
+    raid: { score: number; reason: string };
+    pvp: { score: number; reason: string };
+  };
+  summary: string;
 };
 
 export type WeekPriority = {
