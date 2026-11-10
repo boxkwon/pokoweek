@@ -131,6 +131,16 @@ main { min-height: 70vh; }
 .next-week-event-list { margin-top: 20px; }
 .next-week-empty { margin-top: 20px; }
 .announcement-pending { color: #a0493d !important; }
+.next-week-schedule-row .feed-pokemon-panel { background: radial-gradient(circle at 50% 42%,rgba(255,255,255,.44) 0 20%,rgba(255,255,255,.08) 50%,transparent 68%),linear-gradient(150deg,#9b91cf,#5c5592); }
+.next-week-schedule-row .feed-pokemon-panel.raid { background: radial-gradient(circle at 50% 42%,rgba(255,255,255,.44) 0 20%,rgba(255,255,255,.08) 50%,transparent 68%),linear-gradient(150deg,#e98878,#a33d32); }
+.next-week-schedule-row .feed-pokemon-panel.max { background: radial-gradient(circle at 50% 42%,rgba(255,255,255,.44) 0 20%,rgba(255,255,255,.08) 50%,transparent 68%),linear-gradient(150deg,#819bd1,#405b97); }
+.next-week-schedule-row .feed-pokemon-panel.community { background: radial-gradient(circle at 50% 42%,rgba(255,255,255,.44) 0 20%,rgba(255,255,255,.08) 50%,transparent 68%),linear-gradient(150deg,#7ebd85,#3e7547); }
+.feed-banner-link { width: 100%; height: 100%; display: block; }
+.feed-banner-image { width: 100%; height: 100%; display: block; object-fit: cover; }
+.feed-schedule-placeholder { width: 100%; height: 100%; display: grid; place-items: center; color: #77747b; font-size: 20px; font-weight: 900; }
+.next-week-card-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.schedule-source-action { display: inline-flex; align-items: center; gap: 4px; padding-top: 10px; border-top: 1px solid #ded9cf; color: #6b618d; font-size: 12px; font-weight: 900; white-space: nowrap; }
+.schedule-source-action svg { width: 16px; }
 .month-calendar-section { margin-top: 4px; }
 .month-calendar-toolbar { min-height: 84px; display: grid; grid-template-columns: 48px 1fr 48px; align-items: center; gap: 12px; padding: 13px 16px; border: 1px solid #dcd7cc; border-radius: 22px 16px 22px 16px; background: #fffefa; box-shadow: 0 6px 0 #e7e1d5; }
 .month-calendar-toolbar > button { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid #d8d3c8; border-radius: 14px 10px 14px 10px; background: #f2efe8; color: #34343b; cursor: pointer; }
@@ -282,6 +292,33 @@ main { min-height: 70vh; }
 .source-row { background: #fff; border: 1px solid var(--line); border-radius: 13px; padding: 11px 12px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 9px; font-size: 11px; font-weight: 800; }
 .source-row svg { color: #999; }
 .source-badge { border-radius: 5px; padding: 3px 6px; font-size: 9px; color: #fff; background: #8b8990; }.source-badge.official { background: #447bce; }
+.calendar-event-detail { max-width: 940px; }
+.calendar-event-hero { min-height: 390px; display: grid; grid-template-columns: minmax(330px,.95fr) minmax(0,1.05fr); overflow: hidden; border: 1px solid #dcd7cc; border-radius: 32px 22px 32px 22px; background: #fffefa; box-shadow: 0 9px 0 #e7e1d5,0 20px 42px rgba(57,48,36,.08); }
+.calendar-event-art { min-height: 390px; display: grid; place-items: center; overflow: hidden; background: linear-gradient(145deg,#dfd9ee,#bbb2d4); }
+.calendar-event-banner { width: 100%; height: 100%; object-fit: cover; }
+.calendar-event-pokemon { width: 100%; height: 100%; display: grid; grid-template-columns: 1fr; }
+.calendar-event-pokemon.count-2 { grid-template-columns: repeat(2,1fr); }.calendar-event-pokemon.count-3 { grid-template-columns: repeat(3,1fr); }
+.calendar-event-pokemon > span { min-width: 0; position: relative; display: grid; place-items: center; overflow: hidden; background: radial-gradient(circle at 50% 42%,rgba(255,255,255,.48),transparent 62%),linear-gradient(150deg,#9b91cf,#5c5592); }
+.calendar-event-pokemon img { width: 95%; height: 86%; object-fit: contain; filter: drop-shadow(0 15px 10px rgba(24,21,32,.28)); }
+.calendar-event-pokemon b { position: absolute; left: 9px; right: 9px; bottom: 10px; overflow: hidden; padding: 6px; border-radius: 7px; background: rgba(29,28,38,.84); color: #fff; font-size: 12px; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+.calendar-event-no-art { color: #fff; font-size: 34px; font-weight: 900; }
+.calendar-event-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 42px 44px; }
+.calendar-event-copy .battle-pill { padding: 8px 13px; font-size: 14px; }
+.calendar-event-copy h1 { margin: 24px 0 17px; font-size: clamp(40px,5.5vw,62px); line-height: 1.04; letter-spacing: -2.7px; word-break: keep-all; }
+.calendar-event-copy > p { margin: 21px 0 0; color: #66646b; font-size: 15px; line-height: 1.5; font-weight: 800; }
+.calendar-event-period { display: flex; align-items: flex-start; gap: 8px; color: #55535b; font-size: 14px; line-height: 1.5; font-weight: 900; }
+.calendar-event-period svg { flex: 0 0 auto; margin-top: 1px; }
+.calendar-event-info-card { display: grid; grid-template-columns: repeat(3,1fr); overflow: hidden; border: 1px solid #dcd7cc; border-radius: 19px 13px 19px 13px; background: #fffefa; }
+.calendar-event-info-card > div { padding: 20px; border-right: 1px solid #e4dfd5; }
+.calendar-event-info-card > div:last-child { border: 0; }
+.calendar-event-info-card span { display: block; color: #77747b; font-size: 12px; font-weight: 800; }
+.calendar-event-info-card strong { display: block; margin-top: 6px; font-size: 17px; }
+.calendar-pokemon-list { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 13px; }
+.calendar-pokemon-list > div { min-width: 0; padding: 12px 12px 16px; border: 1px solid #dcd7cc; border-radius: 20px 14px 20px 14px; background: #fffefa; box-shadow: 0 5px 0 #e7e1d5; text-align: center; }
+.calendar-pokemon-list img { width: 100%; height: 160px; object-fit: contain; filter: drop-shadow(0 9px 7px rgba(24,21,32,.18)); }
+.calendar-pokemon-list strong { display: block; overflow: hidden; font-size: 17px; text-overflow: ellipsis; white-space: nowrap; }
+.calendar-source-link { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 18px 20px; border: 1px solid #dcd7cc; border-radius: 16px 11px 16px 11px; background: #fffefa; box-shadow: 0 4px 0 #e7e1d5; }
+.calendar-source-link span { color: #65636a; font-size: 13px; font-weight: 800; }.calendar-source-link b { display: block; margin-bottom: 3px; color: var(--violet); font-size: 15px; }.calendar-source-link svg { flex: 0 0 auto; color: var(--violet); }
 
 .boss-hero { text-align: center; padding: 6px 0 20px; }
 .boss-hero-art { width: 250px; height: 230px; margin: 0 auto -4px; border-radius: 50%; background: radial-gradient(circle, #e7e3fa 0, #f3f1eb 63%, transparent 64%); display: grid; place-items: center; }
@@ -377,6 +414,9 @@ main { min-height: 70vh; }
   .schedule-row { grid-template-columns: 225px minmax(0,1fr); gap: 18px; }
   .schedule-visual { height: 178px; }
   .schedule-action { display: none; }
+  .next-week-card-actions { grid-column: 2; flex-direction: row; align-items: center; justify-content: flex-end; }
+  .next-week-card-actions .schedule-action { display: inline-flex; }
+  .schedule-source-action { padding: 0 0 0 12px; border-top: 0; border-left: 1px solid #ded9cf; }
   .bottom-nav { position: fixed; display: grid; grid-template-columns: repeat(3, 1fr); left: 12px; right: 12px; bottom: 10px; height: 66px; background: rgba(255,255,255,.93); backdrop-filter: blur(18px); border: 1px solid rgba(218,215,208,.9); border-radius: 19px; z-index: 50; box-shadow: 0 10px 35px rgba(30,28,24,.16); }
   .bottom-nav a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: #76757b; font-size: 9px; font-weight: 900; }
   .bottom-nav a:hover { color: var(--violet); }.bottom-nav svg { width: 20px; height: 20px; }
@@ -452,6 +492,17 @@ main { min-height: 70vh; }
   .schedule-kind { font-size: 15px; }
   .schedule-content > strong { font-size: 25px; margin-top: 8px; }
   .schedule-content > p { font-size: 16px; }
+  .next-week-card-actions { flex-direction: row; align-items: center; justify-content: flex-start; padding: 15px 8px 1px; }
+  .next-week-card-actions .schedule-action { display: inline-flex; }
+  .calendar-event-hero { display: block; border-radius: 26px 18px 26px 18px; }
+  .calendar-event-art { min-height: 310px; height: 310px; }
+  .calendar-event-copy { padding: 28px 23px 31px; }
+  .calendar-event-copy h1 { margin-top: 20px; font-size: 42px; }
+  .calendar-event-info-card { grid-template-columns: 1fr; }
+  .calendar-event-info-card > div { padding: 16px 18px; border-right: 0; border-bottom: 1px solid #e4dfd5; }
+  .calendar-pokemon-list { grid-template-columns: 1fr; }
+  .calendar-pokemon-list > div { display: grid; grid-template-columns: 120px minmax(0,1fr); align-items: center; text-align: left; }
+  .calendar-pokemon-list img { height: 120px; }
   .schedule-matchup > span { font-size: 14px; }
   .schedule-type-icon, .schedule-type-icon img { width: 42px; height: 42px; }
   .detail-hero { min-height: 270px; padding: 27px; }

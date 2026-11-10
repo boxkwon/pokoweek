@@ -53,23 +53,31 @@ function timeLabel(event: MonthlyEvent, selectedDate: string) {
   return "진행 중";
 }
 
-function EventArtwork({ event }: { event: MonthlyEvent }) {
+function EventArtwork({ event, href, tone }: { event: MonthlyEvent; href: string; tone: string }) {
   if (event.pokemon.length > 0) {
     return (
-      <div className={`month-agenda-pokemon count-${Math.min(event.pokemon.length, 3)}`}>
+      <div className={`schedule-pokemon count-${Math.min(event.pokemon.length, 3)}`}>
         {event.pokemon.slice(0, 3).map((pokemon) => (
-          <span key={`${event.id}-${pokemon.name}`}>
+          <Link
+            className={`pokemon-poster-panel feed-pokemon-panel ${tone}`}
+            href={href}
+            aria-label={`${pokemon.name} 일정 상세 보기`}
+            key={`${event.id}-${pokemon.name}`}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={pokemon.image} alt={pokemon.name} />
-          </span>
+            <img className="pokemon-poster-image" src={pokemon.image} alt="" />
+            <span className="pokemon-poster-name">{pokemon.name}</span>
+          </Link>
         ))}
       </div>
     );
   }
   return event.image ? (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img className="month-agenda-banner" src={event.image} alt="" />
-  ) : <span className="month-agenda-placeholder">일정</span>;
+    <Link className="feed-banner-link" href={href} aria-label={`${event.title} 상세 보기`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img className="feed-banner-image" src={event.image} alt="" />
+    </Link>
+  ) : <Link className="feed-schedule-placeholder" href={href}>일정 자세히 보기</Link>;
 }
 
 export function NextWeekPreview({ events, initialDate }: { events: MonthlyEvent[]; initialDate: string }) {
@@ -132,32 +140,33 @@ export function NextWeekPreview({ events, initialDate }: { events: MonthlyEvent[
           <p>아직 공개된 일정이 없어요. 새 소식이 확인되면 자동 업데이트에 표시됩니다.</p>
         </div>
       ) : (
-        <div className="month-agenda-list next-week-event-list">
+        <div className="schedule-list next-week-event-list">
           {visibleEvents.map((event) => {
-            const href = event.internalHref || event.sourceUrl;
-            const content = (
-              <>
-                <div className="month-agenda-art"><EventArtwork event={event} /></div>
-                <div className="month-agenda-copy">
-                  <div className="month-agenda-meta">
-                    <span className={categoryTone(event.category)}>{event.categoryLabel}</span>
-                    <time>{timeLabel(event, selectedDate)}</time>
-                  </div>
-                  <h3>{event.title}</h3>
-                  <p className={event.announced ? "" : "announcement-pending"}>
-                    {event.announced ? "공개된 일정" : "상세 포켓몬 공식 발표 전"}
-                  </p>
+            const detailHref = event.internalHref || `/calendar-events/${event.slug}`;
+            const tone = categoryTone(event.category);
+            return (
+              <article className={`schedule-row next-week-schedule-row ${tone}`} key={event.id}>
+                <div className="schedule-visual">
+                  <EventArtwork event={event} href={detailHref} tone={tone} />
+                  <span className="visual-label">{event.categoryLabel}</span>
                 </div>
-                <span className="month-agenda-action">
-                  {event.internalHref ? "공략 보기" : "일정 출처"}
-                  {event.internalHref ? <ChevronIcon /> : <ExternalIcon />}
-                </span>
-              </>
-            );
-            return event.internalHref ? (
-              <Link className="month-agenda-card" href={href} key={event.id}>{content}</Link>
-            ) : (
-              <a className="month-agenda-card" href={href} target="_blank" rel="noreferrer" key={event.id}>{content}</a>
+                <Link className="schedule-content" href={detailHref}>
+                  <div className="schedule-meta">
+                    <time>{timeLabel(event, selectedDate)}</time>
+                    <span className={`schedule-kind ${tone}`}>[{event.categoryLabel}]</span>
+                  </div>
+                  <strong>{event.title}</strong>
+                  <p className={event.announced ? "" : "announcement-pending"}>
+                    {event.announced ? "일정 상세와 등장 포켓몬을 확인해요." : "상세 포켓몬 공식 발표 전"}
+                  </p>
+                </Link>
+                <div className="next-week-card-actions">
+                  <Link className="schedule-action" href={detailHref}>자세히 <ChevronIcon /></Link>
+                  <a className="schedule-source-action" href={event.sourceUrl} target="_blank" rel="noreferrer">
+                    일정 출처 <ExternalIcon />
+                  </a>
+                </div>
+              </article>
             );
           })}
         </div>
