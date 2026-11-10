@@ -37,9 +37,11 @@ function RaidTierFaces({ tier }: { tier?: number }) {
 export function ScheduleList({
   initialDay = "all",
   allowedKinds,
+  showDateStrip = true,
 }: {
   initialDay?: string;
   allowedKinds?: Array<"event" | "raid" | "max" | "community">;
+  showDateStrip?: boolean;
 }) {
   const [selected, setSelected] = useState(initialDay);
   const items = useMemo(
@@ -51,7 +53,7 @@ export function ScheduleList({
 
   return (
     <>
-      <div className="date-strip" role="tablist" aria-label="날짜 선택">
+      {showDateStrip && <div className="date-strip" role="tablist" aria-label="날짜 선택">
         <button
           className={`all-dates ${selected === "all" ? "active" : ""}`}
           role="tab"
@@ -71,7 +73,7 @@ export function ScheduleList({
             <span>{date.day}요일</span><b>{date.date}</b>
           </button>
         ))}
-      </div>
+      </div>}
       <div className="schedule-list">
         {items.length === 0 && <div className="empty-state">이날 등록된 주요 일정이 없어요.<small>공식 발표가 추가되면 업데이트됩니다.</small></div>}
         {items.map((item) => {

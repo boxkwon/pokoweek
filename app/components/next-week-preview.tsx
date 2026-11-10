@@ -94,6 +94,8 @@ export function NextWeekPreview({
   filter = "all",
   eyebrow,
   description,
+  showDateStrip = true,
+  showHeading = true,
 }: {
   events: MonthlyEvent[];
   initialDate: string;
@@ -101,6 +103,8 @@ export function NextWeekPreview({
   filter?: "all" | "raid" | "event";
   eyebrow?: string;
   description?: string;
+  showDateStrip?: boolean;
+  showHeading?: boolean;
 }) {
   const [selectedDate, setSelectedDate] = useState("all");
   const weekStart = useMemo(() => weekMonday(initialDate, weekOffset), [initialDate, weekOffset]);
@@ -126,16 +130,16 @@ export function NextWeekPreview({
 
   return (
     <section className="next-week-preview" aria-label={`${weekOffset === 0 ? "이번 주" : "다음 주"} Pokémon GO 일정`}>
-      <div className="next-week-preview-heading">
+      {showHeading && <div className="next-week-preview-heading">
         <div>
           <span>{eyebrow ?? (weekOffset === 0 ? "이번 주 일정" : "자동 수집 미리보기")}</span>
           <h2>{shortDate(weekStart)}–{shortDate(weekEnd)}</h2>
           <p>{description ?? `공개된 ${weekOffset === 0 ? "이번 주" : "다음 주"} 일정을 요일별로 확인해요.`}</p>
         </div>
         <b>{weekEvents.length}개 일정</b>
-      </div>
+      </div>}
 
-      <div className="date-strip" role="tablist" aria-label={`${weekOffset === 0 ? "이번 주" : "다음 주"} 날짜 선택`}>
+      {showDateStrip && <div className="date-strip" role="tablist" aria-label={`${weekOffset === 0 ? "이번 주" : "다음 주"} 날짜 선택`}>
         <button
           type="button"
           className={`all-dates ${selectedDate === "all" ? "active" : ""}`}
@@ -157,7 +161,7 @@ export function NextWeekPreview({
             <span>{date.day}요일</span><b>{date.date}</b>
           </button>
         ))}
-      </div>
+      </div>}
 
       {visibleEvents.length === 0 ? (
         <div className="month-empty-announcement next-week-empty">

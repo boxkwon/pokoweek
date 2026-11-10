@@ -5,6 +5,7 @@ import { CalendarIcon, ClockIcon } from "./icons";
 import { ScheduleList } from "./schedule-list";
 import { NextWeekPreview } from "./next-week-preview";
 import { monthlyEvents } from "../data/monthly";
+import { RaidTimeline } from "./raid-timeline";
 
 type RaidView = "week" | "next";
 
@@ -30,16 +31,10 @@ export function RaidExplorer({ initialDate }: { initialDate: string }) {
       </div>
 
       <p className="pokemon-link-guide">포켓몬을 누르면 공략 또는 일정 상세를 볼 수 있어요.</p>
-      {view === "week" && <ScheduleList allowedKinds={["raid", "max"]} />}
-      {view === "next" && (
-        <NextWeekPreview
-          events={monthlyEvents}
-          initialDate={initialDate}
-          filter="raid"
-          eyebrow="다음 주 레이드"
-          description="5성·메가·그림자 레이드와 맥스배틀을 먼저 확인해요."
-        />
-      )}
+      <RaidTimeline initialDate={initialDate} weekOffset={view === "week" ? 0 : 1} />
+      <div className="raid-detail-heading"><span>상세 카드</span><h2>이미지를 눌러 공략 보기</h2></div>
+      {view === "week" && <ScheduleList allowedKinds={["raid", "max"]} showDateStrip={false} />}
+      {view === "next" && <NextWeekPreview events={monthlyEvents} initialDate={initialDate} filter="raid" showDateStrip={false} showHeading={false} />}
 
       {showComingSoon && (
         <div className="coming-soon-backdrop" role="presentation" onClick={() => setShowComingSoon(false)}>
