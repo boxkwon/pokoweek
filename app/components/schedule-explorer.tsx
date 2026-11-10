@@ -5,9 +5,10 @@ import { CalendarIcon, ClockIcon, ShieldIcon } from "./icons";
 import { ScheduleList } from "./schedule-list";
 import { WeeklyOverview } from "./weekly-overview";
 import { MonthlyCalendar } from "./monthly-calendar";
+import { NextWeekPreview } from "./next-week-preview";
 import { monthlyEvents, monthlyMeta } from "../data/monthly";
 
-type ViewMode = "month" | "week" | "events";
+type ViewMode = "month" | "week" | "next" | "events";
 
 export function ScheduleExplorer({ initialDate }: { initialDate: string }) {
   const [viewMode, setViewMode] = useState<ViewMode>("month");
@@ -36,6 +37,15 @@ export function ScheduleExplorer({ initialDate }: { initialDate: string }) {
         </button>
         <button
           type="button"
+          className={viewMode === "next" ? "active" : ""}
+          aria-pressed={viewMode === "next"}
+          onClick={() => setViewMode("next")}
+        >
+          <CalendarIcon />
+          <span><b>다음 주 미리보기</b><small>공개된 일정을 먼저 봐요</small></span>
+        </button>
+        <button
+          type="button"
           className={viewMode === "events" ? "active" : ""}
           aria-pressed={viewMode === "events"}
           onClick={() => setViewMode("events")}
@@ -45,7 +55,11 @@ export function ScheduleExplorer({ initialDate }: { initialDate: string }) {
         </button>
       </div>
       <p className="pokemon-link-guide">
-        {viewMode === "month" ? "날짜를 누르면 공개된 일정을 자세히 볼 수 있어요." : "포켓몬을 누르면 약점과 추천 공략을 볼 수 있어요."}
+        {viewMode === "month"
+          ? "날짜를 누르면 공개된 일정을 자세히 볼 수 있어요."
+          : viewMode === "next"
+            ? "요일을 누르면 다음 주 일정을 빠르게 골라 볼 수 있어요."
+            : "포켓몬을 누르면 약점과 추천 공략을 볼 수 있어요."}
       </p>
       {viewMode === "month" && (
         <MonthlyCalendar
@@ -57,6 +71,7 @@ export function ScheduleExplorer({ initialDate }: { initialDate: string }) {
         />
       )}
       {viewMode === "week" && <ScheduleList initialDay={initialDate} />}
+      {viewMode === "next" && <NextWeekPreview events={monthlyEvents} initialDate={initialDate} />}
       {viewMode === "events" && (
         <WeeklyOverview />
       )}
