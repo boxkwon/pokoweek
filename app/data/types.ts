@@ -15,6 +15,7 @@ export type Boss = {
   form?: string;
   dex: number;
   sprite?: string;
+  artwork?: { src?: string; objectPosition?: string; scale?: number };
   types: string[];
   weaknesses: string[];
   counters: { name: string; note: string }[];
@@ -60,4 +61,26 @@ export type GameEvent = {
   bossSlugs: string[];
   sourceIds: string[];
   color: "violet" | "orange" | "blue";
+  eventHero?: string;
+};
+
+export type WeekPriority = {
+  rank: number;
+  title: string;
+  description: string;
+  timeLabel: string;
+  bossSlug?: string;
+};
+
+export type WeekGuide = {
+  id: string;
+  startDate: string;
+  endDate: string;
+  eyebrow: string;
+  title: string;
+  summary: string;
+  featuredBossSlugs: string[];
+  featuredEventSlug: string;
+  priorities: WeekPriority[];
+  preparation: string[];
 };

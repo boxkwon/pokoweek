@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { getTypePalette } from "../lib/pokemon";
 import { TypeIcons } from "./type-icons";
+import { PokemonArtwork } from "./image-assets";
 
 type ThumbnailStyle = CSSProperties & {
   "--thumb-color": string;
@@ -15,6 +16,8 @@ export function PokemonThumbnail({
   href,
   className = "",
   badge,
+  objectPosition,
+  scale,
 }: {
   image?: string;
   name: string;
@@ -22,6 +25,8 @@ export function PokemonThumbnail({
   href?: string;
   className?: string;
   badge?: ReactNode;
+  objectPosition?: string;
+  scale?: number;
 }) {
   const palette = getTypePalette(types[0]);
   const style: ThumbnailStyle = {
@@ -30,11 +35,7 @@ export function PokemonThumbnail({
   };
   const visual = (
     <>
-      <span className="pokemon-thumbnail-glow" />
-      {image && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img className="pokemon-thumbnail-image" src={image} alt="" />
-      )}
+      <PokemonArtwork src={image} alt={name} size="large" objectPosition={objectPosition} scale={scale} className="pokemon-thumbnail-image" />
       {badge && <span className="pokemon-thumbnail-top-badge">{badge}</span>}
       <span className="pokemon-thumbnail-name">{name}</span>
     </>

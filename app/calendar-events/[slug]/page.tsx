@@ -4,6 +4,7 @@ import { ArrowLeftIcon, ClockIcon, ExternalIcon } from "../../components/icons";
 import { monthlyEvents } from "../../data/monthly";
 import { getPokemonTypes } from "../../data/pokemon-types";
 import { PokemonThumbnail } from "../../components/pokemon-thumbnail";
+import { EventHeroImage } from "../../components/image-assets";
 
 export function generateStaticParams() {
   return monthlyEvents.map((event) => ({ slug: event.slug }));
@@ -43,8 +44,7 @@ export default async function CalendarEventDetail({ params }: { params: Promise<
               ))}
             </div>
           ) : event.image ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img className="calendar-event-banner" src={event.image} alt="" />
+            <EventHeroImage src={event.image} alt={event.title} priority className="calendar-event-banner" />
           ) : <span className="calendar-event-no-art">일정</span>}
         </div>
         <div className="calendar-event-copy">

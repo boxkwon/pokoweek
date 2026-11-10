@@ -13,6 +13,8 @@ export function BossCard({ boss, compact = false }: { boss: Boss; compact?: bool
         name={boss.form ? `${boss.form} ${boss.name}` : boss.name}
         types={boss.types}
         href={href}
+        objectPosition={boss.artwork?.objectPosition}
+        scale={boss.artwork?.scale}
       />
       <Link className="boss-copy" href={href}>
         <div className="boss-topline"><span>{boss.battleType}</span><span>·</span><span>{boss.difficulty.split("·")[0]}</span></div>
@@ -23,3 +25,5 @@ export function BossCard({ boss, compact = false }: { boss: Boss; compact?: bool
     </article>
   );
 }
+
+export const RaidBossCard = BossCard;

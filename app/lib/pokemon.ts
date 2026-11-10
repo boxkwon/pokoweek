@@ -1,6 +1,3 @@
-const artwork = (dex: number) =>
-  `https://cdn.leekduck.com/assets/img/pokemon_icons/pokemon_icon_${String(dex).padStart(3, "0")}_00.png`;
-
 export const typeIds: Record<string, number> = {
   노말: 1,
   격투: 2,
@@ -112,7 +109,7 @@ const counterArtworkIds: Record<string, number> = {
 
 export function counterArtworkUrl(name: string) {
   const dex = counterArtworkIds[name];
-  return dex ? artwork(dex) : undefined;
+  return dex ? `/images/pokemon/counter-${dex}.png` : undefined;
 }
 
 const counterTypeMap: Record<string, string[]> = {

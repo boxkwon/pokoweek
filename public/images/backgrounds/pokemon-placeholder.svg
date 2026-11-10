@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Pokemon image placeholder">
+  <rect width="256" height="256" fill="#e9edf2"/>
+  <circle cx="128" cy="128" r="58" fill="none" stroke="#aab3c0" stroke-width="12"/>
+  <path d="M70 128h116" stroke="#aab3c0" stroke-width="12"/>
+  <circle cx="128" cy="128" r="18" fill="#e9edf2" stroke="#aab3c0" stroke-width="10"/>
+</svg>

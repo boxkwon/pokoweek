@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { MonthlyEvent } from "../data/monthly";
 import { ChevronIcon, ExternalIcon } from "./icons";
+import { EventHeroImage, PokemonArtwork } from "./image-assets";
 
 const weekDays = ["월", "화", "수", "목", "금", "토", "일"];
 
@@ -44,16 +45,14 @@ function EventArtwork({ event }: { event: MonthlyEvent }) {
       <div className={`month-agenda-pokemon count-${Math.min(event.pokemon.length, 3)}`}>
         {event.pokemon.slice(0, 3).map((pokemon) => (
           <span key={`${event.id}-${pokemon.name}`}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={pokemon.image} alt={pokemon.name} />
+            <PokemonArtwork src={pokemon.image} alt={pokemon.name} size="medium" />
           </span>
         ))}
       </div>
     );
   }
   return event.image ? (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img className="month-agenda-banner" src={event.image} alt="" />
+    <EventHeroImage src={event.image} alt="" className="month-agenda-banner" />
   ) : <span className="month-agenda-placeholder">일정</span>;
 }
 

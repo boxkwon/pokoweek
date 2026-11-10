@@ -2,7 +2,8 @@
 
 import { useEffect, useId, useState, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
-import { getTypeMatchup, typeIconUrl } from "../lib/pokemon";
+import { getTypeMatchup } from "../lib/pokemon";
+import { TypeIcon } from "./image-assets";
 
 type TooltipPosition = { left: number; top: number; below: boolean };
 
@@ -12,8 +13,7 @@ function MatchupTypes({ types }: { types: string[] }) {
     <span className="type-matchup-list">
       {types.map((type) => (
         <span className="type-matchup-chip" key={type}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={typeIconUrl(type)} alt="" aria-hidden="true" />
+          <TypeIcon type={type} size="small" />
           <b>{type}</b>
         </span>
       ))}
@@ -77,8 +77,7 @@ export function TypeIcons({
     <>
       <div className={`pokemon-type-icons ${size}`} aria-label={`${label}: ${types.join(", ")}`}>
         {types.map((type) => {
-          const icon = typeIconUrl(type);
-          return icon ? (
+          return (
             <button
               type="button"
               className="pokemon-type-icon"
@@ -89,11 +88,10 @@ export function TypeIcons({
               onClick={(event) => openTooltip(type, event)}
               key={type}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={icon} alt="" aria-hidden="true" />
+              <TypeIcon type={type} size={size} />
               <span className="sr-only">{type} 타입</span>
             </button>
-          ) : null;
+          );
         })}
       </div>
 
@@ -107,8 +105,7 @@ export function TypeIcons({
         >
           <div className="type-tooltip-head">
             <span>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={typeIconUrl(selectedType)} alt="" />
+              <TypeIcon type={selectedType} size="medium" />
               <strong>{selectedType} 타입</strong>
             </span>
             <button type="button" aria-label="타입 설명 닫기" onClick={() => setSelectedType(null)}>×</button>

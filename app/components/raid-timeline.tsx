@@ -7,6 +7,7 @@ import { getPokemonTypes } from "../data/pokemon-types";
 import { getTypePalette } from "../lib/pokemon";
 import { ClockIcon } from "./icons";
 import { BattleBadge } from "./battle-badge";
+import { EventHeroImage, PokemonArtwork } from "./image-assets";
 
 const weekDays = ["월", "화", "수", "목", "금", "토", "일"];
 
@@ -168,15 +169,13 @@ export function RaidTimeline({ initialDate, weekOffset }: { initialDate: string;
                   <span className={`raid-timeline-pokemon count-${Math.min(item.pokemon.length, 4)}`}>
                     {item.pokemon.slice(0, 4).map((pokemon) => (
                       <span key={`${item.id}-${pokemon.name}`}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={pokemon.image} alt="" />
+                        <PokemonArtwork src={pokemon.image} alt={pokemon.name} size="small" />
                         <span className="sr-only">{pokemon.name}</span>
                       </span>
                     ))}
                   </span>
                 ) : item.banner ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img className="raid-timeline-banner" src={item.banner} alt="" />
+                  <EventHeroImage src={item.banner} alt="" className="raid-timeline-banner" />
                 ) : <ClockIcon className="raid-timeline-placeholder" />}
               </Link>
             );

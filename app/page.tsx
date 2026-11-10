@@ -1,72 +1,61 @@
 import Link from "next/link";
-import { bosses } from "./data/bosses";
-import { events } from "./data/events";
-import { UPDATED_AT } from "./data/sources";
-import { BossCard } from "./components/boss-card";
-import { EventCard } from "./components/event-card";
-import { BoltIcon, CalendarIcon, CheckIcon, ChevronIcon, InfoIcon } from "./components/icons";
-import { formatDateTime } from "./lib/format";
-import { PokemonThumbnail } from "./components/pokemon-thumbnail";
+import { events, schedule } from "./data/events";
+import { currentWeek } from "./data/week";
+import { WeeklyHero } from "./components/weekly-hero";
+import { PriorityCard } from "./components/priority-card";
+import { CategoryBadge, SectionHeader } from "./components/ui";
+import { ChevronIcon } from "./components/icons";
+import { formatTime } from "./lib/format";
+import { WeeklyOverview } from "./components/weekly-overview";
+import { FeaturedEventCard } from "./components/featured-event-card";
 
-const priorityBosses = ["dialga-dynamax", "palkia-dynamax", "duraludon-gigantamax"]
-  .map((slug) => bosses.find((boss) => boss.slug === slug))
-  .filter(Boolean) as typeof bosses;
+const todayKey = "2026-11-11";
+const todayItems = schedule.filter((item) => item.start.slice(0, 10) <= todayKey && item.end.slice(0, 10) >= todayKey).slice(0, 4);
+const featuredEvent = events.find((event) => event.slug === currentWeek.featuredEventSlug);
+
+function toneFor(kind: string) {
+  if (kind === "max") return "max" as const;
+  if (kind === "raid") return "legendary" as const;
+  if (kind === "community") return "community" as const;
+  return "event" as const;
+}
 
 export default function Home() {
   return (
-    <div className="page-shell home-page">
-      <section className="hero-card">
-        <div className="hero-orb one"/><div className="hero-orb two"/>
-        <div className="hero-content">
-          <span className="hero-kicker">11월 9일 – 15일</span>
-          <h1>이번 주엔<br/><em>강철과 드래곤!</em></h1>
-          <p>평일엔 준비하고, 주말엔<br/>다이맥스 디아루가·펄기아를 노려요.</p>
-          <Link href="/raids" className="primary-button"><CalendarIcon/>이번 주 레이드 보기<ChevronIcon/></Link>
-        </div>
-        <div className="hero-pokemon-thumbnails">
-          {priorityBosses.slice(0, 2).map((boss) => (
-            <PokemonThumbnail
-              href={`/bosses/${boss.slug}`}
-              image={boss.sprite}
-              name={`${boss.form ?? ""} ${boss.name}`.trim()}
-              types={boss.types}
-              key={boss.slug}
-            />
+    <div className="page-shell home-page app-frame">
+      <WeeklyHero week={currentWeek} />
+
+      <section className="home-section" id="priority">
+        <SectionHeader eyebrow="PLAY FIRST" title="이번 주 꼭 할 것 TOP 3" />
+        <div className="priority-card-list">{currentWeek.priorities.map((priority) => <PriorityCard priority={priority} key={priority.rank} />)}</div>
+      </section>
+
+      <section className="home-section">
+        <SectionHeader eyebrow="TODAY" title="오늘의 일정" action={<Link href="/raids">전체 <ChevronIcon /></Link>} />
+        <div className="today-schedule">
+          {todayItems.map((item) => (
+            <Link href={item.eventSlug ? `/events/${item.eventSlug}` : item.bossSlugs?.[0] ? `/bosses/${item.bossSlugs[0]}` : "/raids"} className="today-schedule-row" key={item.id}>
+              <time>{formatTime(item.start)}</time>
+              <CategoryBadge tone={toneFor(item.kind)}>{item.label ?? (item.kind === "max" ? "맥스" : item.kind === "raid" ? "레이드" : "이벤트")}</CategoryBadge>
+              <strong>{item.title}</strong>
+              <ChevronIcon />
+            </Link>
           ))}
         </div>
       </section>
 
-      <div className="freshness"><span className="live-dot"/>전국 공통 · 한국시간 기준 <span>업데이트 {formatDateTime(UPDATED_AT)}</span></div>
+      {featuredEvent ? (
+        <section className="home-section preparation-section">
+          <SectionHeader eyebrow="PREPARE NEXT" title="다음 이벤트 준비" />
+          <FeaturedEventCard event={featuredEvent} preparation={currentWeek.preparation} />
+        </section>
+      ) : null}
 
-      <section className="section-block" id="priority">
-        <div className="section-heading">
-          <div><span className="section-kicker"><BoltIcon/>가족 작전</span><h2>이번 주 우선순위</h2></div>
-          <span className="priority-count">TOP 3</span>
-        </div>
-        <div className="priority-list">
-          <div className="priority-item top"><span className="rank">1</span><div><strong>토요일 디아루가 먼저</strong><p>다음 주 무한다이노전까지 이어지는 핵심 전력</p></div><span className="day-label">토 10–18시</span></div>
-          <div className="priority-item"><span className="rank">2</span><div><strong>일요일 펄기아 확보</strong><p>일요일에만 등장하니 하루를 놓치지 않기</p></div><span className="day-label">일 10–18시</span></div>
-          <div className="priority-item"><span className="rank">3</span><div><strong>두랄루돈은 큰 그룹으로</strong><p>6성 거다이맥스, 가족끼리보다 현장 합류 추천</p></div><span className="day-label">주말 양일</span></div>
-        </div>
-        <div className="family-note"><InfoIcon/><p><strong>가족 한마디</strong> 토요일엔 몰드류, 일요일엔 망나뇽을 미리 회복해 두세요.</p></div>
+      <section className="home-section weekly-preview-section">
+        <WeeklyOverview />
       </section>
 
-      <section className="section-block">
-        <div className="section-heading"><div><span className="section-kicker">이번 주 큰 일정</span><h2>놓치면 아쉬워요</h2></div><Link href="/events" className="text-link">전체 보기<ChevronIcon/></Link></div>
-        <div className="event-grid">{events.map((event) => <EventCard event={event} key={event.slug}/>)}</div>
-      </section>
-
-      <section className="section-block">
-        <div className="section-heading"><div><span className="section-kicker">미리 보는 공략</span><h2>주말 핵심 보스</h2></div></div>
-        <div className="boss-grid">{priorityBosses.map((boss) => <BossCard boss={boss} key={boss.slug}/>)}</div>
-      </section>
-
-      <section className="next-week-card">
-        <span><CheckIcon/>다음 주 예고</span>
-        <h2>무한다이노가 돌아와요</h2>
-        <p>11월 21일(토) 11:00–14:00<br/>이번 주 디아루가·펄기아를 준비해 두세요.</p>
-        <Link href="/raids">다음 주 미리보기<ChevronIcon/></Link>
-      </section>
+      <Link className="print-week-link" href="/print/week">이번 주 가이드 A4로 보기 <ChevronIcon /></Link>
     </div>
   );
 }

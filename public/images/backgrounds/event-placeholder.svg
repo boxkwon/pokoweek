@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Event image placeholder">
+  <rect width="1200" height="720" fill="#182238"/>
+  <circle cx="980" cy="120" r="260" fill="#263653"/>
+  <circle cx="160" cy="680" r="300" fill="#22304b"/>
+  <path d="M0 560 260 330l190 150 250-260 500 500H0Z" fill="#31415e"/>
+</svg>

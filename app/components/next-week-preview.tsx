@@ -7,6 +7,7 @@ import { getPokemonTypes } from "../data/pokemon-types";
 import { ChevronIcon, ExternalIcon } from "./icons";
 import { PokemonThumbnail } from "./pokemon-thumbnail";
 import { BattleBadge, type BattleBadgeTone } from "./battle-badge";
+import { EventHeroImage } from "./image-assets";
 
 const weekDays = ["월", "화", "수", "목", "금", "토", "일"];
 
@@ -82,8 +83,7 @@ function EventArtwork({ event, href }: { event: MonthlyEvent; href: string }) {
   }
   return event.image ? (
     <Link className="feed-banner-link" href={href} aria-label={`${event.title} 상세 보기`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="feed-banner-image" src={event.image} alt="" />
+      <EventHeroImage src={event.image} alt="" className="feed-banner-image" />
     </Link>
   ) : <Link className="feed-schedule-placeholder" href={href}>일정 자세히 보기</Link>;
 }

@@ -1,17 +1,17 @@
 import { Boss } from "./types";
 
 const sprite = (dex: number) =>
-  `https://cdn.leekduck.com/assets/img/pokemon_icons/pm${dex}.icon.png`;
+  `/images/pokemon/pm${dex}.icon.png`;
 
 export const bosses: Boss[] = [
   {
-    slug: "zacian-crowned-sword", name: "자시안", form: "검왕", dex: 888, sprite: "https://cdn.leekduck.com/assets/img/pokemon_icons/pm888.fCROWNED_SWORD.icon.png",
+    slug: "zacian-crowned-sword", name: "자시안", form: "검왕", dex: 888, sprite: "/images/pokemon/pm888.fCROWNED_SWORD.icon.png",
     types: ["페어리", "강철"], weaknesses: ["불꽃", "땅"], battleType: "레이드", difficulty: "5성 · 여럿이 권장",
     counters: [{ name: "원시그란돈", note: "단애의칼" }, { name: "메가리자몽Y", note: "회오리불꽃 · 블라스트번" }, { name: "그란돈", note: "머드샷 · 단애의칼" }],
     tip: "11월 9일 18~19시 레이드아워. 검왕 에너지도 함께 모으세요.", sourceIds: ["official-into-wild"]
   },
   {
-    slug: "zamazenta-crowned-shield", name: "자마젠타", form: "방패왕", dex: 889, sprite: "https://cdn.leekduck.com/assets/img/pokemon_icons/pm889.fCROWNED_SHIELD.icon.png",
+    slug: "zamazenta-crowned-shield", name: "자마젠타", form: "방패왕", dex: 889, sprite: "/images/pokemon/pm889.fCROWNED_SHIELD.icon.png",
     types: ["격투", "강철"], weaknesses: ["불꽃", "격투", "땅"], battleType: "레이드", difficulty: "5성 · 여럿이 권장",
     counters: [{ name: "원시그란돈", note: "머드샷 · 단애의칼" }, { name: "메가루카리오", note: "발경 · 파동탄" }, { name: "메가리자몽Y", note: "회오리불꽃 · 블라스트번" }],
     tip: "11월 10일 18~19시 레이드아워. 방패왕 에너지를 얻을 수 있어요.", sourceIds: ["official-into-wild"]
@@ -41,19 +41,19 @@ export const bosses: Boss[] = [
     tip: "두 보스 중 필요한 개체를 가족끼리 먼저 정하면 파티클을 아낄 수 있어요.", sourceIds: ["official-into-wild"]
   },
   {
-    slug: "dialga-dynamax", name: "디아루가", form: "다이맥스", dex: 483, sprite: sprite(483),
+    slug: "dialga-dynamax", name: "디아루가", form: "다이맥스", dex: 483, sprite: sprite(483), artwork: { objectPosition: "76% 50%", scale: 1.08 },
     types: ["강철", "드래곤"], weaknesses: ["격투", "땅"], battleType: "맥스배틀", difficulty: "5성 · 최우선 준비",
     counters: [{ name: "다이맥스 몰드류", note: "땅 타입 공격 · 상성 우수" }, { name: "다이맥스 괴력몬", note: "격투 타입 맥스기술" }, { name: "다이맥스 메타그로스", note: "튼튼한 버티기 역할" }],
     tip: "토요일에만 등장. 다음 주 무한다이노전 전력으로도 기대돼요.", sourceIds: ["official-wild-area"]
   },
   {
-    slug: "palkia-dynamax", name: "펄기아", form: "다이맥스", dex: 484, sprite: sprite(484),
+    slug: "palkia-dynamax", name: "펄기아", form: "다이맥스", dex: 484, sprite: sprite(484), artwork: { objectPosition: "75% 48%", scale: 1.04 },
     types: ["물", "드래곤"], weaknesses: ["드래곤", "페어리"], battleType: "맥스배틀", difficulty: "5성 · 최우선 준비",
     counters: [{ name: "다이맥스 망나뇽", note: "드래곤 타입 맥스기술" }, { name: "다이맥스 메타그로스", note: "버티면서 맥스게이지 충전" }, { name: "다이맥스 라프라스", note: "생존 보조" }],
     tip: "일요일에만 등장. 약점이 두 개뿐이라 인원과 육성이 중요해요.", sourceIds: ["official-wild-area"]
   },
   {
-    slug: "duraludon-gigantamax", name: "두랄루돈", form: "거다이맥스", dex: 884, sprite: sprite(884),
+    slug: "duraludon-gigantamax", name: "두랄루돈", form: "거다이맥스", dex: 884, sprite: sprite(884), artwork: { objectPosition: "78% 52%", scale: 1.1 },
     types: ["강철", "드래곤"], weaknesses: ["격투", "땅"], battleType: "거다이맥스", difficulty: "6성 · 큰 그룹 권장",
     counters: [{ name: "다이맥스 몰드류", note: "땅 타입 공격" }, { name: "다이맥스 괴력몬", note: "격투 타입 공격" }, { name: "다이맥스 메타그로스", note: "회복·방어 역할" }],
     tip: "양일 모두 등장. 가족만으로 어렵다면 현장 그룹에 합류하세요.", sourceIds: ["official-wild-area"]
@@ -89,7 +89,7 @@ export const bosses: Boss[] = [
     tip: "GO Wild Area 토요일 10~18시에 등장해요.", sourceIds: ["official-wild-area"]
   },
   {
-    slug: "white-kyurem-raid", name: "화이트큐레무", dex: 646, sprite: "https://cdn.leekduck.com/assets/img/pokemon_icons/pm646.fWHITE.icon.png",
+    slug: "white-kyurem-raid", name: "화이트큐레무", dex: 646, sprite: "/images/pokemon/pm646.fWHITE.icon.png",
     types: ["드래곤", "얼음"], weaknesses: ["격투", "바위", "강철", "드래곤", "페어리"], battleType: "레이드", difficulty: "5성 · 여럿이 권장",
     counters: [{ name: "메가루카리오", note: "발경 · 파동탄" }, { name: "메타그로스", note: "불릿펀치 · 코멧펀치" }, { name: "메가가디안", note: "애교부리기 · 매지컬샤인" }],
     tip: "GO Wild Area 토요일 10~18시에 등장하며 융합 에너지를 얻을 수 있어요.", sourceIds: ["official-wild-area"]
@@ -101,7 +101,7 @@ export const bosses: Boss[] = [
     tip: "GO Wild Area 일요일 10~18시에 등장해요.", sourceIds: ["official-wild-area"]
   },
   {
-    slug: "black-kyurem-raid", name: "블랙큐레무", dex: 646, sprite: "https://cdn.leekduck.com/assets/img/pokemon_icons/pm646.fBLACK.icon.png",
+    slug: "black-kyurem-raid", name: "블랙큐레무", dex: 646, sprite: "/images/pokemon/pm646.fBLACK.icon.png",
     types: ["드래곤", "얼음"], weaknesses: ["격투", "바위", "강철", "드래곤", "페어리"], battleType: "레이드", difficulty: "5성 · 여럿이 권장",
     counters: [{ name: "메가루카리오", note: "발경 · 파동탄" }, { name: "메타그로스", note: "불릿펀치 · 코멧펀치" }, { name: "메가가디안", note: "애교부리기 · 매지컬샤인" }],
     tip: "GO Wild Area 일요일 10~18시에 등장하며 융합 에너지를 얻을 수 있어요.", sourceIds: ["official-wild-area"]

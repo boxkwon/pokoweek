@@ -8,7 +8,7 @@ export const events: GameEvent[] = [
     highlights: ["원격 레이드 일일 한도 30회", "다이맥스 레지드래고 첫 등장", "5성 레이드·맥스배틀 포켓몬의 특별 배경 기회", "이벤트 포켓몬 포획 시 특별 기술 보유"],
     checklist: ["월·화 레이드패스 사용 계획 세우기", "수~금 맥스파티클 1회분 이상 확보", "주말용 다이맥스 몰드류·괴력몬 회복"],
     bossSlugs: ["zacian-crowned-sword", "zamazenta-crowned-shield", "registeel-dynamax", "regidrago-dynamax", "latias-dynamax", "latios-dynamax"],
-    sourceIds: ["official-into-wild", "gohub-november"], color: "violet"
+    sourceIds: ["official-into-wild", "gohub-november"], color: "violet", eventHero: "/images/events/into-the-wild-2026.jpg"
   },
   {
     slug: "go-wild-area-global-2026", title: "GO Wild Area: 글로벌", eyebrow: "이번 주 최우선",
@@ -17,7 +17,7 @@ export const events: GameEvent[] = [
     highlights: ["토: 다이맥스 디아루가 첫 등장", "일: 다이맥스 펄기아 첫 등장", "양일: 거다이맥스 두랄루돈 첫 등장", "원격 레이드 횟수 제한 없음"],
     checklist: ["토·일 10시 전 맥스파티클 확인", "가족별 목표 보스 1순위 정하기", "보조 포켓몬에 맥스가드·맥스회복 준비", "충전기·물·간식 챙기기"],
     bossSlugs: ["dialga-dynamax", "palkia-dynamax", "duraludon-gigantamax", "machamp-jacket"],
-    sourceIds: ["official-wild-area", "gohub-november"], color: "orange"
+    sourceIds: ["official-wild-area", "gohub-november"], color: "orange", eventHero: "/images/events/key-art.jpg"
   }
 ];
 
