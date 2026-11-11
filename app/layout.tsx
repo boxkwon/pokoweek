@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Pokémon GO 주간 가이드",
 };
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#ffffff" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover", themeColor: "#ffffff" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="ko"><body>{children}</body></html>;

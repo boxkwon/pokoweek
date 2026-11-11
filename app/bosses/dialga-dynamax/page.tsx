@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AppHeader } from "../../_components/app-header";
 import { BottomNav } from "../../_components/bottom-nav";
 import { BackIcon, ChartIcon, CheckIcon, ChevronIcon, StarOutlineIcon, SwordsIcon, TargetIcon } from "../../_components/icons";
+import { PokemonArtwork, type PokemonImage } from "../../_components/pokemon-artwork";
 
 function Stars({ value = 5 }: { value?: number }) {
   return <span className="star-line" aria-label={`추천도 ${value}점`}>{[0,1,2,3,4].map((index) => <i className={index < value ? "on" : ""} key={index}>★</i>)}</span>;
@@ -13,10 +14,10 @@ function TypeBadge({ type, color }: { type: string; color: string }) {
 }
 
 const counters = [
-  { rank: 1, name: "다이맥스\n몰드류", image: "/images/pokemon/counter-530.png", tone: "gold" },
-  { rank: 2, name: "다이맥스\n괴력몬", image: "/images/pokemon/counter-68.png", tone: "silver" },
-  { rank: 3, name: "거다이맥스\n괴력몬", image: "/images/pokemon/pm68.icon.png", tone: "bronze" },
-] as const;
+  { rank: 1, name: "다이맥스\n몰드류", image: { src: "/images/pokemon/counter-530.png", scale: 1.04, objectPosition: "50% 56%" }, tone: "gold" },
+  { rank: 2, name: "다이맥스\n괴력몬", image: { src: "/images/pokemon/counter-68.png", scale: .95, objectPosition: "50% 56%" }, tone: "silver" },
+  { rank: 3, name: "거다이맥스\n괴력몬", image: { src: "/images/pokemon/pm68.icon.png", scale: 1.08, objectPosition: "50% 54%" }, tone: "bronze" },
+] satisfies readonly { rank: number; name: string; image: PokemonImage; tone: string }[];
 
 const values = [
   { label: "맥스배틀 전력", score: 5, reason: "향후 맥스배틀 핵심 전력" },
@@ -27,13 +28,13 @@ const values = [
 export default function DialgaGuidePage() {
   return (
     <main className="fresh-screen boss-screen">
-      <AppHeader />
+      <AppHeader subtitle="포켓몬 GO 주간 가이드" />
 
       <section className="reference-raid-hero">
         <Image className="raid-hero-backdrop" src="/images/events/dialgaraids.jpg" alt="" fill sizes="430px" priority />
         <span className="raid-hero-shade" />
         <Link className="floating-back" href="/events/go-wild-area-global-2026" aria-label="이벤트 화면으로 돌아가기"><BackIcon /></Link>
-        <Image className="dialga-hero-art" src="/images/pokemon/pm483.icon.png" alt="다이맥스 디아루가" width={470} height={470} priority />
+        <PokemonArtwork className="dialga-hero-art" image={{ src: "/images/pokemon/pm483.icon.png", scale: 1.08, objectPosition: "56% 54%" }} alt="다이맥스 디아루가" size="hero" priority />
         <div className="raid-hero-copy">
           <span className="max-label"><SwordsIcon />다이맥스</span>
           <h1>다이맥스 디아루가</h1>
@@ -52,7 +53,7 @@ export default function DialgaGuidePage() {
         <div className="reference-counter-grid">
           {counters.map((counter) => <article className={counter.tone} key={counter.rank}>
             <b>{counter.rank}</b>
-            <Image src={counter.image} alt={counter.name.replace("\n", " ")} width={150} height={150} />
+            <PokemonArtwork className="counter-artwork" image={counter.image} alt={counter.name.replace("\n", " ")} size="lg" />
             <h3>{counter.name.split("\n").map((line) => <span key={line}>{line}</span>)}</h3>
           </article>)}
         </div>
