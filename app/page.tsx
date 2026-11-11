@@ -11,12 +11,17 @@ import { PokemonArtwork } from "./_components/pokemon-artwork";
 import { PreparationChecklist } from "./_components/preparation-checklist";
 import { APP_SUBTITLE } from "./_config/app";
 import { typeColors } from "./_data/guide-data";
-import { formatTodayLabel, getCurrentWeek, getDaysUntil, getFeaturedEvent, getTodayEvents, getUpcomingEvents } from "./_data/queries";
+import { formatTodayLabel, getCurrentWeek, getDaysUntil, getFeaturedEvent, getTodayEvents, getUpcomingEvents, getWeekEventActionHref, getWeekEventActionLabel } from "./_data/queries";
+import { getAppNow } from "./_lib/time";
 
 export default function HomePage() {
-  const [now, setNow] = useState(() => new Date());
+  const [dateOverride, setDateOverride] = useState<string>();
+  const [now, setNow] = useState(() => getAppNow());
   useEffect(() => {
-    const timer = window.setInterval(() => setNow(new Date()), 60_000);
+    const override = process.env.NODE_ENV === "development" ? new URLSearchParams(window.location.search).get("date") ?? undefined : undefined;
+    setDateOverride(override);
+    setNow(getAppNow(override));
+    const timer = window.setInterval(() => setNow(getAppNow(override)), 60_000);
     return () => window.clearInterval(timer);
   }, []);
 
@@ -24,14 +29,14 @@ export default function HomePage() {
   const featuredEvent = getFeaturedEvent(week);
   const todayEvents = useMemo(() => getTodayEvents(week, now), [week, now]);
   const upcomingEvents = useMemo(() => getUpcomingEvents(week, now), [week, now]);
-  const countdown = getDaysUntil(featuredEvent.startDate, now);
-  const titleParts = featuredEvent.title.split(" ");
+  const countdown = featuredEvent ? getDaysUntil(featuredEvent.startDate, now) : 0;
+  const titleParts = featuredEvent?.title.split(" ") ?? [];
   const titleYear = titleParts.pop();
 
   return <main className="fresh-screen boss-screen home-screen">
     <AppHeader subtitle={APP_SUBTITLE} />
 
-    <Link className="home-weekly-card" href={featuredEvent.href} aria-label={`${featuredEvent.title} 상세 보기`}>
+    {featuredEvent ? <Link className="home-weekly-card" href={featuredEvent.href} aria-label={`${featuredEvent.title} 상세 보기`}>
       <div className="home-weekly-hero">
         <Image className="wild-bg" src={featuredEvent.heroImage} alt="" fill sizes="430px" priority />
         <span className="wild-shade" />
@@ -46,17 +51,18 @@ export default function HomePage() {
         </div>
       </div>
       <EventMeta className="home-hero-meta" dateLabel={featuredEvent.dateLabel} timeLabel={featuredEvent.timeLabel} compact />
-    </Link>
+    </Link> : <section className="home-board home-featured-empty"><CalendarIcon /><h1>이번 주 대표 이벤트</h1><p>아직 공식 발표된 중요 이벤트가 없어요.</p></section>}
 
     <section className="home-board home-priority-board">
       <SectionHeader icon={<StarOutlineIcon />} title="이번 주 꼭 할 것 TOP 3" />
       <div className="home-priority-list">
-        {week.priorities.map((item) => <Link href={item.href} key={item.rank}>
+        {week.priorities.slice(0, 3).map((item) => <Link href={item.pokemon.href} key={item.rank}>
           <b className="priority-rank">{item.rank}</b>
           <PokemonArtwork image={item.pokemon.image} alt={item.pokemon.name} size="sm" />
           <div className="priority-copy"><h3>{item.pokemon.name}</h3><RatingStars value={item.rating} /><p>{item.reason}</p></div>
           <ChevronIcon />
         </Link>)}
+        {week.priorities.length === 0 ? <p className="home-empty">공식 발표된 추천 공략이 없어요.</p> : null}
       </div>
     </section>
 
@@ -71,27 +77,27 @@ export default function HomePage() {
           {event.weaknesses ? <div className="today-weakness"><b>약점</b>{event.weaknesses.map((type) => <TypeBadge type={type} color={typeColors[type]} key={type} />)}</div> : null}
         </div>
         {event.pokemon[0] ? <PokemonArtwork className="today-pokemon-art" image={event.pokemon[0].image} alt={event.pokemon[0].name} size="md" /> : null}
-        <PrimaryCTA className="home-small-cta" href={event.href}>공략 보기</PrimaryCTA>
+        <PrimaryCTA className="home-small-cta" href={getWeekEventActionHref(event)}>{getWeekEventActionLabel(event)}</PrimaryCTA>
       </article>)}</div> : <p className="home-empty">오늘은 중요한 이벤트가 없어요.<br />이번 주 준비를 해두세요.</p>}
     </section>
 
-    <section className="home-board home-preparation-board">
+    {featuredEvent && week.preparations.length > 0 ? <section className="home-board home-preparation-board">
       <SectionHeader icon={<BagIcon />} title="다음 이벤트 준비" />
       <div className="preparation-title"><b>{featuredEvent.title}</b><CountdownBadge days={countdown} /></div>
       <PreparationChecklist storageKey={`pokoweek:${week.id}:preparations`} items={week.preparations.slice(0, 4)} />
-    </section>
+    </section> : null}
 
     <section className="home-board home-schedule-board">
       <SectionHeader icon={<CalendarIcon />} title="이번 주 일정 미리보기" />
       <div className="home-schedule-list">
-        {upcomingEvents.map((event) => <Link href={event.href} key={event.id}>
+        {upcomingEvents.map((event) => <Link href={getWeekEventActionHref(event)} key={event.id}>
           <time>{event.dayLabel}</time>
           <CategoryBadge className={`schedule-dot category-${event.category}`}>{event.categoryLabel}</CategoryBadge>
           <div><b>{event.title}</b>{event.availabilityTime ? <small>{event.availabilityTime}</small> : null}</div>
           <ChevronIcon />
         </Link>)}
       </div>
-      <PrimaryCTA className="home-schedule-cta" href="/schedule" trailing={false}>이번 주 전체 일정 보기 <span aria-hidden="true">→</span></PrimaryCTA>
+      <PrimaryCTA className="home-schedule-cta" href={`/schedule?week=${week.startDate}&category=all${dateOverride ? `&date=${dateOverride}` : ""}`} trailing={false}>이번 주 전체 일정 보기 <span aria-hidden="true">→</span></PrimaryCTA>
     </section>
 
     <BottomNavigation active="home" />

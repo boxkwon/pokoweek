@@ -17,12 +17,16 @@ import {
   getNextImportantEvent,
   getPreparationPlan,
   getUpcomingPreparationEvent,
+  getWeekEventActionHref,
 } from "../_data/queries";
+import { getAppNow } from "../_lib/time";
 
 export default function PreparePage() {
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState(() => getAppNow());
   useEffect(() => {
-    const timer = window.setInterval(() => setNow(new Date()), 60_000);
+    const override = process.env.NODE_ENV === "development" ? new URLSearchParams(window.location.search).get("date") ?? undefined : undefined;
+    setNow(getAppNow(override));
+    const timer = window.setInterval(() => setNow(getAppNow(override)), 60_000);
     return () => window.clearInterval(timer);
   }, []);
 
@@ -97,7 +101,7 @@ export default function PreparePage() {
 
     {nextEvent ? <section className="prepare-next-section">
       <SectionHeader icon={<ChevronIcon />} title="그 다음 이벤트" />
-      <Link href={nextEvent.href}>
+      <Link href={getWeekEventActionHref(nextEvent)}>
         <CategoryBadge className={`schedule-category-badge category-${nextEvent.category}`}>{nextEvent.categoryLabel}</CategoryBadge>
         <div><b>{nextEvent.title}</b><span>{nextEvent.dayLabel} · D-{Math.max(0, getDaysUntil(nextEvent.date, now))}</span></div>
         <RatingStars value={nextEvent.rating} />

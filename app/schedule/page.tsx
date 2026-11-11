@@ -4,8 +4,9 @@ import { BottomNavigation } from "../_components/bottom-nav";
 import { CategoryBadge, EventTime, PrimaryCTA, RatingStars, SectionHeader } from "../_components/design-system";
 import { CalendarIcon, ChevronIcon, ClockIcon } from "../_components/icons";
 import { PokemonArtwork } from "../_components/pokemon-artwork";
+import { SchedulePreferenceSync } from "../_components/schedule-preference-sync";
 import { APP_SUBTITLE } from "../_config/app";
-import type { CategoryColor, WeekEvent } from "../_data/guide-data";
+import type { ScheduleFilter, WeekEvent } from "../_data/guide-data";
 import {
   formatCompactDate,
   formatWeekRange,
@@ -18,11 +19,15 @@ import {
   getImportantEvents,
   getWeekByStartDate,
   getWeekDays,
+  getWeekEventActionHref,
+  getWeekEventActionLabel,
 } from "../_data/queries";
+import { getAppNow, isValidDateOverride } from "../_lib/time";
 
 const filters = [
   { key: "all", label: "전체" },
-  { key: "legendary", label: "5성" },
+  { key: "five", label: "5성" },
+  { key: "three", label: "3성" },
   { key: "mega", label: "메가" },
   { key: "max", label: "맥스" },
   { key: "shadow", label: "그림자" },
@@ -30,7 +35,7 @@ const filters = [
 ] as const;
 
 type ScheduleCategory = (typeof filters)[number]["key"];
-type SearchParams = Promise<{ week?: string | string[]; category?: string | string[] }>;
+type SearchParams = Promise<{ week?: string | string[]; category?: string | string[]; date?: string | string[] }>;
 
 function firstValue(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;
@@ -40,14 +45,15 @@ function isDateKey(value: string | undefined): value is string {
   return Boolean(value && /^\d{4}-\d{2}-\d{2}$/.test(value));
 }
 
-function scheduleHref(week: string, category: ScheduleCategory) {
+function scheduleHref(week: string, category: ScheduleCategory, dateOverride?: string) {
   const query = new URLSearchParams({ week });
   if (category !== "all") query.set("category", category);
+  if (dateOverride) query.set("date", dateOverride);
   return `/schedule?${query.toString()}`;
 }
 
 function ScheduleEventRow({ event }: { event: WeekEvent }) {
-  const ctaLabel = event.category === "event" ? "이벤트 상세" : "공략 보기";
+  const ctaLabel = getWeekEventActionLabel(event);
   const artworkClass = event.pokemon.length === 2 ? "has-art-pair" : event.pokemon.length >= 3 ? "has-art-group" : "has-single-art";
 
   return <article className={`schedule-event-row ${event.priority === 5 ? "priority-five" : ""} ${artworkClass}`}>
@@ -61,20 +67,23 @@ function ScheduleEventRow({ event }: { event: WeekEvent }) {
     {event.pokemon.length === 1 ? <PokemonArtwork className="schedule-event-art" image={event.pokemon[0].image} alt={event.pokemon[0].name} size="sm" /> : null}
     {event.pokemon.length === 2 ? <div className="schedule-event-art-pair" aria-label={event.pokemon.map((item) => item.name).join(", ")}>{event.pokemon.map((item) => <PokemonArtwork image={item.image} alt="" size="sm" key={item.id} />)}</div> : null}
     {event.pokemon.length >= 3 ? <span className="schedule-event-art-count" aria-label={`${event.pokemon.length}마리의 포켓몬`}>+{event.pokemon.length}</span> : null}
-    <PrimaryCTA className="schedule-row-cta" href={event.href}>{ctaLabel}</PrimaryCTA>
+    <PrimaryCTA className="schedule-row-cta" href={getWeekEventActionHref(event)}>{ctaLabel}</PrimaryCTA>
   </article>;
 }
 
 export default async function SchedulePage({ searchParams }: { searchParams: SearchParams }) {
   const query = await searchParams;
-  const currentWeek = getCurrentWeek();
+  const requestedDate = firstValue(query.date);
+  const dateOverride = isValidDateOverride(requestedDate) ? requestedDate : undefined;
+  const now = getAppNow(dateOverride);
+  const currentWeek = getCurrentWeek(now);
   const requestedWeek = firstValue(query.week);
   const week = getWeekByStartDate(isDateKey(requestedWeek) ? requestedWeek : currentWeek.startDate);
   const requestedCategory = firstValue(query.category);
   const category: ScheduleCategory = filters.some((filter) => filter.key === requestedCategory) ? requestedCategory as ScheduleCategory : "all";
   const allEvents = getEventsByWeek(week);
-  const visibleEvents = getEventsByCategory(allEvents, category as CategoryColor | "all");
-  const days = getWeekDays(week);
+  const visibleEvents = getEventsByCategory(allEvents, category as ScheduleFilter);
+  const days = getWeekDays(week, now);
   const importantEvents = getImportantEvents(allEvents)
     .sort((a, b) => b.priority - a.priority || (a.startAt ?? a.date).localeCompare(b.startAt ?? b.date))
     .slice(0, 5)
@@ -83,20 +92,21 @@ export default async function SchedulePage({ searchParams }: { searchParams: Sea
 
   return <main className="fresh-screen boss-screen schedule-screen">
     <AppHeader subtitle={APP_SUBTITLE} />
+    <SchedulePreferenceSync selectedCategory={category} selectedWeek={week.startDate} hasCategoryQuery={filters.some((filter) => filter.key === requestedCategory)} hasWeekQuery={isDateKey(requestedWeek)} dateOverride={dateOverride} />
 
     <section className="schedule-week-nav" aria-label="주차 이동">
-      <Link href={scheduleHref(getAdjacentWeekKey(week.startDate, -1), category)} aria-label="이전 주"><ChevronIcon /></Link>
+      <Link href={scheduleHref(getAdjacentWeekKey(week.startDate, -1), category, dateOverride)} aria-label="이전 주"><ChevronIcon /></Link>
       <div>
         <b>{formatWeekRange(week)}</b>
         {isCurrentWeek
           ? <span>이번 주</span>
-          : <Link href={scheduleHref(currentWeek.startDate, category)}>이번 주로 돌아가기</Link>}
+          : <Link href={scheduleHref(currentWeek.startDate, category, dateOverride)}>이번 주로 돌아가기</Link>}
       </div>
-      <Link href={scheduleHref(getAdjacentWeekKey(week.startDate, 1), category)} aria-label="다음 주"><ChevronIcon /></Link>
+      <Link href={scheduleHref(getAdjacentWeekKey(week.startDate, 1), category, dateOverride)} aria-label="다음 주"><ChevronIcon /></Link>
     </section>
 
     <nav className="schedule-filters" aria-label="일정 카테고리">
-      {filters.map((filter) => <Link aria-current={category === filter.key ? "page" : undefined} className={category === filter.key ? "selected" : ""} href={scheduleHref(week.startDate, filter.key)} key={filter.key}>
+      {filters.map((filter) => <Link aria-current={category === filter.key ? "page" : undefined} className={category === filter.key ? "selected" : ""} href={scheduleHref(week.startDate, filter.key, dateOverride)} key={filter.key}>
         <CategoryBadge className={`schedule-filter-badge filter-${filter.key} category-${filter.key}`}>{filter.label}</CategoryBadge>
       </Link>)}
     </nav>
@@ -124,7 +134,7 @@ export default async function SchedulePage({ searchParams }: { searchParams: Sea
       <SectionHeader icon={<ClockIcon />} title="이번 주 놓치지 말 것" />
       {importantEvents.length > 0 ? <div className="important-time-list">{importantEvents.map((event) => {
         const importantTime = getImportantTime(event);
-        return <Link href={event.href} key={event.id}>
+        return <Link href={getWeekEventActionHref(event)} key={event.id}>
         <time><b>{formatCompactDate(event.date)}</b><span>{importantTime.time} · {importantTime.meaning}</span></time>
         <p>{event.title}</p>
         <ChevronIcon />

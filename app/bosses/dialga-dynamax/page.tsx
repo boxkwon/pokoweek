@@ -16,7 +16,7 @@ export default function DialgaGuidePage() {
       <section className="reference-raid-hero">
         <Image className="raid-hero-backdrop" src={dialgaGuide.backdrop} alt="" fill sizes="430px" priority />
         <span className="raid-hero-shade" />
-        <Link className="floating-back" href="/events/go-wild-area-global-2026" aria-label="이벤트 화면으로 돌아가기"><BackIcon /></Link>
+        <Link className="floating-back" href="/guide" aria-label="공략 목록으로 돌아가기"><BackIcon /></Link>
         <PokemonArtwork className="dialga-hero-art" image={dialgaGuide.image} alt={dialgaGuide.title} size="hero" priority />
         <div className="raid-hero-copy">
           <CategoryBadge className="max-label" icon={<SwordsIcon />}>{dialgaGuide.category}</CategoryBadge>

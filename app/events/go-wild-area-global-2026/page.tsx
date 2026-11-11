@@ -30,7 +30,7 @@ export default function WildAreaPage() {
   const titleYear = titleParts.pop();
   return (
     <main className="fresh-screen event-screen">
-      <AppHeader backHref="/bosses/dialga-dynamax" />
+      <AppHeader backHref="/" context="이벤트 상세" />
 
       <section className="wild-hero">
         <Image className="wild-bg" src={wildAreaEvent.heroImage} alt="" fill sizes="430px" priority />
@@ -67,7 +67,7 @@ export default function WildAreaPage() {
         </div>
       </section>
 
-      <PrimaryCTA className="boss-guide-link" href="/bosses/dialga-dynamax" leading={<SwordsIcon />}>보스별 공략 보기</PrimaryCTA>
+      <PrimaryCTA className="boss-guide-link" href="/guide?event=wild-area-day-1" leading={<SwordsIcon />}>보스별 공략 보기</PrimaryCTA>
     </main>
   );
 }

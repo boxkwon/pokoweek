@@ -1,8 +1,9 @@
-import { eventsById, preparationPlans, weekGuides, wildAreaEvent, type CategoryColor, type WeekEvent, type WeekGuide } from "./guide-data";
+import { getAppNow } from "../_lib/time";
+import { eventsById, pokemonGuides, preparationPlans, weekGuides, wildAreaEvent, type GuideCategory, type ScheduleFilter, type WeekEvent, type WeekGuide } from "./guide-data";
 
 const SEOUL_TIME_ZONE = "Asia/Seoul";
 
-export function getSeoulDateKey(date = new Date()) {
+export function getSeoulDateKey(date = getAppNow()) {
   const parts = new Intl.DateTimeFormat("en-CA", {
     timeZone: SEOUL_TIME_ZONE,
     year: "numeric",
@@ -24,7 +25,7 @@ export function addDaysToDateKey(dateKey: string, days: number) {
   return date.toISOString().slice(0, 10);
 }
 
-export function getWeekStartKey(date = new Date()) {
+export function getWeekStartKey(date = getAppNow()) {
   const key = getSeoulDateKey(date);
   const day = dateKeyToUtc(key).getUTCDay();
   const daysFromMonday = day === 0 ? 6 : day - 1;
@@ -38,24 +39,24 @@ export function getWeekByStartDate(startDate: string): WeekGuide {
     id: startDate,
     startDate,
     endDate: addDaysToDateKey(startDate, 6),
-    featuredEventId: wildAreaEvent.id,
+    featuredEventId: undefined,
     priorities: [],
     preparations: [],
     events: [],
   };
 }
 
-export function getCurrentWeek(date = new Date()): WeekGuide {
+export function getCurrentWeek(date = getAppNow()): WeekGuide {
   const key = getSeoulDateKey(date);
   return weekGuides.find((week) => week.startDate <= key && key <= week.endDate) ?? getWeekByStartDate(getWeekStartKey(date));
 }
 
-export function getTodayEvents(week: WeekGuide, date = new Date()) {
+export function getTodayEvents(week: WeekGuide, date = getAppNow()) {
   const key = getSeoulDateKey(date);
   return getEventsByDate(week.events, key);
 }
 
-export function getUpcomingEvents(week: WeekGuide, date = new Date(), limit = 5) {
+export function getUpcomingEvents(week: WeekGuide, date = getAppNow(), limit = 5) {
   const key = getSeoulDateKey(date);
   return getEventsByWeek(week).filter((event) => event.date >= key).slice(0, limit);
 }
@@ -68,8 +69,13 @@ export function getEventsByDate(events: readonly WeekEvent[], dateKey: string) {
   return events.filter((event) => event.date === dateKey).sort((a, b) => (a.startAt ?? "").localeCompare(b.startAt ?? ""));
 }
 
-export function getEventsByCategory(events: readonly WeekEvent[], category: CategoryColor | "all") {
-  return category === "all" ? [...events] : events.filter((event) => event.category === category);
+export function getEventsByCategory(events: readonly WeekEvent[], category: ScheduleFilter) {
+  if (category === "all") return [...events];
+  if (category === "five") return events.filter((event) => event.raidTier === 5);
+  if (category === "three") return events.filter((event) => event.raidTier === 3);
+  if (category === "mega") return events.filter((event) => event.raidTier === "mega" || event.raidTier === "superMega" || event.category === "mega");
+  if (category === "shadow") return events.filter((event) => event.raidTier === "shadow" || event.category === "shadow");
+  return events.filter((event) => event.category === category);
 }
 
 export function getImportantEvents(events: readonly WeekEvent[]) {
@@ -80,7 +86,7 @@ export function getFeaturedHourEvents(events: readonly WeekEvent[]) {
   return events.filter((event) => Boolean(event.featuredHour));
 }
 
-export function getWeekDays(week: WeekGuide, date = new Date()) {
+export function getWeekDays(week: WeekGuide, date = getAppNow()) {
   const todayKey = getSeoulDateKey(date);
   return Array.from({ length: 7 }, (_, index) => {
     const dateKey = addDaysToDateKey(week.startDate, index);
@@ -122,15 +128,52 @@ export function getImportantTime(event: WeekEvent) {
   return { time, meaning: event.category === "event" ? "이벤트 시작" : "출현 시작" };
 }
 
+export function getWeekEventActionHref(event: WeekEvent) {
+  if (event.eventHref) return event.eventHref;
+  if (event.guidePokemonIds.length === 1) return `/pokemon/${event.guidePokemonIds[0]}`;
+  return `/guide?event=${encodeURIComponent(event.id)}`;
+}
+
+export function getWeekEventActionLabel(event: WeekEvent) {
+  return event.eventHref ? "이벤트 상세" : event.guidePokemonIds.length > 1 ? "공략 선택" : "공략 보기";
+}
+
+export function getWeekEventById(week: WeekGuide, eventId: string | undefined) {
+  return eventId ? week.events.find((event) => event.id === eventId) : undefined;
+}
+
+export function getPokemonGuide(guideId: string) {
+  return pokemonGuides.find((guide) => guide.id === guideId);
+}
+
+export function getGuidesForWeek(week: WeekGuide) {
+  const ids = new Set([
+    ...week.priorities.map((item) => item.pokemon.id),
+    ...week.events.flatMap((event) => event.guidePokemonIds),
+  ]);
+  return pokemonGuides.filter((guide) => ids.has(guide.id));
+}
+
+export function getRecommendedGuides(week: WeekGuide, limit = 4) {
+  return week.priorities
+    .map((priority) => ({ priority, guide: getPokemonGuide(priority.pokemon.id) }))
+    .filter((item): item is { priority: WeekGuide["priorities"][number]; guide: NonNullable<ReturnType<typeof getPokemonGuide>> } => Boolean(item.guide))
+    .slice(0, limit);
+}
+
+export function getGuidesByCategory(guides: ReturnType<typeof getGuidesForWeek>, category: GuideCategory | "all") {
+  return category === "all" ? guides : guides.filter((guide) => guide.category === category);
+}
+
 export function getFeaturedEvent(week: WeekGuide) {
-  return eventsById[week.featuredEventId as keyof typeof eventsById] ?? wildAreaEvent;
+  return week.featuredEventId ? eventsById[week.featuredEventId as keyof typeof eventsById] : undefined;
 }
 
 export function getEventById(eventId: string) {
   return eventsById[eventId as keyof typeof eventsById];
 }
 
-export function getDaysUntil(dateKey: string, date = new Date()) {
+export function getDaysUntil(dateKey: string, date = getAppNow()) {
   const [todayYear, todayMonth, todayDay] = getSeoulDateKey(date).split("-").map(Number);
   const [targetYear, targetMonth, targetDay] = dateKey.split("-").map(Number);
   const todayUtc = Date.UTC(todayYear, todayMonth - 1, todayDay);
@@ -138,7 +181,7 @@ export function getDaysUntil(dateKey: string, date = new Date()) {
   return Math.ceil((targetUtc - todayUtc) / 86_400_000);
 }
 
-export function formatTodayLabel(date = new Date()) {
+export function formatTodayLabel(date = getAppNow()) {
   return new Intl.DateTimeFormat("ko-KR", { timeZone: SEOUL_TIME_ZONE, month: "long", day: "numeric" }).format(date);
 }
 
@@ -146,7 +189,7 @@ export function getPreparationPlan(planId: string | undefined) {
   return preparationPlans.find((plan) => plan.id === planId);
 }
 
-export function getUpcomingPreparationEvent(week: WeekGuide, date = new Date()) {
+export function getUpcomingPreparationEvent(week: WeekGuide, date = getAppNow()) {
   const key = getSeoulDateKey(date);
   return getEventsByWeek(week).find((event) => event.date >= key && event.priority >= 4 && Boolean(event.preparationPlanId));
 }
