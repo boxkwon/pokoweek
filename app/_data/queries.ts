@@ -1,4 +1,4 @@
-import { eventsById, weekGuides, wildAreaEvent, type CategoryColor, type WeekEvent, type WeekGuide } from "./guide-data";
+import { eventsById, preparationPlans, weekGuides, wildAreaEvent, type CategoryColor, type WeekEvent, type WeekGuide } from "./guide-data";
 
 const SEOUL_TIME_ZONE = "Asia/Seoul";
 
@@ -112,15 +112,22 @@ export function formatCompactDate(dateKey: string) {
   return `${value.getUTCMonth() + 1}/${value.getUTCDate()} ${weekday}`;
 }
 
-export function getEventStartTime(event: WeekEvent) {
-  if (event.summaryTimeMode === "end" && event.endAt) return event.endAt.slice(11, 16);
-  if (event.featuredHour) return event.featuredHour.split("~")[0].trim();
-  if (event.startAt) return event.startAt.slice(11, 16);
-  return event.availabilityTime?.split("~")[0].trim() ?? "";
+export function getImportantTime(event: WeekEvent) {
+  if (event.summaryTimeMode === "end" && event.endAt) return { time: event.endAt.slice(11, 16), meaning: "이벤트 종료" };
+  if (event.featuredHour) return {
+    time: event.featuredHour.split("~")[0].trim(),
+    meaning: event.category === "legendary" ? "레이드아워" : event.category === "max" ? "맥스배틀 시간" : "집중 시간",
+  };
+  const time = event.startAt?.slice(11, 16) ?? event.availabilityTime?.split("~")[0].trim() ?? "";
+  return { time, meaning: event.category === "event" ? "이벤트 시작" : "출현 시작" };
 }
 
 export function getFeaturedEvent(week: WeekGuide) {
   return eventsById[week.featuredEventId as keyof typeof eventsById] ?? wildAreaEvent;
+}
+
+export function getEventById(eventId: string) {
+  return eventsById[eventId as keyof typeof eventsById];
 }
 
 export function getDaysUntil(dateKey: string, date = new Date()) {
@@ -133,4 +140,18 @@ export function getDaysUntil(dateKey: string, date = new Date()) {
 
 export function formatTodayLabel(date = new Date()) {
   return new Intl.DateTimeFormat("ko-KR", { timeZone: SEOUL_TIME_ZONE, month: "long", day: "numeric" }).format(date);
+}
+
+export function getPreparationPlan(planId: string | undefined) {
+  return preparationPlans.find((plan) => plan.id === planId);
+}
+
+export function getUpcomingPreparationEvent(week: WeekGuide, date = new Date()) {
+  const key = getSeoulDateKey(date);
+  return getEventsByWeek(week).find((event) => event.date >= key && event.priority >= 4 && Boolean(event.preparationPlanId));
+}
+
+export function getNextImportantEvent(week: WeekGuide, currentEvent: WeekEvent) {
+  const currentKey = currentEvent.startAt ?? currentEvent.date;
+  return getEventsByWeek(week).find((event) => event.id !== currentEvent.id && event.priority >= 4 && (event.startAt ?? event.date) > currentKey);
 }

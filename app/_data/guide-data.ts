@@ -1,5 +1,4 @@
 import type { PokemonImage } from "../_components/pokemon-artwork";
-import type { PreparationItem } from "../_components/preparation-checklist";
 
 export type CategoryColor = "legendary" | "mega" | "max" | "shadow" | "event" | "community";
 
@@ -9,6 +8,40 @@ export type PokemonEntry = {
   image: PokemonImage;
   types: readonly string[];
   href: string;
+};
+
+export type PreparationTask = {
+  id: string;
+  title: string;
+  type: "pokemon" | "resource" | "inventory";
+  reason: string;
+  targetPokemonId?: string;
+  href?: string;
+  priority: number;
+  defaultDone?: boolean;
+};
+
+export type PreparationPokemon = {
+  rank: number;
+  pokemon: PokemonEntry;
+  use: string;
+  rating: number;
+  status: string;
+  reason: string;
+};
+
+export type PreparationResource = {
+  id: string;
+  title: string;
+  goal: string;
+};
+
+export type PreparationPlan = {
+  id: string;
+  eventId: string;
+  pokemon: readonly PreparationPokemon[];
+  resources: readonly PreparationResource[];
+  tasks: readonly PreparationTask[];
 };
 
 export type WeekEvent = {
@@ -27,8 +60,8 @@ export type WeekEvent = {
   priority: number;
   reason: string;
   href: string;
-  pokemon?: PokemonEntry;
-  pokemonList?: readonly PokemonEntry[];
+  pokemon: readonly PokemonEntry[];
+  preparationPlanId?: string;
   weaknesses?: readonly string[];
 };
 
@@ -46,7 +79,7 @@ export type WeekGuide = {
   endDate: string;
   featuredEventId: string;
   priorities: readonly WeekPriority[];
-  preparations: readonly PreparationItem[];
+  preparations: readonly PreparationTask[];
   events: readonly WeekEvent[];
 };
 
@@ -76,6 +109,9 @@ export const pokemon = {
   palkia: { id: "dynamax-palkia", name: "다이맥스 펄기아", image: { src: "/images/pokemon/pm484.icon.png", scale: 1.02, objectPosition: "50% 57%" }, types: ["물", "드래곤"], href: "/events/go-wild-area-global-2026" },
   duraludon: { id: "gigantamax-duraludon", name: "거다이맥스 두랄루돈", image: { src: "/images/pokemon/pm884.icon.png", scale: .92, objectPosition: "50% 57%" }, types: ["드래곤", "강철"], href: "/events/go-wild-area-global-2026" },
   reshiram: { id: "reshiram", name: "레시라무", image: { src: "/images/pokemon/pm643.icon.png", scale: .96, objectPosition: "50% 57%" }, types: ["불꽃", "드래곤"], href: "/events/go-wild-area-global-2026" },
+  machamp: { id: "dynamax-machamp", name: "다이맥스 괴력몬", image: { src: "/images/pokemon/pm68.icon.png", scale: 1.02, objectPosition: "50% 55%" }, types: ["격투"], href: "/bosses/dialga-dynamax" },
+  excadrill: { id: "dynamax-excadrill", name: "다이맥스 몰드류", image: { src: "/images/pokemon/counter-530.png", scale: 1.04, objectPosition: "50% 56%" }, types: ["땅", "강철"], href: "/bosses/dialga-dynamax" },
+  gardevoir: { id: "dynamax-gardevoir", name: "다이맥스 가디안", image: { src: "/images/pokemon/counter-282.png", scale: .98, objectPosition: "50% 56%" }, types: ["페어리", "에스퍼"], href: "/events/go-wild-area-global-2026" },
 } satisfies Record<string, PokemonEntry>;
 
 export const dialgaGuide = {
@@ -125,14 +161,33 @@ export const wildAreaEvent = {
   ],
   reasons: ["큐레무 융합 에너지", "다이맥스 디아루가/펄기아 첫 등장", "거다이맥스 두랄루돈", "강력한 레이드 전력 확보"],
   preparations: [
-    { id: "max-particles", label: "맥스파티클 저장", defaultDone: true },
-    { id: "max-team", label: "다이맥스 전투팀 3마리 준비", defaultDone: true },
-    { id: "pokemon-storage", label: "포켓몬 박스 정리" },
-    { id: "healing-items", label: "회복약 확보" },
-  ] satisfies readonly PreparationItem[],
+    { id: "max-team", title: "다이맥스 알통몬 확보", type: "pokemon", reason: "괴력몬으로 진화해 맥스배틀 전력으로 사용", targetPokemonId: pokemon.machamp.id, href: pokemon.machamp.href, priority: 1, defaultDone: true },
+    { id: "machamp-evolution", title: "괴력몬으로 진화", type: "pokemon", reason: "디아루가와 두랄루돈의 격투 약점을 공략", targetPokemonId: pokemon.machamp.id, href: pokemon.machamp.href, priority: 2 },
+    { id: "max-move", title: "공격형 맥스기술 강화", type: "pokemon", reason: "이벤트 보스에게 줄 피해를 높이기", targetPokemonId: pokemon.machamp.id, href: pokemon.machamp.href, priority: 3 },
+    { id: "max-particles", title: "맥스파티클 저장", type: "resource", reason: "이벤트 당일 맥스배틀 참여에 사용", priority: 4, defaultDone: true },
+    { id: "pokemon-storage", title: "포켓몬 박스 정리", type: "inventory", reason: "포획 공간을 최소 50칸 확보", priority: 5 },
+    { id: "healing-items", title: "회복약 확보", type: "resource", reason: "연속 배틀 뒤 전투팀을 빠르게 회복", priority: 6 },
+  ] satisfies readonly PreparationTask[],
 } as const;
 
 export const eventsById = { [wildAreaEvent.id]: wildAreaEvent } as const;
+
+export const preparationPlans = [{
+  id: "wild-area-2026",
+  eventId: wildAreaEvent.id,
+  pokemon: [
+    { rank: 1, pokemon: pokemon.machamp, use: "디아루가 / 두랄루돈 공략", rating: 4, status: "확보 필요", reason: "두 보스 모두 격투 약점" },
+    { rank: 2, pokemon: pokemon.excadrill, use: "디아루가 공략", rating: 5, status: "강화 추천", reason: "땅 공격으로 강철 약점 공략" },
+    { rank: 3, pokemon: pokemon.gardevoir, use: "펄기아 공략", rating: 4, status: "1마리 준비", reason: "페어리 공격으로 드래곤 약점 공략" },
+  ],
+  resources: [
+    { id: "max-particles", title: "맥스 파티클", goal: "이벤트 시작 전 최대한 확보" },
+    { id: "raid-pass", title: "레이드패스", goal: "3개 이상 준비" },
+    { id: "healing-items", title: "회복약", goal: "연속 배틀에 충분한 수량 확보" },
+    { id: "pokemon-storage", title: "포켓몬 박스", goal: "최소 50칸 확보" },
+  ],
+  tasks: wildAreaEvent.preparations,
+}] satisfies readonly PreparationPlan[];
 
 export const weekGuides = [{
   id: "2026-11-09",
@@ -146,13 +201,13 @@ export const weekGuides = [{
   ],
   preparations: wildAreaEvent.preparations,
   events: [
-    { id: "zacian-raid-hour", date: "2026-11-09", dayLabel: "월 9", startAt: "2026-11-09T18:00:00+09:00", endAt: "2026-11-09T19:00:00+09:00", availabilityTime: "18:00 ~ 19:00", featuredHour: "18:00 ~ 19:00", title: "자시안 레이드아워", category: "legendary", categoryLabel: "5성 레이드", rating: 5, priority: 5, reason: "적극 추천", href: pokemon.zacian.href, pokemon: pokemon.zacian, weaknesses: ["불꽃", "땅"] },
-    { id: "zamazenta-raid-hour", date: "2026-11-10", dayLabel: "화 10", startAt: "2026-11-10T18:00:00+09:00", endAt: "2026-11-10T19:00:00+09:00", availabilityTime: "18:00 ~ 19:00", featuredHour: "18:00 ~ 19:00", title: "자마젠타 레이드아워", category: "legendary", categoryLabel: "5성 레이드", rating: 5, priority: 5, reason: "적극 추천", href: pokemon.zamazenta.href, pokemon: pokemon.zamazenta, weaknesses: ["에스퍼", "비행", "페어리"] },
-    { id: "legendary-raid-wednesday", date: "2026-11-11", dayLabel: "수 11", startAt: "2026-11-11T10:00:00+09:00", endAt: "2026-11-11T20:00:00+09:00", availabilityTime: "10:00 ~ 20:00", title: "자시안 · 자마젠타", category: "legendary", categoryLabel: "5성 레이드", rating: 4, priority: 4, reason: "전설 레이드 전력 확보", href: pokemon.zacian.href, pokemonList: [pokemon.zacian, pokemon.zamazenta] },
-    { id: "registeel-max-battle", date: "2026-11-11", dayLabel: "수 11", startAt: "2026-11-11T10:00:00+09:00", endAt: "2026-11-11T21:00:00+09:00", availabilityTime: "10:00 ~ 21:00", featuredHour: "18:00 ~ 19:00", title: "다이맥스 레지스틸", category: "max", categoryLabel: "맥스배틀", rating: 4, priority: 5, reason: "좋은 개체 확보", href: pokemon.registeel.href, pokemon: pokemon.registeel, weaknesses: ["격투", "불꽃", "땅"] },
-    { id: "regidrago-max-battle", date: "2026-11-12", dayLabel: "목 12", startAt: "2026-11-12T10:00:00+09:00", endAt: "2026-11-12T21:00:00+09:00", availabilityTime: "10:00 ~ 21:00", title: "다이맥스 레지드래고", category: "max", categoryLabel: "맥스배틀", rating: 4, priority: 4, reason: "드래곤 전력 보강", href: pokemon.regidrago.href, pokemon: pokemon.regidrago },
-    { id: "latias-latios-max-battle", date: "2026-11-13", dayLabel: "금 13", startAt: "2026-11-13T18:00:00+09:00", endAt: "2026-11-13T19:00:00+09:00", availabilityTime: "18:00 ~ 19:00", title: "다이맥스 라티아스 / 라티오스", category: "max", categoryLabel: "맥스배틀", rating: 4, priority: 4, reason: "최소 1마리씩 확보", href: pokemon.latias.href, pokemonList: [pokemon.latias, pokemon.latios] },
-    { id: "wild-area-day-1", date: "2026-11-14", dayLabel: "토 14", startAt: "2026-11-14T10:00:00+09:00", endAt: "2026-11-14T18:00:00+09:00", availabilityTime: wildAreaEvent.timeLabel, title: "GO WILD AREA DAY 1", category: "event", categoryLabel: "글로벌 이벤트", rating: 5, priority: 5, reason: wildAreaEvent.ratingLabel, href: wildAreaEvent.href, pokemonList: wildAreaEvent.days[0].pokemon },
-    { id: "wild-area-day-2", date: "2026-11-15", dayLabel: "일 15", startAt: "2026-11-15T10:00:00+09:00", endAt: "2026-11-15T18:00:00+09:00", availabilityTime: wildAreaEvent.timeLabel, summaryTimeMode: "end", title: "GO WILD AREA DAY 2", category: "event", categoryLabel: "글로벌 이벤트", rating: 5, priority: 5, reason: wildAreaEvent.ratingLabel, href: wildAreaEvent.href, pokemonList: wildAreaEvent.days[1].pokemon },
+    { id: "zacian-raid-hour", date: "2026-11-09", dayLabel: "월 9", startAt: "2026-11-09T18:00:00+09:00", endAt: "2026-11-09T19:00:00+09:00", availabilityTime: "18:00 ~ 19:00", featuredHour: "18:00 ~ 19:00", title: "자시안 레이드아워", category: "legendary", categoryLabel: "5성 레이드", rating: 5, priority: 5, reason: "적극 추천", href: pokemon.zacian.href, pokemon: [pokemon.zacian], weaknesses: ["불꽃", "땅"] },
+    { id: "zamazenta-raid-hour", date: "2026-11-10", dayLabel: "화 10", startAt: "2026-11-10T18:00:00+09:00", endAt: "2026-11-10T19:00:00+09:00", availabilityTime: "18:00 ~ 19:00", featuredHour: "18:00 ~ 19:00", title: "자마젠타 레이드아워", category: "legendary", categoryLabel: "5성 레이드", rating: 5, priority: 5, reason: "적극 추천", href: pokemon.zamazenta.href, pokemon: [pokemon.zamazenta], weaknesses: ["에스퍼", "비행", "페어리"] },
+    { id: "legendary-raid-wednesday", date: "2026-11-11", dayLabel: "수 11", startAt: "2026-11-11T10:00:00+09:00", endAt: "2026-11-11T20:00:00+09:00", availabilityTime: "10:00 ~ 20:00", title: "자시안 · 자마젠타", category: "legendary", categoryLabel: "5성 레이드", rating: 4, priority: 4, reason: "전설 레이드 전력 확보", href: pokemon.zacian.href, pokemon: [pokemon.zacian, pokemon.zamazenta] },
+    { id: "registeel-max-battle", date: "2026-11-11", dayLabel: "수 11", startAt: "2026-11-11T10:00:00+09:00", endAt: "2026-11-11T21:00:00+09:00", availabilityTime: "10:00 ~ 21:00", featuredHour: "18:00 ~ 19:00", title: "다이맥스 레지스틸", category: "max", categoryLabel: "맥스배틀", rating: 4, priority: 5, reason: "좋은 개체 확보", href: pokemon.registeel.href, pokemon: [pokemon.registeel], weaknesses: ["격투", "불꽃", "땅"] },
+    { id: "regidrago-max-battle", date: "2026-11-12", dayLabel: "목 12", startAt: "2026-11-12T10:00:00+09:00", endAt: "2026-11-12T21:00:00+09:00", availabilityTime: "10:00 ~ 21:00", title: "다이맥스 레지드래고", category: "max", categoryLabel: "맥스배틀", rating: 4, priority: 4, reason: "드래곤 전력 보강", href: pokemon.regidrago.href, pokemon: [pokemon.regidrago] },
+    { id: "latias-latios-max-battle", date: "2026-11-13", dayLabel: "금 13", startAt: "2026-11-13T18:00:00+09:00", endAt: "2026-11-13T19:00:00+09:00", availabilityTime: "18:00 ~ 19:00", title: "다이맥스 라티아스 / 라티오스", category: "max", categoryLabel: "맥스배틀", rating: 4, priority: 4, reason: "최소 1마리씩 확보", href: pokemon.latias.href, pokemon: [pokemon.latias, pokemon.latios] },
+    { id: "wild-area-day-1", date: "2026-11-14", dayLabel: "토 14", startAt: "2026-11-14T10:00:00+09:00", endAt: "2026-11-14T18:00:00+09:00", availabilityTime: wildAreaEvent.timeLabel, title: "GO WILD AREA DAY 1", category: "event", categoryLabel: "글로벌 이벤트", rating: 5, priority: 5, reason: wildAreaEvent.ratingLabel, href: wildAreaEvent.href, pokemon: wildAreaEvent.days[0].pokemon, preparationPlanId: "wild-area-2026" },
+    { id: "wild-area-day-2", date: "2026-11-15", dayLabel: "일 15", startAt: "2026-11-15T10:00:00+09:00", endAt: "2026-11-15T18:00:00+09:00", availabilityTime: wildAreaEvent.timeLabel, summaryTimeMode: "end", title: "GO WILD AREA DAY 2", category: "event", categoryLabel: "글로벌 이벤트", rating: 5, priority: 5, reason: wildAreaEvent.ratingLabel, href: wildAreaEvent.href, pokemon: wildAreaEvent.days[1].pokemon },
   ] satisfies readonly WeekEvent[],
 }] satisfies readonly WeekGuide[];

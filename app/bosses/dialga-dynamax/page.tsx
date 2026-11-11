@@ -6,11 +6,12 @@ import { CategoryBadge, PrimaryCTA, RatingStars, SectionHeader, TypeBadge } from
 import { BackIcon, ChartIcon, CheckIcon, StarOutlineIcon, SwordsIcon, TargetIcon } from "../../_components/icons";
 import { PokemonArtwork } from "../../_components/pokemon-artwork";
 import { dialgaGuide, typeColors } from "../../_data/guide-data";
+import { APP_SUBTITLE } from "../../_config/app";
 
 export default function DialgaGuidePage() {
   return (
     <main className="fresh-screen boss-screen">
-      <AppHeader subtitle="포켓몬 GO 주간 가이드" />
+      <AppHeader subtitle={APP_SUBTITLE} />
 
       <section className="reference-raid-hero">
         <Image className="raid-hero-backdrop" src={dialgaGuide.backdrop} alt="" fill sizes="430px" priority />

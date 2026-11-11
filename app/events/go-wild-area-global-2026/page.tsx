@@ -62,7 +62,7 @@ export default function WildAreaPage() {
         <div className="prep-content">
           <div className="prep-art"><PokemonArtwork image={wildAreaEvent.days[0].pokemon[2].image} alt={wildAreaEvent.days[0].pokemon[2].name} size="md" /></div>
           <ul>
-            {wildAreaEvent.preparations.map((item) => <li key={item.id}><i /><b>{item.label}</b></li>)}
+            {wildAreaEvent.preparations.slice(0, 4).map((item) => <li key={item.id}><i /><b>{item.title}</b></li>)}
           </ul>
         </div>
       </section>

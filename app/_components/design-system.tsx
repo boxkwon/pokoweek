@@ -33,6 +33,26 @@ export function CountdownBadge({ days }: { days: number }) {
   return <span className="countdown-badge">{days > 0 ? `D-${days}` : days === 0 ? "D-DAY" : "진행 중"}</span>;
 }
 
+export function EventTime({
+  availabilityTime,
+  featuredHour,
+  availabilityLabel = "출현",
+  featuredLabel = "집중 시간",
+  className = "",
+}: {
+  availabilityTime?: string;
+  featuredHour?: string;
+  availabilityLabel?: string;
+  featuredLabel?: string;
+  className?: string;
+}) {
+  const sameTime = Boolean(availabilityTime && featuredHour && availabilityTime.trim() === featuredHour.trim());
+  return <div className={className}>
+    {!sameTime && availabilityTime ? <p><b>{availabilityLabel}</b><time>{availabilityTime}</time></p> : null}
+    {featuredHour ? <p className="featured"><b>{featuredLabel}</b><time>{featuredHour}</time></p> : null}
+  </div>;
+}
+
 export function EventMeta({
   dateLabel,
   timeLabel,

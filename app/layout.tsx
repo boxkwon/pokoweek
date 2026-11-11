@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import { APP_NAME, APP_SUBTITLE } from "./_config/app";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "POKO WEEK",
-  description: "Pokémon GO 주간 가이드",
+  title: APP_NAME,
+  description: APP_SUBTITLE,
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover", themeColor: "#ffffff" };

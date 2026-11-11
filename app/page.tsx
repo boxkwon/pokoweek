@@ -5,10 +5,11 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { AppHeader } from "./_components/app-header";
 import { BottomNavigation } from "./_components/bottom-nav";
-import { CategoryBadge, CountdownBadge, EventMeta, PrimaryCTA, RatingStars, SectionHeader, TypeBadge } from "./_components/design-system";
+import { CategoryBadge, CountdownBadge, EventMeta, EventTime, PrimaryCTA, RatingStars, SectionHeader, TypeBadge } from "./_components/design-system";
 import { BagIcon, CalendarIcon, ChevronIcon, ClockIcon, StarOutlineIcon } from "./_components/icons";
 import { PokemonArtwork } from "./_components/pokemon-artwork";
 import { PreparationChecklist } from "./_components/preparation-checklist";
+import { APP_SUBTITLE } from "./_config/app";
 import { typeColors } from "./_data/guide-data";
 import { formatTodayLabel, getCurrentWeek, getDaysUntil, getFeaturedEvent, getTodayEvents, getUpcomingEvents } from "./_data/queries";
 
@@ -28,7 +29,7 @@ export default function HomePage() {
   const titleYear = titleParts.pop();
 
   return <main className="fresh-screen boss-screen home-screen">
-    <AppHeader subtitle="포켓몬 GO 주간 가이드" />
+    <AppHeader subtitle={APP_SUBTITLE} />
 
     <Link className="home-weekly-card" href={featuredEvent.href} aria-label={`${featuredEvent.title} 상세 보기`}>
       <div className="home-weekly-hero">
@@ -64,15 +65,12 @@ export default function HomePage() {
       {todayEvents.length > 0 ? <div className="home-today-list">{todayEvents.map((event) => <article className="home-today-event" key={event.id}>
         <div className="today-event-copy">
           <CategoryBadge className={`schedule-category category-${event.category}`}>{event.categoryLabel}</CategoryBadge>
-          <div className="today-time-lines">
-            {event.availabilityTime ? <p><b>오늘 출현</b><time>{event.availabilityTime}</time></p> : null}
-            {event.featuredHour ? <p className="featured"><b>{event.category === "max" ? "맥스배틀 시간" : "집중 시간"}</b><time>{event.featuredHour}</time></p> : null}
-          </div>
+          <EventTime className="today-time-lines" availabilityTime={event.availabilityTime} featuredHour={event.featuredHour} availabilityLabel="오늘 출현" featuredLabel={event.category === "max" ? "맥스배틀 시간" : event.category === "legendary" ? "레이드아워" : "집중 시간"} />
           <h3>{event.title}</h3>
           <div className="today-rating"><RatingStars value={event.rating} /><strong>{event.reason}</strong></div>
           {event.weaknesses ? <div className="today-weakness"><b>약점</b>{event.weaknesses.map((type) => <TypeBadge type={type} color={typeColors[type]} key={type} />)}</div> : null}
         </div>
-        {event.pokemon ? <PokemonArtwork className="today-pokemon-art" image={event.pokemon.image} alt={event.pokemon.name} size="md" /> : null}
+        {event.pokemon[0] ? <PokemonArtwork className="today-pokemon-art" image={event.pokemon[0].image} alt={event.pokemon[0].name} size="md" /> : null}
         <PrimaryCTA className="home-small-cta" href={event.href}>공략 보기</PrimaryCTA>
       </article>)}</div> : <p className="home-empty">오늘은 중요한 이벤트가 없어요.<br />이번 주 준비를 해두세요.</p>}
     </section>
@@ -80,7 +78,7 @@ export default function HomePage() {
     <section className="home-board home-preparation-board">
       <SectionHeader icon={<BagIcon />} title="다음 이벤트 준비" />
       <div className="preparation-title"><b>{featuredEvent.title}</b><CountdownBadge days={countdown} /></div>
-      <PreparationChecklist storageKey={`pokoweek:${week.id}:preparations`} items={week.preparations} />
+      <PreparationChecklist storageKey={`pokoweek:${week.id}:preparations`} items={week.preparations.slice(0, 4)} />
     </section>
 
     <section className="home-board home-schedule-board">
