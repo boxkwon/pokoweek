@@ -1,32 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AppHeader } from "../../_components/app-header";
-import { BagIcon, CalendarIcon, CheckIcon, ChevronIcon, ClockIcon, SwordsIcon, TargetIcon } from "../../_components/icons";
+import { EventMeta, PrimaryCTA, RatingStars, SectionHeader } from "../../_components/design-system";
+import { BagIcon, CalendarIcon, CheckIcon, SwordsIcon, TargetIcon } from "../../_components/icons";
 import { PokemonArtwork } from "../../_components/pokemon-artwork";
+import { wildAreaEvent, type PokemonEntry } from "../../_data/guide-data";
 
-const dayOne = [
-  { name: "제크로무", image: { src: "/images/pokemon/pm644.icon.png", scale: 1.06, objectPosition: "50% 58%" }, type: "전기", tone: "electric" },
-  { name: "화이트큐레무", image: { src: "/images/pokemon/pm646.fWHITE.icon.png", scale: .94, objectPosition: "50% 56%" }, type: "얼음", tone: "ice" },
-  { name: "다이맥스\n디아루가", image: { src: "/images/pokemon/pm483.icon.png", scale: 1.02, objectPosition: "50% 56%" }, type: "강철", tone: "steel", href: "/bosses/dialga-dynamax" },
-  { name: "거다이맥스\n두랄루돈", image: { src: "/images/pokemon/pm884.icon.png", scale: .92, objectPosition: "50% 57%" }, type: "드래곤", tone: "max" },
-] as const;
-
-const dayTwo = [
-  { name: "레시라무", image: { src: "/images/pokemon/pm643.icon.png", scale: .96, objectPosition: "50% 57%" }, type: "불꽃", tone: "fire" },
-  { name: "블랙큐레무", image: { src: "/images/pokemon/pm646.fBLACK.icon.png", scale: .94, objectPosition: "50% 56%" }, type: "악", tone: "dark" },
-  { name: "다이맥스\n펄기아", image: { src: "/images/pokemon/pm484.icon.png", scale: 1.02, objectPosition: "50% 57%" }, type: "물", tone: "water" },
-  { name: "거다이맥스\n두랄루돈", image: { src: "/images/pokemon/pm884.icon.png", scale: .92, objectPosition: "50% 57%" }, type: "드래곤", tone: "max" },
-] as const;
-
-type EventPokemon = (typeof dayOne)[number] | (typeof dayTwo)[number];
+type EventPokemon = PokemonEntry;
 
 function EventPokemonTile({ pokemon }: { pokemon: EventPokemon }) {
+  const displayName = pokemon.name.replace(" ", "\n");
   const content = <>
-    <PokemonArtwork className="event-pokemon-art" image={pokemon.image} alt={pokemon.name.replace("\n", " ")} size="md" />
-    <Image className="event-type-icon" src={`/images/types/${pokemon.type}.png`} alt="" width={28} height={28} />
-    <strong>{pokemon.name.split("\n").map((line) => <span key={line}>{line}</span>)}</strong>
+    <PokemonArtwork className="event-pokemon-art" image={pokemon.image} alt={pokemon.name} size="md" />
+    <Image className="event-type-icon" src={`/images/types/${pokemon.types[0]}.png`} alt="" width={28} height={28} />
+    <strong>{displayName.split("\n").map((line) => <span key={line}>{line}</span>)}</strong>
   </>;
-  return "href" in pokemon ? <Link className={`event-pokemon-tile ${pokemon.tone}`} href={pokemon.href}>{content}</Link> : <article className={`event-pokemon-tile ${pokemon.tone}`}>{content}</article>;
+  return <Link className="event-pokemon-tile" href={pokemon.href}>{content}</Link>;
 }
 
 function DayBoard({ day, label, pokemon }: { day: 1 | 2; label: string; pokemon: readonly EventPokemon[] }) {
@@ -37,57 +26,48 @@ function DayBoard({ day, label, pokemon }: { day: 1 | 2; label: string; pokemon:
 }
 
 export default function WildAreaPage() {
+  const titleParts = wildAreaEvent.title.split(" ");
+  const titleYear = titleParts.pop();
   return (
     <main className="fresh-screen event-screen">
       <AppHeader backHref="/bosses/dialga-dynamax" />
 
       <section className="wild-hero">
-        <Image className="wild-bg" src="/images/events/key-art.jpg" alt="" fill sizes="430px" priority />
+        <Image className="wild-bg" src={wildAreaEvent.heroImage} alt="" fill sizes="430px" priority />
         <span className="wild-shade" />
-        <PokemonArtwork className="wild-dialga" image={{ src: "/images/pokemon/pm483.icon.png", scale: 1.04 }} alt="" size="hero" />
-        <PokemonArtwork className="wild-palkia" image={{ src: "/images/pokemon/pm484.icon.png", scale: 1.02 }} alt="" size="hero" />
-        <PokemonArtwork className="wild-duraludon" image={{ src: "/images/pokemon/pm884.icon.png", scale: .92 }} alt="" size="hero" />
-        <div className="wild-title"><small>POKÉMON GO</small><h1>GO WILD AREA <em>2026</em></h1><p>+ 월드 에리어 : 글로벌 이벤트</p></div>
+        <PokemonArtwork className="wild-dialga" image={wildAreaEvent.heroPokemon.dialga} alt="" size="hero" />
+        <PokemonArtwork className="wild-palkia" image={wildAreaEvent.heroPokemon.palkia} alt="" size="hero" />
+        <PokemonArtwork className="wild-duraludon" image={wildAreaEvent.heroPokemon.duraludon} alt="" size="hero" />
+        <div className="wild-title"><small>{wildAreaEvent.eyebrow}</small><h1>{titleParts.join(" ")} <em>{titleYear}</em></h1><p>{wildAreaEvent.subtitle}</p></div>
       </section>
 
-      <section className="event-time-board">
-        <div><span><CalendarIcon />기간</span><b>11/14 토 ~ 11/15 일</b></div>
-        <i />
-        <div><span><ClockIcon />시간</span><b>10:00 ~ 18:00</b></div>
-      </section>
+      <EventMeta dateLabel={wildAreaEvent.dateLabel} timeLabel={wildAreaEvent.timeLabel} />
 
-      <section className="event-priority-board"><span>★★★★★</span><strong>♛ 이번 달 최우선 이벤트</strong></section>
+      <section className="event-priority-board"><RatingStars value={wildAreaEvent.rating} /><strong>♛ {wildAreaEvent.ratingLabel}</strong></section>
 
-      <DayBoard day={1} label="토요일 (11/14)" pokemon={dayOne} />
-      <DayBoard day={2} label="일요일 (11/15)" pokemon={dayTwo} />
+      {wildAreaEvent.days.map((day) => <DayBoard day={day.day} label={day.label} pokemon={day.pokemon} key={day.day} />)}
 
       <section className="event-reason-board">
-        <header><TargetIcon /><h2>왜 해야 하나?</h2></header>
+        <SectionHeader icon={<TargetIcon />} title="왜 해야 하나?" />
         <div className="reason-content">
-          <div className="reason-art"><PokemonArtwork image={{ src: "/images/pokemon/pm646.fWHITE.icon.png", scale: .94 }} alt="큐레무" size="md" /></div>
+          <div className="reason-art"><PokemonArtwork image={wildAreaEvent.days[0].pokemon[1].image} alt={wildAreaEvent.days[0].pokemon[1].name} size="md" /></div>
           <ul>
-            <li><CheckIcon /><b>큐레무 융합 에너지</b></li>
-            <li><CheckIcon /><b>다이맥스 디아루가/펄기아 첫 등장</b></li>
-            <li><CheckIcon /><b>거다이맥스 두랄루돈</b></li>
-            <li><CheckIcon /><b>강력한 레이드 전력 확보</b></li>
+            {wildAreaEvent.reasons.map((reason) => <li key={reason}><CheckIcon /><b>{reason}</b></li>)}
           </ul>
         </div>
       </section>
 
       <section className="event-prep-board" id="prep">
-        <header><BagIcon /><h2>준비 체크</h2></header>
+        <SectionHeader icon={<BagIcon />} title="준비 체크" />
         <div className="prep-content">
-          <div className="prep-art"><PokemonArtwork image={{ src: "/images/pokemon/pm483.icon.png", scale: 1.04 }} alt="다이맥스 디아루가" size="md" /></div>
+          <div className="prep-art"><PokemonArtwork image={wildAreaEvent.days[0].pokemon[2].image} alt={wildAreaEvent.days[0].pokemon[2].name} size="md" /></div>
           <ul>
-            <li><i /><b>맥스파티클 저장</b></li>
-            <li><i /><b>다이맥스 전투팀 3마리 준비</b></li>
-            <li><i /><b>포켓몬 박스 정리</b></li>
-            <li><i /><b>회복약 확보</b></li>
+            {wildAreaEvent.preparations.map((item) => <li key={item.id}><i /><b>{item.label}</b></li>)}
           </ul>
         </div>
       </section>
 
-      <Link className="boss-guide-link" href="/bosses/dialga-dynamax"><SwordsIcon />보스별 공략 보기<ChevronIcon /></Link>
+      <PrimaryCTA className="boss-guide-link" href="/bosses/dialga-dynamax" leading={<SwordsIcon />}>보스별 공략 보기</PrimaryCTA>
     </main>
   );
 }

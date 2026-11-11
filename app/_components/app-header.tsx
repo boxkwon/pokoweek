@@ -16,9 +16,9 @@ export function AppHeader({ backHref, subtitle }: { backHref?: string; subtitle?
       <div className="header-leading">
         {backHref
           ? <Link className="header-back" href={backHref} aria-label="이전 화면으로 돌아가기"><BackIcon /></Link>
-          : <Link className="header-logo" href="/bosses/dialga-dynamax" aria-label="GO WEEK 홈"><span className="fresh-ball"><i /></span></Link>}
+          : <Link className="header-logo" href="/" aria-label="GO WEEK 홈"><span className="fresh-ball"><i /></span></Link>}
       </div>
-      <Link className="fresh-brand" href="/bosses/dialga-dynamax">
+      <Link className="fresh-brand" href="/">
         <b>GO WEEK</b>
         {subtitle ? <small>{subtitle}</small> : null}
       </Link>
