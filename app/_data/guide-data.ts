@@ -15,7 +15,8 @@ export type WeekEvent = {
   id: string;
   date: string;
   dayLabel: string;
-  time?: string;
+  availabilityTime?: string;
+  featuredHour?: string;
   title: string;
   category: CategoryColor;
   categoryLabel: string;
@@ -119,11 +120,11 @@ export const weekGuides = [{
   ],
   preparations: wildAreaEvent.preparations,
   events: [
-    { id: "zacian-raid-hour", date: "2026-11-09", dayLabel: "월 9", time: "18:00 ~ 19:00", title: "자시안 레이드아워", category: "legendary", categoryLabel: "레이드아워", rating: 5, reason: "적극 추천", href: pokemon.zacian.href, pokemon: pokemon.zacian, weaknesses: ["불꽃", "땅"] },
-    { id: "zamazenta-raid-hour", date: "2026-11-10", dayLabel: "화 10", time: "18:00 ~ 19:00", title: "자마젠타 레이드아워", category: "legendary", categoryLabel: "레이드아워", rating: 5, reason: "적극 추천", href: pokemon.zamazenta.href, pokemon: pokemon.zamazenta, weaknesses: ["에스퍼", "비행", "페어리"] },
-    { id: "registeel-max-battle", date: "2026-11-11", dayLabel: "수 11", time: "10:00 ~ 21:00", title: "다이맥스 레지스틸", category: "max", categoryLabel: "맥스배틀", rating: 4, reason: "좋은 개체 확보", href: pokemon.registeel.href, pokemon: pokemon.registeel, weaknesses: ["격투", "불꽃", "땅"] },
-    { id: "wild-area-day-1", date: "2026-11-14", dayLabel: "토 14", time: wildAreaEvent.timeLabel, title: "GO Wild Area DAY 1", category: "event", categoryLabel: "글로벌 이벤트", rating: 5, reason: wildAreaEvent.ratingLabel, href: wildAreaEvent.href },
-    { id: "wild-area-day-2", date: "2026-11-15", dayLabel: "일 15", time: wildAreaEvent.timeLabel, title: "GO Wild Area DAY 2", category: "event", categoryLabel: "글로벌 이벤트", rating: 5, reason: wildAreaEvent.ratingLabel, href: wildAreaEvent.href },
+    { id: "zacian-raid-hour", date: "2026-11-09", dayLabel: "월 9", availabilityTime: "18:00 ~ 19:00", title: "자시안 레이드아워", category: "legendary", categoryLabel: "레이드아워", rating: 5, reason: "적극 추천", href: pokemon.zacian.href, pokemon: pokemon.zacian, weaknesses: ["불꽃", "땅"] },
+    { id: "zamazenta-raid-hour", date: "2026-11-10", dayLabel: "화 10", availabilityTime: "18:00 ~ 19:00", title: "자마젠타 레이드아워", category: "legendary", categoryLabel: "레이드아워", rating: 5, reason: "적극 추천", href: pokemon.zamazenta.href, pokemon: pokemon.zamazenta, weaknesses: ["에스퍼", "비행", "페어리"] },
+    { id: "registeel-max-battle", date: "2026-11-11", dayLabel: "수 11", availabilityTime: "10:00 ~ 21:00", featuredHour: "18:00 ~ 19:00", title: "다이맥스 레지스틸", category: "max", categoryLabel: "맥스배틀", rating: 4, reason: "좋은 개체 확보", href: pokemon.registeel.href, pokemon: pokemon.registeel, weaknesses: ["격투", "불꽃", "땅"] },
+    { id: "wild-area-day-1", date: "2026-11-14", dayLabel: "토 14", availabilityTime: wildAreaEvent.timeLabel, title: "GO Wild Area DAY 1", category: "event", categoryLabel: "글로벌 이벤트", rating: 5, reason: wildAreaEvent.ratingLabel, href: wildAreaEvent.href },
+    { id: "wild-area-day-2", date: "2026-11-15", dayLabel: "일 15", availabilityTime: wildAreaEvent.timeLabel, title: "GO Wild Area DAY 2", category: "event", categoryLabel: "글로벌 이벤트", rating: 5, reason: wildAreaEvent.ratingLabel, href: wildAreaEvent.href },
   ] satisfies readonly WeekEvent[],
 }] as const;
 

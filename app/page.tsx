@@ -64,7 +64,10 @@ export default function HomePage() {
       {todayEvents.length > 0 ? <div className="home-today-list">{todayEvents.map((event) => <article className="home-today-event" key={event.id}>
         <div className="today-event-copy">
           <CategoryBadge className={`schedule-category category-${event.category}`}>{event.categoryLabel}</CategoryBadge>
-          <time>{event.time}</time>
+          <div className="today-time-lines">
+            {event.availabilityTime ? <p><b>오늘 출현</b><time>{event.availabilityTime}</time></p> : null}
+            {event.featuredHour ? <p className="featured"><b>{event.category === "max" ? "맥스배틀 시간" : "집중 시간"}</b><time>{event.featuredHour}</time></p> : null}
+          </div>
           <h3>{event.title}</h3>
           <div className="today-rating"><RatingStars value={event.rating} /><strong>{event.reason}</strong></div>
           {event.weaknesses ? <div className="today-weakness"><b>약점</b>{event.weaknesses.map((type) => <TypeBadge type={type} color={typeColors[type]} key={type} />)}</div> : null}
@@ -86,7 +89,7 @@ export default function HomePage() {
         {upcomingEvents.map((event) => <Link href={event.href} key={event.id}>
           <time>{event.dayLabel}</time>
           <CategoryBadge className={`schedule-dot category-${event.category}`}>{event.categoryLabel}</CategoryBadge>
-          <div><b>{event.title}</b>{event.time ? <small>{event.time}</small> : null}</div>
+          <div><b>{event.title}</b>{event.availabilityTime ? <small>{event.availabilityTime}</small> : null}</div>
           <ChevronIcon />
         </Link>)}
       </div>
