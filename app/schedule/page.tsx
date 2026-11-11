@@ -9,6 +9,7 @@ import { APP_SUBTITLE } from "../_config/app";
 import type { ScheduleFilter, WeekEvent } from "../_data/guide-data";
 import {
   formatCompactDate,
+  formatRangeEventPeriod,
   formatWeekRange,
   getAdjacentWeekKey,
   getCurrentWeek,
@@ -17,6 +18,7 @@ import {
   getEventsByWeek,
   getImportantTime,
   getImportantEvents,
+  isRangeContinuation,
   getWeekByStartDate,
   getWeekDays,
   getWeekEventActionHref,
@@ -26,8 +28,8 @@ import { getAppNow, isValidDateOverride } from "../_lib/time";
 
 const filters = [
   { key: "all", label: "전체" },
-  { key: "five", label: "5성" },
-  { key: "three", label: "3성" },
+  { key: "tier5", label: "5성" },
+  { key: "tier3", label: "3성" },
   { key: "mega", label: "메가" },
   { key: "max", label: "맥스" },
   { key: "shadow", label: "그림자" },
@@ -46,21 +48,32 @@ function isDateKey(value: string | undefined): value is string {
 }
 
 function scheduleHref(week: string, category: ScheduleCategory, dateOverride?: string) {
-  const query = new URLSearchParams({ week });
-  if (category !== "all") query.set("category", category);
+  const query = new URLSearchParams({ week, category });
   if (dateOverride) query.set("date", dateOverride);
   return `/schedule?${query.toString()}`;
 }
 
-function ScheduleEventRow({ event }: { event: WeekEvent }) {
+function ScheduleEventRow({ event, dateKey }: { event: WeekEvent; dateKey: string }) {
   const ctaLabel = getWeekEventActionLabel(event);
+  const continuation = isRangeContinuation(event, dateKey);
   const artworkClass = event.pokemon.length === 2 ? "has-art-pair" : event.pokemon.length >= 3 ? "has-art-group" : "has-single-art";
+
+  if (continuation) return <article className="schedule-event-row range-continuation">
+    <div className="schedule-event-copy">
+      <CategoryBadge className={`schedule-category-badge category-${event.category}`}>{event.categoryLabel}</CategoryBadge>
+      <h3>{event.title}</h3>
+      <p className="range-continuation-time">{formatRangeEventPeriod(event, true)}</p>
+    </div>
+    <Link className="range-continuation-link" href={getWeekEventActionHref(event)} aria-label={`${event.title} ${ctaLabel}`}><ChevronIcon /></Link>
+  </article>;
 
   return <article className={`schedule-event-row ${event.priority === 5 ? "priority-five" : ""} ${artworkClass}`}>
     <div className="schedule-event-copy">
       <CategoryBadge className={`schedule-category-badge category-${event.category}`}>{event.categoryLabel}</CategoryBadge>
       <h3>{event.title}</h3>
-      <EventTime className="schedule-event-times" availabilityTime={event.availabilityTime} featuredHour={event.featuredHour} featuredLabel={event.category === "legendary" ? "레이드아워" : event.category === "max" ? "맥스배틀 시간" : "집중 시간"} />
+      {event.scheduleType === "range"
+        ? <p className="range-event-time">{formatRangeEventPeriod(event)}</p>
+        : <EventTime className="schedule-event-times" availabilityTime={event.availabilityTime} featuredHour={event.featuredHour} featuredLabel={event.category === "legendary" ? "레이드아워" : event.category === "max" ? "맥스배틀 시간" : "집중 시간"} />}
       <div className="schedule-rating"><RatingStars value={event.rating} /><strong>{event.reason}</strong></div>
       {event.pokemon.length > 1 ? <ul className="schedule-pokemon-list">{event.pokemon.map((item) => <li key={item.id}>{item.name}</li>)}</ul> : null}
     </div>
@@ -123,7 +136,7 @@ export default async function SchedulePage({ searchParams }: { searchParams: Sea
               <strong>{day.day}</strong>
             </header>
             <div className="schedule-day-events">
-              {events.length > 0 ? events.map((event) => <ScheduleEventRow event={event} key={event.id} />) : <p className="schedule-empty">중요 일정 없음</p>}
+              {events.length > 0 ? events.map((event) => <ScheduleEventRow event={event} dateKey={day.dateKey} key={event.id} />) : <p className="schedule-empty">중요 일정 없음</p>}
             </div>
           </section>;
         })}

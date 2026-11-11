@@ -1,12 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import type { ScheduleFilter } from "../_data/guide-data";
-
-const CATEGORY_KEY = "pokoweek:schedule-category";
-const WEEK_KEY = "pokoweek:schedule-week";
-const validCategories: readonly ScheduleFilter[] = ["all", "five", "three", "mega", "max", "shadow", "event"];
+import { isScheduleWeek, normalizeScheduleFilter, SCHEDULE_CATEGORY_KEY, SCHEDULE_WEEK_KEY } from "../_lib/schedule-preferences";
 
 export function SchedulePreferenceSync({
   selectedCategory,
@@ -22,25 +19,35 @@ export function SchedulePreferenceSync({
   dateOverride?: string;
 }) {
   const router = useRouter();
+  const initialized = useRef(false);
 
   useEffect(() => {
-    const storedCategory = localStorage.getItem(CATEGORY_KEY);
-    const storedWeek = localStorage.getItem(WEEK_KEY);
+    if (initialized.current) return;
+    initialized.current = true;
+
+    const storedCategory = normalizeScheduleFilter(localStorage.getItem(SCHEDULE_CATEGORY_KEY));
+    const storedWeek = localStorage.getItem(SCHEDULE_WEEK_KEY);
     const category = hasCategoryQuery
       ? selectedCategory
-      : validCategories.includes(storedCategory as ScheduleFilter) ? storedCategory as ScheduleFilter : selectedCategory;
+      : storedCategory ?? selectedCategory;
     const week = hasWeekQuery && selectedWeek
       ? selectedWeek
-      : dateOverride ? selectedWeek : storedWeek && /^\d{4}-\d{2}-\d{2}$/.test(storedWeek) ? storedWeek : selectedWeek;
+      : dateOverride ? selectedWeek : isScheduleWeek(storedWeek) ? storedWeek : selectedWeek;
 
-    localStorage.setItem(CATEGORY_KEY, category);
-    localStorage.setItem(WEEK_KEY, week);
+    localStorage.setItem(SCHEDULE_CATEGORY_KEY, category);
+    localStorage.setItem(SCHEDULE_WEEK_KEY, week);
 
-    if ((!hasCategoryQuery && category !== selectedCategory) || (!hasWeekQuery && week !== selectedWeek)) {
+    if (!hasCategoryQuery || !hasWeekQuery) {
       const query = new URLSearchParams({ week, category });
       if (dateOverride) query.set("date", dateOverride);
       router.replace(`/schedule?${query.toString()}`);
     }
+  }, [dateOverride, hasCategoryQuery, hasWeekQuery, router, selectedCategory, selectedWeek]);
+
+  useEffect(() => {
+    if (!initialized.current || !hasCategoryQuery || !hasWeekQuery) return;
+    localStorage.setItem(SCHEDULE_CATEGORY_KEY, selectedCategory);
+    localStorage.setItem(SCHEDULE_WEEK_KEY, selectedWeek);
   }, [dateOverride, hasCategoryQuery, hasWeekQuery, router, selectedCategory, selectedWeek]);
 
   return null;

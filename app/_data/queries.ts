@@ -58,7 +58,7 @@ export function getTodayEvents(week: WeekGuide, date = getAppNow()) {
 
 export function getUpcomingEvents(week: WeekGuide, date = getAppNow(), limit = 5) {
   const key = getSeoulDateKey(date);
-  return getEventsByWeek(week).filter((event) => event.date >= key).slice(0, limit);
+  return getEventsByWeek(week).filter((event) => getEventEndDateKey(event) >= key).slice(0, limit);
 }
 
 export function getEventsByWeek(week: WeekGuide) {
@@ -66,16 +66,38 @@ export function getEventsByWeek(week: WeekGuide) {
 }
 
 export function getEventsByDate(events: readonly WeekEvent[], dateKey: string) {
-  return events.filter((event) => event.date === dateKey).sort((a, b) => (a.startAt ?? "").localeCompare(b.startAt ?? ""));
+  return events.filter((event) => {
+    if (event.scheduleType !== "range") return event.date === dateKey;
+    return getEventStartDateKey(event) <= dateKey && dateKey <= getEventEndDateKey(event);
+  }).sort((a, b) => (a.startAt ?? "").localeCompare(b.startAt ?? ""));
 }
 
 export function getEventsByCategory(events: readonly WeekEvent[], category: ScheduleFilter) {
   if (category === "all") return [...events];
-  if (category === "five") return events.filter((event) => event.raidTier === 5);
-  if (category === "three") return events.filter((event) => event.raidTier === 3);
+  if (category === "tier5") return events.filter((event) => event.raidTier === 5);
+  if (category === "tier3") return events.filter((event) => event.raidTier === 3);
   if (category === "mega") return events.filter((event) => event.raidTier === "mega" || event.raidTier === "superMega" || event.category === "mega");
   if (category === "shadow") return events.filter((event) => event.raidTier === "shadow" || event.category === "shadow");
   return events.filter((event) => event.category === category);
+}
+
+export function getEventStartDateKey(event: WeekEvent) {
+  return event.startAt?.slice(0, 10) ?? event.date;
+}
+
+export function getEventEndDateKey(event: WeekEvent) {
+  return event.endAt?.slice(0, 10) ?? event.date;
+}
+
+export function isRangeContinuation(event: WeekEvent, dateKey: string) {
+  return event.scheduleType === "range" && getEventStartDateKey(event) < dateKey;
+}
+
+export function formatRangeEventPeriod(event: WeekEvent, continuation = false) {
+  const start = dateKeyToUtc(getEventStartDateKey(event));
+  const end = dateKeyToUtc(getEventEndDateKey(event));
+  if (continuation) return `${end.getUTCMonth() + 1}/${end.getUTCDate()}까지 등장 중`;
+  return `${start.getUTCMonth() + 1}/${start.getUTCDate()} ~ ${end.getUTCMonth() + 1}/${end.getUTCDate()} 등장`;
 }
 
 export function getImportantEvents(events: readonly WeekEvent[]) {

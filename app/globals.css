@@ -326,7 +326,7 @@ svg { display: block; }
 .schedule-filters a { flex: 0 0 auto; }
 .schedule-filter-badge { min-width: 48px; height: 32px; justify-content: center; padding: 0 var(--space-3); border: 1px solid #d5dbe5; border-radius: 16px; background: #fff; color: #52627d; font-size: var(--type-caption); font-weight: 900; }
 .schedule-filters a.selected .filter-all { border-color: #082f69; background: #082f69; color: #fff; }
-.schedule-filters a.selected .filter-five,.schedule-filters a.selected .filter-three,.schedule-filters a.selected .filter-raid { border-color: var(--category-legendary); background: var(--category-legendary); color: #fff; }
+.schedule-filters a.selected .filter-tier5,.schedule-filters a.selected .filter-tier3,.schedule-filters a.selected .filter-raid { border-color: var(--category-legendary); background: var(--category-legendary); color: #fff; }
 .schedule-filters a.selected .filter-mega { border-color: var(--category-mega); background: var(--category-mega); color: #fff; }
 .schedule-filters a.selected .filter-max { border-color: var(--category-max); background: var(--category-max); color: #fff; }
 .schedule-filters a.selected .filter-shadow { border-color: var(--category-shadow); background: var(--category-shadow); color: #fff; }
@@ -401,6 +401,11 @@ svg { display: block; }
 .schedule-category-badge { min-height: 22px; justify-content: center; padding: 2px var(--space-2); border-radius: 12px; color: #fff; font-size: 10px; font-weight: 900; }
 .schedule-category-badge.category-event { color: #563d00; }
 .schedule-event-row h3 { max-width: 100%; margin: var(--space-1) 0; color: #082f69; font-size: var(--type-card-title); line-height: 1.25; overflow-wrap: anywhere; }
+.range-event-time,.range-continuation-time { margin: 0; color: #52627d; font-size: var(--type-caption); font-weight: 800; }
+.schedule-event-row.range-continuation { min-height: 78px; display: flex; align-items: center; gap: var(--space-2); padding-top: var(--space-2); padding-bottom: var(--space-2); }
+.range-continuation .schedule-event-copy { min-height: 0; flex: 1; padding-right: 0; }
+.range-continuation-link { width: 36px; height: 36px; flex: 0 0 auto; display: grid; place-items: center; color: var(--blue); }
+.range-continuation-link svg { width: 18px; height: 18px; }
 .schedule-event-times { display: grid; gap: 2px; }
 .schedule-event-times p { display: grid; grid-template-columns: 78px 1fr; gap: var(--space-1); margin: 0; color: #52627d; font-size: var(--type-caption); }
 .schedule-event-times p b { color: #52627d; }

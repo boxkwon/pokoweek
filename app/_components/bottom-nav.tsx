@@ -2,16 +2,17 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { isScheduleWeek, normalizeScheduleFilter, SCHEDULE_CATEGORY_KEY, SCHEDULE_WEEK_KEY } from "../_lib/schedule-preferences";
 import { BagIcon, CalendarIcon, HomeIcon, SwordsIcon } from "./icons";
 
 export function BottomNavigation({ active }: { active: "home" | "schedule" | "guide" | "prep" }) {
   const [scheduleHref, setScheduleHref] = useState("/schedule");
   useEffect(() => {
-    const category = localStorage.getItem("pokoweek:schedule-category");
-    const week = localStorage.getItem("pokoweek:schedule-week");
+    const category = normalizeScheduleFilter(localStorage.getItem(SCHEDULE_CATEGORY_KEY));
+    const week = localStorage.getItem(SCHEDULE_WEEK_KEY);
     const query = new URLSearchParams();
-    if (week && /^\d{4}-\d{2}-\d{2}$/.test(week)) query.set("week", week);
-    if (category && ["all", "five", "three", "mega", "max", "shadow", "event"].includes(category)) query.set("category", category);
+    if (isScheduleWeek(week)) query.set("week", week);
+    if (category) query.set("category", category);
     if (query.size) setScheduleHref(`/schedule?${query.toString()}`);
   }, []);
 
