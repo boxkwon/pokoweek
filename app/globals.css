@@ -798,3 +798,194 @@ main { background: var(--gw-bg); }
 .event-boss-cta { min-height: 54px; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; border-radius: var(--radius-md); background: #6530a7; color: #fff; font-size: 17px; font-weight: 800; }.event-boss-cta svg { width: 22px; }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+
+/* GO WEEK reference-faithful guide surfaces */
+.app-header {
+  height: 66px;
+  padding-inline: 16px;
+  border-bottom: 0;
+  background: #fff;
+}
+.app-header .brand { min-width: 0; gap: 7px; color: #10336a; font-size: 20px; font-weight: 900; }
+.app-header .brand > small { margin-left: 3px; padding-left: 10px; border-left: 1px solid #c8cfdb; color: #50617c; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.app-header-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.app-header-actions button { width: 36px; height: 36px; display: grid; place-items: center; padding: 0; border: 0; background: transparent; color: #123466; cursor: pointer; }
+.app-header-actions button.active { color: #175fc3; }
+.app-header-actions svg { width: 24px; height: 24px; }
+
+.bottom-nav {
+  width: min(100%,430px);
+  height: 76px;
+  bottom: 0;
+  padding: 7px 14px 8px;
+  border: 0;
+  border-top: 1px solid #d9dee7;
+  border-radius: 18px 18px 0 0;
+  background: #fff;
+  box-shadow: 0 -4px 14px rgba(20,45,82,.08);
+}
+.bottom-nav a { gap: 3px; border-radius: 10px; color: #53637b; font-size: 11px; font-weight: 800; }
+.bottom-nav a.active { margin: 0 8px; background: #e3efff; color: #075dcc; }
+.bottom-nav svg { width: 23px; height: 23px; }
+
+.detail-page { padding: 8px 12px 104px; background: #f6f7f9; }
+.detail-page .hero-back-button {
+  width: 40px;
+  height: 40px;
+  top: 12px;
+  left: 12px;
+  border: 1px solid rgba(21,48,92,.12);
+  border-radius: 50%;
+  background: #fff;
+  color: #0d3166;
+  box-shadow: none;
+}
+
+/* Raid boss guide — composed like the supplied Dialga screen */
+.boss-detail .boss-guide-hero {
+  min-height: 382px;
+  border-radius: 22px;
+  background: #071b45;
+  box-shadow: none;
+}
+.boss-detail .boss-guide-background { position: absolute; inset: 0; z-index: 0; opacity: .58; }
+.boss-detail .boss-guide-background > img { object-position: center; filter: saturate(1.35) blur(1px); transform: scale(1.03); }
+.boss-detail .boss-guide-hero:after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg,rgba(5,20,55,.92) 0%,rgba(5,20,55,.62) 46%,rgba(35,8,75,.12) 78%),linear-gradient(0deg,rgba(8,17,51,.88),transparent 44%); pointer-events: none; }
+.boss-detail .boss-guide-visual { width: 68%; height: 86%; top: auto; right: -3%; bottom: -4%; left: auto; z-index: 2; background: none; }
+.boss-detail .boss-guide-visual:after { display: none; }
+.boss-detail .boss-guide-visual .pokemon-artwork { width: 100%; height: 100%; margin: 0; filter: drop-shadow(0 9px 5px rgba(3,8,24,.42)); }
+.boss-detail .boss-guide-copy {
+  height: 100%;
+  z-index: 3;
+  justify-content: flex-start;
+  padding: 64px 16px 14px;
+  background: none;
+  pointer-events: none;
+}
+.boss-detail .boss-guide-copy button { pointer-events: auto; }
+.boss-detail .battle-pill { display: inline-flex; align-items: center; gap: 6px; margin-top: 2px; padding: 6px 11px; border: 0; border-radius: 16px; background: #d70b67; color: #fff; font-size: 16px; font-weight: 900; }
+.boss-detail .battle-pill svg { width: 19px; height: 19px; }
+.boss-detail .boss-guide-copy h1 { max-width: 94%; margin: 10px 0 8px; font-size: clamp(27px,8.5vw,35px); line-height: 1.05; letter-spacing: -1.7px; text-shadow: 0 2px 2px rgba(0,0,0,.42); }
+.boss-detail .boss-type-line { display: flex; gap: 6px; padding: 0; border-radius: 0; background: transparent; }
+.boss-detail .boss-type-line > span,.weakness-type-list > span { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px 4px 4px; border: 1px solid rgba(255,255,255,.72); border-radius: 18px; background: rgba(14,57,120,.78); color: #fff; }
+.boss-detail .boss-type-line .pokemon-type-icon,.weakness-type-list .pokemon-type-icon { width: 25px; height: 25px; }
+.boss-detail .boss-type-line .type-icon-image,.weakness-type-list .type-icon-image { width: 25px; height: 25px; }
+.boss-detail .boss-type-line b,.weakness-type-list b { font-size: 13px; }
+.boss-detail .boss-catch-rating { margin-top: auto; padding: 8px 12px; border: 0; border-radius: 10px; background: #ffdd21; color: #8b1621; box-shadow: 0 2px 0 #d3ad00; }
+.boss-detail .boss-catch-rating .rating-stars svg { width: 20px; height: 20px; }
+.boss-detail .boss-catch-rating b { font-size: 17px; }
+
+.boss-detail .boss-matchup-card {
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 12px 14px;
+  border: 1px solid #dce2eb;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(21,44,78,.06);
+}
+.boss-detail .boss-matchup-card h2 { display: flex; align-items: center; gap: 7px; margin: 0; color: #103a76; font-size: 20px; }
+.boss-detail .boss-matchup-card h2 svg { width: 25px; height: 25px; }
+.boss-detail .boss-matchup-card h2 small { display: block; color: #4e5b70; font-size: 11px; font-weight: 700; }
+.weakness-type-list { display: flex; gap: 5px; }
+.weakness-type-list > span { border-color: #d4dbe6; background: #f5f8fc; color: #17243a; }
+
+.boss-detail .detail-panel,.boss-detail .guide-panel {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #dce2eb;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(21,44,78,.06);
+}
+.boss-detail .detail-panel.detail-section,.boss-detail .guide-panel.detail-section { padding-top: 12px; }
+.guide-section-heading { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+.guide-section-heading > svg { width: 27px; height: 27px; color: #075cc7; stroke-width: 2.6; }
+.guide-section-heading h2 { margin: 0; color: #102f61; font-size: 21px; line-height: 1.1; letter-spacing: -.7px; }
+.guide-section-heading p { margin: 2px 0 0; color: #596579; font-size: 10px; font-weight: 700; }
+.boss-detail .counter-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; }
+.boss-detail .pokemon-counter-card { height: 142px; padding: 4px 5px 7px; border: 1px solid #dce2eb; border-radius: 8px; background: #edf4fc; }
+.boss-detail .pokemon-counter-card:nth-child(1) { background: #fff3cd; }
+.boss-detail .pokemon-counter-card:nth-child(3) { background: #fbe8f3; }
+.boss-detail .pokemon-counter-card .counter-number { width: 24px; height: 24px; top: 5px; left: 5px; border: 0; border-radius: 50%; color: #fff; font-size: 12px; }
+.boss-detail .pokemon-counter-card .pokemon-artwork { height: 98px; }
+.boss-detail .pokemon-counter-card h3 { min-height: 31px; font-size: 13px; font-weight: 900; }
+.boss-detail .detail-primary-cta { min-height: 44px; margin-top: 8px; border-radius: 8px; background: #075ab8; font-size: 15px; box-shadow: inset 0 -2px 0 rgba(0,34,91,.28); }
+
+.boss-detail .value-rating-list { border-top: 0; }
+.boss-detail .value-rating { min-height: 47px; grid-template-columns: 105px 84px minmax(0,1fr); gap: 6px; border: 0; border-radius: 7px; background: #f2f6fb; }
+.boss-detail .value-rating + .value-rating { margin-top: 5px; }
+.boss-detail .value-rating > span { height: 100%; display: flex; align-items: center; padding: 0 9px; border-radius: 7px; background: #075fc8; color: #fff; font-size: 12px; font-weight: 900; }
+.boss-detail .value-rating > div { padding-left: 3px; }
+.boss-detail .value-rating > div svg { width: 15px; height: 15px; }
+.boss-detail .value-rating p { padding-right: 5px; color: #26364e; font-size: 9px; font-weight: 800; }
+
+.boss-detail .guide-panel { border-color: #efd567; background: #fff0a8; }
+.boss-detail .guide-panel .guide-section-heading > svg { color: #d48d00; }
+.boss-detail .guide-recommendation-grid { grid-template-columns: 1.2fr .8fr; gap: 7px; }
+.boss-detail .guide-recommendation-grid .preparation-checklist,.boss-detail .guide-recommendation-grid aside { padding: 8px; border: 1px solid rgba(209,164,10,.24); border-radius: 8px; background: rgba(255,255,255,.7); }
+.boss-detail .guide-recommendation-grid .preparation-checklist li { padding: 5px 0; border: 0; color: #17243a; font-size: 11px; font-weight: 800; }
+.boss-detail .guide-recommendation-grid aside b { font-size: 11px; }
+.boss-detail .guide-recommendation-grid aside p { font-size: 10px; }
+.boss-detail .sources-section,.event-detail-page .sources-section { padding: 18px 2px 6px; }
+
+/* Event guide — follows the supplied GO WILD AREA information-board layout */
+.event-detail-page .event-detail-hero {
+  min-height: 232px;
+  border-radius: 18px 18px 0 0;
+  background: #102457;
+  box-shadow: none;
+}
+.event-detail-page .event-detail-hero > .event-hero-image { opacity: 1; }
+.event-detail-page .event-detail-hero > .event-hero-image img { object-position: center; filter: saturate(1.12) contrast(1.02); }
+.event-detail-page .event-hero-overlay { background: linear-gradient(0deg,rgba(20,14,74,.9) 0%,rgba(20,14,74,.22) 44%,rgba(10,20,45,.02) 75%); }
+.event-detail-page .event-detail-hero-copy { padding: 112px 16px 15px; }
+.event-detail-page .event-detail-hero h1 { margin: 0; color: #fff; font-size: 30px; font-style: italic; font-weight: 900; line-height: 1.02; letter-spacing: -1.2px; text-shadow: 0 3px 4px rgba(13,15,56,.72); }
+.event-detail-page .event-detail-hero-copy > p { margin: 7px 0 0; color: #fff; font-size: 14px; font-weight: 900; text-shadow: 0 2px 3px rgba(13,15,56,.72); }
+.event-detail-page .event-facts { margin: 0; padding: 10px 5px; border: 1px solid #d9deea; border-top: 0; border-radius: 0 0 12px 12px; box-shadow: 0 2px 5px rgba(21,44,78,.05); }
+.event-detail-page .event-facts > div { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 6px; padding: 0 9px; }
+.event-detail-page .event-facts span { display: inline-flex; align-items: center; gap: 4px; padding: 4px 7px; border-radius: 12px; background: #7640b8; color: #fff; font-size: 11px; }
+.event-detail-page .event-facts span svg { width: 14px; height: 14px; }
+.event-detail-page .event-facts b { margin: 0; font-size: 11px; }
+.event-detail-page .event-priority-rating { min-height: 50px; position: relative; overflow: hidden; margin: 8px 0 12px; padding: 8px 11px; border: 0; border-radius: 10px; background: linear-gradient(110deg,#58229d 0 49.6%,#ffd525 50% 100%); box-shadow: 0 2px 5px rgba(45,26,93,.14); }
+.event-detail-page .event-priority-rating .rating-stars { z-index: 1; }
+.event-detail-page .event-priority-rating .rating-stars svg { width: 21px; height: 21px; color: #ffd725; filter: drop-shadow(0 1px 0 #b98300); }
+.event-detail-page .event-priority-rating strong { z-index: 1; color: #5a2a0c; font-size: 14px; font-weight: 900; }
+
+.event-detail-page .event-day-section { margin-top: 10px; border: 2px solid #8bb8ff; border-radius: 11px; background: #f9fbff; }
+.event-detail-page .event-day-section.day-2 { border-color: #bf9cf0; }
+.event-detail-page .event-day-section > header { min-width: 55%; gap: 5px; margin: -2px 0 0 -2px; padding: 7px 20px 7px 10px; border-radius: 10px 0 0 0; background: #1664ce; clip-path: polygon(0 0,100% 0,88% 100%,0 100%); }
+.event-detail-page .event-day-section.day-2 > header { background: #7221b8; }
+.event-detail-page .event-day-section header svg { width: 18px; height: 18px; }
+.event-detail-page .event-day-section header b { font-size: 15px; font-style: italic; }
+.event-detail-page .event-day-section header span { font-size: 11px; }
+.event-detail-page .event-day-grid { gap: 4px; padding: 5px; }
+.event-detail-page .event-day-grid .pokemon-thumbnail { height: 132px; border: 1px solid #dde3ec; border-radius: 8px; background: #eef3f8; }
+.event-detail-page .event-day-grid .pokemon-thumbnail-image { padding: 1px 0 31px; }
+.event-detail-page .event-day-grid .pokemon-thumbnail-name { right: 2px; bottom: 2px; left: 2px; padding: 4px 2px; border-radius: 4px; font-size: 10px; font-weight: 900; text-align: center; }
+
+.event-detail-page .event-info-panel { position: relative; margin-top: 20px; padding: 38px 14px 10px; border: 2px solid #a7bce1; border-radius: 11px; background: #fff; }
+.event-detail-page .event-info-panel.detail-section { padding-top: 38px; }
+.event-detail-page .event-ribbon-heading { min-width: 56%; height: 40px; position: absolute; top: -2px; left: -2px; display: flex; align-items: center; gap: 7px; padding: 0 24px 0 12px; background: #6520ae; color: #fff; clip-path: polygon(0 0,100% 0,88% 100%,0 100%); }
+.event-detail-page .prep-panel .event-ribbon-heading { background: #1764c9; }
+.event-detail-page .event-ribbon-heading svg { width: 22px; height: 22px; }
+.event-detail-page .event-ribbon-heading h2 { margin: 0; color: #fff; font-size: 19px; }
+.event-detail-page .event-info-panel .preparation-checklist li { padding: 6px 0; border: 0; color: #17243a; font-size: 13px; font-weight: 800; }
+.event-detail-page .event-info-panel .preparation-checklist svg { background: #753ac1; }
+.event-detail-page .preparation-checklist.todo li > i { width: 19px; height: 19px; border: 2px solid #182540; border-radius: 4px; }
+.event-detail-page .event-boss-cta { min-height: 54px; margin-top: 12px; border: 2px solid #fff; border-radius: 11px; outline: 1px solid #7431be; background: #6a20ae; font-size: 18px; box-shadow: 0 2px 5px rgba(62,26,112,.18); }
+.event-detail-page .event-boss-cta svg:first-child { width: 23px; height: 23px; }
+.event-detail-page .event-boss-cta svg:last-child { margin-left: 5px; }
+
+@media (max-width: 390px) {
+  .app-header .brand > small { display: none; }
+  .boss-detail .boss-guide-hero { min-height: 370px; }
+  .boss-detail .boss-guide-visual { width: 71%; right: -8%; }
+  .boss-detail .value-rating { grid-template-columns: 93px 77px minmax(0,1fr); }
+  .boss-detail .value-rating > span { padding-inline: 7px; font-size: 11px; }
+  .event-detail-page .event-day-grid .pokemon-thumbnail { height: 122px; }
+  .event-detail-page .event-facts > div { grid-template-columns: 1fr; gap: 2px; }
+}

@@ -62,6 +62,9 @@ export type GameEvent = {
   sourceIds: string[];
   color: "violet" | "orange" | "blue";
   eventHero?: string;
+  heroTitle?: string;
+  heroSubtitle?: string;
+  priority?: { rating: number; label: string };
   days?: { label: string; dateLabel: string; bossSlugs: string[] }[];
 };
 

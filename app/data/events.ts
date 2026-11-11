@@ -18,6 +18,9 @@ export const events: GameEvent[] = [
     checklist: ["토·일 10시 전 맥스파티클 확인", "가족별 목표 보스 1순위 정하기", "보조 포켓몬에 맥스가드·맥스회복 준비", "충전기·물·간식 챙기기"],
     bossSlugs: ["dialga-dynamax", "palkia-dynamax", "duraludon-gigantamax", "machamp-jacket"],
     sourceIds: ["official-wild-area", "gohub-november"], color: "orange", eventHero: "/images/events/key-art.jpg",
+    heroTitle: "GO WILD AREA 2026",
+    heroSubtitle: "월드 에리어 · 글로벌 이벤트",
+    priority: { rating: 5, label: "이번 달 최우선 이벤트" },
     days: [
       { label: "DAY 1", dateLabel: "토요일 (11/14)", bossSlugs: ["zekrom-raid", "white-kyurem-raid", "dialga-dynamax", "duraludon-gigantamax"] },
       { label: "DAY 2", dateLabel: "일요일 (11/15)", bossSlugs: ["reshiram-raid", "black-kyurem-raid", "palkia-dynamax", "duraludon-gigantamax"] },
