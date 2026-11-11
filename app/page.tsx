@@ -93,7 +93,7 @@ export default function HomePage() {
           <ChevronIcon />
         </Link>)}
       </div>
-      <PrimaryCTA className="home-schedule-cta" href={featuredEvent.href} trailing={false}>이번 주 전체 일정 보기 <span aria-hidden="true">→</span></PrimaryCTA>
+      <PrimaryCTA className="home-schedule-cta" href="/schedule" trailing={false}>이번 주 전체 일정 보기 <span aria-hidden="true">→</span></PrimaryCTA>
     </section>
 
     <BottomNavigation active="home" />
