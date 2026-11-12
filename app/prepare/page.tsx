@@ -8,6 +8,7 @@ import { BottomNavigation } from "../_components/bottom-nav";
 import { CategoryBadge, CountdownBadge, RatingStars, SectionHeader } from "../_components/design-system";
 import { BagIcon, ChevronIcon, StarOutlineIcon, SwordsIcon, TargetIcon } from "../_components/icons";
 import { PokemonArtwork } from "../_components/pokemon-artwork";
+import { PokemonGuideLink } from "../_components/pokemon-guide-link";
 import { PreparationActionChecklist, PreparationProgress } from "../_components/preparation-checklist";
 import { APP_SUBTITLE } from "../_config/app";
 import {
@@ -75,7 +76,7 @@ export default function PreparePage() {
     <section className="home-board prepare-pokemon-board">
       <SectionHeader icon={<SwordsIcon />} title="준비할 포켓몬" />
       <div className="prepare-pokemon-list">
-        {plan.pokemon.map((item) => <Link href={item.pokemon.href} key={item.pokemon.id}>
+        {plan.pokemon.map((item) => <PokemonGuideLink href={item.pokemon.href} key={item.pokemon.id}>
           <b className="priority-rank">{item.rank}</b>
           <PokemonArtwork image={item.pokemon.image} alt={item.pokemon.name} size="sm" />
           <div>
@@ -85,7 +86,7 @@ export default function PreparePage() {
             <small>{item.reason}</small>
           </div>
           <ChevronIcon />
-        </Link>)}
+        </PokemonGuideLink>)}
       </div>
     </section>
 
@@ -101,12 +102,12 @@ export default function PreparePage() {
 
     {nextEvent ? <section className="prepare-next-section">
       <SectionHeader icon={<ChevronIcon />} title="그 다음 이벤트" />
-      <Link href={getWeekEventActionHref(nextEvent)}>
+      <PokemonGuideLink href={getWeekEventActionHref(nextEvent)}>
         <CategoryBadge className={`schedule-category-badge category-${nextEvent.category}`}>{nextEvent.categoryLabel}</CategoryBadge>
         <div><b>{nextEvent.title}</b><span>{nextEvent.dayLabel} · D-{Math.max(0, getDaysUntil(nextEvent.date, now))}</span></div>
         <RatingStars value={nextEvent.rating} />
         <ChevronIcon />
-      </Link>
+      </PokemonGuideLink>
     </section> : null}
 
     <BottomNavigation active="prep" />

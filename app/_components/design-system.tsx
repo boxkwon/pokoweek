@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { CalendarIcon, ChevronIcon, ClockIcon } from "./icons";
+import { PokemonGuideLink } from "./pokemon-guide-link";
 
 export function SectionHeader({
   icon,
@@ -90,6 +91,7 @@ export function PrimaryCTA({
   trailing?: boolean;
 }) {
   const content = <>{leading}{children}{trailing ? <ChevronIcon /> : null}</>;
+  if (href?.startsWith("/pokemon/")) return <PokemonGuideLink className={className} href={href}>{content}</PokemonGuideLink>;
   return href
     ? <Link className={className} href={href}>{content}</Link>
     : <button className={className} type="button">{content}</button>;

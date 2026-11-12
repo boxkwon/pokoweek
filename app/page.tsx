@@ -8,6 +8,7 @@ import { BottomNavigation } from "./_components/bottom-nav";
 import { CategoryBadge, CountdownBadge, EventMeta, EventTime, PrimaryCTA, RatingStars, SectionHeader, TypeBadge } from "./_components/design-system";
 import { BagIcon, CalendarIcon, ChevronIcon, ClockIcon, StarOutlineIcon } from "./_components/icons";
 import { PokemonArtwork } from "./_components/pokemon-artwork";
+import { PokemonGuideLink } from "./_components/pokemon-guide-link";
 import { PreparationChecklist } from "./_components/preparation-checklist";
 import { APP_SUBTITLE } from "./_config/app";
 import { typeColors } from "./_data/guide-data";
@@ -56,12 +57,12 @@ export default function HomePage() {
     <section className="home-board home-priority-board">
       <SectionHeader icon={<StarOutlineIcon />} title="이번 주 꼭 할 것 TOP 3" />
       <div className="home-priority-list">
-        {week.priorities.slice(0, 3).map((item) => <Link href={item.pokemon.href} key={item.rank}>
+        {week.priorities.slice(0, 3).map((item) => <PokemonGuideLink href={item.pokemon.href} key={item.rank}>
           <b className="priority-rank">{item.rank}</b>
           <PokemonArtwork image={item.pokemon.image} alt={item.pokemon.name} size="sm" />
           <div className="priority-copy"><h3>{item.pokemon.name}</h3><RatingStars value={item.rating} /><p>{item.reason}</p></div>
           <ChevronIcon />
-        </Link>)}
+        </PokemonGuideLink>)}
         {week.priorities.length === 0 ? <p className="home-empty">공식 발표된 추천 공략이 없어요.</p> : null}
       </div>
     </section>
@@ -90,12 +91,12 @@ export default function HomePage() {
     <section className="home-board home-schedule-board">
       <SectionHeader icon={<CalendarIcon />} title="이번 주 일정 미리보기" />
       <div className="home-schedule-list">
-        {upcomingEvents.map((event) => <Link href={getWeekEventActionHref(event)} key={event.id}>
+        {upcomingEvents.map((event) => <PokemonGuideLink href={getWeekEventActionHref(event)} key={event.id}>
           <time>{event.dayLabel}</time>
           <CategoryBadge className={`schedule-dot category-${event.category}`}>{event.categoryLabel}</CategoryBadge>
           <div><b>{event.title}</b>{event.availabilityTime ? <small>{event.availabilityTime}</small> : null}</div>
           <ChevronIcon />
-        </Link>)}
+        </PokemonGuideLink>)}
       </div>
       <PrimaryCTA className="home-schedule-cta" href={`/schedule?week=${week.startDate}&category=all${dateOverride ? `&date=${dateOverride}` : ""}`} trailing={false}>이번 주 전체 일정 보기 <span aria-hidden="true">→</span></PrimaryCTA>
     </section>

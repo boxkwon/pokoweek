@@ -1,12 +1,12 @@
 import Image from "next/image";
-import Link from "next/link";
 import { APP_SUBTITLE } from "../_config/app";
 import type { PokemonGuide } from "../_data/guide-data";
 import { typeColors } from "../_data/guide-data";
 import { AppHeader } from "./app-header";
 import { BottomNavigation } from "./bottom-nav";
+import { DetailBackButton } from "./detail-back-button";
 import { CategoryBadge, PrimaryCTA, RatingStars, SectionHeader, TypeBadge } from "./design-system";
-import { BackIcon, ChartIcon, CheckIcon, StarOutlineIcon, SwordsIcon, TargetIcon } from "./icons";
+import { ChartIcon, CheckIcon, StarOutlineIcon, SwordsIcon, TargetIcon } from "./icons";
 import { PokemonArtwork } from "./pokemon-artwork";
 
 const valueRows = [
@@ -27,7 +27,7 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
     <section className="reference-raid-hero generic-guide-hero">
       <Image className="raid-hero-backdrop" src="/images/events/dialgaraids.jpg" alt="" fill sizes="430px" priority />
       <span className="raid-hero-shade" />
-      <Link className="floating-back" href="/guide" aria-label="공략 목록으로 돌아가기"><BackIcon /></Link>
+      <DetailBackButton />
       <PokemonArtwork className="dialga-hero-art" image={guide.image} alt={guide.image.alt} size="hero" priority />
       <div className="raid-hero-copy">
         <CategoryBadge className="max-label" icon={<SwordsIcon />}>{guide.formName ?? guide.categoryLabel}</CategoryBadge>
@@ -42,29 +42,31 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
       <div>{guide.weaknesses.map((weakness) => <TypeBadge type={weakness.type} color={typeColors[weakness.type]} key={weakness.type} />)}</div>
     </section> : null}
 
-    {guide.counters.length > 0 ? <section className="counter-board">
+    <section className="counter-board">
       <SectionHeader icon={<SwordsIcon />} title="추천 공격수" description="레이드·맥스배틀에서 효과적인 포켓몬" />
-      <div className="reference-counter-grid">
+      {guide.dataStatus.counters === "ready" ? <>
+        <div className="reference-counter-grid">
         {guide.counters.map((counter, index) => <article className={["gold", "silver", "bronze"][index] ?? "silver"} key={`${counter.pokemonId}-${index}`}>
           <b>{index + 1}</b>
           {counter.image ? <PokemonArtwork className="counter-artwork" image={counter.image} alt={counter.name} size="lg" /> : <span className="counter-artwork counter-artwork-placeholder" aria-hidden="true" />}
           <h3>{counter.name.split(" ").map((line) => <span key={line}>{line}</span>)}</h3>
           {counter.recommendedMove ? <p>{counter.recommendedMove}</p> : null}
         </article>)}
-      </div>
-      <PrimaryCTA className="owned-pokemon-button" leading={<span className="mini-ball" />}>내가 가진 포켓몬으로 보기</PrimaryCTA>
-    </section> : null}
+        </div>
+        <PrimaryCTA className="owned-pokemon-button" leading={<span className="mini-ball" />}>내가 가진 포켓몬으로 보기</PrimaryCTA>
+      </> : <p className="guide-data-missing" data-status="missing">검증된 추천 공격수 데이터를 준비 중이에요.</p>}
+    </section>
 
-    {visibleValues.length > 0 ? <section className="value-board">
+    <section className="value-board">
       <SectionHeader icon={<ChartIcon />} title="가치 평가" description="이 포켓몬을 잡고 키울 가치가 있을까?" />
-      <div className="value-table">
+      {guide.dataStatus.values === "ready" ? <div className="value-table">
         {visibleValues.map((item, index) => <div className="value-row" key={item.key}>
           <strong className={`value-label value-${index}`}><SwordsIcon />{item.label}</strong>
           <RatingStars value={item.score} />
           {item.reason ? <p>{item.reason}</p> : <span />}
         </div>)}
-      </div>
-    </section> : null}
+      </div> : <p className="guide-data-missing" data-status="missing">검증된 활용 가치 평가 데이터를 준비 중이에요.</p>}
+    </section>
 
     {guide.recommendations.length > 0 || guide.summary ? <section className="recommend-board">
       <SectionHeader icon={<StarOutlineIcon />} title="추천 가이드" />

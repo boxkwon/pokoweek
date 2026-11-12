@@ -168,6 +168,18 @@ export function getPokemonGuide(guideId: string) {
   return pokemonGuides.find((guide) => guide.id === guideId);
 }
 
+export function getPokemonGuideMissingFields(guide: (typeof pokemonGuides)[number]) {
+  const missing: string[] = [];
+  if (guide.types.length === 0) missing.push("types");
+  if (!guide.rating) missing.push("rating");
+  if (!guide.reason) missing.push("reason");
+  if (guide.weaknesses.length === 0) missing.push("weaknesses");
+  if (guide.dataStatus.counters === "missing") missing.push("counters");
+  if (guide.dataStatus.values === "missing") missing.push("values");
+  if (guide.recommendations.length === 0) missing.push("recommendations");
+  return missing;
+}
+
 export function getGuidesForWeek(week: WeekGuide) {
   const ids = new Set([
     ...week.priorities.map((item) => item.pokemon.id),

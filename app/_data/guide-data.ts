@@ -45,6 +45,10 @@ export type PokemonGuide = {
     max?: string;
     pvp?: string;
   };
+  dataStatus: {
+    counters: "ready" | "missing";
+    values: "ready" | "missing";
+  };
   recommendations: readonly string[];
   summary: string;
   source?: { name: string; url: string };
@@ -205,6 +209,10 @@ function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
     counters: draft.counters ?? [],
     values: draft.values ?? {},
     valueReasons: draft.valueReasons,
+    dataStatus: {
+      counters: draft.counters?.length ? "ready" : "missing",
+      values: draft.values && Object.values(draft.values).some((value) => typeof value === "number") ? "ready" : "missing",
+    },
     recommendations: draft.recommendations,
     summary: draft.summary,
     source: draft.source,

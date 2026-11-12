@@ -4,6 +4,7 @@ import { BottomNavigation } from "../_components/bottom-nav";
 import { CategoryBadge, EventTime, PrimaryCTA, RatingStars, SectionHeader } from "../_components/design-system";
 import { CalendarIcon, ChevronIcon, ClockIcon } from "../_components/icons";
 import { PokemonArtwork } from "../_components/pokemon-artwork";
+import { PokemonGuideLink } from "../_components/pokemon-guide-link";
 import { SchedulePreferenceSync } from "../_components/schedule-preference-sync";
 import { APP_SUBTITLE } from "../_config/app";
 import type { ScheduleFilter, WeekEvent } from "../_data/guide-data";
@@ -64,7 +65,7 @@ function ScheduleEventRow({ event, dateKey }: { event: WeekEvent; dateKey: strin
       <h3>{event.title}</h3>
       <p className="range-continuation-time">{formatRangeEventPeriod(event, true)}</p>
     </div>
-    <Link className="range-continuation-link" href={getWeekEventActionHref(event)} aria-label={`${event.title} ${ctaLabel}`}><ChevronIcon /></Link>
+    <PokemonGuideLink className="range-continuation-link" href={getWeekEventActionHref(event)} aria-label={`${event.title} ${ctaLabel}`}><ChevronIcon /></PokemonGuideLink>
   </article>;
 
   return <article className={`schedule-event-row ${event.priority === 5 ? "priority-five" : ""} ${artworkClass}`}>
@@ -147,11 +148,11 @@ export default async function SchedulePage({ searchParams }: { searchParams: Sea
       <SectionHeader icon={<ClockIcon />} title="이번 주 놓치지 말 것" />
       {importantEvents.length > 0 ? <div className="important-time-list">{importantEvents.map((event) => {
         const importantTime = getImportantTime(event);
-        return <Link href={getWeekEventActionHref(event)} key={event.id}>
+        return <PokemonGuideLink href={getWeekEventActionHref(event)} key={event.id}>
         <time><b>{formatCompactDate(event.date)}</b><span>{importantTime.time} · {importantTime.meaning}</span></time>
         <p>{event.title}</p>
         <ChevronIcon />
-      </Link>})}</div> : <p className="schedule-empty">공식 발표된 중요 일정이 없어요.</p>}
+      </PokemonGuideLink>})}</div> : <p className="schedule-empty">공식 발표된 중요 일정이 없어요.</p>}
     </section>
 
     <BottomNavigation active="schedule" />

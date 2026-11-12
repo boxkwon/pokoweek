@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import { AppHeader } from "../../_components/app-header";
 import { EventMeta, PrimaryCTA, RatingStars, SectionHeader } from "../../_components/design-system";
 import { BagIcon, CalendarIcon, CheckIcon, SwordsIcon, TargetIcon } from "../../_components/icons";
 import { PokemonArtwork } from "../../_components/pokemon-artwork";
+import { PokemonGuideLink } from "../../_components/pokemon-guide-link";
 import { wildAreaEvent, type PokemonEntry } from "../../_data/guide-data";
 
 type EventPokemon = PokemonEntry;
@@ -15,7 +15,7 @@ function EventPokemonTile({ pokemon }: { pokemon: EventPokemon }) {
     <Image className="event-type-icon" src={`/images/types/${pokemon.types[0]}.png`} alt="" width={28} height={28} />
     <strong>{displayName.split("\n").map((line) => <span key={line}>{line}</span>)}</strong>
   </>;
-  return <Link className="event-pokemon-tile" href={pokemon.href}>{content}</Link>;
+  return <PokemonGuideLink className="event-pokemon-tile" href={pokemon.href}>{content}</PokemonGuideLink>;
 }
 
 function DayBoard({ day, label, pokemon }: { day: 1 | 2; label: string; pokemon: readonly EventPokemon[] }) {

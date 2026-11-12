@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import type { PreparationTask } from "../_data/guide-data";
+import { PokemonGuideLink } from "./pokemon-guide-link";
 
 const PREPARATION_CHANGE_EVENT = "pokoweek:preparation-change";
 
@@ -81,7 +81,7 @@ export function PreparationActionChecklist({ storageKey, items }: { storageKey: 
         <i aria-hidden="true" />
         <span><b>{item.title}</b><small>{item.reason}</small></span>
       </label>
-      {item.href ? <Link href={item.href}>공략 보기</Link> : null}
+      {item.href ? <PokemonGuideLink href={item.href}>공략 보기</PokemonGuideLink> : null}
     </li>)}
   </ul>;
 }

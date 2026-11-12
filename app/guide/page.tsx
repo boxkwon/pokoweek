@@ -4,6 +4,7 @@ import { BottomNavigation } from "../_components/bottom-nav";
 import { CategoryBadge, RatingStars, SectionHeader, TypeBadge } from "../_components/design-system";
 import { ChevronIcon, StarOutlineIcon, SwordsIcon } from "../_components/icons";
 import { PokemonArtwork } from "../_components/pokemon-artwork";
+import { PokemonGuideLink } from "../_components/pokemon-guide-link";
 import { APP_SUBTITLE } from "../_config/app";
 import { typeColors, type GuideCategory } from "../_data/guide-data";
 import { getCurrentWeek, getGuidesByCategory, getGuidesForWeek, getPokemonGuide, getRecommendedGuides, getWeekEventById } from "../_data/queries";
@@ -54,12 +55,12 @@ export default async function GuideIndexPage({ searchParams }: { searchParams: S
     <section className="home-board guide-recommended-board">
       <SectionHeader icon={<StarOutlineIcon />} title="이번 주 추천 공략" />
       <div className="guide-recommended-list">
-        {recommended.map(({ priority, guide }) => <Link href={`/pokemon/${guide.id}`} key={guide.id}>
+        {recommended.map(({ priority, guide }) => <PokemonGuideLink href={`/pokemon/${guide.id}`} key={guide.id}>
           <b className="priority-rank">{priority.rank}</b>
           <PokemonArtwork image={guide.image} alt={guide.name} size="sm" />
           <div><h3>{guide.name}</h3><RatingStars value={priority.rating} /><p>{priority.reason}</p></div>
           <ChevronIcon />
-        </Link>)}
+        </PokemonGuideLink>)}
       </div>
     </section>
 
@@ -71,7 +72,7 @@ export default async function GuideIndexPage({ searchParams }: { searchParams: S
 
     <section className="guide-list-section">
       <SectionHeader icon={<SwordsIcon />} title={event ? `${event.title} 공략 선택` : "포켓몬 공략 목록"} description={event ? "원하는 포켓몬을 선택하세요" : "이번 주 등장 포켓몬"} />
-      {guides.length > 0 ? <div className="guide-index-list">{guides.map((guide) => <Link href={`/pokemon/${guide.id}`} key={guide.id}>
+      {guides.length > 0 ? <div className="guide-index-list">{guides.map((guide) => <PokemonGuideLink href={`/pokemon/${guide.id}`} key={guide.id}>
         <PokemonArtwork image={guide.image} alt={guide.name} size="sm" />
         <div className="guide-index-copy">
           <CategoryBadge className={`schedule-category-badge guide-category-${guide.category}`}>{guide.categoryLabel}</CategoryBadge>
@@ -81,7 +82,7 @@ export default async function GuideIndexPage({ searchParams }: { searchParams: S
           <p><b>약점</b>{guide.weaknesses.map((item) => item.type).join(" · ")}</p>
         </div>
         <ChevronIcon />
-      </Link>)}</div> : <p className="schedule-empty">이 카테고리에 확정된 공략이 없어요.</p>}
+      </PokemonGuideLink>)}</div> : <p className="schedule-empty">이 카테고리에 확정된 공략이 없어요.</p>}
     </section>
 
     <BottomNavigation active="guide" />
