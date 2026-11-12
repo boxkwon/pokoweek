@@ -20,12 +20,13 @@ import {
   getUpcomingPreparationEvent,
   getWeekEventActionHref,
 } from "../_data/queries";
-import { getAppNow } from "../_lib/time";
+import { getAppNow, isValidDateOverride } from "../_lib/time";
 
 export default function PreparePage() {
   const [now, setNow] = useState(() => getAppNow());
   useEffect(() => {
-    const override = process.env.NODE_ENV === "development" ? new URLSearchParams(window.location.search).get("date") ?? undefined : undefined;
+    const requestedDate = new URLSearchParams(window.location.search).get("date") ?? undefined;
+    const override = isValidDateOverride(requestedDate) ? requestedDate : undefined;
     setNow(getAppNow(override));
     const timer = window.setInterval(() => setNow(getAppNow(override)), 60_000);
     return () => window.clearInterval(timer);
