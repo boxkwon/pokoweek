@@ -46,27 +46,28 @@ export default function PreparePage() {
 
   const storageKey = `pokoweek:${week.id}:preparations`;
   const countdown = getDaysUntil(scheduleEvent.date, now);
-  const titleParts = event.title.split(" ");
+  const titleParts = scheduleEvent.title.split(" ");
   const titleYear = titleParts.pop();
+  const targetArtworkClasses = scheduleEvent.pokemon.length === 1
+    ? ["home-hero-palkia"]
+    : ["home-hero-dialga", "home-hero-palkia", "home-hero-duraludon"];
 
   return <main className="fresh-screen boss-screen prepare-screen">
     <AppHeader subtitle={APP_SUBTITLE} />
 
-    <Link className="home-weekly-card prepare-event-card" href={event.href} aria-label={`${event.title} 상세 보기`}>
+    <Link className="home-weekly-card prepare-event-card" href={getWeekEventActionHref(scheduleEvent)} aria-label={`${scheduleEvent.title} 상세 보기`}>
       <div className="home-weekly-hero">
         <Image className="wild-bg" src={event.heroImage} alt="" fill sizes="430px" priority />
         <span className="wild-shade" />
-        <PokemonArtwork className="home-hero-dialga" image={event.heroPokemon.dialga} alt="" size="hero" />
-        <PokemonArtwork className="home-hero-palkia" image={event.heroPokemon.palkia} alt="" size="hero" />
-        <PokemonArtwork className="home-hero-duraludon" image={event.heroPokemon.duraludon} alt="" size="hero" />
+        {scheduleEvent.pokemon.slice(0, 3).map((item, index) => <PokemonArtwork className={targetArtworkClasses[index]} image={item.image} alt="" size="hero" key={item.id} />)}
         <CountdownBadge days={countdown} />
         <div className="home-hero-title">
-          <small>가장 가까운 중요 이벤트</small>
+          <small>준비 대상</small>
           <h1>{titleParts.join(" ")} <em>{titleYear}</em></h1>
-          <div><RatingStars value={event.rating} /><strong>{event.ratingLabel}</strong></div>
+          <div><RatingStars value={scheduleEvent.rating} /><strong>{scheduleEvent.reason}</strong></div>
         </div>
       </div>
-      <div className="prepare-hero-meta"><b>{event.dateLabel}</b><span>이 이벤트를 위해 지금 준비하세요</span></div>
+      <div className="prepare-hero-meta"><b>{scheduleEvent.dayLabel} · {scheduleEvent.availabilityTime}</b><span>이 이벤트를 위해 지금 준비하세요</span></div>
     </Link>
 
     <section className="home-board prepare-progress-board">
@@ -76,7 +77,7 @@ export default function PreparePage() {
 
     <section className="home-board prepare-pokemon-board">
       <SectionHeader icon={<SwordsIcon />} title="준비할 포켓몬" />
-      <div className="prepare-pokemon-list">
+      {plan.pokemonDataStatus === "ready" && plan.pokemon.length > 0 ? <div className="prepare-pokemon-list">
         {plan.pokemon.map((item) => <PokemonGuideLink href={item.pokemon.href} key={item.pokemon.id}>
           <b className="priority-rank">{item.rank}</b>
           <PokemonArtwork image={item.pokemon.image} alt={item.pokemon.name} size="sm" />
@@ -88,7 +89,7 @@ export default function PreparePage() {
           </div>
           <ChevronIcon />
         </PokemonGuideLink>)}
-      </div>
+      </div> : <p className="guide-data-missing">검증된 준비 포켓몬 데이터를 준비 중이에요.</p>}
     </section>
 
     <section className="home-board prepare-resource-board">

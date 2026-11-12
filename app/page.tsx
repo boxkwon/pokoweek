@@ -12,7 +12,7 @@ import { PokemonGuideLink } from "./_components/pokemon-guide-link";
 import { PreparationChecklist } from "./_components/preparation-checklist";
 import { APP_SUBTITLE } from "./_config/app";
 import { typeColors } from "./_data/guide-data";
-import { formatTodayLabel, getCurrentWeek, getDaysUntil, getFeaturedEvent, getTodayEvents, getUpcomingEvents, getWeekEventActionHref, getWeekEventActionLabel } from "./_data/queries";
+import { formatTodayLabel, getCurrentWeek, getDaysUntil, getFeaturedEventForDate, getTodayEvents, getUpcomingEvents, getWeekEventActionHref, getWeekEventActionLabel } from "./_data/queries";
 import { getAppNow, isValidDateOverride } from "./_lib/time";
 
 export default function HomePage() {
@@ -28,12 +28,18 @@ export default function HomePage() {
   }, []);
 
   const week = useMemo(() => getCurrentWeek(now), [now]);
-  const featuredEvent = getFeaturedEvent(week);
+  const featuredEvent = getFeaturedEventForDate(week, now);
   const todayEvents = useMemo(() => getTodayEvents(week, now), [week, now]);
   const upcomingEvents = useMemo(() => getUpcomingEvents(week, now), [week, now]);
   const countdown = featuredEvent ? getDaysUntil(featuredEvent.startDate, now) : 0;
   const titleParts = featuredEvent?.title.split(" ") ?? [];
   const titleYear = titleParts.pop();
+  const heroArtworks = featuredEvent
+    ? Array.from(new Map(Object.values(featuredEvent.heroPokemon).map((image) => [image.src, image])).values())
+    : [];
+  const heroArtworkClasses = heroArtworks.length === 1
+    ? ["home-hero-palkia"]
+    : ["home-hero-dialga", "home-hero-palkia", "home-hero-duraludon"];
 
   return <main className="fresh-screen boss-screen home-screen">
     <AppHeader subtitle={APP_SUBTITLE} />
@@ -42,9 +48,7 @@ export default function HomePage() {
       <div className="home-weekly-hero">
         <Image className="wild-bg" src={featuredEvent.heroImage} alt="" fill sizes="430px" priority />
         <span className="wild-shade" />
-        <PokemonArtwork className="home-hero-dialga" image={featuredEvent.heroPokemon.dialga} alt="" size="hero" />
-        <PokemonArtwork className="home-hero-palkia" image={featuredEvent.heroPokemon.palkia} alt="" size="hero" />
-        <PokemonArtwork className="home-hero-duraludon" image={featuredEvent.heroPokemon.duraludon} alt="" size="hero" />
+        {heroArtworks.map((image, index) => <PokemonArtwork className={heroArtworkClasses[index]} image={image} alt="" size="hero" key={image.src} />)}
         <CountdownBadge days={countdown} />
         <div className="home-hero-title">
           <small>{featuredEvent.eyebrow}</small>

@@ -83,6 +83,7 @@ export type PreparationResource = {
 export type PreparationPlan = {
   id: string;
   eventId: string;
+  pokemonDataStatus: "ready" | "missing";
   pokemon: readonly PreparationPokemon[];
   resources: readonly PreparationResource[];
   tasks: readonly PreparationTask[];
@@ -108,6 +109,7 @@ export type WeekEvent = {
   pokemon: readonly PokemonEntry[];
   guidePokemonIds: readonly string[];
   eventHref?: string;
+  featuredEventId?: string;
   preparationPlanId?: string;
   weaknesses?: readonly string[];
 };
@@ -152,6 +154,11 @@ export const typeColors: Record<string, string> = {
 
 const guideHref = (id: string) => `/pokemon/${id}`;
 
+export const pokemonArtworkAssets = {
+  eternatus: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%" },
+  eternamaxEternatus: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%" },
+} satisfies Record<"eternatus" | "eternamaxEternatus", PokemonImage>;
+
 export const pokemon = {
   zacian: { id: "zacian-crowned", name: "검왕 자시안", image: { src: "/images/pokemon/pm888.fCROWNED_SWORD.icon.png", scale: 1.02, objectPosition: "50% 56%" }, types: ["페어리", "강철"], href: guideHref("zacian-crowned") },
   zamazenta: { id: "zamazenta-crowned", name: "방패왕 자마젠타", image: { src: "/images/pokemon/pm889.fCROWNED_SHIELD.icon.png", scale: 1.02, objectPosition: "50% 56%" }, types: ["격투", "강철"], href: guideHref("zamazenta-crowned") },
@@ -176,7 +183,7 @@ export const pokemon = {
   cresselia: { id: "cresselia", name: "크레세리아", image: { src: "/images/pokemon/pokemon_icon_488_00.png", scale: 1, objectPosition: "50% 56%" }, types: ["에스퍼"], href: guideHref("cresselia") },
   darkrai: { id: "darkrai", name: "다크라이", image: { src: "/images/pokemon/pokemon_icon_491_00.png", scale: 1, objectPosition: "50% 56%" }, types: ["악"], href: guideHref("darkrai") },
   megaBanette: { id: "mega-banette", name: "메가다크펫", image: { src: "/images/pokemon/pm354.fMEGA.icon.png", scale: 1, objectPosition: "50% 56%" }, types: ["고스트"], href: guideHref("mega-banette") },
-  eternatus: { id: "eternamax-eternatus", name: "무한다이맥스 무한다이노", image: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%" }, types: ["독", "드래곤"], href: guideHref("eternamax-eternatus") },
+  eternatus: { id: "eternamax-eternatus", name: "무한다이맥스 무한다이노", image: pokemonArtworkAssets.eternamaxEternatus, types: ["독", "드래곤"], href: guideHref("eternamax-eternatus") },
   minior: { id: "minior", name: "메테노", image: { src: "/images/pokemon/poke_capture_0774_000_uk_n_00000000_f_n.png", scale: 1, objectPosition: "50% 54%" }, types: ["바위", "비행"], href: guideHref("minior") },
   grookey: { id: "grookey", name: "흥나숭", image: { src: "/images/pokemon/pm810.icon.png", scale: 1, objectPosition: "50% 56%" }, types: ["풀"], href: guideHref("grookey") },
   scorbunny: { id: "scorbunny", name: "염버니", image: { src: "/images/pokemon/pm813.icon.png", scale: 1, objectPosition: "50% 56%" }, types: ["불꽃"], href: guideHref("scorbunny") },
@@ -316,9 +323,9 @@ export const dynamaxTrailsEvent = {
   timeLabel: "10:00 시작 · 11/23 20:00 종료",
   heroImage: "/images/events/dynamax-trails-2026.jpg",
   heroPokemon: {
-    dialga: { src: pokemon.gardevoir.image.src, scale: .86 },
-    palkia: { src: pokemon.excadrill.image.src, scale: 1.02 },
-    duraludon: { src: pokemon.machamp.image.src, scale: .92 },
+    dialga: pokemonArtworkAssets.eternamaxEternatus,
+    palkia: pokemonArtworkAssets.eternamaxEternatus,
+    duraludon: pokemonArtworkAssets.eternamaxEternatus,
   },
   rating: 5,
   ratingLabel: "이번 주 핵심 준비 이벤트",
@@ -328,7 +335,7 @@ export const dynamaxTrailsEvent = {
   preparations: [
     { id: "2026-11-16-eternatus-max-particles", title: "맥스 파티클 확보", type: "resource", reason: "11월 21일 맥스배틀 참여에 사용", priority: 1 },
     { id: "2026-11-16-eternatus-healing-items", title: "회복 아이템 확보", type: "resource", reason: "연속 맥스배틀 뒤 전투팀 회복", priority: 2 },
-    { id: "2026-11-16-eternatus-max-attacker", title: "맥스배틀 공격수 준비", type: "pokemon", reason: "무한다이노의 약점을 공략할 전력 점검", targetPokemonId: pokemon.excadrill.id, href: pokemon.excadrill.href, priority: 3 },
+    { id: "2026-11-16-eternatus-max-attacker", title: "맥스배틀 공격수 준비", type: "pokemon", reason: "무한다이노 공략용 전력은 검증된 정보 공개 후 확정", priority: 3 },
     { id: "2026-11-16-eternatus-storage", title: "포켓몬 박스 공간 정리", type: "inventory", reason: "이벤트 포획 공간 확보", priority: 4 },
     { id: "2026-11-16-pawniard-pinap", title: "파인열매 준비", type: "resource", reason: "자망칼 사탕을 더 많이 확보", priority: 5 },
     { id: "2026-11-16-pawniard-storage", title: "커뮤니티 데이 포획 공간 확보", type: "inventory", reason: "자망칼 대량 발생에 대비", priority: 6 },
@@ -345,6 +352,7 @@ export const eventsById = {
 export const preparationPlans = [{
   id: "wild-area-2026",
   eventId: wildAreaEvent.id,
+  pokemonDataStatus: "ready",
   pokemon: [
     { rank: 1, pokemon: pokemon.machamp, use: "디아루가 / 두랄루돈 공략", rating: 4, status: "확보 필요", reason: "두 보스 모두 격투 약점" },
     { rank: 2, pokemon: pokemon.excadrill, use: "디아루가 공략", rating: 5, status: "강화 추천", reason: "땅 공격으로 강철 약점 공략" },
@@ -360,9 +368,8 @@ export const preparationPlans = [{
 }, {
   id: "2026-11-16-eternatus-preparation",
   eventId: dynamaxTrailsEvent.id,
-  pokemon: [
-    { rank: 1, pokemon: pokemon.excadrill, use: "무한다이노 공략", rating: 5, status: "강화 점검", reason: "땅 타입으로 약점 공략" },
-  ],
+  pokemonDataStatus: "missing",
+  pokemon: [],
   resources: [
     { id: "2026-11-16-max-particles", title: "맥스 파티클", goal: "11월 21일 전에 최대한 확보" },
     { id: "2026-11-16-healing-items", title: "회복 아이템", goal: "연속 맥스배틀에 충분한 수량 확보" },
@@ -407,7 +414,7 @@ const dynamaxTrailsSchedule: WeekEvent = {
   pokemon: [],
   guidePokemonIds: [],
   eventHref: dynamaxTrailsEvent.href,
-  preparationPlanId: "2026-11-16-eternatus-preparation",
+  featuredEventId: dynamaxTrailsEvent.id,
 };
 
 const cresseliaDarkraiRotation: WeekEvent = {

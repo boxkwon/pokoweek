@@ -54,10 +54,15 @@ function scheduleHref(week: string, category: ScheduleCategory, dateOverride?: s
   return `/schedule?${query.toString()}`;
 }
 
+function hasUsableArtwork(event: WeekEvent) {
+  return event.pokemon.slice(0, 3).every((item) => !item.image.src.includes("pokemon-placeholder"));
+}
+
 function ScheduleEventRow({ event, dateKey }: { event: WeekEvent; dateKey: string }) {
   const ctaLabel = getWeekEventActionLabel(event);
   const continuation = isRangeContinuation(event, dateKey);
-  const artworkClass = event.pokemon.length === 2 ? "has-art-pair" : event.pokemon.length >= 3 ? "has-art-group" : "has-single-art";
+  const showArtworkTrio = event.pokemon.length >= 3 && hasUsableArtwork(event);
+  const artworkClass = event.pokemon.length === 2 ? "has-art-pair" : showArtworkTrio ? "has-art-trio" : event.pokemon.length >= 3 ? "has-art-group" : "has-single-art";
 
   if (continuation) return <article className="schedule-event-row range-continuation">
     <div className="schedule-event-copy">
@@ -80,7 +85,8 @@ function ScheduleEventRow({ event, dateKey }: { event: WeekEvent; dateKey: strin
     </div>
     {event.pokemon.length === 1 ? <PokemonArtwork className="schedule-event-art" image={event.pokemon[0].image} alt={event.pokemon[0].name} size="sm" /> : null}
     {event.pokemon.length === 2 ? <div className="schedule-event-art-pair" aria-label={event.pokemon.map((item) => item.name).join(", ")}>{event.pokemon.map((item) => <PokemonArtwork image={item.image} alt="" size="sm" key={item.id} />)}</div> : null}
-    {event.pokemon.length >= 3 ? <span className="schedule-event-art-count" aria-label={`${event.pokemon.length}마리의 포켓몬`}>+{event.pokemon.length}</span> : null}
+    {showArtworkTrio ? <div className="schedule-event-art-trio" aria-label={event.pokemon.slice(0, 3).map((item) => item.name).join(", ")}>{event.pokemon.slice(0, 3).map((item) => <PokemonArtwork image={item.image} alt="" size="sm" key={item.id} />)}</div> : null}
+    {event.pokemon.length >= 3 && !showArtworkTrio ? <span className="schedule-event-art-count" aria-label={`${event.pokemon.length}마리의 포켓몬`}>+{event.pokemon.length}</span> : null}
     <PrimaryCTA className="schedule-row-cta" href={getWeekEventActionHref(event)}>{ctaLabel}</PrimaryCTA>
   </article>;
 }

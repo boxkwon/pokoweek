@@ -205,6 +205,36 @@ export function getFeaturedEvent(week: WeekGuide) {
   return week.featuredEventId ? eventsById[week.featuredEventId as keyof typeof eventsById] : undefined;
 }
 
+function getEventTimestamp(value: string | undefined, dateKey: string, endOfDay = false) {
+  return new Date(value ?? `${dateKey}T${endOfDay ? "23:59:59" : "00:00:00"}+09:00`).getTime();
+}
+
+function getRegisteredFeaturedEvent(event: WeekEvent) {
+  return event.featuredEventId
+    ? eventsById[event.featuredEventId as keyof typeof eventsById]
+    : undefined;
+}
+
+export function getFeaturedEventForDate(week: WeekGuide, date = getAppNow()) {
+  const configured = getFeaturedEvent(week);
+  if (configured && date.getTime() <= getEventTimestamp(undefined, configured.endDate, true)) return configured;
+
+  const rankedEvents = [...week.events].sort((a, b) =>
+    b.priority - a.priority || getEventTimestamp(a.startAt, a.date) - getEventTimestamp(b.startAt, b.date));
+  const now = date.getTime();
+  const active = rankedEvents.find((event) => {
+    if (!getRegisteredFeaturedEvent(event)) return false;
+    return getEventTimestamp(event.startAt, event.date) <= now
+      && now <= getEventTimestamp(event.endAt, getEventEndDateKey(event), true);
+  });
+  if (active) return getRegisteredFeaturedEvent(active);
+
+  const upcoming = rankedEvents
+    .filter((event) => getRegisteredFeaturedEvent(event) && getEventTimestamp(event.startAt, event.date) > now)
+    .sort((a, b) => getEventTimestamp(a.startAt, a.date) - getEventTimestamp(b.startAt, b.date) || b.priority - a.priority)[0];
+  return upcoming ? getRegisteredFeaturedEvent(upcoming) : undefined;
+}
+
 export function getEventById(eventId: string) {
   return eventsById[eventId as keyof typeof eventsById];
 }

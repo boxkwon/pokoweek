@@ -398,6 +398,7 @@ svg { display: block; }
 .schedule-event-row.priority-five { background: #fffdf2; }
 .schedule-event-copy { min-height: 68px; padding-right: 72px; }
 .schedule-event-row.has-art-pair .schedule-event-copy { padding-right: 96px; }
+.schedule-event-row.has-art-trio .schedule-event-copy { padding-right: 104px; }
 .schedule-event-row.has-art-group .schedule-event-copy { padding-right: 48px; }
 .schedule-category-badge { min-height: 24px; justify-content: center; padding: 2px var(--space-2); border-radius: 12px; color: #fff; font-size: 12px; font-weight: 900; }
 .schedule-category-badge.category-event { color: #563d00; }
@@ -419,6 +420,9 @@ svg { display: block; }
 .schedule-event-art-pair { width: 94px; height: 64px; position: absolute; top: var(--space-3); right: 0; display: flex; align-items: center; justify-content: flex-end; }
 .schedule-event-art-pair .pokemon-artwork { width: 58px; height: 58px; flex: 0 0 auto; filter: drop-shadow(0 4px 3px rgba(13,32,59,.18)); }
 .schedule-event-art-pair .pokemon-artwork + .pokemon-artwork { margin-left: -22px; }
+.schedule-event-art-trio { width: 104px; height: 56px; position: absolute; top: var(--space-3); right: 0; display: flex; align-items: center; justify-content: flex-end; }
+.schedule-event-art-trio .pokemon-artwork { width: 48px; height: 48px; flex: 0 0 auto; filter: drop-shadow(0 4px 3px rgba(13,32,59,.18)); }
+.schedule-event-art-trio .pokemon-artwork + .pokemon-artwork { margin-left: -20px; }
 .schedule-event-art-count { width: 36px; height: 36px; position: absolute; top: var(--space-3); right: var(--space-1); display: grid; place-items: center; border: 1px solid #d5dbe5; border-radius: 50%; background: #fff; color: #52627d; font-size: var(--type-body); font-weight: 900; }
 .schedule-pokemon-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 2px var(--space-2); margin: var(--space-2) 0 0; padding: 0; list-style: none; }
 .schedule-pokemon-list li { color: #52627d; font-size: 12px; font-weight: 800; line-height: 1.25; }
