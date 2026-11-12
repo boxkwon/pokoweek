@@ -1,5 +1,5 @@
 import { getAppNow } from "../_lib/time";
-import { eventsById, pokemonGuides, preparationPlans, weekGuides, wildAreaEvent, type GuideCategory, type ScheduleFilter, type WeekEvent, type WeekGuide } from "./guide-data";
+import { crossWeekEvents, eventsById, pokemonGuides, preparationPlans, weekGuides, type GuideCategory, type ScheduleFilter, type WeekEvent, type WeekGuide } from "./guide-data";
 
 const SEOUL_TIME_ZONE = "Asia/Seoul";
 
@@ -35,14 +35,15 @@ export function getWeekStartKey(date = getAppNow()) {
 export function getWeekByStartDate(startDate: string): WeekGuide {
   const existing = weekGuides.find((week) => week.startDate === startDate);
   if (existing) return existing;
+  const endDate = addDaysToDateKey(startDate, 6);
   return {
     id: startDate,
     startDate,
-    endDate: addDaysToDateKey(startDate, 6),
+    endDate,
     featuredEventId: undefined,
     priorities: [],
     preparations: [],
-    events: [],
+    events: crossWeekEvents.filter((event) => getEventStartDateKey(event) <= endDate && getEventEndDateKey(event) >= startDate),
   };
 }
 
@@ -78,6 +79,7 @@ export function getEventsByCategory(events: readonly WeekEvent[], category: Sche
   if (category === "tier3") return events.filter((event) => event.raidTier === 3);
   if (category === "mega") return events.filter((event) => event.raidTier === "mega" || event.raidTier === "superMega" || event.category === "mega");
   if (category === "shadow") return events.filter((event) => event.raidTier === "shadow" || event.category === "shadow");
+  if (category === "event") return events.filter((event) => event.category === "event" || event.category === "community");
   return events.filter((event) => event.category === category);
 }
 
@@ -225,7 +227,7 @@ export function getPreparationPlan(planId: string | undefined) {
 
 export function getUpcomingPreparationEvent(week: WeekGuide, date = getAppNow()) {
   const key = getSeoulDateKey(date);
-  return getEventsByWeek(week).find((event) => event.date >= key && event.priority >= 4 && Boolean(event.preparationPlanId));
+  return getEventsByWeek(week).find((event) => getEventEndDateKey(event) >= key && event.priority >= 4 && Boolean(event.preparationPlanId));
 }
 
 export function getNextImportantEvent(week: WeekGuide, currentEvent: WeekEvent) {

@@ -173,6 +173,15 @@ export const pokemon = {
   orthworm: { id: "orthworm", name: "꿈트렁", image: { src: "/images/pokemon/pm968.icon.png", scale: 1.02, objectPosition: "50% 56%" }, types: ["강철"], href: guideHref("orthworm") },
   ralts: { id: "dynamax-ralts", name: "다이맥스 랄토스", image: { src: "/images/pokemon/pm280.icon.png", scale: 1.02, objectPosition: "50% 56%" }, types: ["에스퍼", "페어리"], href: guideHref("dynamax-ralts") },
   machop: { id: "dynamax-machop", name: "다이맥스 알통몬", image: { src: "/images/pokemon/pm66.icon.png", scale: 1.02, objectPosition: "50% 56%" }, types: ["격투"], href: guideHref("dynamax-machop") },
+  cresselia: { id: "cresselia", name: "크레세리아", image: { src: "/images/pokemon/pokemon_icon_488_00.png", scale: 1, objectPosition: "50% 56%" }, types: ["에스퍼"], href: guideHref("cresselia") },
+  darkrai: { id: "darkrai", name: "다크라이", image: { src: "/images/pokemon/pokemon_icon_491_00.png", scale: 1, objectPosition: "50% 56%" }, types: ["악"], href: guideHref("darkrai") },
+  megaBanette: { id: "mega-banette", name: "메가다크펫", image: { src: "/images/pokemon/pm354.fMEGA.icon.png", scale: 1, objectPosition: "50% 56%" }, types: ["고스트"], href: guideHref("mega-banette") },
+  eternatus: { id: "eternamax-eternatus", name: "무한다이맥스 무한다이노", image: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%" }, types: ["독", "드래곤"], href: guideHref("eternamax-eternatus") },
+  minior: { id: "minior", name: "메테노", image: { src: "/images/pokemon/poke_capture_0774_000_uk_n_00000000_f_n.png", scale: 1, objectPosition: "50% 54%" }, types: ["바위", "비행"], href: guideHref("minior") },
+  grookey: { id: "grookey", name: "흥나숭", image: { src: "/images/pokemon/pm810.icon.png", scale: 1, objectPosition: "50% 56%" }, types: ["풀"], href: guideHref("grookey") },
+  scorbunny: { id: "scorbunny", name: "염버니", image: { src: "/images/pokemon/pm813.icon.png", scale: 1, objectPosition: "50% 56%" }, types: ["불꽃"], href: guideHref("scorbunny") },
+  sobble: { id: "sobble", name: "울머기", image: { src: "/images/pokemon/pm816.icon.png", scale: 1, objectPosition: "50% 56%" }, types: ["물"], href: guideHref("sobble") },
+  pawniard: { id: "pawniard", name: "자망칼", image: { src: "/images/pokemon/pokemon_icon_624_00.png", scale: 1, objectPosition: "50% 56%" }, types: ["악", "강철"], href: guideHref("pawniard") },
 } satisfies Record<string, PokemonEntry>;
 
 type PokemonGuideDraft = {
@@ -257,6 +266,10 @@ export const pokemonGuides = ([
   { pokemon: pokemon.machamp, category: "max", categoryLabel: "다이맥스", rating: 4, reason: "디아루가·두랄루돈 공략", weaknesses: ["비행", "에스퍼", "페어리"], recommendations: ["공격형 맥스기술 강화", "좋은 개체 한 마리 확보"], summary: "이번 주 두 핵심 보스에 모두 사용할 수 있는 격투 전력이에요." },
   { pokemon: pokemon.excadrill, category: "max", categoryLabel: "다이맥스", rating: 5, reason: "디아루가 핵심 카운터", weaknesses: ["불꽃", "물", "격투", "땅"], recommendations: ["땅 타입 맥스기술 우선 강화", "공격 개체를 우선 육성"], summary: "다이맥스 디아루가 공략의 핵심 땅 타입 공격수예요." },
   { pokemon: pokemon.gardevoir, category: "max", categoryLabel: "다이맥스", rating: 4, reason: "펄기아 드래곤 약점 공략", weaknesses: ["독", "고스트", "강철"], recommendations: ["페어리 타입 맥스기술 강화", "펄기아 공략팀에 배치"], summary: "페어리 공격으로 펄기아의 드래곤 약점을 노릴 수 있어요." },
+  { pokemon: pokemon.cresselia, category: "raid", categoryLabel: "5성 레이드", rating: 4, reason: "주간 5성 레이드 로테이션", weaknesses: ["벌레", "고스트", "악"], recommendations: ["벌레·고스트·악 타입 공격수 준비", "다크라이와 목표를 나눠 참여"], summary: "에스퍼 타입인 크레세리아는 벌레·고스트·악 타입으로 공략하세요." },
+  { pokemon: pokemon.darkrai, category: "raid", categoryLabel: "5성 레이드", rating: 5, reason: "레이드아워 집중 공략", weaknesses: ["격투", "벌레", "페어리"], recommendations: ["격투·벌레·페어리 타입 공격수 준비", "11월 18일 레이드아워 활용"], summary: "다크라이가 필요하다면 주간 로테이션과 레이드아워를 함께 활용하세요." },
+  { pokemon: pokemon.megaBanette, category: "mega", categoryLabel: "메가 레이드", battleTypes: ["mega"], rating: 4, reason: "메가 에너지 확보", weaknesses: ["고스트", "악"], recommendations: ["고스트·악 타입 공격수 준비", "필요한 메가 에너지 목표를 먼저 정하기"], summary: "고스트·악 타입 공격수로 메가다크펫의 약점을 공략하세요." },
+  { pokemon: pokemon.eternatus, category: "max", categoryLabel: "무한다이맥스", battleTypes: ["max"], formName: "무한다이맥스", rating: 5, reason: "이번 주 최우선 맥스배틀", weaknesses: ["땅", "에스퍼", "얼음", "드래곤"], recommendations: ["맥스 파티클과 회복 아이템 준비", "무한다이노의 사탕·사탕XL 확보를 목표로 참여"], summary: "전투 후 무한다이맥스 폼을 포획하는 배틀이 아니라 무한다이노 육성 자원 확보가 핵심이에요." },
 ] satisfies readonly PokemonGuideDraft[]).map(createPokemonGuide);
 
 export const wildAreaEvent = {
@@ -292,7 +305,42 @@ export const wildAreaEvent = {
   ] satisfies readonly PreparationTask[],
 } as const;
 
-export const eventsById = { [wildAreaEvent.id]: wildAreaEvent } as const;
+export const dynamaxTrailsEvent = {
+  id: "dynamax-trails-2026",
+  title: "DYNAMAX TRAILS",
+  eyebrow: "POKÉMON GO",
+  subtitle: "+ 무한다이노 결전을 위한 준비 이벤트",
+  startDate: "2026-11-16",
+  endDate: "2026-11-23",
+  dateLabel: "11/16 월 ~ 11/23 월",
+  timeLabel: "10:00 시작 · 11/23 20:00 종료",
+  heroImage: "/images/events/dynamax-trails-2026.jpg",
+  heroPokemon: {
+    dialga: { src: pokemon.gardevoir.image.src, scale: .86 },
+    palkia: { src: pokemon.excadrill.image.src, scale: 1.02 },
+    duraludon: { src: pokemon.machamp.image.src, scale: .92 },
+  },
+  rating: 5,
+  ratingLabel: "이번 주 핵심 준비 이벤트",
+  href: "/schedule?week=2026-11-16&category=event",
+  days: [],
+  reasons: ["11/21 무한다이노 결전 준비", "맥스 파티클 확보", "맥스배틀 전력 점검"],
+  preparations: [
+    { id: "2026-11-16-eternatus-max-particles", title: "맥스 파티클 확보", type: "resource", reason: "11월 21일 맥스배틀 참여에 사용", priority: 1 },
+    { id: "2026-11-16-eternatus-healing-items", title: "회복 아이템 확보", type: "resource", reason: "연속 맥스배틀 뒤 전투팀 회복", priority: 2 },
+    { id: "2026-11-16-eternatus-max-attacker", title: "맥스배틀 공격수 준비", type: "pokemon", reason: "무한다이노의 약점을 공략할 전력 점검", targetPokemonId: pokemon.excadrill.id, href: pokemon.excadrill.href, priority: 3 },
+    { id: "2026-11-16-eternatus-storage", title: "포켓몬 박스 공간 정리", type: "inventory", reason: "이벤트 포획 공간 확보", priority: 4 },
+    { id: "2026-11-16-pawniard-pinap", title: "파인열매 준비", type: "resource", reason: "자망칼 사탕을 더 많이 확보", priority: 5 },
+    { id: "2026-11-16-pawniard-storage", title: "커뮤니티 데이 포획 공간 확보", type: "inventory", reason: "자망칼 대량 발생에 대비", priority: 6 },
+    { id: "2026-11-16-pawniard-incubator", title: "부화장치 준비 여부 확인", type: "resource", reason: "커뮤니티 데이 보너스 활용 여부 점검", priority: 7 },
+    { id: "2026-11-16-pawniard-evolution", title: "자망칼 진화 준비 확인", type: "pokemon", reason: "21:00까지 이어지는 특별 진화 시간을 놓치지 않기", priority: 8 },
+  ] satisfies readonly PreparationTask[],
+} as const;
+
+export const eventsById = {
+  [wildAreaEvent.id]: wildAreaEvent,
+  [dynamaxTrailsEvent.id]: dynamaxTrailsEvent,
+} as const;
 
 export const preparationPlans = [{
   id: "wild-area-2026",
@@ -309,7 +357,179 @@ export const preparationPlans = [{
     { id: "pokemon-storage", title: "포켓몬 박스", goal: "최소 50칸 확보" },
   ],
   tasks: wildAreaEvent.preparations,
+}, {
+  id: "2026-11-16-eternatus-preparation",
+  eventId: dynamaxTrailsEvent.id,
+  pokemon: [
+    { rank: 1, pokemon: pokemon.excadrill, use: "무한다이노 공략", rating: 5, status: "강화 점검", reason: "땅 타입으로 약점 공략" },
+  ],
+  resources: [
+    { id: "2026-11-16-max-particles", title: "맥스 파티클", goal: "11월 21일 전에 최대한 확보" },
+    { id: "2026-11-16-healing-items", title: "회복 아이템", goal: "연속 맥스배틀에 충분한 수량 확보" },
+    { id: "2026-11-16-pokemon-storage", title: "포켓몬 박스", goal: "맥스배틀·커뮤니티 데이 포획 공간 확보" },
+    { id: "2026-11-16-pinap-berries", title: "파인열매", goal: "자망칼 사탕 확보에 사용할 수량 준비" },
+  ],
+  tasks: dynamaxTrailsEvent.preparations,
 }] satisfies readonly PreparationPlan[];
+
+const miniorLeonids: WeekEvent = {
+  id: "minior-leonids-2026",
+  scheduleType: "range",
+  date: "2026-11-14",
+  dayLabel: "토 14",
+  startAt: "2026-11-14T17:00:00+09:00",
+  endAt: "2026-11-19T23:59:00+09:00",
+  availabilityTime: "11/14 17:00 ~ 11/19 23:59",
+  title: "메테노 유성우",
+  category: "event",
+  categoryLabel: "이벤트",
+  rating: 4,
+  priority: 4,
+  reason: "기간 한정 메테노 등장",
+  pokemon: [pokemon.minior],
+  guidePokemonIds: [],
+};
+
+const dynamaxTrailsSchedule: WeekEvent = {
+  id: "dynamax-trails-schedule-2026",
+  scheduleType: "range",
+  date: "2026-11-16",
+  dayLabel: "월 16",
+  startAt: "2026-11-16T10:00:00+09:00",
+  endAt: "2026-11-23T20:00:00+09:00",
+  availabilityTime: "11/16 10:00 ~ 11/23 20:00",
+  title: "Dynamax Trails",
+  category: "event",
+  categoryLabel: "이벤트",
+  rating: 5,
+  priority: 5,
+  reason: "무한다이노 결전과 맥스 파티클 준비",
+  pokemon: [],
+  guidePokemonIds: [],
+  eventHref: dynamaxTrailsEvent.href,
+  preparationPlanId: "2026-11-16-eternatus-preparation",
+};
+
+const cresseliaDarkraiRotation: WeekEvent = {
+  id: "cresselia-darkrai-five-star-2026",
+  scheduleType: "range",
+  date: "2026-11-16",
+  dayLabel: "월 16",
+  startAt: "2026-11-16T06:00:00+09:00",
+  endAt: "2026-11-24T22:00:00+09:00",
+  availabilityTime: "11/16 06:00 ~ 11/24 22:00",
+  title: "크레세리아 · 다크라이",
+  category: "legendary",
+  categoryLabel: "5성 레이드",
+  raidTier: 5,
+  rating: 4,
+  priority: 4,
+  reason: "주간 5성 레이드 로테이션",
+  pokemon: [pokemon.cresselia, pokemon.darkrai],
+  guidePokemonIds: [pokemon.cresselia.id, pokemon.darkrai.id],
+};
+
+const megaBanetteRotation: WeekEvent = {
+  id: "mega-banette-rotation-2026",
+  scheduleType: "range",
+  date: "2026-11-16",
+  dayLabel: "월 16",
+  startAt: "2026-11-16T06:00:00+09:00",
+  endAt: "2026-11-24T22:00:00+09:00",
+  availabilityTime: "11/16 06:00 ~ 11/24 22:00",
+  title: "메가다크펫",
+  category: "mega",
+  categoryLabel: "메가 레이드",
+  raidTier: "mega",
+  rating: 4,
+  priority: 4,
+  reason: "메가 에너지 확보",
+  pokemon: [pokemon.megaBanette],
+  guidePokemonIds: [pokemon.megaBanette.id],
+};
+
+const cresseliaDarkraiRaidHour: WeekEvent = {
+  id: "cresselia-darkrai-raid-hour-2026",
+  scheduleType: "featuredHour",
+  date: "2026-11-18",
+  dayLabel: "수 18",
+  startAt: "2026-11-18T18:00:00+09:00",
+  endAt: "2026-11-18T19:00:00+09:00",
+  availabilityTime: "18:00 ~ 19:00",
+  featuredHour: "18:00 ~ 19:00",
+  title: "크레세리아 · 다크라이 레이드아워",
+  category: "legendary",
+  categoryLabel: "5성 레이드",
+  raidTier: 5,
+  rating: 5,
+  priority: 5,
+  reason: "레이드아워 집중 공략",
+  pokemon: [pokemon.cresselia, pokemon.darkrai],
+  guidePokemonIds: [pokemon.cresselia.id, pokemon.darkrai.id],
+};
+
+const starterSpotlightHour: WeekEvent = {
+  id: "galar-starters-spotlight-hour-2026",
+  scheduleType: "featuredHour",
+  date: "2026-11-19",
+  dayLabel: "목 19",
+  startAt: "2026-11-19T18:00:00+09:00",
+  endAt: "2026-11-19T19:00:00+09:00",
+  availabilityTime: "18:00 ~ 19:00",
+  featuredHour: "18:00 ~ 19:00",
+  title: "흥나숭 · 염버니 · 울머기 스포트라이트 아워",
+  category: "event",
+  categoryLabel: "스포트라이트 아워",
+  rating: 4,
+  priority: 4,
+  reason: "포획 사탕 2배",
+  pokemon: [pokemon.grookey, pokemon.scorbunny, pokemon.sobble],
+  guidePokemonIds: [],
+};
+
+const eternamaxEternatusBattle: WeekEvent = {
+  id: "eternamax-eternatus-battle-2026",
+  scheduleType: "single",
+  date: "2026-11-21",
+  dayLabel: "토 21",
+  startAt: "2026-11-21T11:00:00+09:00",
+  endAt: "2026-11-21T14:00:00+09:00",
+  availabilityTime: "11:00 ~ 14:00",
+  title: "무한다이맥스 무한다이노",
+  category: "max",
+  categoryLabel: "맥스배틀",
+  rating: 5,
+  priority: 5,
+  reason: "이번 주 최우선 맥스배틀",
+  pokemon: [pokemon.eternatus],
+  guidePokemonIds: [pokemon.eternatus.id],
+  preparationPlanId: "2026-11-16-eternatus-preparation",
+};
+
+const pawniardCommunityDay: WeekEvent = {
+  id: "pawniard-community-day-2026",
+  scheduleType: "single",
+  date: "2026-11-21",
+  dayLabel: "토 21",
+  startAt: "2026-11-21T14:00:00+09:00",
+  endAt: "2026-11-21T17:00:00+09:00",
+  availabilityTime: "14:00 ~ 17:00",
+  title: "자망칼 커뮤니티 데이",
+  category: "community",
+  categoryLabel: "커뮤니티 데이",
+  rating: 5,
+  priority: 5,
+  reason: "대량 발생 · 특별 진화는 21:00까지",
+  pokemon: [pokemon.pawniard],
+  guidePokemonIds: [],
+};
+
+export const crossWeekEvents = [
+  miniorLeonids,
+  dynamaxTrailsSchedule,
+  cresseliaDarkraiRotation,
+  megaBanetteRotation,
+] satisfies readonly WeekEvent[];
 
 export const weekGuides = [{
   id: "2026-11-09",
@@ -339,5 +559,28 @@ export const weekGuides = [{
     { id: "wild-sun-raids", scheduleType: "single", date: "2026-11-15", dayLabel: "일 15", startAt: "2026-11-15T10:00:00+09:00", endAt: "2026-11-15T18:00:00+09:00", availabilityTime: "10:00 ~ 18:00", title: "레시라무 · 블랙큐레무", category: "legendary", categoryLabel: "5성 레이드", raidTier: 5, rating: 5, priority: 5, reason: "일요일 한정", pokemon: [pokemon.reshiram, pokemon.blackKyurem], guidePokemonIds: [pokemon.reshiram.id, pokemon.blackKyurem.id] },
     { id: "wild-sun-max", scheduleType: "single", date: "2026-11-15", dayLabel: "일 15", startAt: "2026-11-15T10:00:00+09:00", endAt: "2026-11-15T18:00:00+09:00", availabilityTime: "10:00 ~ 18:00", title: "다이맥스 펄기아 · 거다이맥스 두랄루돈", category: "max", categoryLabel: "맥스배틀", rating: 5, priority: 5, reason: "주말 핵심 전력", pokemon: [pokemon.palkia, pokemon.duraludon], guidePokemonIds: [pokemon.palkia.id, pokemon.duraludon.id] },
     { id: "wild-area-day-2", scheduleType: "single", date: "2026-11-15", dayLabel: "일 15", startAt: "2026-11-15T10:00:00+09:00", endAt: "2026-11-15T18:00:00+09:00", availabilityTime: wildAreaEvent.timeLabel, summaryTimeMode: "end", title: "GO WILD AREA DAY 2", category: "event", categoryLabel: "글로벌 이벤트", rating: 5, priority: 5, reason: wildAreaEvent.ratingLabel, pokemon: wildAreaEvent.days[1].pokemon, guidePokemonIds: wildAreaEvent.days[1].pokemon.map((item) => item.id), eventHref: wildAreaEvent.href },
+    miniorLeonids,
+  ] satisfies readonly WeekEvent[],
+}, {
+  id: "2026-11-16",
+  startDate: "2026-11-16",
+  endDate: "2026-11-22",
+  featuredEventId: dynamaxTrailsEvent.id,
+  priorities: [
+    { rank: 1, pokemon: pokemon.eternatus, rating: 5, reason: "이번 주 최우선 맥스배틀" },
+    { rank: 2, pokemon: pokemon.darkrai, rating: 5, reason: "레이드아워 집중 공략" },
+    { rank: 3, pokemon: pokemon.cresselia, rating: 4, reason: "주간 5성 레이드 로테이션" },
+    { rank: 4, pokemon: pokemon.megaBanette, rating: 4, reason: "메가 에너지 확보" },
+  ],
+  preparations: dynamaxTrailsEvent.preparations,
+  events: [
+    miniorLeonids,
+    dynamaxTrailsSchedule,
+    cresseliaDarkraiRotation,
+    megaBanetteRotation,
+    cresseliaDarkraiRaidHour,
+    starterSpotlightHour,
+    eternamaxEternatusBattle,
+    pawniardCommunityDay,
   ] satisfies readonly WeekEvent[],
 }] satisfies readonly WeekGuide[];
