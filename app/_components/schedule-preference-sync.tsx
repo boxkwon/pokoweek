@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import type { ScheduleFilter } from "../_data/guide-data";
 import { isScheduleWeek, normalizeScheduleFilter, SCHEDULE_CATEGORY_KEY, SCHEDULE_WEEK_KEY } from "../_lib/schedule-preferences";
+import { withCurrentDateContext } from "../_lib/internal-url";
 
 export function SchedulePreferenceSync({
   selectedCategory,
@@ -39,8 +40,7 @@ export function SchedulePreferenceSync({
 
     if (!hasCategoryQuery || !hasWeekQuery) {
       const query = new URLSearchParams({ week, category });
-      if (dateOverride) query.set("date", dateOverride);
-      router.replace(`/schedule?${query.toString()}`);
+      router.replace(withCurrentDateContext(`/schedule?${query.toString()}`, dateOverride));
     }
   }, [dateOverride, hasCategoryQuery, hasWeekQuery, router, selectedCategory, selectedWeek]);
 

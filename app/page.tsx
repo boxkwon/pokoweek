@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { AppHeader } from "./_components/app-header";
 import { BottomNavigation } from "./_components/bottom-nav";
@@ -10,18 +9,17 @@ import { BagIcon, CalendarIcon, ChevronIcon, ClockIcon, StarOutlineIcon } from "
 import { PokemonArtwork } from "./_components/pokemon-artwork";
 import { PokemonGuideLink } from "./_components/pokemon-guide-link";
 import { PreparationChecklist } from "./_components/preparation-checklist";
+import { ContextLink } from "./_components/context-link";
 import { APP_SUBTITLE } from "./_config/app";
 import { typeColors } from "./_data/guide-data";
 import { formatTodayLabel, getCurrentWeek, getDaysUntil, getFeaturedEventForDate, getTodayEvents, getUpcomingEvents, getWeekEventActionHref, getWeekEventActionLabel } from "./_data/queries";
 import { getAppNow, isValidDateOverride } from "./_lib/time";
 
 export default function HomePage() {
-  const [dateOverride, setDateOverride] = useState<string>();
   const [now, setNow] = useState(() => getAppNow());
   useEffect(() => {
     const requestedDate = new URLSearchParams(window.location.search).get("date") ?? undefined;
     const override = isValidDateOverride(requestedDate) ? requestedDate : undefined;
-    setDateOverride(override);
     setNow(getAppNow(override));
     const timer = window.setInterval(() => setNow(getAppNow(override)), 60_000);
     return () => window.clearInterval(timer);
@@ -44,7 +42,7 @@ export default function HomePage() {
   return <main className="fresh-screen boss-screen home-screen">
     <AppHeader subtitle={APP_SUBTITLE} />
 
-    {featuredEvent ? <Link className="home-weekly-card" href={featuredEvent.href} aria-label={`${featuredEvent.title} 상세 보기`}>
+    {featuredEvent ? <ContextLink className="home-weekly-card" href={featuredEvent.href} aria-label={`${featuredEvent.title} 상세 보기`}>
       <div className="home-weekly-hero">
         <Image className="wild-bg" src={featuredEvent.heroImage} alt="" fill sizes="430px" priority />
         <span className="wild-shade" />
@@ -57,7 +55,7 @@ export default function HomePage() {
         </div>
       </div>
       <EventMeta className="home-hero-meta" dateLabel={featuredEvent.dateLabel} timeLabel={featuredEvent.timeLabel} compact />
-    </Link> : <section className="home-board home-featured-empty"><CalendarIcon /><h1>이번 주 대표 이벤트</h1><p>아직 공식 발표된 중요 이벤트가 없어요.</p></section>}
+    </ContextLink> : <section className="home-board home-featured-empty"><CalendarIcon /><h1>이번 주 대표 이벤트</h1><p>아직 공식 발표된 중요 이벤트가 없어요.</p></section>}
 
     <section className="home-board home-priority-board">
       <SectionHeader icon={<StarOutlineIcon />} title="이번 주 꼭 할 것 TOP 3" />
@@ -103,7 +101,7 @@ export default function HomePage() {
           <ChevronIcon />
         </PokemonGuideLink>)}
       </div>
-      <PrimaryCTA className="home-schedule-cta" href={`/schedule?week=${week.startDate}&category=all${dateOverride ? `&date=${dateOverride}` : ""}`} trailing={false}>이번 주 전체 일정 보기 <span aria-hidden="true">→</span></PrimaryCTA>
+      <PrimaryCTA className="home-schedule-cta" href={`/schedule?week=${week.startDate}&category=all`} trailing={false}>이번 주 전체 일정 보기 <span aria-hidden="true">→</span></PrimaryCTA>
     </section>
 
     <BottomNavigation active="home" />

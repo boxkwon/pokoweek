@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { BackIcon } from "./icons";
 import { GUIDE_ORIGIN_STORAGE_KEY } from "./pokemon-guide-link";
+import { getDateContextFromSearch, withCurrentDateContext } from "../_lib/internal-url";
 
 type GuideOrigin = {
   source: string;
@@ -47,7 +48,8 @@ export function DetailBackButton() {
         router.back();
         return;
       }
-      router.push(isCurrentNavigation && origin ? origin.source : "/guide");
+      const fallback = withCurrentDateContext("/guide", getDateContextFromSearch(location.search));
+      router.push(isCurrentNavigation && origin ? origin.source : fallback);
     }}
   ><BackIcon /></button>;
 }

@@ -1,21 +1,20 @@
 "use client";
 
-import Link from "next/link";
 import type { ComponentProps } from "react";
+import { ContextLink } from "./context-link";
 
 export const GUIDE_ORIGIN_STORAGE_KEY = "pokoweek:pokemon-guide-origin";
 
-type PokemonGuideLinkProps = Omit<ComponentProps<typeof Link>, "onNavigate">;
+type PokemonGuideLinkProps = Omit<ComponentProps<typeof ContextLink>, "onNavigate">;
 
 function getPathname(href: PokemonGuideLinkProps["href"]) {
-  const value = typeof href === "string" ? href : href.pathname?.toString() ?? "";
-  return value.split("?")[0].split("#")[0];
+  return href.split("?")[0].split("#")[0];
 }
 
 export function PokemonGuideLink({ href, ...props }: PokemonGuideLinkProps) {
   const target = getPathname(href);
 
-  return <Link
+  return <ContextLink
     {...props}
     href={href}
     onNavigate={() => {

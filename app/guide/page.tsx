@@ -1,14 +1,15 @@
-import Link from "next/link";
 import { AppHeader } from "../_components/app-header";
 import { BottomNavigation } from "../_components/bottom-nav";
 import { CategoryBadge, RatingStars, SectionHeader, TypeBadge } from "../_components/design-system";
 import { ChevronIcon, StarOutlineIcon, SwordsIcon } from "../_components/icons";
 import { PokemonArtwork } from "../_components/pokemon-artwork";
 import { PokemonGuideLink } from "../_components/pokemon-guide-link";
+import { ContextLink } from "../_components/context-link";
 import { APP_SUBTITLE } from "../_config/app";
 import { typeColors, type GuideCategory } from "../_data/guide-data";
 import { getCurrentWeek, getGuidesByCategory, getGuidesForWeek, getPokemonGuide, getRecommendedGuides, getWeekEventById } from "../_data/queries";
 import { getAppNow, isValidDateOverride } from "../_lib/time";
+import { withCurrentDateContext } from "../_lib/internal-url";
 
 const filters = [
   { key: "all", label: "전체" },
@@ -29,9 +30,8 @@ function guideHref(category: GuideFilter, eventId?: string, dateOverride?: strin
   const query = new URLSearchParams();
   if (category !== "all") query.set("category", category);
   if (eventId) query.set("event", eventId);
-  if (dateOverride) query.set("date", dateOverride);
   const value = query.toString();
-  return value ? `/guide?${value}` : "/guide";
+  return withCurrentDateContext(value ? `/guide?${value}` : "/guide", dateOverride);
 }
 
 export default async function GuideIndexPage({ searchParams }: { searchParams: SearchParams }) {
@@ -65,9 +65,9 @@ export default async function GuideIndexPage({ searchParams }: { searchParams: S
     </section>
 
     <nav className="schedule-filters guide-filters" aria-label="공략 카테고리">
-      {filters.map((filter) => <Link aria-current={category === filter.key ? "page" : undefined} className={category === filter.key ? "selected" : ""} href={guideHref(filter.key, event?.id, dateOverride)} key={filter.key}>
+      {filters.map((filter) => <ContextLink aria-current={category === filter.key ? "page" : undefined} className={category === filter.key ? "selected" : ""} href={guideHref(filter.key, event?.id, dateOverride)} key={filter.key}>
         <CategoryBadge className={`schedule-filter-badge filter-${filter.key}`}>{filter.label}</CategoryBadge>
-      </Link>)}
+      </ContextLink>)}
     </nav>
 
     <section className="guide-list-section">

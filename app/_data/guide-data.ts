@@ -155,8 +155,8 @@ export const typeColors: Record<string, string> = {
 const guideHref = (id: string) => `/pokemon/${id}`;
 
 export const pokemonArtworkAssets = {
-  eternatus: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%" },
-  eternamaxEternatus: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%" },
+  eternatus: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%", placeholder: true },
+  eternamaxEternatus: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%", placeholder: true },
 } satisfies Record<"eternatus" | "eternamaxEternatus", PokemonImage>;
 
 export const pokemon = {

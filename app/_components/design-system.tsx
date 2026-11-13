@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { ReactNode } from "react";
+import { ContextLink } from "./context-link";
 import { CalendarIcon, ChevronIcon, ClockIcon } from "./icons";
 import { PokemonGuideLink } from "./pokemon-guide-link";
 
@@ -93,6 +93,6 @@ export function PrimaryCTA({
   const content = <>{leading}{children}{trailing ? <ChevronIcon /> : null}</>;
   if (href?.startsWith("/pokemon/")) return <PokemonGuideLink className={className} href={href}>{content}</PokemonGuideLink>;
   return href
-    ? <Link className={className} href={href}>{content}</Link>
+    ? <ContextLink className={className} href={href}>{content}</ContextLink>
     : <button className={className} type="button">{content}</button>;
 }

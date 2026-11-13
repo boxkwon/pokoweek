@@ -5,10 +5,15 @@ export type PokemonImage = {
   src: string;
   scale?: number;
   objectPosition?: string;
+  placeholder?: boolean;
 };
 
 type ArtworkSize = "sm" | "md" | "lg" | "hero";
 type ArtworkStyle = CSSProperties & { "--art-scale": number; "--art-position": string };
+
+export function hasRealPokemonArtwork(image: PokemonImage) {
+  return image.placeholder !== true && !image.src.includes("pokemon-placeholder");
+}
 
 export function PokemonArtwork({
   image,
@@ -23,6 +28,7 @@ export function PokemonArtwork({
   className?: string;
   priority?: boolean;
 }) {
+  if (size === "hero" && !hasRealPokemonArtwork(image)) return null;
   const style: ArtworkStyle = {
     "--art-scale": image.scale ?? 1,
     "--art-position": image.objectPosition ?? "50% 50%",

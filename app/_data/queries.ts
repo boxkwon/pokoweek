@@ -95,15 +95,16 @@ export function isRangeContinuation(event: WeekEvent, dateKey: string) {
   return event.scheduleType === "range" && getEventStartDateKey(event) < dateKey;
 }
 
-export function formatRangeEventPeriod(event: WeekEvent, continuation = false) {
+export function formatRangeEventPeriod(event: WeekEvent, dateKey: string, continuation = false) {
   const start = dateKeyToUtc(getEventStartDateKey(event));
   const end = dateKeyToUtc(getEventEndDateKey(event));
+  const endDateKey = getEventEndDateKey(event);
+  const endTime = event.endAt?.slice(11, 16);
+  if (continuation && dateKey === endDateKey && endTime) {
+    return `${end.getUTCMonth() + 1}/${end.getUTCDate()} ${endTime} 종료`;
+  }
   if (continuation) return `${end.getUTCMonth() + 1}/${end.getUTCDate()}까지 등장 중`;
   return `${start.getUTCMonth() + 1}/${start.getUTCDate()} ~ ${end.getUTCMonth() + 1}/${end.getUTCDate()} 등장`;
-}
-
-export function getImportantEvents(events: readonly WeekEvent[]) {
-  return events.filter((event) => event.priority >= 4 || Boolean(event.featuredHour));
 }
 
 export function getFeaturedHourEvents(events: readonly WeekEvent[]) {
@@ -142,14 +143,64 @@ export function formatCompactDate(dateKey: string) {
   return `${value.getUTCMonth() + 1}/${value.getUTCDate()} ${weekday}`;
 }
 
-export function getImportantTime(event: WeekEvent) {
-  if (event.summaryTimeMode === "end" && event.endAt) return { time: event.endAt.slice(11, 16), meaning: "이벤트 종료" };
-  if (event.featuredHour) return {
-    time: event.featuredHour.split("~")[0].trim(),
-    meaning: event.category === "legendary" ? "레이드아워" : event.category === "max" ? "맥스배틀 시간" : "집중 시간",
-  };
-  const time = event.startAt?.slice(11, 16) ?? event.availabilityTime?.split("~")[0].trim() ?? "";
-  return { time, meaning: event.category === "event" ? "이벤트 시작" : "출현 시작" };
+export type ImportantMilestone = {
+  event: WeekEvent;
+  dateKey: string;
+  time: string;
+  meaning: string;
+  kind: "start" | "end" | "featuredHour";
+};
+
+function isDateInWeek(dateKey: string, week: WeekGuide) {
+  return week.startDate <= dateKey && dateKey <= week.endDate;
+}
+
+function getStartMeaning(event: WeekEvent) {
+  return event.category === "event" || event.category === "community" ? "이벤트 시작" : "출현 시작";
+}
+
+function getEndMeaning(event: WeekEvent) {
+  return event.category === "event" || event.category === "community" ? "이벤트 종료" : "출현 종료";
+}
+
+function getFeaturedMeaning(event: WeekEvent) {
+  return event.category === "legendary" ? "레이드아워" : event.category === "max" ? "맥스배틀 시간" : "집중 시간";
+}
+
+export function getImportantMilestones(events: readonly WeekEvent[], week: WeekGuide) {
+  const milestones: ImportantMilestone[] = [];
+  for (const event of events) {
+    if (event.priority < 4 && !event.featuredHour) continue;
+    const startDateKey = getEventStartDateKey(event);
+    const endDateKey = getEventEndDateKey(event);
+
+    if (event.featuredHour && isDateInWeek(event.date, week)) {
+      milestones.push({ event, dateKey: event.date, time: event.featuredHour.split("~")[0].trim(), meaning: getFeaturedMeaning(event), kind: "featuredHour" });
+      continue;
+    }
+
+    if (event.scheduleType === "range") {
+      if (isDateInWeek(startDateKey, week)) {
+        milestones.push({ event, dateKey: startDateKey, time: event.startAt?.slice(11, 16) ?? "", meaning: getStartMeaning(event), kind: "start" });
+      }
+      if (endDateKey !== startDateKey && isDateInWeek(endDateKey, week)) {
+        milestones.push({ event, dateKey: endDateKey, time: event.endAt?.slice(11, 16) ?? "", meaning: getEndMeaning(event), kind: "end" });
+      }
+      continue;
+    }
+
+    const useEnd = event.summaryTimeMode === "end" && Boolean(event.endAt);
+    const dateKey = useEnd ? endDateKey : startDateKey;
+    if (!isDateInWeek(dateKey, week)) continue;
+    milestones.push({
+      event,
+      dateKey,
+      time: useEnd ? event.endAt?.slice(11, 16) ?? "" : event.startAt?.slice(11, 16) ?? event.availabilityTime?.split("~")[0].trim() ?? "",
+      meaning: useEnd ? getEndMeaning(event) : getStartMeaning(event),
+      kind: useEnd ? "end" : "start",
+    });
+  }
+  return milestones.sort((a, b) => b.event.priority - a.event.priority || `${a.dateKey}T${a.time}`.localeCompare(`${b.dateKey}T${b.time}`));
 }
 
 export function getWeekEventActionHref(event: WeekEvent) {

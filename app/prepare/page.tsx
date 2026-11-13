@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { AppHeader } from "../_components/app-header";
 import { BottomNavigation } from "../_components/bottom-nav";
@@ -10,6 +9,7 @@ import { BagIcon, ChevronIcon, StarOutlineIcon, SwordsIcon, TargetIcon } from ".
 import { PokemonArtwork } from "../_components/pokemon-artwork";
 import { PokemonGuideLink } from "../_components/pokemon-guide-link";
 import { PreparationActionChecklist, PreparationProgress } from "../_components/preparation-checklist";
+import { ContextLink } from "../_components/context-link";
 import { APP_SUBTITLE } from "../_config/app";
 import {
   getCurrentWeek,
@@ -55,7 +55,7 @@ export default function PreparePage() {
   return <main className="fresh-screen boss-screen prepare-screen">
     <AppHeader subtitle={APP_SUBTITLE} />
 
-    <Link className="home-weekly-card prepare-event-card" href={getWeekEventActionHref(scheduleEvent)} aria-label={`${scheduleEvent.title} 상세 보기`}>
+    <ContextLink className="home-weekly-card prepare-event-card" href={getWeekEventActionHref(scheduleEvent)} aria-label={`${scheduleEvent.title} 상세 보기`}>
       <div className="home-weekly-hero">
         <Image className="wild-bg" src={event.heroImage} alt="" fill sizes="430px" priority />
         <span className="wild-shade" />
@@ -68,7 +68,7 @@ export default function PreparePage() {
         </div>
       </div>
       <div className="prepare-hero-meta"><b>{scheduleEvent.dayLabel} · {scheduleEvent.availabilityTime}</b><span>이 이벤트를 위해 지금 준비하세요</span></div>
-    </Link>
+    </ContextLink>
 
     <section className="home-board prepare-progress-board">
       <SectionHeader icon={<TargetIcon />} title="준비도" />
