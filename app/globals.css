@@ -74,7 +74,7 @@ svg { display: block; }
 .raid-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(3,25,76,.94) 0%,rgba(8,34,91,.55) 43%,rgba(46,5,83,.05) 78%),linear-gradient(0deg,rgba(25,2,71,.52),transparent 60%); }
 .floating-back { width: 40px; height: 40px; position: absolute; top: var(--space-3); left: var(--space-3); z-index: 6; display: grid; place-items: center; padding: 0; border: 0; border-radius: 50%; background: #fff; color: #0b2f68; box-shadow: 0 2px 5px rgba(0,0,0,.2); cursor: pointer; }
 .floating-back svg { width: 24px; height: 24px; }
-.dialga-hero-art { width: 68%; height: 88%; position: absolute; right: -3%; bottom: -5%; z-index: 3; filter: drop-shadow(0 0 11px rgba(255,41,221,.75)) drop-shadow(0 9px 6px rgba(0,0,0,.36)); }
+.guide-hero-art { width: 68%; height: 88%; position: absolute; right: -3%; bottom: -5%; z-index: 3; filter: drop-shadow(0 0 11px rgba(255,41,221,.75)) drop-shadow(0 9px 6px rgba(0,0,0,.36)); }
 .raid-hero-copy { position: absolute; inset: 0; z-index: 5; display: flex; flex-direction: column; align-items: flex-start; padding: 56px var(--space-4) var(--space-3); pointer-events: none; }
 .raid-hero-copy button { pointer-events: auto; }
 .max-label { display: inline-flex; align-items: center; gap: var(--space-1); padding: var(--space-1) var(--space-3); border-radius: 18px; background: #df0067; font-size: 14px; font-weight: 900; box-shadow: inset 0 -2px 0 rgba(117,0,52,.28); }
@@ -372,25 +372,29 @@ svg { display: block; }
 .guide-index-copy > p { margin: 3px 0 0; color: var(--muted); font-size: var(--type-caption); font-weight: 700; }
 .guide-index-copy > p b { margin-right: var(--space-1); color: #273650; }
 .guide-index-list > a > svg { width: 18px; height: 18px; color: #52627d; }
-.generic-guide-hero .dialga-hero-art { right: 0; bottom: -3%; }
+.generic-guide-hero .guide-hero-art { right: 0; bottom: -3%; }
 .generic-guide-value { margin-top: var(--space-3); }
 .generic-guide-screen .weakness-board { align-items: flex-start; }
 .generic-guide-screen .weakness-board > div { justify-content: flex-end; flex-wrap: wrap; }
 
-/* Dynamax Dialga reference guide — extends the established guide surfaces */
-.dialga-reference-hero { height: 292px; }
-.dialga-reference-hero .raid-hero-copy { padding-bottom: var(--space-3); }
-.dialga-reference-hero .hero-decision-summary { max-width: 55%; margin: auto 0 var(--space-2); color: #fff; font-size: 13px; font-weight: 800; line-height: 1.35; text-shadow: 0 2px 3px rgba(0,0,0,.72); }
-.dialga-reference-hero .must-catch { margin-top: 0; }
-.guide-mode-summary { min-height: 54px; display: grid; grid-template-columns: repeat(3,1fr); margin: var(--space-2) var(--space-3) 0; padding: var(--space-2); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 3px 10px rgba(13,36,75,.12); }
+/* Decision-focused Pokemon guide — shared by the approved reference pages */
+.decision-guide-hero { height: 292px; }
+.decision-guide-hero .raid-hero-copy { padding-bottom: var(--space-3); }
+.decision-guide-hero .hero-decision-summary { max-width: 55%; margin: auto 0 var(--space-2); color: #fff; font-size: 13px; font-weight: 800; line-height: 1.35; text-shadow: 0 2px 3px rgba(0,0,0,.72); }
+.decision-guide-hero .must-catch { margin-top: 0; }
+.guide-mode-summary { min-height: 54px; display: grid; margin: var(--space-2) var(--space-3) 0; padding: var(--space-2); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 3px 10px rgba(13,36,75,.12); }
+.guide-mode-summary.mode-count-1 { grid-template-columns: 1fr; }
+.guide-mode-summary.mode-count-2 { grid-template-columns: repeat(2,1fr); }
+.guide-mode-summary.mode-count-3 { grid-template-columns: repeat(3,1fr); }
+.guide-mode-summary.mode-count-4 { grid-template-columns: repeat(4,1fr); }
 .guide-mode-summary > div { display: grid; justify-items: center; gap: var(--space-1); }
 .guide-mode-summary > div + div { border-left: 1px solid #dce2ea; }
 .guide-mode-summary b { color: #273650; font-size: 13px; }
 .guide-mode-summary .star-line i { font-size: 12px; }
-.dialga-guide-board { margin: var(--space-3) var(--space-3) 0; padding: var(--space-3); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 3px 12px rgba(13,36,75,.12); }
-.dialga-guide-board > header { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2); color: #082f69; }
-.dialga-guide-board > header svg { width: 29px; height: 29px; flex: 0 0 auto; color: #075fc9; stroke-width: 2.7; }
-.dialga-guide-board > header h2 { margin: 0; font-size: var(--type-section-title); line-height: 1; }
+.decision-guide-board { margin: var(--space-3) var(--space-3) 0; padding: var(--space-3); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 3px 12px rgba(13,36,75,.12); }
+.decision-guide-board > header { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2); color: #082f69; }
+.decision-guide-board > header svg { width: 29px; height: 29px; flex: 0 0 auto; color: #075fc9; stroke-width: 2.7; }
+.decision-guide-board > header h2 { margin: 0; font-size: var(--type-section-title); line-height: 1; }
 .guide-use-list article { min-height: 72px; display: grid; grid-template-columns: 76px 120px minmax(0,1fr); align-items: center; gap: var(--space-2); }
 .guide-use-list article + article { border-top: 1px solid #e0e5ec; }
 .guide-use-list article > b { color: #082f69; font-size: var(--type-body); }
@@ -567,7 +571,7 @@ svg { display: block; }
 
 @media (max-width: 390px) {
   .reference-raid-hero { height: 296px; }
-  .dialga-hero-art { width: 72%; right: -8%; }
+  .guide-hero-art { width: 72%; right: -8%; }
   .raid-hero-copy h1 { font-size: 28px; }
   .value-row { grid-template-columns: 116px 92px 1fr; }
   .value-label { padding-inline: 8px; font-size: 11px; }
@@ -575,8 +579,8 @@ svg { display: block; }
   .event-pokemon-art { height: 96px; }
   .event-time-board b { font-size: 10px; }
   .reason-content li,.prep-content li { font-size: 11px; }
-  .dialga-reference-hero { height: 284px; }
-  .dialga-reference-hero .hero-decision-summary { max-width: 58%; font-size: 12px; }
+  .decision-guide-hero { height: 284px; }
+  .decision-guide-hero .hero-decision-summary { max-width: 58%; font-size: 12px; }
   .guide-use-list article { grid-template-columns: 64px 100px minmax(0,1fr); gap: var(--space-1); }
   .guide-use-list .star-line i { font-size: 12px; }
 }

@@ -19,7 +19,7 @@ export function PokemonWeekSchedule({ pokemonId }: { pokemonId: string }) {
   const week = useMemo(() => getCurrentWeek(now), [now]);
   const events = useMemo(() => getPokemonEventsForWeek(week, pokemonId), [pokemonId, week]);
 
-  return <section className="dialga-guide-board pokemon-week-board">
+  return <section className="decision-guide-board pokemon-week-board">
     <SectionHeader icon={<CalendarIcon />} title="이번 주" />
     {events.length > 0 ? <div className="pokemon-week-list">{events.map((event) => <ContextLink href={getWeekEventActionHref(event)} key={event.id}>
       <CategoryBadge className={`schedule-category-badge category-${event.category}`}>{event.categoryLabel}</CategoryBadge>

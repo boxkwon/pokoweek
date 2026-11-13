@@ -6,6 +6,7 @@ export type ScheduleFilter = "all" | "tier5" | "tier3" | "mega" | "max" | "shado
 export type GuideCategory = "raid" | "mega" | "max" | "shadow";
 export type ScheduleType = "single" | "range" | "featuredHour";
 export type BattleType = "raid" | "mega" | "max" | "gigantamax" | "shadow";
+export type GuideMode = "raid" | "mega" | "max" | "pvp";
 export type PokemonType = "강철" | "드래곤" | "격투" | "땅" | "불꽃" | "물" | "얼음" | "전기" | "악" | "페어리" | "에스퍼" | "비행" | "독" | "고스트" | "벌레" | "바위" | "풀" | "노말";
 export type InvestmentLevel = "high" | "recommended" | "conditional" | "hold" | "low";
 export type GuideDataStatus = "ready" | "partial" | "missing";
@@ -46,19 +47,12 @@ export type PokemonGuide = {
   categoryLabel: string;
   rating: 1 | 2 | 3 | 4 | 5;
   reason: string;
+  heroBackground?: string;
   overallRating?: 1 | 2 | 3 | 4 | 5;
   verdict?: "must_build" | "recommended" | "conditional" | "hold" | "low_priority";
   verdictLabel?: string;
-  useCases?: {
-    raid?: GuideUseCase;
-    max?: GuideUseCase;
-    pvp?: GuideUseCase;
-  };
-  movesets?: {
-    raid?: GuideMoveset;
-    max?: GuideMoveset;
-    pvp?: GuideMoveset;
-  };
+  useCases?: Partial<Record<GuideMode, GuideUseCase>>;
+  movesets?: Partial<Record<GuideMode, GuideMoveset>>;
   investment?: {
     order?: readonly { id: string; label: string; reason?: string }[];
     stardust?: InvestmentLevel;
@@ -66,6 +60,7 @@ export type PokemonGuide = {
     powerUp?: InvestmentLevel;
     secondMove?: InvestmentLevel;
     maxMove?: InvestmentLevel;
+    megaEnergy?: InvestmentLevel;
     xlCandy?: InvestmentLevel;
     rareCandy?: InvestmentLevel;
     eliteTm?: "required" | "recommended" | "conditional" | "not_needed";
@@ -73,6 +68,7 @@ export type PokemonGuide = {
   ivAdvice?: {
     general?: string;
     raid?: string;
+    mega?: string;
     max?: string;
     pvp?: string;
   };
@@ -86,11 +82,13 @@ export type PokemonGuide = {
   }[];
   values: {
     raid?: number | null;
+    mega?: number | null;
     max?: number | null;
     pvp?: number | null;
   };
   valueReasons?: {
     raid?: string;
+    mega?: string;
     max?: string;
     pvp?: string;
   };
@@ -252,6 +250,7 @@ type PokemonGuideDraft = {
   formName?: string;
   rating: 1 | 2 | 3 | 4 | 5;
   reason: string;
+  heroBackground?: string;
   overallRating?: PokemonGuide["overallRating"];
   verdict?: PokemonGuide["verdict"];
   verdictLabel?: string;
@@ -272,6 +271,8 @@ function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
   const defaultBattleType: BattleType = draft.category === "max" ? "max" : draft.category;
   const useCaseCount = draft.useCases ? Object.values(draft.useCases).filter(Boolean).length : 0;
   const movesetCount = draft.movesets ? Object.values(draft.movesets).filter(Boolean).length : 0;
+  const expectedMovesetCount = draft.useCases ? Object.keys(draft.useCases).length : 0;
+  const investmentDecisionCount = draft.investment ? Object.entries(draft.investment).filter(([key, value]) => key !== "order" && Boolean(value)).length : 0;
   const ivAdviceCount = draft.ivAdvice ? Object.values(draft.ivAdvice).filter(Boolean).length : 0;
   return {
     id: draft.pokemon.id,
@@ -284,6 +285,7 @@ function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
     categoryLabel: draft.categoryLabel,
     rating: draft.rating,
     reason: draft.reason,
+    heroBackground: draft.heroBackground,
     overallRating: draft.overallRating,
     verdict: draft.verdict,
     verdictLabel: draft.verdictLabel,
@@ -298,10 +300,10 @@ function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
     dataStatus: {
       counters: draft.counters?.length ? "ready" : "missing",
       values: draft.values && Object.values(draft.values).some((value) => typeof value === "number") ? "ready" : "missing",
-      useCases: useCaseCount === 0 ? "missing" : useCaseCount === 3 ? "ready" : "partial",
-      movesets: movesetCount === 0 ? "missing" : movesetCount === 3 ? "ready" : "partial",
-      investment: draft.investment?.order?.length ? "partial" : "missing",
-      ivAdvice: ivAdviceCount === 0 ? "missing" : ivAdviceCount === 4 ? "ready" : "partial",
+      useCases: useCaseCount > 0 ? "ready" : "missing",
+      movesets: movesetCount === 0 ? "missing" : movesetCount >= expectedMovesetCount ? "ready" : "partial",
+      investment: !draft.investment?.order?.length ? "missing" : investmentDecisionCount > 0 ? "ready" : "partial",
+      ivAdvice: ivAdviceCount === 0 ? "missing" : ivAdviceCount >= useCaseCount ? "ready" : "partial",
     },
     recommendations: draft.recommendations,
     summary: draft.summary,
@@ -310,7 +312,56 @@ function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
 }
 
 export const pokemonGuides = ([
-  { pokemon: pokemon.zacian, category: "raid", categoryLabel: "5성 레이드", rating: 5, reason: "검왕 에너지와 강철 전력 확보", weaknesses: ["불꽃", "땅"], recommendations: ["불꽃·땅 타입 공격수 준비", "레이드아워에 인원 확보"], summary: "검왕 에너지와 강력한 강철 전력을 함께 준비하세요." },
+  {
+    pokemon: pokemon.zacian,
+    category: "raid",
+    categoryLabel: "5성 레이드",
+    rating: 5,
+    reason: "검왕 에너지와 강철 전력 확보",
+    heroBackground: "/images/events/zacian-and-zamazenta-2.jpg",
+    overallRating: 5,
+    verdict: "must_build",
+    verdictLabel: "적극 육성 추천",
+    useCases: {
+      raid: { rating: 5, reason: "강철 타입 최상위권 레이드 공격수" },
+      pvp: { rating: 5, reason: "마스터리그에서 높은 활용도" },
+    },
+    movesets: {
+      raid: { fastMove: { name: "메탈클로" }, chargedMove: { name: "거수참" } },
+      pvp: { fastMove: { name: "메탈클로" }, chargedMove: { name: "인파이트" }, chargedMove2: { name: "거수참" } },
+    },
+    investment: {
+      order: [
+        { id: "secure-zacian", label: "좋은 개체와 검왕 에너지 확보" },
+        { id: "set-zacian-moves", label: "메탈클로·거수참 맞추기" },
+        { id: "power-zacian", label: "레이드용으로 먼저 강화" },
+        { id: "xl-zacian", label: "마스터리그용이면 XL 투자" },
+        { id: "unlock-zacian", label: "PvP에서 쓸 때만 기술 해방" },
+      ],
+      powerUp: "high",
+      stardust: "high",
+      candy: "recommended",
+      secondMove: "conditional",
+      xlCandy: "conditional",
+      rareCandy: "conditional",
+      eliteTm: "not_needed",
+    },
+    ivAdvice: {
+      raid: "레이드 공격수로 오래 쓸 개체라면 공격 IV가 높은 개체를 우선하세요.",
+      pvp: "마스터리그 투자를 고려한다면 전체 IV가 높은 개체를 우선하세요.",
+    },
+    weaknesses: ["불꽃", "땅"],
+    counters: [
+      { pokemonId: "primal-groudon", name: "원시그란돈", image: { src: "/images/pokemon/counter-10078.png", scale: .96, objectPosition: "50% 55%" } },
+      { pokemonId: "mega-chandelure", name: "메가샹델라", image: { src: "/images/pokemon/pm609.fMEGA.icon.png", scale: 1, objectPosition: "50% 55%" } },
+      { pokemonId: pokemon.reshiram.id, name: "레시라무", image: pokemon.reshiram.image },
+    ],
+    values: { raid: 5, pvp: 5 },
+    valueReasons: { raid: "강철 타입 최상위권 공격수", pvp: "마스터리그에서 높은 활용도" },
+    recommendations: ["검왕 에너지를 확보한 좋은 개체부터 육성", "레이드 중심이면 기술 해방은 나중에 판단"],
+    summary: "레이드와 마스터리그 모두 투자 가치가 높은 강철 전력입니다.",
+    source: { name: "Pokémon GO Hub · Crowned Sword Zacian", url: "https://db.pokemongohub.net/pokemon/888-Crowned_Sword" },
+  },
   { pokemon: pokemon.zamazenta, category: "raid", categoryLabel: "5성 레이드", rating: 5, reason: "방패왕 에너지 확보", weaknesses: ["불꽃", "격투", "땅"], recommendations: ["불꽃·격투·땅 타입 공격수 준비", "레이드아워에 집중 참여"], summary: "방패왕 에너지가 필요하다면 화요일 레이드아워를 우선하세요." },
   { pokemon: pokemon.registeel, category: "max", categoryLabel: "맥스배틀", rating: 4, reason: "좋은 개체 확보", weaknesses: ["불꽃", "격투", "땅"], recommendations: ["다이맥스 괴력몬 또는 몰드류 준비", "집중 시간 전에 파티클 확인"], summary: "불꽃·격투·땅 맥스기술로 공략하세요." },
   { pokemon: pokemon.regidrago, category: "max", categoryLabel: "맥스배틀", rating: 4, reason: "드래곤 전력 보강", weaknesses: ["얼음", "드래곤", "페어리"], recommendations: ["얼음 또는 페어리 맥스기술 준비", "생존용 포켓몬 한 마리 포함"], summary: "드래곤끼리 큰 피해를 주므로 생존도 함께 준비하세요." },
@@ -326,6 +377,7 @@ export const pokemonGuides = ([
     battleTypes: ["max"],
     rating: 5,
     reason: "맥스배틀 핵심 전력",
+    heroBackground: "/images/events/dialgaraids.jpg",
     overallRating: 5,
     verdict: "must_build",
     verdictLabel: "적극 육성 추천",
@@ -365,8 +417,106 @@ export const pokemonGuides = ([
   { pokemon: pokemon.excadrill, category: "max", categoryLabel: "다이맥스", rating: 5, reason: "디아루가 핵심 카운터", weaknesses: ["불꽃", "물", "격투", "땅"], recommendations: ["땅 타입 맥스기술 우선 강화", "공격 개체를 우선 육성"], summary: "다이맥스 디아루가 공략의 핵심 땅 타입 공격수예요." },
   { pokemon: pokemon.gardevoir, category: "max", categoryLabel: "다이맥스", rating: 4, reason: "펄기아 드래곤 약점 공략", weaknesses: ["독", "고스트", "강철"], recommendations: ["페어리 타입 맥스기술 강화", "펄기아 공략팀에 배치"], summary: "페어리 공격으로 펄기아의 드래곤 약점을 노릴 수 있어요." },
   { pokemon: pokemon.cresselia, category: "raid", categoryLabel: "5성 레이드", rating: 4, reason: "주간 5성 레이드 로테이션", weaknesses: ["벌레", "고스트", "악"], recommendations: ["벌레·고스트·악 타입 공격수 준비", "다크라이와 목표를 나눠 참여"], summary: "에스퍼 타입인 크레세리아는 벌레·고스트·악 타입으로 공략하세요." },
-  { pokemon: pokemon.darkrai, category: "raid", categoryLabel: "5성 레이드", rating: 5, reason: "레이드아워 집중 공략", weaknesses: ["격투", "벌레", "페어리"], recommendations: ["격투·벌레·페어리 타입 공격수 준비", "11월 18일 레이드아워 활용"], summary: "다크라이가 필요하다면 주간 로테이션과 레이드아워를 함께 활용하세요." },
-  { pokemon: pokemon.megaBanette, category: "mega", categoryLabel: "메가 레이드", battleTypes: ["mega"], rating: 4, reason: "메가 에너지 확보", weaknesses: ["고스트", "악"], recommendations: ["고스트·악 타입 공격수 준비", "필요한 메가 에너지 목표를 먼저 정하기"], summary: "고스트·악 타입 공격수로 메가다크펫의 약점을 공략하세요." },
+  {
+    pokemon: pokemon.darkrai,
+    category: "raid",
+    categoryLabel: "5성 레이드",
+    rating: 5,
+    reason: "레이드아워 집중 공략",
+    heroBackground: "/images/events/raidhour.jpg",
+    overallRating: 4,
+    verdict: "recommended",
+    verdictLabel: "레이드용으로 육성 추천",
+    useCases: {
+      raid: { rating: 4, reason: "강력한 악 타입 레이드 공격수" },
+      pvp: { rating: 2, reason: "공격력은 높지만 내구가 낮아 활용이 제한적" },
+    },
+    movesets: {
+      raid: { fastMove: { name: "바크아웃" }, chargedMove: { name: "속임수" } },
+      pvp: { fastMove: { name: "기습" }, chargedMove: { name: "속임수" }, chargedMove2: { name: "섀도볼" } },
+    },
+    investment: {
+      order: [
+        { id: "secure-darkrai", label: "레이드용 좋은 개체 확보" },
+        { id: "set-darkrai-moves", label: "바크아웃·속임수 맞추기" },
+        { id: "power-darkrai", label: "레이드 전력에 필요하면 강화" },
+        { id: "hold-darkrai-xl", label: "XL 투자는 보유 전력과 비교" },
+        { id: "hold-darkrai-unlock", label: "기술 해방은 PvP를 할 때만" },
+      ],
+      powerUp: "recommended",
+      stardust: "recommended",
+      candy: "recommended",
+      secondMove: "low",
+      xlCandy: "conditional",
+      rareCandy: "conditional",
+      eliteTm: "not_needed",
+    },
+    ivAdvice: {
+      raid: "레이드용으로 사용할 개체라면 공격 IV가 높은 개체를 우선하세요.",
+      pvp: "PvP 성능은 제한적이므로 큰 자원을 쓰기 전에 별도로 판단하세요.",
+    },
+    weaknesses: ["격투", "벌레", "페어리"],
+    counters: [
+      { pokemonId: "mega-lucario", name: "메가루카리오", image: { src: "/images/pokemon/counter-10059.png", scale: .94, objectPosition: "50% 54%" } },
+      { pokemonId: "mega-gardevoir", name: "메가가디안", image: { src: "/images/pokemon/counter-10051.png", scale: .96, objectPosition: "50% 55%" } },
+      { pokemonId: "machamp", name: "괴력몬", image: { src: "/images/pokemon/counter-68.png", scale: .95, objectPosition: "50% 56%" } },
+    ],
+    values: { raid: 4, pvp: 2 },
+    valueReasons: { raid: "강력하지만 대체 가능한 악 타입 공격수", pvp: "내구가 낮아 활용이 제한적" },
+    recommendations: ["레이드용이면 바크아웃·속임수 우선", "PvP를 하지 않는다면 기술 해방 우선순위 낮음"],
+    summary: "레이드에서는 강력하지만 PvP와 과도한 자원 투자는 신중히 판단하세요.",
+    source: { name: "Pokémon GO Hub · Darkrai", url: "https://db.pokemongohub.net/pokemon/491" },
+  },
+  {
+    pokemon: pokemon.megaBanette,
+    category: "mega",
+    categoryLabel: "메가 레이드",
+    battleTypes: ["mega"],
+    rating: 4,
+    reason: "메가 에너지 확보",
+    heroBackground: "/images/events/mega-default.jpg",
+    overallRating: 3,
+    verdict: "conditional",
+    verdictLabel: "특정 용도라면 육성",
+    useCases: {
+      raid: { rating: 2, reason: "기본 다크펫은 레이드 공격수 우선순위가 낮음" },
+      mega: { rating: 4, reason: "고스트 공격과 메가 보너스를 함께 지원" },
+    },
+    movesets: {
+      mega: { fastMove: { name: "섀도클로" }, chargedMove: { name: "섀도볼" } },
+    },
+    investment: {
+      order: [
+        { id: "secure-banette", label: "메가진화할 좋은 다크펫 확보" },
+        { id: "set-banette-moves", label: "섀도클로·섀도볼 맞추기" },
+        { id: "collect-banette-energy", label: "메가 에너지 먼저 확보" },
+        { id: "mega-evolve-banette", label: "필요한 고스트 레이드에서 메가진화" },
+        { id: "power-banette", label: "강화는 다른 고스트 전력과 비교" },
+      ],
+      powerUp: "conditional",
+      stardust: "conditional",
+      candy: "recommended",
+      megaEnergy: "high",
+      secondMove: "low",
+      xlCandy: "low",
+      rareCandy: "low",
+      eliteTm: "not_needed",
+    },
+    ivAdvice: {
+      mega: "메가 레이드 공격수로 사용할 개체라면 공격 IV가 높은 개체를 우선하세요.",
+    },
+    weaknesses: ["고스트", "악"],
+    counters: [
+      { pokemonId: "mega-gengar", name: "메가팬텀", image: { src: "/images/pokemon/pokemon_icon_094_51.png", scale: 1, objectPosition: "50% 55%" } },
+      { pokemonId: pokemon.darkrai.id, name: "다크라이", image: pokemon.darkrai.image },
+      { pokemonId: "mega-chandelure", name: "메가샹델라", image: { src: "/images/pokemon/pm609.fMEGA.icon.png", scale: 1, objectPosition: "50% 55%" } },
+    ],
+    values: { raid: 2, mega: 4 },
+    valueReasons: { raid: "기본 다크펫은 우선순위가 낮음", mega: "고스트 공격과 메가 보너스 지원" },
+    recommendations: ["메가 에너지 목표를 먼저 확보", "더 강한 고스트 메가가 없다면 대체 전력으로 활용"],
+    summary: "메가 보너스가 필요할 때 유용하지만 강화는 보유한 고스트 전력과 비교하세요.",
+    source: { name: "Pokémon GO Hub · Mega Banette", url: "https://db.pokemongohub.net/pokemon/354-Mega" },
+  },
   { pokemon: pokemon.eternatus, category: "max", categoryLabel: "무한다이맥스", battleTypes: ["max"], formName: "무한다이맥스", rating: 5, reason: "이번 주 최우선 맥스배틀", weaknesses: ["땅", "에스퍼", "얼음", "드래곤"], recommendations: ["맥스 파티클과 회복 아이템 준비", "무한다이노의 사탕·사탕XL 확보를 목표로 참여"], summary: "전투 후 무한다이맥스 폼을 포획하는 배틀이 아니라 무한다이노 육성 자원 확보가 핵심이에요." },
 ] satisfies readonly PokemonGuideDraft[]).map(createPokemonGuide);
 

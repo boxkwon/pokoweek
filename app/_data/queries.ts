@@ -230,6 +230,13 @@ export function getPokemonGuideMissingFields(guide: (typeof pokemonGuides)[numbe
   if (guide.dataStatus.counters === "missing") missing.push("counters");
   if (guide.dataStatus.values === "missing") missing.push("values");
   if (guide.recommendations.length === 0) missing.push("recommendations");
+  if (guide.overallRating !== undefined) {
+    if (!guide.verdict || !guide.verdictLabel) missing.push("verdict");
+    if (guide.dataStatus.useCases !== "ready") missing.push("useCases");
+    if (guide.dataStatus.movesets !== "ready") missing.push("movesets");
+    if (guide.dataStatus.investment !== "ready") missing.push("investment");
+    if (guide.dataStatus.ivAdvice !== "ready") missing.push("ivAdvice");
+  }
   return missing;
 }
 

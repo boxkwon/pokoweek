@@ -13,6 +13,7 @@ import { PokemonWeekSchedule } from "./pokemon-week-schedule";
 
 const modeDefinitions = [
   { key: "raid", label: "레이드" },
+  { key: "mega", label: "메가" },
   { key: "max", label: "맥스배틀" },
   { key: "pvp", label: "PvP" },
 ] as const;
@@ -24,6 +25,7 @@ const investmentDefinitions = [
   { key: "xlCandy", label: "XL 사탕" },
   { key: "secondMove", label: "기술 해방" },
   { key: "maxMove", label: "맥스기술" },
+  { key: "megaEnergy", label: "메가 에너지" },
   { key: "rareCandy", label: "이상한사탕" },
 ] as const;
 
@@ -62,7 +64,7 @@ export function GuideUseCases({ guide }: { guide: PokemonGuide }) {
     const value = guide.useCases?.[mode.key];
     return value ? [{ ...mode, ...value }] : [];
   });
-  return <section className="dialga-guide-board guide-use-board">
+  return <section className="decision-guide-board guide-use-board">
     <SectionHeader icon={<ChartIcon />} title="어디에 쓰나요?" />
     {items.length > 0 ? <div className="guide-use-list">{items.map((item) => <article key={item.key}>
       <b>{item.label}</b>
@@ -90,7 +92,7 @@ export function GuideMovesets({ guide }: { guide: PokemonGuide }) {
     const value = guide.movesets?.[mode.key];
     return value ? [{ ...mode, value }] : [];
   });
-  return <section className="dialga-guide-board guide-moves-board">
+  return <section className="decision-guide-board guide-moves-board">
     <SectionHeader icon={<SwordsIcon />} title="추천 기술" />
     {items.length > 0 ? <div className="moveset-mode-list">{items.map((item) => <article key={item.key}><h3>{item.label}</h3><MovesetRows moveset={item.value} /></article>)}</div> : <p className="guide-data-missing">검증된 추천 기술 정보를 준비 중이에요.</p>}
   </section>;
@@ -113,7 +115,7 @@ function GuideQuickDecisions({ guide }: { guide: PokemonGuide }) {
 
 export function GuideTrainingOrder({ guide }: { guide: PokemonGuide }) {
   const order = guide.investment?.order ?? [];
-  return <section className="dialga-guide-board guide-order-board">
+  return <section className="decision-guide-board guide-order-board">
     <SectionHeader icon={<TargetIcon />} title="뭘 먼저 해야 하나요?" />
     {order.length > 0 ? <ol className="guide-order-list">{order.map((step, index) => <li key={step.id}>
       <b>{index + 1}</b><div><strong>{step.label}</strong>{step.reason ? <p>{step.reason}</p> : null}</div>
@@ -129,7 +131,7 @@ export function GuideInvestment({ guide }: { guide: PokemonGuide }) {
     return level ? [{ ...item, level }] : [];
   });
   const eliteTm = investment?.eliteTm;
-  return <section className="dialga-guide-board guide-investment-board">
+  return <section className="decision-guide-board guide-investment-board">
     <SectionHeader icon={<BagIcon />} title="자원 투자" />
     {rows.length > 0 || eliteTm ? <div className="investment-list">
       {rows.map((item) => <div key={item.key}><b>{item.label}</b><strong className={`investment-${item.level}`}>{investmentLabels[item.level]}</strong></div>)}
@@ -143,29 +145,30 @@ export function GuideIvAdvice({ guide }: { guide: PokemonGuide }) {
   const rows = [
     ["공통", advice?.general],
     ["레이드용", advice?.raid],
+    ["메가용", advice?.mega],
     ["맥스배틀용", advice?.max],
     ["PvP용", advice?.pvp],
   ].filter((item): item is string[] => Boolean(item[1]));
-  return <section className="dialga-guide-board guide-iv-board">
+  return <section className="decision-guide-board guide-iv-board">
     <SectionHeader icon={<StarOutlineIcon />} title="어떤 개체를 키울까요?" />
     {rows.length > 0 ? <div className="iv-advice-list">{rows.map(([label, value]) => <div key={label}><b>{label}</b><p>{value}</p></div>)}</div> : <p className="guide-data-missing">검증된 개체 선택 기준을 준비 중이에요.</p>}
   </section>;
 }
 
-export function PokemonReferenceDetail({ guide }: { guide: PokemonGuide }) {
+export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
   const useCases = modeDefinitions.flatMap((mode) => {
     const value = guide.useCases?.[mode.key];
     return value ? [{ ...mode, ...value }] : [];
   });
 
-  return <main className="fresh-screen boss-screen generic-guide-screen dialga-reference-screen">
+  return <main className="fresh-screen boss-screen generic-guide-screen decision-guide-screen">
     <AppHeader subtitle={APP_SUBTITLE} />
 
-    <section className="reference-raid-hero generic-guide-hero dialga-reference-hero">
-      <Image className="raid-hero-backdrop" src="/images/events/dialgaraids.jpg" alt="" fill sizes="430px" priority />
+    <section className="reference-raid-hero generic-guide-hero decision-guide-hero">
+      <Image className="raid-hero-backdrop" src={guide.heroBackground ?? "/images/events/dialgaraids.jpg"} alt="" fill sizes="430px" priority />
       <span className="raid-hero-shade" />
       <DetailBackButton />
-      <PokemonArtwork className="dialga-hero-art" image={guide.image} alt={guide.image.alt} size="hero" priority />
+      <PokemonArtwork className="guide-hero-art" image={guide.image} alt={guide.image.alt} size="hero" priority />
       <div className="raid-hero-copy">
         <CategoryBadge className="max-label" icon={<SwordsIcon />}>{guide.formName ?? guide.categoryLabel}</CategoryBadge>
         <h1>{guide.name}</h1>
@@ -175,7 +178,7 @@ export function PokemonReferenceDetail({ guide }: { guide: PokemonGuide }) {
       </div>
     </section>
 
-    {useCases.length > 0 ? <section className="guide-mode-summary" aria-label="활용도 요약">{useCases.map((item) => <div key={item.key}><b>{item.label}</b><RatingStars value={item.rating} /></div>)}</section> : null}
+    {useCases.length > 0 ? <section className={`guide-mode-summary mode-count-${Math.min(useCases.length, 4)}`} aria-label="활용도 요약">{useCases.map((item) => <div key={item.key}><b>{item.label}</b><RatingStars value={item.rating} /></div>)}</section> : null}
 
     <GuideUseCases guide={guide} />
     <GuideMovesets guide={guide} />
