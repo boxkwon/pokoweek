@@ -7,6 +7,25 @@ export type GuideCategory = "raid" | "mega" | "max" | "shadow";
 export type ScheduleType = "single" | "range" | "featuredHour";
 export type BattleType = "raid" | "mega" | "max" | "gigantamax" | "shadow";
 export type PokemonType = "강철" | "드래곤" | "격투" | "땅" | "불꽃" | "물" | "얼음" | "전기" | "악" | "페어리" | "에스퍼" | "비행" | "독" | "고스트" | "벌레" | "바위" | "풀" | "노말";
+export type InvestmentLevel = "high" | "recommended" | "conditional" | "hold" | "low";
+export type GuideDataStatus = "ready" | "partial" | "missing";
+
+export type GuideUseCase = {
+  rating: 1 | 2 | 3 | 4 | 5;
+  reason: string;
+};
+
+export type GuideMove = {
+  name: string;
+  tags?: readonly ("fast_tm" | "charged_tm" | "elite_tm" | "event_limited")[];
+};
+
+export type GuideMoveset = {
+  fastMove?: GuideMove;
+  chargedMove?: GuideMove;
+  chargedMove2?: GuideMove;
+  maxMove?: GuideMove;
+};
 
 export type PokemonEntry = {
   id: string;
@@ -27,6 +46,36 @@ export type PokemonGuide = {
   categoryLabel: string;
   rating: 1 | 2 | 3 | 4 | 5;
   reason: string;
+  overallRating?: 1 | 2 | 3 | 4 | 5;
+  verdict?: "must_build" | "recommended" | "conditional" | "hold" | "low_priority";
+  verdictLabel?: string;
+  useCases?: {
+    raid?: GuideUseCase;
+    max?: GuideUseCase;
+    pvp?: GuideUseCase;
+  };
+  movesets?: {
+    raid?: GuideMoveset;
+    max?: GuideMoveset;
+    pvp?: GuideMoveset;
+  };
+  investment?: {
+    order?: readonly { id: string; label: string; reason?: string }[];
+    stardust?: InvestmentLevel;
+    candy?: InvestmentLevel;
+    powerUp?: InvestmentLevel;
+    secondMove?: InvestmentLevel;
+    maxMove?: InvestmentLevel;
+    xlCandy?: InvestmentLevel;
+    rareCandy?: InvestmentLevel;
+    eliteTm?: "required" | "recommended" | "conditional" | "not_needed";
+  };
+  ivAdvice?: {
+    general?: string;
+    raid?: string;
+    max?: string;
+    pvp?: string;
+  };
   weaknesses: readonly { type: PokemonType; multiplier?: number }[];
   counters: readonly {
     pokemonId: string;
@@ -48,6 +97,10 @@ export type PokemonGuide = {
   dataStatus: {
     counters: "ready" | "missing";
     values: "ready" | "missing";
+    useCases: GuideDataStatus;
+    movesets: GuideDataStatus;
+    investment: GuideDataStatus;
+    ivAdvice: GuideDataStatus;
   };
   recommendations: readonly string[];
   summary: string;
@@ -199,6 +252,13 @@ type PokemonGuideDraft = {
   formName?: string;
   rating: 1 | 2 | 3 | 4 | 5;
   reason: string;
+  overallRating?: PokemonGuide["overallRating"];
+  verdict?: PokemonGuide["verdict"];
+  verdictLabel?: string;
+  useCases?: PokemonGuide["useCases"];
+  movesets?: PokemonGuide["movesets"];
+  investment?: PokemonGuide["investment"];
+  ivAdvice?: PokemonGuide["ivAdvice"];
   weaknesses: readonly PokemonType[];
   counters?: PokemonGuide["counters"];
   values?: PokemonGuide["values"];
@@ -210,6 +270,9 @@ type PokemonGuideDraft = {
 
 function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
   const defaultBattleType: BattleType = draft.category === "max" ? "max" : draft.category;
+  const useCaseCount = draft.useCases ? Object.values(draft.useCases).filter(Boolean).length : 0;
+  const movesetCount = draft.movesets ? Object.values(draft.movesets).filter(Boolean).length : 0;
+  const ivAdviceCount = draft.ivAdvice ? Object.values(draft.ivAdvice).filter(Boolean).length : 0;
   return {
     id: draft.pokemon.id,
     name: draft.pokemon.name,
@@ -221,6 +284,13 @@ function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
     categoryLabel: draft.categoryLabel,
     rating: draft.rating,
     reason: draft.reason,
+    overallRating: draft.overallRating,
+    verdict: draft.verdict,
+    verdictLabel: draft.verdictLabel,
+    useCases: draft.useCases,
+    movesets: draft.movesets,
+    investment: draft.investment,
+    ivAdvice: draft.ivAdvice,
     weaknesses: draft.weaknesses.map((type) => ({ type })),
     counters: draft.counters ?? [],
     values: draft.values ?? {},
@@ -228,6 +298,10 @@ function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
     dataStatus: {
       counters: draft.counters?.length ? "ready" : "missing",
       values: draft.values && Object.values(draft.values).some((value) => typeof value === "number") ? "ready" : "missing",
+      useCases: useCaseCount === 0 ? "missing" : useCaseCount === 3 ? "ready" : "partial",
+      movesets: movesetCount === 0 ? "missing" : movesetCount === 3 ? "ready" : "partial",
+      investment: draft.investment?.order?.length ? "partial" : "missing",
+      ivAdvice: ivAdviceCount === 0 ? "missing" : ivAdviceCount === 4 ? "ready" : "partial",
     },
     recommendations: draft.recommendations,
     summary: draft.summary,
@@ -252,6 +326,23 @@ export const pokemonGuides = ([
     battleTypes: ["max"],
     rating: 5,
     reason: "맥스배틀 핵심 전력",
+    overallRating: 5,
+    verdict: "must_build",
+    verdictLabel: "적극 육성 추천",
+    useCases: {
+      raid: { rating: 4, reason: "강력한 드래곤/강철 딜러" },
+      max: { rating: 5, reason: "향후 맥스배틀 핵심 전력" },
+      pvp: { rating: 4, reason: "마스터리그에서 우수한 성능" },
+    },
+    investment: {
+      order: [
+        { id: "secure-good-individual", label: "좋은 개체 최소 1마리 확보" },
+        { id: "prioritize-attack", label: "공격 IV 15인 개체 우선" },
+      ],
+    },
+    ivAdvice: {
+      general: "기존 가이드 기준으로 공격 IV 15인 개체를 우선하세요.",
+    },
     weaknesses: ["격투", "땅"],
     counters: [
       { pokemonId: pokemon.excadrill.id, name: "다이맥스 몰드류", image: { src: "/images/pokemon/counter-530.png", scale: 1.04, objectPosition: "50% 56%" } },

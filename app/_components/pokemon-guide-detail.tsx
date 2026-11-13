@@ -5,9 +5,10 @@ import { typeColors } from "../_data/guide-data";
 import { AppHeader } from "./app-header";
 import { BottomNavigation } from "./bottom-nav";
 import { DetailBackButton } from "./detail-back-button";
-import { CategoryBadge, PrimaryCTA, RatingStars, SectionHeader, TypeBadge } from "./design-system";
-import { ChartIcon, CheckIcon, StarOutlineIcon, SwordsIcon, TargetIcon } from "./icons";
+import { CategoryBadge, RatingStars, SectionHeader, TypeBadge } from "./design-system";
+import { ChartIcon, SwordsIcon } from "./icons";
 import { PokemonArtwork } from "./pokemon-artwork";
+import { PokemonCounterSection, PokemonRecommendationSection, PokemonWeaknessSection } from "./pokemon-guide-shared-sections";
 
 const valueRows = [
   { key: "raid", label: "일반 레이드" },
@@ -37,25 +38,9 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
       </div>
     </section>
 
-    {guide.weaknesses.length > 0 ? <section className="weakness-board">
-      <h2><TargetIcon />약점 <small>(더 큰 피해를 줌)</small></h2>
-      <div>{guide.weaknesses.map((weakness) => <TypeBadge type={weakness.type} color={typeColors[weakness.type]} key={weakness.type} />)}</div>
-    </section> : null}
+    <PokemonWeaknessSection guide={guide} />
 
-    <section className="counter-board">
-      <SectionHeader icon={<SwordsIcon />} title="추천 공격수" description="레이드·맥스배틀에서 효과적인 포켓몬" />
-      {guide.dataStatus.counters === "ready" ? <>
-        <div className="reference-counter-grid">
-        {guide.counters.map((counter, index) => <article className={["gold", "silver", "bronze"][index] ?? "silver"} key={`${counter.pokemonId}-${index}`}>
-          <b>{index + 1}</b>
-          {counter.image ? <PokemonArtwork className="counter-artwork" image={counter.image} alt={counter.name} size="lg" /> : <span className="counter-artwork counter-artwork-placeholder" aria-hidden="true" />}
-          <h3>{counter.name.split(" ").map((line) => <span key={line}>{line}</span>)}</h3>
-          {counter.recommendedMove ? <p>{counter.recommendedMove}</p> : null}
-        </article>)}
-        </div>
-        <PrimaryCTA className="owned-pokemon-button" leading={<span className="mini-ball" />}>내가 가진 포켓몬으로 보기</PrimaryCTA>
-      </> : <p className="guide-data-missing" data-status="missing">검증된 추천 공격수 데이터를 준비 중이에요.</p>}
-    </section>
+    <PokemonCounterSection guide={guide} />
 
     <section className="value-board">
       <SectionHeader icon={<ChartIcon />} title="가치 평가" description="이 포켓몬을 잡고 키울 가치가 있을까?" />
@@ -68,14 +53,7 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
       </div> : <p className="guide-data-missing" data-status="missing">검증된 활용 가치 평가 데이터를 준비 중이에요.</p>}
     </section>
 
-    {guide.recommendations.length > 0 || guide.summary ? <section className="recommend-board">
-      <SectionHeader icon={<StarOutlineIcon />} title="추천 가이드" />
-      <div className="recommend-content">
-        {guide.recommendations.length > 0 ? <ul>{guide.recommendations.map((item) => <li key={item}><CheckIcon /><b>{item}</b></li>)}</ul> : null}
-        {guide.summary ? <aside><strong>ⓘ 한 줄 요약</strong><p>{guide.summary}</p></aside> : null}
-        {guide.source ? <a className="guide-source-link" href={guide.source.url} target="_blank" rel="noreferrer">출처 · {guide.source.name}</a> : null}
-      </div>
-    </section> : null}
+    <PokemonRecommendationSection guide={guide} />
 
     <BottomNavigation active="guide" />
   </main>;

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { PokemonGuideDetail } from "../../_components/pokemon-guide-detail";
+import { PokemonReferenceDetail } from "../../_components/pokemon-reference-detail";
 import { pokemonGuides } from "../../_data/guide-data";
 import { getPokemonGuide } from "../../_data/queries";
 
@@ -11,5 +12,6 @@ export default async function PokemonGuidePage({ params }: { params: Promise<{ i
   const { id } = await params;
   const guide = getPokemonGuide(id);
   if (!guide) notFound();
+  if (guide.id === "dynamax-dialga") return <PokemonReferenceDetail guide={guide} />;
   return <PokemonGuideDetail guide={guide} />;
 }

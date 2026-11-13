@@ -252,6 +252,20 @@ export function getGuidesByCategory(guides: ReturnType<typeof getGuidesForWeek>,
   return category === "all" ? guides : guides.filter((guide) => guide.category === category);
 }
 
+export function getPokemonEventsForWeek(week: WeekGuide, pokemonId: string) {
+  const matches = getEventsByWeek(week).filter((event) =>
+    event.guidePokemonIds.includes(pokemonId) || event.pokemon.some((item) => item.id === pokemonId));
+  const preferredByTime = new Map<string, WeekEvent>();
+  for (const event of matches) {
+    const key = `${event.startAt ?? event.date}|${event.endAt ?? event.date}`;
+    const current = preferredByTime.get(key);
+    if (!current || (!current.eventHref && event.eventHref) || event.priority > current.priority) {
+      preferredByTime.set(key, event);
+    }
+  }
+  return [...preferredByTime.values()];
+}
+
 export function getFeaturedEvent(week: WeekGuide) {
   return week.featuredEventId ? eventsById[week.featuredEventId as keyof typeof eventsById] : undefined;
 }

@@ -377,6 +377,67 @@ svg { display: block; }
 .generic-guide-screen .weakness-board { align-items: flex-start; }
 .generic-guide-screen .weakness-board > div { justify-content: flex-end; flex-wrap: wrap; }
 
+/* Dynamax Dialga reference guide — extends the established guide surfaces */
+.dialga-reference-hero { height: 292px; }
+.dialga-reference-hero .raid-hero-copy { padding-bottom: var(--space-3); }
+.dialga-reference-hero .hero-decision-summary { max-width: 55%; margin: auto 0 var(--space-2); color: #fff; font-size: 13px; font-weight: 800; line-height: 1.35; text-shadow: 0 2px 3px rgba(0,0,0,.72); }
+.dialga-reference-hero .must-catch { margin-top: 0; }
+.guide-mode-summary { min-height: 54px; display: grid; grid-template-columns: repeat(3,1fr); margin: var(--space-2) var(--space-3) 0; padding: var(--space-2); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 3px 10px rgba(13,36,75,.12); }
+.guide-mode-summary > div { display: grid; justify-items: center; gap: var(--space-1); }
+.guide-mode-summary > div + div { border-left: 1px solid #dce2ea; }
+.guide-mode-summary b { color: #273650; font-size: 13px; }
+.guide-mode-summary .star-line i { font-size: 12px; }
+.dialga-guide-board { margin: var(--space-3) var(--space-3) 0; padding: var(--space-3); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 3px 12px rgba(13,36,75,.12); }
+.dialga-guide-board > header { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2); color: #082f69; }
+.dialga-guide-board > header svg { width: 29px; height: 29px; flex: 0 0 auto; color: #075fc9; stroke-width: 2.7; }
+.dialga-guide-board > header h2 { margin: 0; font-size: var(--type-section-title); line-height: 1; }
+.guide-use-list article { min-height: 72px; display: grid; grid-template-columns: 76px 120px minmax(0,1fr); align-items: center; gap: var(--space-2); }
+.guide-use-list article + article { border-top: 1px solid #e0e5ec; }
+.guide-use-list article > b { color: #082f69; font-size: var(--type-body); }
+.guide-use-list article > div { display: grid; gap: 3px; }
+.guide-use-list .star-line i { font-size: 14px; }
+.guide-use-list article > div strong { color: var(--blue); font-size: var(--type-caption); }
+.guide-use-list article p { margin: 0; color: #52627d; font-size: var(--type-caption); font-weight: 700; line-height: 1.35; }
+.moveset-mode-list article + article { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid #e0e5ec; }
+.moveset-mode-list h3 { margin: 0 0 var(--space-2); color: #082f69; font-size: var(--type-card-title); }
+.moveset-rows { display: grid; gap: var(--space-1); }
+.moveset-rows > div { min-height: 40px; display: grid; grid-template-columns: 110px 1fr; align-items: center; border-radius: var(--radius-sm); background: #f0f4f9; }
+.moveset-rows span { padding-left: var(--space-3); color: #52627d; font-size: var(--type-caption); font-weight: 800; }
+.moveset-rows > div > div { display: grid; gap: var(--space-1); padding: var(--space-2) var(--space-2) var(--space-2) 0; }
+.moveset-rows b { color: #172743; font-size: var(--type-body); }
+.moveset-rows small { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.moveset-rows em { padding: 2px var(--space-1); border: 1px solid #cfd8e6; border-radius: var(--radius-sm); color: #52627d; font-size: 12px; font-style: normal; font-weight: 800; }
+.guide-order-list { margin: 0; padding: 0; list-style: none; }
+.guide-order-list li { min-height: 54px; display: grid; grid-template-columns: 34px minmax(0,1fr); align-items: center; gap: var(--space-2); }
+.guide-order-list li + li { border-top: 1px solid #e0e5ec; }
+.guide-order-list li > b { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: var(--blue); color: #fff; font-size: 14px; }
+.guide-order-list strong { color: #172743; font-size: var(--type-body); }
+.guide-order-list p { margin: 3px 0 0; color: #52627d; font-size: var(--type-caption); font-weight: 700; }
+.guide-quick-decisions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: var(--space-2); border-top: 1px solid #e0e5ec; }
+.guide-quick-decisions > div { min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-1); padding: 0 var(--space-2); }
+.guide-quick-decisions > div:nth-child(odd) { padding-left: 0; border-right: 1px solid #e0e5ec; }
+.guide-quick-decisions b { color: #273650; font-size: var(--type-caption); }
+.guide-quick-decisions strong { color: var(--blue); font-size: var(--type-caption); }
+.investment-list > div { min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.investment-list > div + div { border-top: 1px solid #e0e5ec; }
+.investment-list b { color: #273650; font-size: var(--type-body); }
+.investment-list strong { color: var(--blue); font-size: var(--type-caption); }
+.investment-list .investment-high { color: #d62744; }
+.investment-list .investment-hold,.investment-list .investment-low { color: #69758a; }
+.iv-advice-list > div { min-height: 52px; display: grid; grid-template-columns: 88px minmax(0,1fr); align-items: center; gap: var(--space-2); }
+.iv-advice-list > div + div { border-top: 1px solid #e0e5ec; }
+.iv-advice-list b { color: var(--blue); font-size: var(--type-body); }
+.iv-advice-list p { margin: 0; color: #273650; font-size: var(--type-body); font-weight: 700; line-height: 1.35; }
+.pokemon-week-list > a { min-height: 86px; display: grid; grid-template-columns: auto minmax(0,1fr) 18px; align-items: center; gap: var(--space-2); }
+.pokemon-week-list > a + a { border-top: 1px solid #e0e5ec; }
+.pokemon-week-list > a > div { min-width: 0; }
+.pokemon-week-list h3 { margin: 0; color: #082f69; font-size: var(--type-card-title); line-height: 1.25; }
+.pokemon-week-list time { display: block; margin-top: 3px; color: #52627d; font-size: var(--type-caption); font-weight: 800; }
+.pokemon-week-list p { display: flex; gap: var(--space-1); margin: var(--space-1) 0 0; color: #273650; font-size: var(--type-caption); font-weight: 700; }
+.pokemon-week-list p b { flex: 0 0 auto; color: var(--blue); }
+.pokemon-week-list svg { width: 18px; height: 18px; color: #52627d; }
+.recommend-content.recommend-only { grid-template-columns: 1fr; }
+
 .schedule-list-section { margin: var(--space-2) var(--space-3) 0; }
 .schedule-list-section > header,.schedule-important-board > header { display: flex; align-items: center; gap: var(--space-2); color: #082f69; }
 .schedule-list-section > header { padding: var(--space-2) 0; }
@@ -514,6 +575,10 @@ svg { display: block; }
   .event-pokemon-art { height: 96px; }
   .event-time-board b { font-size: 10px; }
   .reason-content li,.prep-content li { font-size: 11px; }
+  .dialga-reference-hero { height: 284px; }
+  .dialga-reference-hero .hero-decision-summary { max-width: 58%; font-size: 12px; }
+  .guide-use-list article { grid-template-columns: 64px 100px minmax(0,1fr); gap: var(--space-1); }
+  .guide-use-list .star-line i { font-size: 12px; }
 }
 
 @media screen and (min-width: 431px) {
