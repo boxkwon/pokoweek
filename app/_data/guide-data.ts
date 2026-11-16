@@ -10,6 +10,8 @@ export type GuideMode = "raid" | "mega" | "max" | "pvp";
 export type PokemonType = "강철" | "드래곤" | "격투" | "땅" | "불꽃" | "물" | "얼음" | "전기" | "악" | "페어리" | "에스퍼" | "비행" | "독" | "고스트" | "벌레" | "바위" | "풀" | "노말";
 export type InvestmentLevel = "high" | "recommended" | "conditional" | "hold" | "low";
 export type GuideDataStatus = "ready" | "partial" | "missing";
+export type PokemonActionGuideType = "fusion" | "evolution" | "form_change" | "mega" | "max_upgrade";
+export type ActionWarningImportance = "high" | "medium" | "low";
 
 export type GuideUseCase = {
   rating: 1 | 2 | 3 | 4 | 5;
@@ -26,6 +28,87 @@ export type GuideMoveset = {
   chargedMove?: GuideMove;
   chargedMove2?: GuideMove;
   maxMove?: GuideMove;
+};
+
+export type ActionRequirement =
+  | {
+      id: string;
+      type: "pokemon";
+      pokemonId: string;
+      amount: number;
+      note?: string;
+    }
+  | {
+      id: string;
+      type: "candy";
+      pokemonId: string;
+      amount: number;
+      note?: string;
+    }
+  | {
+      id: string;
+      type: "energy";
+      energyId: string;
+      label: string;
+      amount: number;
+      currentAssumedAmount?: number;
+      rewardPerRaid?: { min: number; max: number };
+      note?: string;
+    }
+  | {
+      id: string;
+      type: "item";
+      itemId: string;
+      label: string;
+      amount: number;
+      note?: string;
+    };
+
+export type ActionStep = {
+  id: string;
+  title: string;
+  description?: string;
+};
+
+export type ActionChecklistItem = {
+  id: string;
+  label: string;
+  reason?: string;
+  severity?: ActionWarningImportance;
+  relatedPokemonId?: string;
+};
+
+export type ActionWarning = {
+  id: string;
+  type: "move_check" | "resource_check" | "selection_check" | "general";
+  title: string;
+  description: string;
+  importance: ActionWarningImportance;
+};
+
+export type ActionGoal = {
+  id: string;
+  label: string;
+  resultPokemonId?: string;
+  requirements: readonly ActionRequirement[];
+  steps: readonly ActionStep[];
+  checklist?: readonly ActionChecklistItem[];
+  warnings?: readonly ActionWarning[];
+  postActionGuidePokemonId?: string;
+};
+
+export type PokemonActionGuide = {
+  id: string;
+  type: PokemonActionGuideType;
+  title: string;
+  summary?: string;
+  defaultGoalId?: string;
+  allowCombinedGoals?: boolean;
+  goals: readonly ActionGoal[];
+  source?: {
+    name: string;
+    url: string;
+  };
 };
 
 export type PokemonEntry = {
@@ -103,6 +186,7 @@ export type PokemonGuide = {
   recommendations: readonly string[];
   summary: string;
   source?: { name: string; url: string };
+  actionGuide?: PokemonActionGuide;
 };
 
 export type PreparationTask = {
@@ -159,6 +243,7 @@ export type WeekEvent = {
   reason: string;
   pokemon: readonly PokemonEntry[];
   guidePokemonIds: readonly string[];
+  relatedPokemonIds?: readonly string[];
   eventHref?: string;
   featuredEventId?: string;
   preparationPlanId?: string;
@@ -206,9 +291,10 @@ export const typeColors: Record<string, string> = {
 const guideHref = (id: string) => `/pokemon/${id}`;
 
 export const pokemonArtworkAssets = {
+  kyurem: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%", placeholder: true },
   eternatus: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%", placeholder: true },
   eternamaxEternatus: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%", placeholder: true },
-} satisfies Record<"eternatus" | "eternamaxEternatus", PokemonImage>;
+} satisfies Record<"kyurem" | "eternatus" | "eternamaxEternatus", PokemonImage>;
 
 export const pokemon = {
   zacian: { id: "zacian-crowned", name: "검왕 자시안", image: { src: "/images/pokemon/pm888.fCROWNED_SWORD.icon.png", scale: 1.02, objectPosition: "50% 56%" }, types: ["페어리", "강철"], href: guideHref("zacian-crowned") },
@@ -217,6 +303,7 @@ export const pokemon = {
   regidrago: { id: "dynamax-regidrago", name: "다이맥스 레지드래고", image: { src: "/images/pokemon/pm895.icon.png", scale: .98, objectPosition: "50% 56%" }, types: ["드래곤"], href: guideHref("dynamax-regidrago") },
   latias: { id: "dynamax-latias", name: "다이맥스 라티아스", image: { src: "/images/pokemon/pm380.icon.png", scale: .98, objectPosition: "50% 56%" }, types: ["드래곤", "에스퍼"], href: guideHref("dynamax-latias") },
   latios: { id: "dynamax-latios", name: "다이맥스 라티오스", image: { src: "/images/pokemon/pm381.icon.png", scale: .98, objectPosition: "50% 56%" }, types: ["드래곤", "에스퍼"], href: guideHref("dynamax-latios") },
+  kyurem: { id: "kyurem", name: "큐레무", image: pokemonArtworkAssets.kyurem, types: ["드래곤", "얼음"], href: guideHref("kyurem") },
   zekrom: { id: "zekrom", name: "제크로무", image: { src: "/images/pokemon/pm644.icon.png", scale: 1.06, objectPosition: "50% 58%" }, types: ["전기", "드래곤"], href: guideHref("zekrom") },
   whiteKyurem: { id: "white-kyurem", name: "화이트큐레무", image: { src: "/images/pokemon/pm646.fWHITE.icon.png", scale: .94, objectPosition: "50% 56%" }, types: ["얼음", "드래곤"], href: guideHref("white-kyurem") },
   blackKyurem: { id: "black-kyurem", name: "블랙큐레무", image: { src: "/images/pokemon/pm646.fBLACK.icon.png", scale: .94, objectPosition: "50% 56%" }, types: ["얼음", "드래곤"], href: guideHref("black-kyurem") },
@@ -242,6 +329,128 @@ export const pokemon = {
   pawniard: { id: "pawniard", name: "자망칼", image: { src: "/images/pokemon/pokemon_icon_624_00.png", scale: 1, objectPosition: "50% 56%" }, types: ["악", "강철"], href: guideHref("pawniard") },
 } satisfies Record<string, PokemonEntry>;
 
+const kyuremFusionGoals = [
+  {
+    id: "white-kyurem",
+    label: "화이트큐레무",
+    resultPokemonId: pokemon.whiteKyurem.id,
+    requirements: [
+      { id: "white-kyurem-base", type: "pokemon", pokemonId: pokemon.kyurem.id, amount: 1, note: "융합할 개체" },
+      { id: "white-reshiram", type: "pokemon", pokemonId: pokemon.reshiram.id, amount: 1, note: "융합 파트너" },
+      { id: "white-blaze-energy", type: "energy", energyId: "blaze-fusion-energy", label: "블레이즈 에너지", amount: 1000, note: "화이트큐레무 레이드에서 획득" },
+      { id: "white-kyurem-candy", type: "candy", pokemonId: pokemon.kyurem.id, amount: 30 },
+      { id: "white-reshiram-candy", type: "candy", pokemonId: pokemon.reshiram.id, amount: 30 },
+    ],
+    steps: [
+      { id: "white-secure-kyurem", title: "융합할 큐레무 확보", description: "개체값과 얼어붙은세계 보유 여부를 함께 확인하세요." },
+      { id: "white-secure-reshiram", title: "레시라무 1마리 확보", description: "화이트큐레무의 융합 파트너입니다." },
+      { id: "white-energy", title: "블레이즈 에너지 1,000 모으기", description: "화이트큐레무 레이드에서 얻을 수 있어요." },
+      { id: "white-candy", title: "양쪽 사탕 30개씩 준비", description: "큐레무 사탕 30개와 레시라무 사탕 30개가 필요해요." },
+      { id: "white-final-check", title: "융합 대상과 기술 최종 확인", description: "얼어붙은세계는 융합 후 콜드플레어로 바뀝니다." },
+      { id: "white-fuse", title: "화이트큐레무로 융합" },
+      { id: "white-train", title: "융합 후 기술과 강화 순서 확인" },
+    ],
+    checklist: [
+      { id: "white-kyurem-selected", label: "융합할 큐레무 개체를 결정했나요?", severity: "high", relatedPokemonId: pokemon.kyurem.id },
+      { id: "white-reshiram-ready", label: "레시라무 1마리를 보유했나요?", relatedPokemonId: pokemon.reshiram.id },
+      { id: "white-energy-ready", label: "블레이즈 에너지 1,000이 있나요?" },
+      { id: "white-candy-ready", label: "큐레무·레시라무 사탕이 각각 30개 있나요?" },
+      { id: "white-move-ready", label: "큐레무가 얼어붙은세계를 알고 있나요?", reason: "융합 후 콜드플레어를 얻기 위한 필수 확인", severity: "high" },
+      { id: "white-goal-ready", label: "목표가 화이트큐레무가 맞는지 확인했나요?" },
+    ],
+    warnings: [
+      {
+        id: "white-glaciate-warning",
+        type: "move_check",
+        title: "융합 전에 얼어붙은세계를 확인하세요",
+        description: "얼어붙은세계를 아는 큐레무를 레시라무와 융합해야 콜드플레어로 바뀝니다. 현재 화이트큐레무는 기술머신스페셜이나 대단한 기술머신스페셜로 콜드플레어를 배울 수 없어요.",
+        importance: "high",
+      },
+      {
+        id: "white-field-effect",
+        type: "move_check",
+        title: "콜드플레어 필드 효과",
+        description: "별의모래 5,000과 큐레무의 사탕 5개를 사용하면 10분 동안 타겟 링이 천천히 움직여 Excellent를 노리기 쉬워집니다.",
+        importance: "medium",
+      },
+      {
+        id: "white-fusion-state",
+        type: "general",
+        title: "합체 상태와 보관 제한",
+        description: "직접 분리할 때까지 합체 상태가 유지되며 분리에는 에너지나 사탕이 들지 않습니다. 합체된 포켓몬은 교환하거나 박사·Pokémon HOME으로 보낼 수 없습니다.",
+        importance: "medium",
+      },
+    ],
+    postActionGuidePokemonId: pokemon.whiteKyurem.id,
+  },
+  {
+    id: "black-kyurem",
+    label: "블랙큐레무",
+    resultPokemonId: pokemon.blackKyurem.id,
+    requirements: [
+      { id: "black-kyurem-base", type: "pokemon", pokemonId: pokemon.kyurem.id, amount: 1, note: "융합할 개체" },
+      { id: "black-zekrom", type: "pokemon", pokemonId: pokemon.zekrom.id, amount: 1, note: "융합 파트너" },
+      { id: "black-volt-energy", type: "energy", energyId: "volt-fusion-energy", label: "볼트 에너지", amount: 1000, note: "블랙큐레무 레이드에서 획득" },
+      { id: "black-kyurem-candy", type: "candy", pokemonId: pokemon.kyurem.id, amount: 30 },
+      { id: "black-zekrom-candy", type: "candy", pokemonId: pokemon.zekrom.id, amount: 30 },
+    ],
+    steps: [
+      { id: "black-secure-kyurem", title: "융합할 큐레무 확보", description: "개체값과 얼어붙은세계 보유 여부를 함께 확인하세요." },
+      { id: "black-secure-zekrom", title: "제크로무 1마리 확보", description: "블랙큐레무의 융합 파트너입니다." },
+      { id: "black-energy", title: "볼트 에너지 1,000 모으기", description: "블랙큐레무 레이드에서 얻을 수 있어요." },
+      { id: "black-candy", title: "양쪽 사탕 30개씩 준비", description: "큐레무 사탕 30개와 제크로무 사탕 30개가 필요해요." },
+      { id: "black-final-check", title: "융합 대상과 기술 최종 확인", description: "얼어붙은세계는 융합 후 프리즈볼트로 바뀝니다." },
+      { id: "black-fuse", title: "블랙큐레무로 융합" },
+      { id: "black-train", title: "융합 후 기술과 강화 순서 확인" },
+    ],
+    checklist: [
+      { id: "black-kyurem-selected", label: "융합할 큐레무 개체를 결정했나요?", severity: "high", relatedPokemonId: pokemon.kyurem.id },
+      { id: "black-zekrom-ready", label: "제크로무 1마리를 보유했나요?", relatedPokemonId: pokemon.zekrom.id },
+      { id: "black-energy-ready", label: "볼트 에너지 1,000이 있나요?" },
+      { id: "black-candy-ready", label: "큐레무·제크로무 사탕이 각각 30개 있나요?" },
+      { id: "black-move-ready", label: "큐레무가 얼어붙은세계를 알고 있나요?", reason: "융합 후 프리즈볼트를 얻기 위한 필수 확인", severity: "high" },
+      { id: "black-goal-ready", label: "목표가 블랙큐레무가 맞는지 확인했나요?" },
+    ],
+    warnings: [
+      {
+        id: "black-glaciate-warning",
+        type: "move_check",
+        title: "융합 전에 얼어붙은세계를 확인하세요",
+        description: "얼어붙은세계를 아는 큐레무를 제크로무와 융합해야 프리즈볼트로 바뀝니다. 현재 블랙큐레무는 기술머신스페셜이나 대단한 기술머신스페셜로 프리즈볼트를 배울 수 없어요.",
+        importance: "high",
+      },
+      {
+        id: "black-field-effect",
+        type: "move_check",
+        title: "프리즈볼트 필드 효과",
+        description: "별의모래 5,000과 큐레무의 사탕 5개를 사용하면 10분 동안 만난 포켓몬이 움직이지 않아 포획하기 쉬워집니다.",
+        importance: "medium",
+      },
+      {
+        id: "black-fusion-state",
+        type: "general",
+        title: "합체 상태와 보관 제한",
+        description: "직접 분리할 때까지 합체 상태가 유지되며 분리에는 에너지나 사탕이 들지 않습니다. 합체된 포켓몬은 교환하거나 박사·Pokémon HOME으로 보낼 수 없습니다.",
+        importance: "medium",
+      },
+    ],
+    postActionGuidePokemonId: pokemon.blackKyurem.id,
+  },
+] satisfies readonly ActionGoal[];
+
+export const kyuremFusionActionGuide: PokemonActionGuide = {
+  id: "kyurem-fusion",
+  type: "fusion",
+  title: "큐레무 융합 완성 가이드",
+  summary: "목표 폼을 고르면 필요한 포켓몬·에너지·사탕과 융합 전 확인 순서를 한 번에 볼 수 있어요.",
+  allowCombinedGoals: true,
+  goals: kyuremFusionGoals,
+  source: {
+    name: "Pokémon GO · 큐레무 합체 레이드 데이",
+    url: "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+  },
+};
+
 type PokemonGuideDraft = {
   pokemon: PokemonEntry;
   category: GuideCategory;
@@ -265,6 +474,7 @@ type PokemonGuideDraft = {
   recommendations: readonly string[];
   summary: string;
   source?: PokemonGuide["source"];
+  actionGuide?: PokemonGuide["actionGuide"];
 };
 
 function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
@@ -308,6 +518,7 @@ function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
     recommendations: draft.recommendations,
     summary: draft.summary,
     source: draft.source,
+    actionGuide: draft.actionGuide,
   };
 }
 
@@ -367,9 +578,56 @@ export const pokemonGuides = ([
   { pokemon: pokemon.regidrago, category: "max", categoryLabel: "맥스배틀", rating: 4, reason: "드래곤 전력 보강", weaknesses: ["얼음", "드래곤", "페어리"], recommendations: ["얼음 또는 페어리 맥스기술 준비", "생존용 포켓몬 한 마리 포함"], summary: "드래곤끼리 큰 피해를 주므로 생존도 함께 준비하세요." },
   { pokemon: pokemon.latias, category: "max", categoryLabel: "맥스배틀", rating: 4, reason: "최소 1마리 확보", weaknesses: ["얼음", "벌레", "고스트", "드래곤", "악", "페어리"], recommendations: ["얼음·고스트 공격수 준비", "라티오스와 목표를 나눠 선택"], summary: "라티오스와 함께 등장하므로 필요한 개체를 먼저 정하세요." },
   { pokemon: pokemon.latios, category: "max", categoryLabel: "맥스배틀", rating: 4, reason: "최소 1마리 확보", weaknesses: ["얼음", "벌레", "고스트", "드래곤", "악", "페어리"], recommendations: ["얼음·고스트 공격수 준비", "라티아스와 목표를 나눠 선택"], summary: "두 보스 중 필요한 개체를 먼저 정하면 파티클을 아낄 수 있어요." },
-  { pokemon: pokemon.zekrom, category: "raid", categoryLabel: "5성 레이드", rating: 4, reason: "토요일 한정 레이드", weaknesses: ["땅", "얼음", "드래곤", "페어리"], recommendations: ["땅·얼음 공격수 준비", "토요일 10~18시에 참여"], summary: "토요일에만 등장하므로 시간 안에 목표 개체를 확보하세요." },
-  { pokemon: pokemon.whiteKyurem, category: "raid", categoryLabel: "5성 레이드", rating: 5, reason: "융합 에너지 확보", weaknesses: ["격투", "바위", "강철", "드래곤", "페어리"], recommendations: ["격투·강철 공격수 준비", "융합 에너지를 목표로 반복 참여"], summary: "이번 주 최우선 레이드 중 하나로 융합 에너지를 챙기세요." },
-  { pokemon: pokemon.blackKyurem, category: "raid", categoryLabel: "5성 레이드", rating: 5, reason: "융합 에너지 확보", weaknesses: ["격투", "바위", "강철", "드래곤", "페어리"], recommendations: ["격투·강철 공격수 준비", "일요일 10~18시에 참여"], summary: "일요일에 융합 에너지와 좋은 개체를 함께 노리세요." },
+  {
+    pokemon: pokemon.kyurem,
+    category: "raid",
+    categoryLabel: "융합 베이스",
+    rating: 5,
+    reason: "화이트·블랙큐레무 융합 대상",
+    heroBackground: "/images/events/key-art.jpg",
+    weaknesses: ["격투", "바위", "강철", "드래곤", "페어리"],
+    recommendations: ["화이트와 블랙을 모두 만들 계획이면 융합할 큐레무 2마리를 남기기", "융합 전에 얼어붙은세계 보유 여부 확인"],
+    summary: "좋은 큐레무를 고르고 융합 목표에 맞는 파트너·에너지·사탕을 준비하세요.",
+    source: kyuremFusionActionGuide.source,
+    actionGuide: kyuremFusionActionGuide,
+  },
+  {
+    pokemon: pokemon.zekrom,
+    category: "raid",
+    categoryLabel: "5성 레이드",
+    rating: 4,
+    reason: "토요일 한정 레이드",
+    weaknesses: ["땅", "얼음", "드래곤", "페어리"],
+    recommendations: ["땅·얼음 공격수 준비", "블랙큐레무 융합용 1마리를 별도로 남기기"],
+    summary: "블랙큐레무를 만들 계획이라면 융합 파트너로 사용할 제크로무를 확보하세요.",
+    actionGuide: { ...kyuremFusionActionGuide, defaultGoalId: "black-kyurem" },
+  },
+  {
+    pokemon: pokemon.whiteKyurem,
+    category: "raid",
+    categoryLabel: "5성 레이드",
+    rating: 5,
+    reason: "블레이즈 에너지 확보",
+    heroBackground: "/images/events/key-art.jpg",
+    weaknesses: ["격투", "바위", "강철", "드래곤", "페어리"],
+    recommendations: ["블레이즈 에너지 1,000을 목표로 참여", "융합할 큐레무의 얼어붙은세계 보유 여부 확인"],
+    summary: "레이드에서 블레이즈 에너지를 모으고, 큐레무와 레시라무를 준비하세요.",
+    source: kyuremFusionActionGuide.source,
+    actionGuide: { ...kyuremFusionActionGuide, defaultGoalId: "white-kyurem" },
+  },
+  {
+    pokemon: pokemon.blackKyurem,
+    category: "raid",
+    categoryLabel: "5성 레이드",
+    rating: 5,
+    reason: "볼트 에너지 확보",
+    heroBackground: "/images/events/key-art.jpg",
+    weaknesses: ["격투", "바위", "강철", "드래곤", "페어리"],
+    recommendations: ["볼트 에너지 1,000을 목표로 참여", "융합할 큐레무의 얼어붙은세계 보유 여부 확인"],
+    summary: "레이드에서 볼트 에너지를 모으고, 큐레무와 제크로무를 준비하세요.",
+    source: kyuremFusionActionGuide.source,
+    actionGuide: { ...kyuremFusionActionGuide, defaultGoalId: "black-kyurem" },
+  },
   {
     pokemon: pokemon.dialga,
     category: "max",
@@ -408,7 +666,17 @@ export const pokemonGuides = ([
   },
   { pokemon: pokemon.palkia, category: "max", categoryLabel: "다이맥스", rating: 4, reason: "일요일 핵심 전력", weaknesses: ["드래곤", "페어리"], recommendations: ["드래곤·페어리 맥스기술 준비", "일요일 목표 보스로 우선 지정"], summary: "약점이 두 개뿐이라 충분한 인원과 육성이 중요해요." },
   { pokemon: pokemon.duraludon, category: "max", categoryLabel: "거다이맥스", rating: 4, reason: "신규·최소 1마리 확보", weaknesses: ["격투", "땅"], recommendations: ["다이맥스 괴력몬·몰드류 준비", "현장 그룹과 함께 도전"], summary: "양일 모두 등장하지만 큰 그룹이 필요한 고난도 보스예요." },
-  { pokemon: pokemon.reshiram, category: "raid", categoryLabel: "5성 레이드", rating: 4, reason: "일요일 한정 레이드", weaknesses: ["땅", "바위", "드래곤"], recommendations: ["땅·바위 공격수 준비", "일요일 10~18시에 참여"], summary: "일요일 한정이므로 블랙큐레무와 목표를 나눠 잡으세요." },
+  {
+    pokemon: pokemon.reshiram,
+    category: "raid",
+    categoryLabel: "5성 레이드",
+    rating: 4,
+    reason: "일요일 한정 레이드",
+    weaknesses: ["땅", "바위", "드래곤"],
+    recommendations: ["땅·바위 공격수 준비", "화이트큐레무 융합용 1마리를 별도로 남기기"],
+    summary: "화이트큐레무를 만들 계획이라면 융합 파트너로 사용할 레시라무를 확보하세요.",
+    actionGuide: { ...kyuremFusionActionGuide, defaultGoalId: "white-kyurem" },
+  },
   { pokemon: pokemon.druddigon, category: "raid", categoryLabel: "3성 레이드", rating: 3, reason: "평일 소수 인원 공략", weaknesses: ["얼음", "드래곤", "페어리"], recommendations: ["얼음·페어리 공격수 준비", "평일 이벤트 시간에 참여"], summary: "3성 레이드라 준비된 공격수로 소수 인원 공략이 가능해요." },
   { pokemon: pokemon.orthworm, category: "raid", categoryLabel: "3성 레이드", rating: 3, reason: "평일 도감·개체 확보", weaknesses: ["불꽃", "격투", "땅"], recommendations: ["불꽃·격투·땅 공격수 준비", "평일 이벤트 시간에 참여"], summary: "약점 타입이 많아 준비된 팀으로 빠르게 공략할 수 있어요." },
   { pokemon: pokemon.ralts, category: "max", categoryLabel: "1성 맥스배틀", rating: 3, reason: "가디안 육성용 개체", weaknesses: ["독", "고스트", "강철"], recommendations: ["강철·고스트 맥스기술 준비", "좋은 개체를 가디안으로 진화"], summary: "평일 동안 가디안 육성용 개체를 준비하기 좋아요." },
@@ -538,6 +806,11 @@ export const wildAreaEvent = {
   rating: 5,
   ratingLabel: "이번 달 최우선 이벤트",
   href: "/events/go-wild-area-global-2026",
+  actionGuide: {
+    title: "블랙·화이트큐레무 완성하기",
+    description: "융합에 필요한 포켓몬·에너지·사탕과 필수 기술을 먼저 확인하세요.",
+    href: pokemon.kyurem.href,
+  },
   days: [
     { day: 1 as const, label: "토요일 (11/14)", pokemon: [pokemon.zekrom, pokemon.whiteKyurem, pokemon.dialga, pokemon.duraludon] },
     { day: 2 as const, label: "일요일 (11/15)", pokemon: [pokemon.reshiram, pokemon.blackKyurem, pokemon.palkia, pokemon.duraludon] },
@@ -800,11 +1073,11 @@ export const weekGuides = [{
     { id: "registeel-max-battle", scheduleType: "featuredHour", date: "2026-11-11", dayLabel: "수 11", startAt: "2026-11-11T10:00:00+09:00", endAt: "2026-11-11T21:00:00+09:00", availabilityTime: "10:00 ~ 21:00", featuredHour: "18:00 ~ 19:00", title: "다이맥스 레지스틸", category: "max", categoryLabel: "맥스배틀", rating: 4, priority: 5, reason: "좋은 개체 확보", pokemon: [pokemon.registeel], guidePokemonIds: [pokemon.registeel.id], weaknesses: ["격투", "불꽃", "땅"] },
     { id: "regidrago-max-battle", scheduleType: "featuredHour", date: "2026-11-12", dayLabel: "목 12", startAt: "2026-11-12T10:00:00+09:00", endAt: "2026-11-12T21:00:00+09:00", availabilityTime: "10:00 ~ 21:00", featuredHour: "18:00 ~ 19:00", title: "다이맥스 레지드래고", category: "max", categoryLabel: "맥스배틀", rating: 4, priority: 4, reason: "드래곤 전력 보강", pokemon: [pokemon.regidrago], guidePokemonIds: [pokemon.regidrago.id] },
     { id: "latias-latios-max-battle", scheduleType: "single", date: "2026-11-13", dayLabel: "금 13", startAt: "2026-11-13T18:00:00+09:00", endAt: "2026-11-13T19:00:00+09:00", availabilityTime: "18:00 ~ 19:00", title: "다이맥스 라티아스 / 라티오스", category: "max", categoryLabel: "맥스배틀", rating: 4, priority: 4, reason: "최소 1마리씩 확보", pokemon: [pokemon.latias, pokemon.latios], guidePokemonIds: [pokemon.latias.id, pokemon.latios.id] },
-    { id: "wild-sat-raids", scheduleType: "single", date: "2026-11-14", dayLabel: "토 14", startAt: "2026-11-14T10:00:00+09:00", endAt: "2026-11-14T18:00:00+09:00", availabilityTime: "10:00 ~ 18:00", title: "제크로무 · 화이트큐레무", category: "legendary", categoryLabel: "5성 레이드", raidTier: 5, rating: 5, priority: 5, reason: "토요일 한정", pokemon: [pokemon.zekrom, pokemon.whiteKyurem], guidePokemonIds: [pokemon.zekrom.id, pokemon.whiteKyurem.id] },
+    { id: "wild-sat-raids", scheduleType: "single", date: "2026-11-14", dayLabel: "토 14", startAt: "2026-11-14T10:00:00+09:00", endAt: "2026-11-14T18:00:00+09:00", availabilityTime: "10:00 ~ 18:00", title: "제크로무 · 화이트큐레무", category: "legendary", categoryLabel: "5성 레이드", raidTier: 5, rating: 5, priority: 5, reason: "토요일 한정", pokemon: [pokemon.zekrom, pokemon.whiteKyurem], guidePokemonIds: [pokemon.zekrom.id, pokemon.whiteKyurem.id], relatedPokemonIds: [pokemon.kyurem.id] },
     { id: "wild-sat-max", scheduleType: "single", date: "2026-11-14", dayLabel: "토 14", startAt: "2026-11-14T10:00:00+09:00", endAt: "2026-11-14T18:00:00+09:00", availabilityTime: "10:00 ~ 18:00", title: "다이맥스 디아루가 · 거다이맥스 두랄루돈", category: "max", categoryLabel: "맥스배틀", rating: 5, priority: 5, reason: "주말 핵심 전력", pokemon: [pokemon.dialga, pokemon.duraludon], guidePokemonIds: [pokemon.dialga.id, pokemon.duraludon.id] },
     { id: "wild-area-day-1", scheduleType: "single", date: "2026-11-14", dayLabel: "토 14", startAt: "2026-11-14T10:00:00+09:00", endAt: "2026-11-14T18:00:00+09:00", availabilityTime: wildAreaEvent.timeLabel, title: "GO WILD AREA DAY 1", category: "event", categoryLabel: "글로벌 이벤트", rating: 5, priority: 5, reason: wildAreaEvent.ratingLabel, pokemon: wildAreaEvent.days[0].pokemon, guidePokemonIds: wildAreaEvent.days[0].pokemon.map((item) => item.id), eventHref: wildAreaEvent.href, preparationPlanId: "wild-area-2026" },
     { id: "weekend-three-star", scheduleType: "range", date: "2026-11-14", dayLabel: "토 14", startAt: "2026-11-14T10:00:00+09:00", endAt: "2026-11-15T18:00:00+09:00", availabilityTime: "토 10:00 ~ 일 18:00", title: "모던 재킷 괴력몬", category: "legendary", categoryLabel: "3성 레이드", raidTier: 3, rating: 3, priority: 3, reason: "주말 한정 수집", pokemon: [pokemon.machamp], guidePokemonIds: [pokemon.machamp.id] },
-    { id: "wild-sun-raids", scheduleType: "single", date: "2026-11-15", dayLabel: "일 15", startAt: "2026-11-15T10:00:00+09:00", endAt: "2026-11-15T18:00:00+09:00", availabilityTime: "10:00 ~ 18:00", title: "레시라무 · 블랙큐레무", category: "legendary", categoryLabel: "5성 레이드", raidTier: 5, rating: 5, priority: 5, reason: "일요일 한정", pokemon: [pokemon.reshiram, pokemon.blackKyurem], guidePokemonIds: [pokemon.reshiram.id, pokemon.blackKyurem.id] },
+    { id: "wild-sun-raids", scheduleType: "single", date: "2026-11-15", dayLabel: "일 15", startAt: "2026-11-15T10:00:00+09:00", endAt: "2026-11-15T18:00:00+09:00", availabilityTime: "10:00 ~ 18:00", title: "레시라무 · 블랙큐레무", category: "legendary", categoryLabel: "5성 레이드", raidTier: 5, rating: 5, priority: 5, reason: "일요일 한정", pokemon: [pokemon.reshiram, pokemon.blackKyurem], guidePokemonIds: [pokemon.reshiram.id, pokemon.blackKyurem.id], relatedPokemonIds: [pokemon.kyurem.id] },
     { id: "wild-sun-max", scheduleType: "single", date: "2026-11-15", dayLabel: "일 15", startAt: "2026-11-15T10:00:00+09:00", endAt: "2026-11-15T18:00:00+09:00", availabilityTime: "10:00 ~ 18:00", title: "다이맥스 펄기아 · 거다이맥스 두랄루돈", category: "max", categoryLabel: "맥스배틀", rating: 5, priority: 5, reason: "주말 핵심 전력", pokemon: [pokemon.palkia, pokemon.duraludon], guidePokemonIds: [pokemon.palkia.id, pokemon.duraludon.id] },
     { id: "wild-area-day-2", scheduleType: "single", date: "2026-11-15", dayLabel: "일 15", startAt: "2026-11-15T10:00:00+09:00", endAt: "2026-11-15T18:00:00+09:00", availabilityTime: wildAreaEvent.timeLabel, summaryTimeMode: "end", title: "GO WILD AREA DAY 2", category: "event", categoryLabel: "글로벌 이벤트", rating: 5, priority: 5, reason: wildAreaEvent.ratingLabel, pokemon: wildAreaEvent.days[1].pokemon, guidePokemonIds: wildAreaEvent.days[1].pokemon.map((item) => item.id), eventHref: wildAreaEvent.href },
     miniorLeonids,

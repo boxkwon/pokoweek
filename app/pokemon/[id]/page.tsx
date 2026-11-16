@@ -12,6 +12,6 @@ export default async function PokemonGuidePage({ params }: { params: Promise<{ i
   const { id } = await params;
   const guide = getPokemonGuide(id);
   if (!guide) notFound();
-  if (guide.overallRating !== undefined) return <PokemonGuideDetail guide={guide} />;
+  if (guide.overallRating !== undefined || guide.actionGuide) return <PokemonGuideDetail guide={guide} />;
   return <PokemonGuideLegacyDetail guide={guide} />;
 }

@@ -57,6 +57,12 @@ export default function WildAreaPage() {
         </div>
       </section>
 
+      <section className="event-reason-board event-action-board">
+        <SectionHeader icon={<SwordsIcon />} title={wildAreaEvent.actionGuide.title} />
+        <p>{wildAreaEvent.actionGuide.description}</p>
+        <PrimaryCTA className="event-action-link" href={wildAreaEvent.actionGuide.href} leading={<SwordsIcon />}>완성 방법 보기</PrimaryCTA>
+      </section>
+
       <section className="event-prep-board" id="prep">
         <SectionHeader icon={<BagIcon />} title="준비 체크" />
         <div className="prep-content">

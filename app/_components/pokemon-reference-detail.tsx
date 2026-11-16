@@ -8,6 +8,7 @@ import { CategoryBadge, RatingStars, SectionHeader, TypeBadge } from "./design-s
 import { DetailBackButton } from "./detail-back-button";
 import { BagIcon, ChartIcon, CheckIcon, StarOutlineIcon, SwordsIcon, TargetIcon } from "./icons";
 import { PokemonArtwork } from "./pokemon-artwork";
+import { PokemonActionGuide } from "./pokemon-action-guide";
 import { PokemonCounterSection, PokemonRecommendationSection, PokemonWeaknessSection } from "./pokemon-guide-shared-sections";
 import { PokemonWeekSchedule } from "./pokemon-week-schedule";
 
@@ -180,6 +181,7 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
 
     {useCases.length > 0 ? <section className={`guide-mode-summary mode-count-${Math.min(useCases.length, 4)}`} aria-label="활용도 요약">{useCases.map((item) => <div key={item.key}><b>{item.label}</b><RatingStars value={item.rating} /></div>)}</section> : null}
 
+    {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} /> : null}
     <GuideUseCases guide={guide} />
     <GuideMovesets guide={guide} />
     <GuideTrainingOrder guide={guide} />

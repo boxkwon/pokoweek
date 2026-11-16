@@ -261,7 +261,9 @@ export function getGuidesByCategory(guides: ReturnType<typeof getGuidesForWeek>,
 
 export function getPokemonEventsForWeek(week: WeekGuide, pokemonId: string) {
   const matches = getEventsByWeek(week).filter((event) =>
-    event.guidePokemonIds.includes(pokemonId) || event.pokemon.some((item) => item.id === pokemonId));
+    event.guidePokemonIds.includes(pokemonId)
+    || event.relatedPokemonIds?.includes(pokemonId)
+    || event.pokemon.some((item) => item.id === pokemonId));
   const preferredByTime = new Map<string, WeekEvent>();
   for (const event of matches) {
     const key = `${event.startAt ?? event.date}|${event.endAt ?? event.date}`;

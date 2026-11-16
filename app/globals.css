@@ -432,6 +432,60 @@ svg { display: block; }
 .iv-advice-list > div + div { border-top: 1px solid #e0e5ec; }
 .iv-advice-list b { color: var(--blue); font-size: var(--type-body); }
 .iv-advice-list p { margin: 0; color: #273650; font-size: var(--type-body); font-weight: 700; line-height: 1.35; }
+
+.action-guide-board > header { margin-bottom: var(--space-1); }
+.action-guide-summary { margin: 0 0 var(--space-3); color: #52627d; font-size: var(--type-body); font-weight: 750; line-height: 1.45; }
+.action-goal-selector { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--space-1); padding-bottom: var(--space-3); border-bottom: 1px solid #dce2ea; }
+.action-goal-selector button { min-height: 42px; padding: var(--space-1) var(--space-2); border: 1px solid #cbd4e1; border-radius: var(--radius-sm); background: #f7f9fc; color: #35445c; font: inherit; font-size: 13px; font-weight: 900; }
+.action-goal-selector button.selected { border-color: #075fc9; background: #075fc9; color: #fff; }
+.action-guide-block { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid #dce2ea; }
+.action-guide-block > h3 { display: flex; align-items: center; gap: var(--space-2); margin: 0 0 var(--space-2); color: #082f69; font-size: var(--type-card-title); }
+.action-guide-block > h3 svg { width: 23px; height: 23px; color: #075fc9; stroke-width: 2.6; }
+.action-requirements-block { margin-top: 0; padding-top: var(--space-3); border-top: 0; }
+.action-requirements-block ul,.action-checklist-block ul,.action-flow-block ol { margin: 0; padding: 0; list-style: none; }
+.action-requirement { min-height: 60px; display: grid; grid-template-columns: 48px minmax(0,1fr) auto; align-items: center; gap: var(--space-2); }
+.action-requirement + .action-requirement { border-top: 1px solid #e0e5ec; }
+.action-requirement .pokemon-artwork { width: 48px; height: 48px; }
+.requirement-symbol { width: 34px; height: 34px; display: grid; place-items: center; margin-left: 7px; border-radius: 50%; background: #e7effb; color: #075fc9; font-size: 14px; font-weight: 950; }
+.action-requirement > div { min-width: 0; }
+.action-requirement strong { display: block; color: #172743; font-size: var(--type-body); }
+.action-requirement small { display: block; margin-top: 2px; color: #69758a; font-size: var(--type-caption); font-weight: 700; }
+.action-requirement > b { color: #075fc9; font-size: 15px; white-space: nowrap; }
+.action-keep-summary { margin-top: var(--space-2); padding: var(--space-2) var(--space-3); border-left: 4px solid #075fc9; background: #f2f6fc; }
+.action-keep-summary > b { display: block; margin-bottom: var(--space-1); color: #082f69; font-size: var(--type-body); }
+.action-keep-summary p { display: flex; justify-content: space-between; gap: var(--space-2); margin: 0; color: #52627d; font-size: var(--type-caption); font-weight: 800; }
+.action-keep-summary p + p { margin-top: 4px; }
+.action-keep-summary p strong { color: #172743; }
+.action-raid-estimate > div { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: var(--space-1) var(--space-2); padding: var(--space-2) 0; }
+.action-raid-estimate > div + div { border-top: 1px solid #e0e5ec; }
+.action-raid-estimate b { color: #273650; font-size: var(--type-body); }
+.action-raid-estimate strong { color: #c34820; font-size: var(--type-body); text-align: right; }
+.action-raid-estimate p { grid-column: 1 / -1; margin: 0; color: #69758a; font-size: var(--type-caption); font-weight: 700; line-height: 1.4; }
+.action-warning-block article { padding: var(--space-2) var(--space-3); border-left: 4px solid #e1a400; background: #fff8d9; }
+.action-warning-block article + article { margin-top: var(--space-2); }
+.action-warning-block article strong { color: #7f5600; font-size: var(--type-body); }
+.action-warning-block article p { margin: 4px 0 0; color: #5d4a1d; font-size: var(--type-caption); font-weight: 750; line-height: 1.45; }
+.action-goal-flow + .action-goal-flow { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid #dce2ea; }
+.action-goal-flow h4 { margin: 0 0 var(--space-2); color: #075fc9; font-size: var(--type-body); }
+.action-flow-block li { min-height: 54px; display: grid; grid-template-columns: 30px minmax(0,1fr); align-items: center; gap: var(--space-2); }
+.action-flow-block li + li { border-top: 1px solid #e0e5ec; }
+.action-flow-block li > b { width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: #075fc9; color: #fff; font-size: 13px; }
+.action-flow-block li strong { color: #172743; font-size: var(--type-body); }
+.action-flow-block li p { margin: 3px 0 0; color: #69758a; font-size: var(--type-caption); font-weight: 700; line-height: 1.35; }
+.action-checklist-block li + li { border-top: 1px solid #e0e5ec; }
+.action-checklist-block button { width: 100%; min-height: 52px; display: grid; grid-template-columns: 28px minmax(0,1fr); align-items: center; gap: var(--space-2); padding: var(--space-1) 0; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; }
+.action-checklist-block button i { width: 24px; height: 24px; display: grid; place-items: center; border: 2px solid #8793a5; border-radius: 5px; color: #fff; }
+.action-checklist-block button i.checked { border-color: #075fc9; background: #075fc9; }
+.action-checklist-block button i svg { width: 17px; height: 17px; }
+.action-checklist-block button strong { display: block; color: #172743; font-size: var(--type-body); line-height: 1.3; }
+.action-checklist-block button small { display: block; margin-top: 2px; color: #69758a; font-size: var(--type-caption); font-weight: 700; }
+.action-post-guides { display: grid; gap: var(--space-2); margin-top: var(--space-3); }
+.action-post-guides a,.event-action-link { min-height: 48px; display: flex; align-items: center; justify-content: center; gap: var(--space-2); padding: 0 var(--space-3); border-radius: var(--radius-md); background: #075fc9; color: #fff; font-size: var(--type-body); font-weight: 900; }
+.action-post-guides a svg,.event-action-link svg { width: 21px; height: 21px; }
+.action-post-guides a svg:last-child,.event-action-link svg:last-child { margin-left: auto; }
+.action-guide-source { min-height: 40px; display: flex; align-items: center; justify-content: flex-end; gap: var(--space-1); margin-top: var(--space-2); color: #52627d; font-size: var(--type-caption); font-weight: 800; }
+.action-guide-source svg { width: 16px; height: 16px; }
+.event-action-board > p { margin: 0 0 var(--space-3); color: #52627d; font-size: var(--type-body); font-weight: 750; line-height: 1.45; }
 .pokemon-week-list > a { min-height: 86px; display: grid; grid-template-columns: auto minmax(0,1fr) 18px; align-items: center; gap: var(--space-2); }
 .pokemon-week-list > a + a { border-top: 1px solid #e0e5ec; }
 .pokemon-week-list > a > div { min-width: 0; }
