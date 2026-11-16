@@ -4,6 +4,38 @@ import { CategoryBadge, PrimaryCTA, SectionHeader, TypeBadge } from "./design-sy
 import { CheckIcon, StarOutlineIcon, SwordsIcon, TargetIcon } from "./icons";
 import { PokemonArtwork } from "./pokemon-artwork";
 
+type CounterMode = "raid" | "mega" | "max" | "shadow";
+
+const counterModeLabels: Record<CounterMode, string> = {
+  raid: "레이드",
+  mega: "메가 레이드",
+  max: "맥스배틀",
+  shadow: "그림자 레이드",
+};
+
+function getCounterModes(guide: PokemonGuide): CounterMode[] {
+  const battleTypes = new Set(guide.battleTypes);
+
+  // Mega and Shadow describe the boss encounter itself. Their regular-form
+  // raid use case should not change the counter section's context.
+  if (battleTypes.has("mega")) return ["mega"];
+  if (battleTypes.has("shadow")) return ["shadow"];
+
+  const modes: CounterMode[] = [];
+  if (battleTypes.has("raid") || guide.useCases?.raid) modes.push("raid");
+  if (battleTypes.has("max") || battleTypes.has("gigantamax") || guide.useCases?.max) modes.push("max");
+
+  if (modes.length > 0) return modes;
+  if (guide.category === "mega") return ["mega"];
+  if (guide.category === "shadow") return ["shadow"];
+  if (guide.category === "max") return ["max"];
+  return ["raid"];
+}
+
+export function getCounterSectionDescription(guide: PokemonGuide) {
+  return `${getCounterModes(guide).map((mode) => counterModeLabels[mode]).join("·")}에서 효과적인 포켓몬`;
+}
+
 export function PokemonWeaknessSection({ guide }: { guide: PokemonGuide }) {
   if (guide.weaknesses.length === 0) return null;
   return <section className="weakness-board">
@@ -14,7 +46,7 @@ export function PokemonWeaknessSection({ guide }: { guide: PokemonGuide }) {
 
 export function PokemonCounterSection({ guide }: { guide: PokemonGuide }) {
   return <section className="counter-board">
-    <SectionHeader icon={<SwordsIcon />} title="추천 공격수" description="레이드·맥스배틀에서 효과적인 포켓몬" />
+    <SectionHeader icon={<SwordsIcon />} title="추천 공격수" description={getCounterSectionDescription(guide)} />
     {guide.dataStatus.counters === "ready" ? <>
       <div className="reference-counter-grid">
       {guide.counters.slice(0, 5).map((counter, index) => <article className={["gold", "silver", "bronze"][index] ?? "silver"} key={`${counter.pokemonId}-${index}`}>
