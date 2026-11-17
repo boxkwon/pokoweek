@@ -4,6 +4,7 @@ import { paths } from "../lib/paths";
 import {
   ApprovalManifestSchema,
   GuideCandidateBundleSchema,
+  NormalizedDatasetSchema,
   type GuideCandidate,
   type PokemonId,
   type ValidationReport,
@@ -67,6 +68,7 @@ export async function approveManualCandidates(reviewer: string, targets: readonl
 
 export async function publishApprovedCandidates() {
   const bundle = GuideCandidateBundleSchema.parse(await readJson(paths.candidateBundle));
+  const dataset = NormalizedDatasetSchema.parse(await readJson(paths.normalizedDataset));
   const manifest = ApprovalManifestSchema.parse(await readJson(paths.approvalManifest));
   const report = await validateDataEngine();
   if (report.factsStatus !== "verified" || report.fusionStatus !== "verified") {
@@ -88,7 +90,7 @@ export async function publishApprovedCandidates() {
     byId.set(candidate.pokemonId, projectCandidateForApp(candidate, {
       validationHash: entry.validationHash,
       approvedAt: entry.approvedAt,
-    }));
+    }, dataset));
   }
   const next = [...byId.values()];
   await writeJsonAtomic(pathForApprovedOverlays(), next);

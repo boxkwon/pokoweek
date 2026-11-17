@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-17T01:41:47.441Z",
+  "generatedAt": "2026-11-17T05:14:01.480Z",
   "sourceSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
   "pokemon": [
     {
@@ -1126,6 +1126,10 @@
         "stardust": 5000,
         "kyuremCandy": 5,
         "durationMinutes": 10,
+        "extensionMinutes": 10,
+        "maxMinutesPerUse": 120,
+        "maxTotalMinutes": 1440,
+        "effect": "slow_target_ring",
         "incompatibleWithOtherFieldEffects": true,
         "evidenceIds": [
           "official:white-field-effect",
@@ -1219,6 +1223,10 @@
         "stardust": 5000,
         "kyuremCandy": 5,
         "durationMinutes": 10,
+        "extensionMinutes": 10,
+        "maxMinutesPerUse": 120,
+        "maxTotalMinutes": 1440,
+        "effect": "freeze_wild_pokemon",
         "incompatibleWithOtherFieldEffects": true,
         "evidenceIds": [
           "official:black-field-effect",

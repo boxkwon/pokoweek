@@ -29,6 +29,44 @@ export type GuideMoveset = {
   chargedMove?: GuideMove;
   chargedMove2?: GuideMove;
   maxMove?: GuideMove;
+  conditions?: readonly string[];
+  reason?: string;
+};
+
+export type GuidePresentationMode = "default" | "fusion-first" | "training-first";
+
+export type GuideProgression = {
+  ivLabel: string;
+  costBaselineLabel: string;
+  stages: readonly {
+    level: 30 | 35 | 40 | 50;
+    cp: number;
+    decision: "recommended" | "conditional" | "hold" | "not_evaluated";
+    reason: string;
+    stopCondition: string;
+    cumulativeCost: { stardust: number; candy: number; xlCandy: number };
+    incrementalCost: { stardust: number; candy: number; xlCandy: number };
+  }[];
+};
+
+export type GuideFusionSummary = {
+  resultName: string;
+  partnerName: string;
+  materials: readonly { label: string; amount: number }[];
+  specialMove: {
+    sourceMove: string;
+    targetMove: string;
+    note: string;
+  };
+  partnerNote: string;
+  fieldEffect: {
+    move: string;
+    effect: string;
+    cost: string;
+    extension: string;
+    exclusivity: string;
+  };
+  source?: { name: string; url: string };
 };
 
 export type ActionRequirement =
@@ -135,6 +173,7 @@ export type PokemonGuide = {
   overallRating?: 1 | 2 | 3 | 4 | 5 | null;
   verdict?: "must_build" | "recommended" | "conditional" | "hold" | "low_priority";
   verdictLabel?: string;
+  presentationMode?: GuidePresentationMode;
   useCases?: Partial<Record<GuideMode, GuideUseCase>>;
   movesets?: Partial<Record<GuideMode, GuideMoveset>>;
   investment?: {
@@ -149,6 +188,9 @@ export type PokemonGuide = {
     rareCandy?: InvestmentLevel;
     eliteTm?: "required" | "recommended" | "conditional" | "not_needed";
   };
+  investmentReasons?: Partial<Record<"stardust" | "candy" | "powerUp" | "secondMove" | "maxMove" | "megaEnergy" | "xlCandy" | "rareCandy", string>>;
+  progression?: GuideProgression;
+  fusionSummary?: GuideFusionSummary;
   ivAdvice?: {
     general?: string;
     raid?: string;
@@ -343,11 +385,11 @@ const kyuremFusionGoals = [
       { id: "white-reshiram-candy", type: "candy", pokemonId: pokemon.reshiram.id, amount: 30 },
     ],
     steps: [
-      { id: "white-secure-kyurem", title: "융합할 큐레무 확보", description: "개체값과 얼어붙은세계 보유 여부를 함께 확인하세요." },
+      { id: "white-secure-kyurem", title: "융합할 큐레무 확보", description: "개체값을 확인하세요. 얼어붙은세계는 특별 기술을 원할 때 확인하며 융합 자체의 필수조건은 아닙니다." },
       { id: "white-secure-reshiram", title: "레시라무 1마리 확보", description: "화이트큐레무의 융합 파트너입니다." },
       { id: "white-energy", title: "블레이즈 에너지 1,000 모으기", description: "화이트큐레무 레이드에서 얻을 수 있어요." },
       { id: "white-candy", title: "양쪽 사탕 30개씩 준비", description: "큐레무 사탕 30개와 레시라무 사탕 30개가 필요해요." },
-      { id: "white-final-check", title: "융합 대상과 기술 최종 확인", description: "얼어붙은세계는 융합 후 콜드플레어로 바뀝니다." },
+      { id: "white-final-check", title: "특별 기술을 원하면 최종 확인", description: "얼어붙은세계를 보유한 큐레무는 융합 후 콜드플레어로 바뀝니다." },
       { id: "white-fuse", title: "화이트큐레무로 융합" },
       { id: "white-train", title: "융합 후 기술과 강화 순서 확인" },
     ],
@@ -356,29 +398,29 @@ const kyuremFusionGoals = [
       { id: "white-reshiram-ready", label: "레시라무 1마리를 보유했나요?", relatedPokemonId: pokemon.reshiram.id },
       { id: "white-energy-ready", label: "블레이즈 에너지 1,000이 있나요?" },
       { id: "white-candy-ready", label: "큐레무·레시라무 사탕이 각각 30개 있나요?" },
-      { id: "white-move-ready", label: "큐레무가 얼어붙은세계를 알고 있나요?", reason: "융합 후 콜드플레어를 얻기 위한 필수 확인", severity: "high" },
+      { id: "white-move-ready", label: "화이트용 큐레무가 얼어붙은세계를 알고 있나요?", reason: "콜드플레어를 원할 때 확인 · 융합 자체는 기술 없이도 가능", severity: "high" },
       { id: "white-goal-ready", label: "목표가 화이트큐레무가 맞는지 확인했나요?" },
     ],
     warnings: [
       {
         id: "white-glaciate-warning",
         type: "move_check",
-        title: "융합 전에 얼어붙은세계를 확인하세요",
-        description: "얼어붙은세계를 아는 큐레무를 레시라무와 융합해야 콜드플레어로 바뀝니다. 현재 화이트큐레무는 기술머신스페셜이나 대단한 기술머신스페셜로 콜드플레어를 배울 수 없어요.",
+        title: "콜드플레어를 원하면 얼어붙은세계를 확인하세요",
+        description: "얼어붙은세계가 없는 큐레무도 융합할 수 있습니다. 특별 기술을 원한다면 얼어붙은세계를 보유한 다른 큐레무를 선택하거나 현재 습득 가능 여부를 게임·공식 안내에서 확인한 뒤 진행하세요. 융합 후 화이트큐레무는 일반·대단한 기술머신스페셜로 콜드플레어를 직접 배울 수 없습니다.",
         importance: "high",
       },
       {
         id: "white-field-effect",
         type: "move_check",
         title: "콜드플레어 필드 효과",
-        description: "별의모래 5,000과 큐레무의 사탕 5개를 사용하면 10분 동안 타겟 링이 천천히 움직여 Excellent를 노리기 쉬워집니다.",
+        description: "별의모래 5,000과 큐레무 사탕 5개로 10분 동안 타겟 링이 천천히 움직입니다. 같은 자원을 추가 사용해 10분 단위로 연장하며, 한 번에 최대 2시간·반복 사용으로 최대 24시간까지 연장할 수 있습니다. 다른 필드 효과와 동시에 사용할 수 없습니다.",
         importance: "medium",
       },
       {
         id: "white-fusion-state",
         type: "general",
         title: "합체 상태와 보관 제한",
-        description: "직접 분리할 때까지 합체 상태가 유지되며 분리에는 에너지나 사탕이 들지 않습니다. 합체된 포켓몬은 교환하거나 박사·Pokémon HOME으로 보낼 수 없습니다.",
+        description: "큐레무가 레시라무를 흡수하며, 레시라무는 결합 중 별도로 사용할 수 없지만 영구 소모되지는 않습니다. 분리하면 돌아오고 에너지·사탕 비용은 없습니다. 합체된 포켓몬은 교환하거나 박사·Pokémon HOME으로 보낼 수 없습니다.",
         importance: "medium",
       },
     ],
@@ -396,11 +438,11 @@ const kyuremFusionGoals = [
       { id: "black-zekrom-candy", type: "candy", pokemonId: pokemon.zekrom.id, amount: 30 },
     ],
     steps: [
-      { id: "black-secure-kyurem", title: "융합할 큐레무 확보", description: "개체값과 얼어붙은세계 보유 여부를 함께 확인하세요." },
+      { id: "black-secure-kyurem", title: "융합할 큐레무 확보", description: "개체값을 확인하세요. 얼어붙은세계는 특별 기술을 원할 때 확인하며 융합 자체의 필수조건은 아닙니다." },
       { id: "black-secure-zekrom", title: "제크로무 1마리 확보", description: "블랙큐레무의 융합 파트너입니다." },
       { id: "black-energy", title: "볼트 에너지 1,000 모으기", description: "블랙큐레무 레이드에서 얻을 수 있어요." },
       { id: "black-candy", title: "양쪽 사탕 30개씩 준비", description: "큐레무 사탕 30개와 제크로무 사탕 30개가 필요해요." },
-      { id: "black-final-check", title: "융합 대상과 기술 최종 확인", description: "얼어붙은세계는 융합 후 프리즈볼트로 바뀝니다." },
+      { id: "black-final-check", title: "특별 기술을 원하면 최종 확인", description: "얼어붙은세계를 보유한 큐레무는 융합 후 프리즈볼트로 바뀝니다." },
       { id: "black-fuse", title: "블랙큐레무로 융합" },
       { id: "black-train", title: "융합 후 기술과 강화 순서 확인" },
     ],
@@ -409,29 +451,29 @@ const kyuremFusionGoals = [
       { id: "black-zekrom-ready", label: "제크로무 1마리를 보유했나요?", relatedPokemonId: pokemon.zekrom.id },
       { id: "black-energy-ready", label: "볼트 에너지 1,000이 있나요?" },
       { id: "black-candy-ready", label: "큐레무·제크로무 사탕이 각각 30개 있나요?" },
-      { id: "black-move-ready", label: "큐레무가 얼어붙은세계를 알고 있나요?", reason: "융합 후 프리즈볼트를 얻기 위한 필수 확인", severity: "high" },
+      { id: "black-move-ready", label: "블랙용 큐레무가 얼어붙은세계를 알고 있나요?", reason: "프리즈볼트를 원할 때 확인 · 융합 자체는 기술 없이도 가능", severity: "high" },
       { id: "black-goal-ready", label: "목표가 블랙큐레무가 맞는지 확인했나요?" },
     ],
     warnings: [
       {
         id: "black-glaciate-warning",
         type: "move_check",
-        title: "융합 전에 얼어붙은세계를 확인하세요",
-        description: "얼어붙은세계를 아는 큐레무를 제크로무와 융합해야 프리즈볼트로 바뀝니다. 현재 블랙큐레무는 기술머신스페셜이나 대단한 기술머신스페셜로 프리즈볼트를 배울 수 없어요.",
+        title: "프리즈볼트를 원하면 얼어붙은세계를 확인하세요",
+        description: "얼어붙은세계가 없는 큐레무도 융합할 수 있습니다. 특별 기술을 원한다면 얼어붙은세계를 보유한 다른 큐레무를 선택하거나 현재 습득 가능 여부를 게임·공식 안내에서 확인한 뒤 진행하세요. 융합 후 블랙큐레무는 일반·대단한 기술머신스페셜로 프리즈볼트를 직접 배울 수 없습니다.",
         importance: "high",
       },
       {
         id: "black-field-effect",
         type: "move_check",
         title: "프리즈볼트 필드 효과",
-        description: "별의모래 5,000과 큐레무의 사탕 5개를 사용하면 10분 동안 만난 포켓몬이 움직이지 않아 포획하기 쉬워집니다.",
+        description: "별의모래 5,000과 큐레무 사탕 5개로 10분 동안 등장 포켓몬의 움직임을 멈춥니다. 같은 자원을 추가 사용해 10분 단위로 연장하며, 한 번에 최대 2시간·반복 사용으로 최대 24시간까지 연장할 수 있습니다. 다른 필드 효과와 동시에 사용할 수 없습니다.",
         importance: "medium",
       },
       {
         id: "black-fusion-state",
         type: "general",
         title: "합체 상태와 보관 제한",
-        description: "직접 분리할 때까지 합체 상태가 유지되며 분리에는 에너지나 사탕이 들지 않습니다. 합체된 포켓몬은 교환하거나 박사·Pokémon HOME으로 보낼 수 없습니다.",
+        description: "큐레무가 제크로무를 흡수하며, 제크로무는 결합 중 별도로 사용할 수 없지만 영구 소모되지는 않습니다. 분리하면 돌아오고 에너지·사탕 비용은 없습니다. 합체된 포켓몬은 교환하거나 박사·Pokémon HOME으로 보낼 수 없습니다.",
         importance: "medium",
       },
     ],

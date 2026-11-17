@@ -36,12 +36,12 @@
     },
     {
       "id": "official:white-field-effect",
-      "claim": "콜드플레어 필드 효과는 별의모래 5,000과 큐레무의 사탕 5개로 10분간 발동한다.",
+      "claim": "콜드플레어 필드 효과는 별의모래 5,000과 큐레무의 사탕 5개로 10분간 발동하고 타겟 링을 느리게 한다. 같은 자원을 추가 사용하면 10분 단위로 한 번에 최대 2시간, 반복 사용으로 최대 24시간까지 연장할 수 있다.",
       "paths": ["fusionRecipes.white-kyurem.fieldEffect"]
     },
     {
       "id": "official:black-field-effect",
-      "claim": "프리즈볼트 필드 효과는 별의모래 5,000과 큐레무의 사탕 5개로 10분간 발동한다.",
+      "claim": "프리즈볼트 필드 효과는 별의모래 5,000과 큐레무의 사탕 5개로 10분간 발동하고 등장 포켓몬의 움직임을 멈춘다. 같은 자원을 추가 사용하면 10분 단위로 한 번에 최대 2시간, 반복 사용으로 최대 24시간까지 연장할 수 있다.",
       "paths": ["fusionRecipes.black-kyurem.fieldEffect"]
     },
     {
@@ -92,6 +92,10 @@
         "stardust": 5000,
         "kyuremCandy": 5,
         "durationMinutes": 10,
+        "extensionMinutes": 10,
+        "maxMinutesPerUse": 120,
+        "maxTotalMinutes": 1440,
+        "effect": "slow_target_ring",
         "incompatibleWithOtherFieldEffects": true,
         "evidenceIds": ["official:white-field-effect", "official:field-effect-exclusivity"]
       },
@@ -146,6 +150,10 @@
         "stardust": 5000,
         "kyuremCandy": 5,
         "durationMinutes": 10,
+        "extensionMinutes": 10,
+        "maxMinutesPerUse": 120,
+        "maxTotalMinutes": 1440,
+        "effect": "freeze_wild_pokemon",
         "incompatibleWithOtherFieldEffects": true,
         "evidenceIds": ["official:black-field-effect", "official:field-effect-exclusivity"]
       },

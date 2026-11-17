@@ -2,7 +2,7 @@ import { readJson, writeJsonAtomic } from "../lib/files";
 import { paths } from "../lib/paths";
 import { validationFingerprint } from "../manual/approval";
 import { projectCandidateForApp } from "../manual/projection";
-import { GuideCandidateBundleSchema } from "../schemas";
+import { GuideCandidateBundleSchema, NormalizedDatasetSchema } from "../schemas";
 import { validateDataEngine } from "../validators/validate";
 
 async function main() {
@@ -10,6 +10,7 @@ async function main() {
     throw new Error("Preview candidate overlays cannot be prepared in the Production environment.");
   }
   const bundle = GuideCandidateBundleSchema.parse(await readJson(paths.candidateBundle));
+  const dataset = NormalizedDatasetSchema.parse(await readJson(paths.normalizedDataset));
   const report = await validateDataEngine();
   if (report.factsStatus !== "verified" || report.fusionStatus !== "verified") {
     throw new Error("Reviewed facts and fusion evidence are required before preparing a UI preview.");
@@ -28,7 +29,7 @@ async function main() {
   const overlays = bundle.candidates.map((candidate) => projectCandidateForApp(candidate, {
     validationHash,
     previewOnly: true,
-  }));
+  }, dataset));
   await writeJsonAtomic(paths.previewOverlays, overlays);
   console.log(JSON.stringify({
     stage: "preview_prepare",

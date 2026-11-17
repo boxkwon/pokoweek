@@ -96,7 +96,25 @@ test("fusion checklist state and post-fusion destinations stay independent for W
   const blackMoveCheck = black.checklist?.find((item) => item.id.includes("move"));
   assert.ok(whiteMoveCheck?.label.includes("얼어붙은세계"));
   assert.ok(blackMoveCheck?.label.includes("얼어붙은세계"));
+  assert.ok(whiteMoveCheck?.label.includes("화이트용"));
+  assert.ok(blackMoveCheck?.label.includes("블랙용"));
   assert.notEqual(`${white.id}:${whiteMoveCheck?.id}`, `${black.id}:${blackMoveCheck?.id}`);
+});
+
+test("fusion recipes preserve field effect cost, extension limits, and distinct effects", async () => {
+  const dataset = await normalized();
+  const white = dataset.fusionRecipes.find((item) => item.resultPokemonId === "white-kyurem")!;
+  const black = dataset.fusionRecipes.find((item) => item.resultPokemonId === "black-kyurem")!;
+  for (const recipe of [white, black]) {
+    assert.equal(recipe.fieldEffect.durationMinutes, 10);
+    assert.equal(recipe.fieldEffect.stardust, 5000);
+    assert.equal(recipe.fieldEffect.kyuremCandy, 5);
+    assert.equal(recipe.fieldEffect.extensionMinutes, 10);
+    assert.equal(recipe.fieldEffect.maxMinutesPerUse, 120);
+    assert.equal(recipe.fieldEffect.maxTotalMinutes, 1440);
+  }
+  assert.equal(white.fieldEffect.effect, "slow_target_ring");
+  assert.equal(black.fieldEffect.effect, "freeze_wild_pokemon");
 });
 
 test("limited raid benchmarks compare the same target profile without claiming DPS", async () => {

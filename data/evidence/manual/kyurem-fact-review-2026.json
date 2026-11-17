@@ -92,15 +92,18 @@
       "category": "acquisition_special_conditions",
       "requiredForPublish": true,
       "status": "reviewed",
-      "originalValue": "Glaciate 보유 큐레무를 레시라무/제크로무와 융합하면 Ice Burn/Freeze Shock으로 변환. 두 전용 기술은 기술머신으로 습득 불가하며 분리 시 Glaciate로 복귀",
-      "comparisonResult": "Pokémon GO 공식 공지의 재료, 기술 변환, 분리, 보관·교환 제한, 필드 효과 조건과 일치",
+      "originalValue": "Glaciate 보유 큐레무를 레시라무/제크로무와 융합하면 Ice Burn/Freeze Shock으로 변환. 두 전용 기술은 기술머신으로 습득 불가하며 분리 시 Glaciate로 복귀. 필드 효과는 5,000 별의모래와 큐레무 사탕 5개로 10분 발동하고 10분 단위로 한 번에 최대 2시간, 반복 사용으로 최대 24시간 연장",
+      "comparisonResult": "Pokémon GO 공식 공지의 재료, 기술 변환, 분리, 보관·교환 제한, 필드 효과 비용·효과·연장 조건과 일치",
       "sourceEvidenceIds": [
         "official:white-materials",
         "official:black-materials",
         "official:fusion-state-separation",
         "official:white-move",
         "official:black-move",
-        "official:fusion-storage-restrictions"
+        "official:fusion-storage-restrictions",
+        "official:white-field-effect",
+        "official:black-field-effect",
+        "official:field-effect-exclusivity"
       ],
       "sources": [
         {

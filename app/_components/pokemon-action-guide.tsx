@@ -160,7 +160,8 @@ export function PokemonActionGuide({
     </div>
 
     <div className="action-guide-block action-requirements-block">
-      <h3><BagIcon />필요한 것</h3>
+      <h3><BagIcon />융합 자체에 필요한 것</h3>
+      {actionGuide.type === "fusion" ? <p className="action-fusion-requirement-note"><b>중요</b> 얼어붙은세계가 없어도 융합 자체는 가능해요. 아래 준비물과 특별 기술 확인을 구분해 주세요.</p> : null}
       <ul>{requirements.map((requirement) => <RequirementRow requirement={requirement} key={requirementKey(requirement)} />)}</ul>
       <div className="action-keep-summary">
         <b>몇 마리를 남겨야 하나요?</b>
@@ -184,7 +185,7 @@ export function PokemonActionGuide({
     </div>
 
     {warnings.length > 0 ? <div className="action-guide-block action-warning-block">
-      <h3><TargetIcon />융합 전 필수 확인</h3>
+      <h3><TargetIcon />특별 기술과 융합 후 주의사항</h3>
       {warnings.map((warning) => <article className={`warning-${warning.importance}`} key={warning.id}>
         <strong>{warning.title}</strong>
         <p>{warning.description}</p>
@@ -203,7 +204,7 @@ export function PokemonActionGuide({
     </div>
 
     {checklist.length > 0 ? <div className="action-guide-block action-checklist-block">
-      <h3><CheckIcon />융합하기 전에 확인하세요</h3>
+      <h3><CheckIcon />융합 조건과 특별 기술을 확인하세요</h3>
       <ul>{checklist.map(({ goalId, item }) => {
         const itemKey = `${goalId}:${item.id}`;
         return <li key={itemKey}>
