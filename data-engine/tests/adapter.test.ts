@@ -6,10 +6,16 @@ import path from "node:path";
 import { GuideCandidateBundleSchema, NormalizedDatasetSchema } from "../schemas";
 import { projectCandidateForApp } from "../manual/projection";
 
-test("empty approved overlays preserve current production guide objects", () => {
-  const guides = [{ id: "kyurem", reason: "legacy" }];
+test("approved overlays leave unrelated production guide objects unchanged", () => {
+  const guides = [{ id: "unpublished-guide", reason: "legacy" }];
   const result = applyApprovedGuideOverlays(guides);
   assert.deepEqual(result, guides);
+});
+
+test("published Kyurem overlay is applied without inventing a performance rating", () => {
+  const [guide] = applyApprovedGuideOverlays([{ id: "kyurem", reason: "legacy", overallRating: 5 as number | null }]);
+  assert.notEqual(guide.reason, "legacy");
+  assert.equal(guide.overallRating, null);
 });
 
 test("a candidate with unknown performance keeps null ratings instead of inventing stars", async () => {

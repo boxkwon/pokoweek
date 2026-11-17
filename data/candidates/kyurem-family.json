@@ -506,7 +506,9 @@
         "sourcePackageHash": "a29cc077440ac0056e081ea21b00c340a5fe81e6d4280287cc3f57def1b19e7e"
       },
       "review": {
-        "status": "pending"
+        "status": "approved",
+        "reviewedAt": "2026-11-17T07:06:38.263Z",
+        "reviewer": "boxkwon"
       }
     },
     {
@@ -1067,7 +1069,9 @@
         "sourcePackageHash": "2bddc2d898570066bd7ee2bb1d344c4f78f0ea84acd1368314a14d88eb6f6115"
       },
       "review": {
-        "status": "pending"
+        "status": "approved",
+        "reviewedAt": "2026-11-17T07:06:38.263Z",
+        "reviewer": "boxkwon"
       }
     },
     {
@@ -1628,7 +1632,9 @@
         "sourcePackageHash": "1545374606f676f6b5ca36b6843f6ba7548d4e773b140e815503f974e59cd43b"
       },
       "review": {
-        "status": "pending"
+        "status": "approved",
+        "reviewedAt": "2026-11-17T07:06:38.263Z",
+        "reviewer": "boxkwon"
       }
     }
   ],

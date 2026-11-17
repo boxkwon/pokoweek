@@ -1,4 +1,26 @@
 {
   "schemaVersion": 1,
-  "guides": []
+  "guides": [
+    {
+      "pokemonId": "kyurem",
+      "sourceSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
+      "validationHash": "17ef321b57a449e12e4fede9c9da2ffc1d418702efd90d9761f1a839b09b15a0",
+      "approvedAt": "2026-11-17T07:06:38.263Z",
+      "approvedBy": "boxkwon"
+    },
+    {
+      "pokemonId": "white-kyurem",
+      "sourceSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
+      "validationHash": "17ef321b57a449e12e4fede9c9da2ffc1d418702efd90d9761f1a839b09b15a0",
+      "approvedAt": "2026-11-17T07:06:38.263Z",
+      "approvedBy": "boxkwon"
+    },
+    {
+      "pokemonId": "black-kyurem",
+      "sourceSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
+      "validationHash": "17ef321b57a449e12e4fede9c9da2ffc1d418702efd90d9761f1a839b09b15a0",
+      "approvedAt": "2026-11-17T07:06:38.263Z",
+      "approvedBy": "boxkwon"
+    }
+  ]
 }

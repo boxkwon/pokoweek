@@ -49,10 +49,11 @@ test("current, elite, and fusion-only charged move acquisition regressions are c
   assert.equal(black.moves.charged.find((item) => item.name === "Freeze Shock")?.acquisition, "special");
 });
 
-test("rewritten candidates retain unknown performance, pass editorial decisions, and remain pending", async () => {
+test("published candidates retain unknown performance and their reviewed editorial decisions", async () => {
   const bundle = GuideCandidateBundleSchema.parse(JSON.parse(await readFile(path.join(process.cwd(), "data/candidates/kyurem-family.json"), "utf8")));
   assert.equal(bundle.candidates.every((item) => item.performanceRating === null), true);
-  assert.equal(bundle.candidates.every((item) => item.review.status === "pending"), true);
+  assert.equal(bundle.candidates.every((item) => item.review.status === "approved"), true);
+  assert.equal(bundle.candidates.every((item) => item.review.status === "approved" && item.review.reviewer === "boxkwon"), true);
   assert.equal(bundle.candidates.every((item) => item.editorialStatus === "ready"), true);
   assert.equal(bundle.candidates.every((item) => item.decisionQuestions.length === 8), true);
 });

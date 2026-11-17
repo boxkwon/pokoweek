@@ -35,7 +35,7 @@ test("fixture candidates cannot be marked approved", () => {
   }));
 });
 
-test("manual AI candidates retain package provenance and remain pending", async () => {
+test("approved manual AI candidates retain package provenance and reviewer metadata", async () => {
   const packageFile = path.join(process.cwd(), "data/manual/packages/kyurem.json");
   const guidePackage = ManualGuidePackageSchema.parse(JSON.parse(await readFile(packageFile, "utf8")));
   const candidateFile = path.join(process.cwd(), "data/candidates/kyurem-family.json");
@@ -44,7 +44,8 @@ test("manual AI candidates retain package provenance and remain pending", async 
   assert.equal(bundle.usage, null);
   assert.equal(candidate?.generationMethod, "manual_ai");
   assert.equal(candidate?.generatedBy.sourcePackageHash, guidePackage.packageHash);
-  assert.equal(candidate?.review.status, "pending");
+  assert.equal(candidate?.review.status, "approved");
+  assert.equal(candidate?.review.status === "approved" ? candidate.review.reviewer : undefined, "boxkwon");
 });
 
 test("manual AI candidates require a source package hash", () => {
