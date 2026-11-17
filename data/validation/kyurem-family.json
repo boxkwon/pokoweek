@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-17T01:47:41.638Z",
+  "datasetHash": "c4eaef35c2b60cb3a35d4e1bdec58d53956fee290e3ab4daa41aaa0da423bc82",
+  "schemaValid": true,
+  "factsStatus": "verified",
+  "fusionStatus": "verified",
+  "factReviews": [
+    {
+      "id": "review:kyurem-stats-types",
+      "category": "base_stats_types",
+      "requiredForPublish": true,
+      "status": "reviewed"
+    },
+    {
+      "id": "review:kyurem-form-move-pools",
+      "category": "form_move_pools",
+      "requiredForPublish": true,
+      "status": "reviewed"
+    },
+    {
+      "id": "review:kyurem-move-metrics",
+      "category": "pve_pvp_move_metrics",
+      "requiredForPublish": true,
+      "status": "reviewed"
+    },
+    {
+      "id": "review:kyurem-acquisition-special-conditions",
+      "category": "acquisition_special_conditions",
+      "requiredForPublish": true,
+      "status": "reviewed"
+    },
+    {
+      "id": "review:kyurem-cp-level-context",
+      "category": "cp_level_context",
+      "requiredForPublish": true,
+      "status": "reviewed"
+    },
+    {
+      "id": "review:kyurem-power-up-costs",
+      "category": "power_up_costs",
+      "requiredForPublish": true,
+      "status": "reviewed"
+    },
+    {
+      "id": "review:kyurem-limited-benchmarks",
+      "category": "limited_benchmark_comparison",
+      "requiredForPublish": false,
+      "status": "needs_review"
+    }
+  ],
+  "issues": [],
+  "structuralCompleteness": [
+    {
+      "pokemonId": "kyurem",
+      "status": "complete",
+      "missing": []
+    },
+    {
+      "pokemonId": "white-kyurem",
+      "status": "complete",
+      "missing": []
+    },
+    {
+      "pokemonId": "black-kyurem",
+      "status": "complete",
+      "missing": []
+    }
+  ],
+  "editorialReadiness": [
+    {
+      "pokemonId": "kyurem",
+      "status": "ready",
+      "ready": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "white-kyurem",
+      "status": "ready",
+      "ready": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "black-kyurem",
+      "status": "ready",
+      "ready": true,
+      "blockers": []
+    }
+  ]
+}

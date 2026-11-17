@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-17T15:30:00+09:00",
+  "entries": [
+    {
+      "id": "review:kyurem-stats-types",
+      "category": "base_stats_types",
+      "requiredForPublish": true,
+      "status": "reviewed",
+      "originalValue": "큐레무 246/170/245, 화이트·블랙큐레무 310/183/245; 세 폼 모두 드래곤/얼음",
+      "comparisonResult": "PoGo API 원본 스냅샷, Bulbapedia의 Pokémon GO 폼별 능력치·타입과 일치",
+      "sourceEvidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6"
+      ],
+      "sources": [
+        {
+          "url": "https://pogoapi.net/api/v1/pokemon_stats.json",
+          "publisher": "PoGo API",
+          "retrievedAt": "2026-11-17T00:49:59.500Z"
+        },
+        {
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Kyurem_(GO)",
+          "publisher": "Bulbapedia",
+          "retrievedAt": "2026-11-17T15:30:00+09:00"
+        }
+      ],
+      "notes": [
+        "PoGo API 엔드포인트 전체가 아니라 큐레무 3종에 해당하는 레코드만 대조했다."
+      ]
+    },
+    {
+      "id": "review:kyurem-form-move-pools",
+      "category": "form_move_pools",
+      "requiredForPublish": true,
+      "status": "reviewed",
+      "originalValue": "큐레무: Dragon Breath/Steel Wing 및 Dragon Claw/Blizzard/Draco Meteor/Glaciate. 화이트: Dragon Breath/Steel Wing/Ice Fang 및 Dragon Pulse/Blizzard/Ancient Power/Focus Blast/Fusion Flare/Ice Burn. 블랙: Dragon Tail/Shadow Claw 및 Iron Head/Blizzard/Stone Edge/Outrage/Fusion Bolt/Freeze Shock",
+      "comparisonResult": "PoGo API current move pool과 Bulbapedia의 폼별 Pokémon GO 기술 목록을 대조했으며 대상 기술의 폼 귀속이 일치",
+      "sourceEvidenceIds": [
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "official:white-move",
+        "official:black-move"
+      ],
+      "sources": [
+        {
+          "url": "https://pogoapi.net/api/v1/current_pokemon_moves.json",
+          "publisher": "PoGo API",
+          "retrievedAt": "2026-11-17T00:49:59.500Z"
+        },
+        {
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Kyurem_(GO)",
+          "publisher": "Bulbapedia",
+          "retrievedAt": "2026-11-17T15:30:00+09:00"
+        }
+      ],
+      "notes": [
+        "Ice Burn과 Freeze Shock은 일반 current move pool이 아니라 검증된 융합 레시피로 추가되는 special 기술이다."
+      ]
+    },
+    {
+      "id": "review:kyurem-move-metrics",
+      "category": "pve_pvp_move_metrics",
+      "requiredForPublish": true,
+      "status": "reviewed",
+      "originalValue": "Ice Burn PvE 90/-50/2000ms, PvP 120/-60 및 30% 상대 방어 -1; Freeze Shock PvE 160/-100/1500ms, PvP 120/-60 및 30% 상대 공격 -1. 추천 조합에 쓰이는 나머지 기술도 PvE/PvP 수치를 별도 보존",
+      "comparisonResult": "PoGo API fast/charged 및 PvP move 원본과 Bulbapedia의 현재 기술 표를 대조해 일치. PvE와 PvP 수치를 혼용하지 않음",
+      "sourceEvidenceIds": [
+        "pogoapi:fast_moves:3c6781e7ebe7",
+        "pogoapi:charged_moves:a09029272289",
+        "pogoapi:pvp_fast_moves:d944f25ce672",
+        "pogoapi:pvp_charged_moves:e9213b0744b6"
+      ],
+      "sources": [
+        {
+          "url": "https://pogoapi.net/api/v1/charged_moves.json",
+          "publisher": "PoGo API",
+          "retrievedAt": "2026-11-17T00:49:59.500Z"
+        },
+        {
+          "url": "https://bulbapedia.bulbagarden.net/wiki/Kyurem_(GO)",
+          "publisher": "Bulbapedia",
+          "retrievedAt": "2026-11-17T15:30:00+09:00"
+        }
+      ],
+      "notes": [
+        "일부 제3자 페이지의 과거 Ice Burn 위력 80 표기는 현재 PoGo API와 Bulbapedia의 90과 달라 현재값 검증 근거에서 제외했다.",
+        "효과 발동 확률과 스탯 변화는 별도 필드로 유지한다."
+      ]
+    },
+    {
+      "id": "review:kyurem-acquisition-special-conditions",
+      "category": "acquisition_special_conditions",
+      "requiredForPublish": true,
+      "status": "reviewed",
+      "originalValue": "Glaciate 보유 큐레무를 레시라무/제크로무와 융합하면 Ice Burn/Freeze Shock으로 변환. 두 전용 기술은 기술머신으로 습득 불가하며 분리 시 Glaciate로 복귀",
+      "comparisonResult": "Pokémon GO 공식 공지의 재료, 기술 변환, 분리, 보관·교환 제한, 필드 효과 조건과 일치",
+      "sourceEvidenceIds": [
+        "official:white-materials",
+        "official:black-materials",
+        "official:fusion-state-separation",
+        "official:white-move",
+        "official:black-move",
+        "official:fusion-storage-restrictions"
+      ],
+      "sources": [
+        {
+          "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+          "publisher": "Pokémon GO",
+          "retrievedAt": "2026-11-17T15:30:00+09:00"
+        }
+      ],
+      "notes": [
+        "Glaciate는 융합 자체의 재료가 아니라 전용 기술 변환을 원하는 경우의 사전 확인이다."
+      ]
+    },
+    {
+      "id": "review:kyurem-cp-level-context",
+      "category": "cp_level_context",
+      "requiredForPublish": true,
+      "status": "reviewed",
+      "originalValue": "15/15/15 기준 큐레무 Lv.50 4041, Lv.51 Best Buddy 4090; 화이트·블랙 Lv.50 5206, Lv.51 Best Buddy 5268. PoGo API max_cp는 각각 4090/5268",
+      "comparisonResult": "CP 공식과 Lv.50 CPM으로 계산한 값은 Lv.50 공개값과 일치하고 PoGo API max_cp는 Lv.51 Best Buddy 공개값과 일치. 서로 다른 레벨 문맥이므로 불일치 오류가 아님",
+      "sourceEvidenceIds": [
+        "pogoapi:pokemon_max_cp:466bf226715d",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "reference:cp-formula",
+        "reference:level-50-cpm"
+      ],
+      "sources": [
+        {
+          "url": "https://pogoapi.net/api/v1/pokemon_max_cp.json",
+          "publisher": "PoGo API",
+          "retrievedAt": "2026-11-17T00:49:59.500Z"
+        },
+        {
+          "url": "https://www.serebii.net/pokemongo/pokemon/646.shtml",
+          "publisher": "Serebii",
+          "retrievedAt": "2026-11-17T15:30:00+09:00"
+        },
+        {
+          "url": "https://db.pokemongohub.net/tools/cp-calculator",
+          "publisher": "Pokémon GO Hub",
+          "retrievedAt": "2026-11-17T15:30:00+09:00"
+        }
+      ],
+      "notes": [
+        "max_cp라는 필드명만으로 Lv.50을 가정하지 않고 레벨과 Best Buddy 적용 여부를 함께 저장한다."
+      ]
+    },
+    {
+      "id": "review:kyurem-power-up-costs",
+      "category": "power_up_costs",
+      "requiredForPublish": true,
+      "status": "reviewed",
+      "originalValue": "Lv.20 기준 누적: Lv.30 75000 별의모래/66 사탕, Lv.35 137000/130, Lv.40 225000/248, Lv.50 475000/248/296 XL",
+      "comparisonResult": "PoGo API 강화 비용 원본을 0.5레벨 단위로 합산한 값과 Pokémon GO Hub 계산기의 Lv.20 시작 비용이 일치. XL은 Lv.40 초과부터 사용",
+      "sourceEvidenceIds": [
+        "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+      ],
+      "sources": [
+        {
+          "url": "https://pogoapi.net/api/v1/pokemon_powerup_requirements.json",
+          "publisher": "PoGo API",
+          "retrievedAt": "2026-11-17T00:49:59.500Z"
+        },
+        {
+          "url": "https://db.pokemongohub.net/tools/power-up-calculator",
+          "publisher": "Pokémon GO Hub",
+          "retrievedAt": "2026-11-17T15:30:00+09:00"
+        },
+        {
+          "url": "https://scopelyexplore.helpshift.com/hc/en/5-pokemon-go/faq/1121-powering-up-pokemon/",
+          "publisher": "Pokémon GO Help Center",
+          "retrievedAt": "2026-11-17T15:30:00+09:00"
+        }
+      ],
+      "notes": [
+        "교환·럭키·그림자·정화 보정이 없는 일반 Lv.20 개체 기준이다."
+      ]
+    },
+    {
+      "id": "review:kyurem-limited-benchmarks",
+      "category": "limited_benchmark_comparison",
+      "requiredForPublish": false,
+      "status": "needs_review",
+      "originalValue": "relative_cycle_index_v1의 동일 상대·제한 기술 주기 비교",
+      "comparisonResult": "입력 기술과 타입 상성은 원본에 연결되지만 실제 DPS/TDO, 보스 방어, 회피, 사망 시간, 전체 공격수 순위를 계산하지 않음",
+      "sourceEvidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:type_effectiveness:f9208ace82f4"
+      ],
+      "sources": [
+        {
+          "url": "https://pogoapi.net/",
+          "publisher": "PoGo API",
+          "retrievedAt": "2026-11-17T00:49:59.500Z"
+        }
+      ],
+      "notes": [
+        "절대 성능 점수나 전체 공격수 순위의 근거로 사용하지 않는다.",
+        "후보의 performanceRating은 이 제한 지표만으로 부여하지 않는다."
+      ]
+    }
+  ],
+  "cpReferences": [
+    {
+      "pokemonId": "kyurem",
+      "ivs": { "attack": 15, "defense": 15, "stamina": 15 },
+      "level50": { "level": 50, "bestBuddyBoost": false, "cp": 4041 },
+      "level51": { "level": 51, "bestBuddyBoost": true, "cp": 4090 },
+      "apiReportedMaxCp": 4090,
+      "evidenceIds": ["review:kyurem-cp-level-context"]
+    },
+    {
+      "pokemonId": "white-kyurem",
+      "ivs": { "attack": 15, "defense": 15, "stamina": 15 },
+      "level50": { "level": 50, "bestBuddyBoost": false, "cp": 5206 },
+      "level51": { "level": 51, "bestBuddyBoost": true, "cp": 5268 },
+      "apiReportedMaxCp": 5268,
+      "evidenceIds": ["review:kyurem-cp-level-context"]
+    },
+    {
+      "pokemonId": "black-kyurem",
+      "ivs": { "attack": 15, "defense": 15, "stamina": 15 },
+      "level50": { "level": 50, "bestBuddyBoost": false, "cp": 5206 },
+      "level51": { "level": 51, "bestBuddyBoost": true, "cp": 5268 },
+      "apiReportedMaxCp": 5268,
+      "evidenceIds": ["review:kyurem-cp-level-context"]
+    }
+  ]
+}

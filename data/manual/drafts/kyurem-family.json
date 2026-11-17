@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 1,
+  "packageVersion": "pokoweek-manual-guide-v1",
+  "candidates": [
+    {
+      "inputPackageHash": "7c9fdfc583007fdc682d86704fced2823c94d45378c05c893a6632fe87f6c85e",
+      "guide": {
+        "pokemonId": "kyurem",
+        "applicability": {
+          "modes": ["raid", "pvp"],
+          "secondMove": true,
+          "xlCandy": true,
+          "maxMove": false,
+          "specialActionGuide": true
+        },
+        "verdict": {
+          "rating": 3,
+          "label": "융합 목표를 정한 뒤 조건부 투자",
+          "summary": "큐레무 자체 강화보다 화이트·블랙 융합에 쓸 개체와 얼어붙은세계 보유 여부를 먼저 나눠 확인하세요.",
+          "analysis": {
+            "reason": "입력 자료는 큐레무의 능력치와 기술, 두 융합 레시피를 확인하지만 다른 공격수와의 상대 성능 비교 자료는 포함하지 않으므로 선투자보다 목표 개체 선별이 우선이다.",
+            "evidenceIds": [
+              "pogoapi:pokemon_stats:ca23e7947d97",
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "official:white-materials",
+              "official:black-materials"
+            ],
+            "modes": ["raid", "pvp"]
+          }
+        },
+        "useCases": [
+          {
+            "mode": "raid",
+            "rating": 3,
+            "analysis": {
+              "reason": "공격 246과 Dragon Breath·Glaciate의 PvE 수치는 확인되지만 동급 공격수 비교가 없어 레이드 투자는 조건부로 판단한다.",
+              "evidenceIds": [
+                "pogoapi:pokemon_stats:ca23e7947d97",
+                "pogoapi:fast_moves:3c6781e7ebe7",
+                "pogoapi:charged_moves:a09029272289"
+              ],
+              "modes": ["raid"]
+            }
+          },
+          {
+            "mode": "pvp",
+            "rating": 3,
+            "analysis": {
+              "reason": "Dragon Breath·Glaciate·Dragon Claw의 PvP 수치는 확인되지만 리그별 순위와 상대 전적 근거가 없어 제한적으로 평가한다.",
+              "evidenceIds": [
+                "pogoapi:pvp_fast_moves:d944f25ce672",
+                "pogoapi:pvp_charged_moves:e9213b0744b6"
+              ],
+              "modes": ["pvp"]
+            }
+          }
+        ],
+        "movesets": [
+          {
+            "mode": "raid",
+            "fastMove": "Dragon Breath",
+            "chargedMoves": ["Glaciate"],
+            "acquisitionConditions": ["Glaciate는 정규화 데이터에서 elite 기술이므로 이벤트 습득 여부 또는 대단한 기술머신 스페셜 사용 가능 여부를 먼저 확인"],
+            "analysis": {
+              "reason": "입력에 확인된 Dragon Breath와 Glaciate의 PvE 수치를 사용하는 조합이며 Glaciate의 elite 상태를 별도로 주의한다.",
+              "evidenceIds": [
+                "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+                "pogoapi:fast_moves:3c6781e7ebe7",
+                "pogoapi:charged_moves:a09029272289"
+              ],
+              "modes": ["raid"]
+            }
+          },
+          {
+            "mode": "pvp",
+            "fastMove": "Dragon Breath",
+            "chargedMoves": ["Glaciate", "Dragon Claw"],
+            "acquisitionConditions": ["Glaciate는 정규화 데이터에서 elite 기술이므로 습득 경로를 먼저 확인"],
+            "analysis": {
+              "reason": "입력에 있는 PvP 기술 수치 중 Glaciate의 공격 감소 효과와 Dragon Claw를 함께 검토하는 조합이다. 실제 리그 적합성은 별도 검토가 필요하다.",
+              "evidenceIds": [
+                "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+                "pogoapi:pvp_fast_moves:d944f25ce672",
+                "pogoapi:pvp_charged_moves:e9213b0744b6"
+              ],
+              "modes": ["pvp"]
+            }
+          }
+        ],
+        "investment": {
+          "order": [
+            {
+              "id": "separate-white-black-bases",
+              "label": "화이트용·블랙용 큐레무를 각각 선택",
+              "reason": "두 폼을 모두 만들려면 각 레시피에 큐레무 1마리가 따로 필요하다.",
+              "evidenceIds": ["official:white-materials", "official:black-materials"]
+            },
+            {
+              "id": "check-glaciate-independently",
+              "label": "각 큐레무의 얼어붙은세계 독립 확인",
+              "reason": "화이트용과 블랙용 기술 변환은 선택한 큐레무별로 따로 확인해야 한다.",
+              "evidenceIds": ["official:white-move", "official:black-move"]
+            },
+            {
+              "id": "reserve-partners-and-energy",
+              "label": "목표별 파트너·에너지·사탕 분리 준비",
+              "reason": "화이트는 레시라무·블레이즈 에너지, 블랙은 제크로무·볼트 에너지가 필요하다.",
+              "evidenceIds": ["official:white-materials", "official:black-materials"]
+            },
+            {
+              "id": "delay-base-powerup",
+              "label": "융합 목표 확정 전 큰 강화 보류",
+              "reason": "입력에 상대 성능 비교와 투자 회수 근거가 없어 사용할 폼을 정한 뒤 자원을 쓰는 편이 안전하다.",
+              "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:current_pokemon_moves:8dff0aa9bb68"]
+            }
+          ],
+          "stardust": {
+            "decision": "hold",
+            "analysis": {
+              "reason": "융합 목표와 사용할 개체가 확정되기 전에는 큰 별의모래 투자를 보류한다.",
+              "evidenceIds": ["official:white-materials", "official:black-materials", "pogoapi:pokemon_stats:ca23e7947d97"],
+              "modes": ["raid", "pvp"]
+            }
+          },
+          "candy": {
+            "decision": "conditional",
+            "analysis": {
+              "reason": "큐레무의 사탕은 각 융합에 30개씩 필요하므로 강화보다 목표 레시피 재료를 먼저 확보한다.",
+              "evidenceIds": ["official:white-materials", "official:black-materials"],
+              "modes": ["raid"]
+            }
+          },
+          "secondMove": {
+            "decision": "conditional",
+            "analysis": {
+              "reason": "두 번째 기술은 PvP 사용을 확정하고 Glaciate·Dragon Claw 조합을 실제로 쓸 때만 고려한다.",
+              "evidenceIds": ["pogoapi:pvp_charged_moves:e9213b0744b6"],
+              "modes": ["pvp"]
+            }
+          },
+          "xlCandy": {
+            "decision": "hold",
+            "analysis": {
+              "reason": "입력에는 XL 투자 후 성능이나 리그별 목표 레벨 근거가 없어 사용처가 확정될 때까지 보류한다.",
+              "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97"],
+              "modes": ["raid", "pvp"]
+            }
+          },
+          "eliteTm": {
+            "decision": "conditional",
+            "analysis": {
+              "reason": "Glaciate는 elite 기술로 표시되지만 융합 기술 변환을 원하는 큐레무인지 먼저 정한 뒤 사용 여부를 판단한다.",
+              "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "official:white-move", "official:black-move"],
+              "modes": ["raid", "pvp"]
+            }
+          },
+          "maxMove": null
+        },
+        "actions": [
+          {
+            "id": "choose-two-kyurem",
+            "label": "둘 다 만들면 큐레무 2마리를 서로 다른 목표에 배정",
+            "reason": "화이트와 블랙 레시피는 각각 큐레무 1마리를 요구한다.",
+            "evidenceIds": ["official:white-materials", "official:black-materials"]
+          },
+          {
+            "id": "check-two-glaciate",
+            "label": "화이트용·블랙용 얼어붙은세계 상태를 별도로 기록",
+            "reason": "각 폼의 특수 기술 변환 여부가 선택한 큐레무의 기술 상태에 달려 있다.",
+            "evidenceIds": ["official:white-move", "official:black-move"]
+          },
+          {
+            "id": "open-fusion-action-guide",
+            "label": "융합 실행 전 목표별 준비물 체크리스트 확인",
+            "reason": "두 레시피의 파트너·에너지·사탕이 서로 다르다.",
+            "evidenceIds": ["official:white-materials", "official:black-materials"]
+          }
+        ],
+        "warnings": [
+          {
+            "id": "partners-bound",
+            "label": "융합 중 파트너는 결합 상태",
+            "reason": "레시라무 또는 제크로무는 분리할 때까지 융합된 상태이며 분리에는 에너지와 사탕이 들지 않는다.",
+            "evidenceIds": ["official:fusion-state-separation"]
+          }
+        ],
+        "specialActionGuideId": "kyurem-fusion"
+      }
+    },
+    {
+      "inputPackageHash": "379442d255c403934d4b85c2a70e256fd10e904691047a7ae890af4fba512894",
+      "guide": {
+        "pokemonId": "white-kyurem",
+        "applicability": {
+          "modes": ["raid"],
+          "secondMove": false,
+          "xlCandy": true,
+          "maxMove": false,
+          "specialActionGuide": false
+        },
+        "verdict": {
+          "rating": 3,
+          "label": "특수 기술 확인 후 조건부 육성",
+          "summary": "콜드플레어가 정상적으로 변환됐는지 확인하고, 성능 비교 근거가 보강되기 전에는 큰 XL 투자를 보류하세요.",
+          "analysis": {
+            "reason": "공격 310과 기본 기술 수치는 확인되지만 입력에는 콜드플레어의 전투 수치와 다른 얼음 공격수와의 비교가 없어 적극 투자로 단정할 수 없다.",
+            "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:current_pokemon_moves:8dff0aa9bb68", "official:white-move"],
+            "modes": ["raid"]
+          }
+        },
+        "useCases": [
+          {
+            "mode": "raid",
+            "rating": 3,
+            "analysis": {
+              "reason": "공격 310과 Ice Fang의 PvE 수치는 확인되지만 콜드플레어 전투 수치가 입력에 없어 레이드 평가는 검토가 더 필요하다.",
+              "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:fast_moves:3c6781e7ebe7", "official:white-move"],
+              "modes": ["raid"]
+            }
+          }
+        ],
+        "movesets": [
+          {
+            "mode": "raid",
+            "fastMove": "Ice Fang",
+            "chargedMoves": ["Ice Burn"],
+            "acquisitionConditions": [
+              "융합 전에 화이트용 큐레무가 Glaciate를 알고 있어야 Ice Burn으로 변환",
+              "Ice Burn은 Charged TM 또는 Elite Charged TM으로 습득 불가"
+            ],
+            "analysis": {
+              "reason": "Ice Fang은 화이트큐레무의 현재 기술 목록에 있고 Ice Burn은 공식 융합 기술 변환으로만 확인된다. Ice Burn 전투 수치가 없어 성능 우위는 단정하지 않는다.",
+              "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:fast_moves:3c6781e7ebe7", "official:white-move"],
+              "modes": ["raid"]
+            }
+          }
+        ],
+        "investment": {
+          "order": [
+            {
+              "id": "confirm-ice-burn",
+              "label": "융합 후 콜드플레어 변환 확인",
+              "reason": "얼어붙은세계를 알고 있던 큐레무만 융합 시 콜드플레어로 변환된다.",
+              "evidenceIds": ["official:white-move"]
+            },
+            {
+              "id": "set-ice-fang",
+              "label": "레이드용 노말 기술 Ice Fang 확인",
+              "reason": "화이트큐레무의 현재 기술 목록과 PvE 수치가 입력에서 확인된다.",
+              "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:fast_moves:3c6781e7ebe7"]
+            },
+            {
+              "id": "review-ice-burn-metrics",
+              "label": "콜드플레어 전투 수치 근거 보강",
+              "reason": "현재 입력에는 콜드플레어의 PvE/PvP 수치가 없어 강화 전 검토가 필요하다.",
+              "evidenceIds": ["official:white-move"]
+            },
+            {
+              "id": "limited-powerup-white",
+              "label": "근거 확인 뒤 필요한 범위부터 강화",
+              "reason": "상대 성능과 목표 레벨 근거가 없는 상태에서 대규모 투자를 피한다.",
+              "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "official:white-move"]
+            }
+          ],
+          "stardust": {
+            "decision": "hold",
+            "analysis": {
+              "reason": "콜드플레어 전투 수치와 비교 근거가 보강되기 전에는 큰 별의모래 투자를 보류한다.",
+              "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "official:white-move"],
+              "modes": ["raid"]
+            }
+          },
+          "candy": {
+            "decision": "conditional",
+            "analysis": {
+              "reason": "융합 재료와 필드 효과에도 큐레무 사탕이 필요하므로 사용 목적을 정한 뒤 강화에 배분한다.",
+              "evidenceIds": ["official:white-materials", "official:white-field-effect"],
+              "modes": ["raid"]
+            }
+          },
+          "secondMove": null,
+          "xlCandy": {
+            "decision": "hold",
+            "analysis": {
+              "reason": "입력에는 XL 투자 목표와 상대 성능 자료가 없어 추가 근거가 생길 때까지 보류한다.",
+              "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97"],
+              "modes": ["raid"]
+            }
+          },
+          "eliteTm": {
+            "decision": "not_applicable",
+            "analysis": {
+              "reason": "콜드플레어는 일반·대단한 기술머신으로 배울 수 없고 융합 전 얼어붙은세계 확인이 필요하다.",
+              "evidenceIds": ["official:white-move"],
+              "modes": ["raid"]
+            }
+          },
+          "maxMove": null
+        },
+        "actions": [
+          {
+            "id": "verify-white-result-move",
+            "label": "콜드플레어 보유 상태 확인",
+            "reason": "융합 후 육성 판단은 특수 기술 변환이 제대로 됐는지 확인한 뒤 시작해야 한다.",
+            "evidenceIds": ["official:white-move"]
+          },
+          {
+            "id": "reserve-white-field-cost",
+            "label": "필드 효과를 쓸 계획이면 별의모래와 큐레무 사탕을 별도 확보",
+            "reason": "콜드플레어 필드 효과 10분에 별의모래 5,000과 큐레무 사탕 5개가 필요하다.",
+            "evidenceIds": ["official:white-field-effect"]
+          },
+          {
+            "id": "hold-white-xl",
+            "label": "추가 성능 근거 확인 전 XL 투자는 보류",
+            "reason": "현재 패키지에는 콜드플레어 전투 수치와 상대 비교가 없다.",
+            "evidenceIds": ["official:white-move", "pogoapi:pokemon_stats:ca23e7947d97"]
+          }
+        ],
+        "warnings": [
+          {
+            "id": "white-partner-bound",
+            "label": "레시라무는 융합 중 결합 상태",
+            "reason": "분리 전까지 파트너가 결합되며 분리에는 에너지와 사탕이 들지 않는다.",
+            "evidenceIds": ["official:fusion-state-separation"]
+          },
+          {
+            "id": "white-move-reverts",
+            "label": "분리하면 콜드플레어가 되돌아감",
+            "reason": "분리하면 변환된 기술이 얼어붙은세계로 되돌아간다.",
+            "evidenceIds": ["official:white-move"]
+          }
+        ],
+        "specialActionGuideId": null
+      }
+    },
+    {
+      "inputPackageHash": "804323ac7464dae08134c8222ef355086d4c1e29dff6fc3918b8ae820ca4e072",
+      "guide": {
+        "pokemonId": "black-kyurem",
+        "applicability": {
+          "modes": ["raid"],
+          "secondMove": false,
+          "xlCandy": true,
+          "maxMove": false,
+          "specialActionGuide": false
+        },
+        "verdict": {
+          "rating": 3,
+          "label": "특수 기술 확인 후 조건부 육성",
+          "summary": "프리즈볼트 변환을 확인한 뒤 사용하고, 전투 수치와 비교 근거가 보강되기 전에는 큰 자원 투자를 미루세요.",
+          "analysis": {
+            "reason": "공격 310과 기본 기술 수치는 확인되지만 입력에는 프리즈볼트의 전투 수치와 다른 드래곤 공격수와의 비교가 없어 적극 투자로 단정할 수 없다.",
+            "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:current_pokemon_moves:8dff0aa9bb68", "official:black-move"],
+            "modes": ["raid"]
+          }
+        },
+        "useCases": [
+          {
+            "mode": "raid",
+            "rating": 3,
+            "analysis": {
+              "reason": "공격 310과 Dragon Tail의 PvE 수치는 확인되지만 프리즈볼트 전투 수치가 입력에 없어 레이드 평가는 검토가 더 필요하다.",
+              "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:fast_moves:3c6781e7ebe7", "official:black-move"],
+              "modes": ["raid"]
+            }
+          }
+        ],
+        "movesets": [
+          {
+            "mode": "raid",
+            "fastMove": "Dragon Tail",
+            "chargedMoves": ["Freeze Shock"],
+            "acquisitionConditions": [
+              "융합 전에 블랙용 큐레무가 Glaciate를 알고 있어야 Freeze Shock으로 변환",
+              "Freeze Shock은 Charged TM 또는 Elite Charged TM으로 습득 불가"
+            ],
+            "analysis": {
+              "reason": "Dragon Tail은 블랙큐레무의 현재 기술 목록에 있고 Freeze Shock은 공식 융합 기술 변환으로만 확인된다. Freeze Shock 전투 수치가 없어 성능 우위는 단정하지 않는다.",
+              "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:fast_moves:3c6781e7ebe7", "official:black-move"],
+              "modes": ["raid"]
+            }
+          }
+        ],
+        "investment": {
+          "order": [
+            {
+              "id": "confirm-freeze-shock",
+              "label": "융합 후 프리즈볼트 변환 확인",
+              "reason": "얼어붙은세계를 알고 있던 큐레무만 융합 시 프리즈볼트로 변환된다.",
+              "evidenceIds": ["official:black-move"]
+            },
+            {
+              "id": "set-dragon-tail",
+              "label": "레이드용 노말 기술 Dragon Tail 확인",
+              "reason": "블랙큐레무의 현재 기술 목록과 PvE 수치가 입력에서 확인된다.",
+              "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:fast_moves:3c6781e7ebe7"]
+            },
+            {
+              "id": "review-freeze-shock-metrics",
+              "label": "프리즈볼트 전투 수치 근거 보강",
+              "reason": "현재 입력에는 프리즈볼트의 PvE/PvP 수치가 없어 강화 전 검토가 필요하다.",
+              "evidenceIds": ["official:black-move"]
+            },
+            {
+              "id": "limited-powerup-black",
+              "label": "사용처 확인 뒤 필요한 범위부터 강화",
+              "reason": "상대 성능과 목표 레벨 근거가 없는 상태에서 대규모 투자를 피한다.",
+              "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "official:black-move"]
+            }
+          ],
+          "stardust": {
+            "decision": "hold",
+            "analysis": {
+              "reason": "프리즈볼트 전투 수치와 비교 근거가 보강되기 전에는 큰 별의모래 투자를 보류한다.",
+              "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "official:black-move"],
+              "modes": ["raid"]
+            }
+          },
+          "candy": {
+            "decision": "conditional",
+            "analysis": {
+              "reason": "융합 재료와 필드 효과에도 큐레무 사탕이 필요하므로 사용 목적을 정한 뒤 강화에 배분한다.",
+              "evidenceIds": ["official:black-materials", "official:black-field-effect"],
+              "modes": ["raid"]
+            }
+          },
+          "secondMove": null,
+          "xlCandy": {
+            "decision": "hold",
+            "analysis": {
+              "reason": "입력에는 XL 투자 목표와 상대 성능 자료가 없어 추가 근거가 생길 때까지 보류한다.",
+              "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97"],
+              "modes": ["raid"]
+            }
+          },
+          "eliteTm": {
+            "decision": "not_applicable",
+            "analysis": {
+              "reason": "프리즈볼트는 일반·대단한 기술머신으로 배울 수 없고 융합 전 얼어붙은세계 확인이 필요하다.",
+              "evidenceIds": ["official:black-move"],
+              "modes": ["raid"]
+            }
+          },
+          "maxMove": null
+        },
+        "actions": [
+          {
+            "id": "verify-black-result-move",
+            "label": "프리즈볼트 보유 상태 확인",
+            "reason": "융합 후 육성 판단은 특수 기술 변환이 제대로 됐는지 확인한 뒤 시작해야 한다.",
+            "evidenceIds": ["official:black-move"]
+          },
+          {
+            "id": "reserve-black-field-cost",
+            "label": "필드 효과를 쓸 계획이면 별의모래와 큐레무 사탕을 별도 확보",
+            "reason": "프리즈볼트 필드 효과 10분에 별의모래 5,000과 큐레무 사탕 5개가 필요하다.",
+            "evidenceIds": ["official:black-field-effect"]
+          },
+          {
+            "id": "hold-black-xl",
+            "label": "추가 성능 근거 확인 전 XL 투자는 보류",
+            "reason": "현재 패키지에는 프리즈볼트 전투 수치와 상대 비교가 없다.",
+            "evidenceIds": ["official:black-move", "pogoapi:pokemon_stats:ca23e7947d97"]
+          }
+        ],
+        "warnings": [
+          {
+            "id": "black-partner-bound",
+            "label": "제크로무는 융합 중 결합 상태",
+            "reason": "분리 전까지 파트너가 결합되며 분리에는 에너지와 사탕이 들지 않는다.",
+            "evidenceIds": ["official:fusion-state-separation"]
+          },
+          {
+            "id": "black-move-reverts",
+            "label": "분리하면 프리즈볼트가 되돌아감",
+            "reason": "분리하면 변환된 기술이 얼어붙은세계로 되돌아간다.",
+            "evidenceIds": ["official:black-move"]
+          }
+        ],
+        "specialActionGuideId": null
+      }
+    }
+  ]
+}

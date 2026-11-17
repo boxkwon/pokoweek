@@ -1,0 +1,1986 @@
+{
+  "schemaVersion": 1,
+  "packageVersion": "pokoweek-manual-guide-v1",
+  "generatedAt": "2026-11-17T00:52:33.183Z",
+  "pokemonId": "black-kyurem",
+  "sourceSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
+  "promptVersion": "pokoweek-manual-guide-v2-data-quality",
+  "modelInput": {
+    "pokemonId": "black-kyurem",
+    "sourceSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
+    "target": {
+      "id": "black-kyurem",
+      "dexNumber": 646,
+      "gameName": "Kyurem",
+      "form": "Black",
+      "types": {
+        "values": [
+          "Dragon",
+          "Ice"
+        ],
+        "evidenceIds": [
+          "pogoapi:pokemon_types:d2979fa632e6"
+        ]
+      },
+      "baseStats": {
+        "attack": 310,
+        "defense": 183,
+        "stamina": 245,
+        "evidenceIds": [
+          "pogoapi:pokemon_stats:ca23e7947d97"
+        ]
+      },
+      "moves": {
+        "fast": [
+          {
+            "name": "Dragon Tail",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 14,
+              "energyDelta": 8,
+              "durationMs": 1000
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 9,
+              "energyDelta": 12,
+              "turns": 3
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          },
+          {
+            "name": "Shadow Claw",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Ghost",
+              "power": 6,
+              "energyDelta": 4,
+              "durationMs": 500
+            },
+            "pvp": {
+              "type": "Ghost",
+              "power": 6,
+              "energyDelta": 8,
+              "turns": 2
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          }
+        ],
+        "charged": [
+          {
+            "name": "Iron Head",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Steel",
+              "power": 60,
+              "energyDelta": -50,
+              "durationMs": 2000
+            },
+            "pvp": {
+              "type": "Steel",
+              "power": 70,
+              "energyDelta": -50,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Blizzard",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Ice",
+              "power": 130,
+              "energyDelta": -100,
+              "durationMs": 3000
+            },
+            "pvp": {
+              "type": "Ice",
+              "power": 140,
+              "energyDelta": -75,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Stone Edge",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Rock",
+              "power": 105,
+              "energyDelta": -100,
+              "durationMs": 2500
+            },
+            "pvp": {
+              "type": "Rock",
+              "power": 100,
+              "energyDelta": -55,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Outrage",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 110,
+              "energyDelta": -50,
+              "durationMs": 4000
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 110,
+              "energyDelta": -60,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Fusion Bolt",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Electric",
+              "power": 140,
+              "energyDelta": -100,
+              "durationMs": 2000
+            },
+            "pvp": {
+              "type": "Electric",
+              "power": 90,
+              "energyDelta": -45,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Freeze Shock",
+            "kind": "charged",
+            "acquisition": "special",
+            "pve": {
+              "type": "Ice",
+              "power": 160,
+              "energyDelta": -100,
+              "durationMs": 1500
+            },
+            "pvp": {
+              "type": "Ice",
+              "power": 120,
+              "energyDelta": -60,
+              "turns": 1,
+              "effects": [
+                {
+                  "activationChance": 0.3,
+                  "target": "opponent",
+                  "stat": "attack",
+                  "stages": -1
+                }
+              ]
+            },
+            "evidenceIds": [
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6",
+              "official:black-move"
+            ]
+          }
+        ],
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+        ]
+      }
+    },
+    "referencePokemon": [
+      {
+        "id": "kyurem",
+        "form": "Normal",
+        "types": {
+          "values": [
+            "Dragon",
+            "Ice"
+          ],
+          "evidenceIds": [
+            "pogoapi:pokemon_types:d2979fa632e6"
+          ]
+        },
+        "baseStats": {
+          "attack": 246,
+          "defense": 170,
+          "stamina": 245,
+          "evidenceIds": [
+            "pogoapi:pokemon_stats:ca23e7947d97"
+          ]
+        }
+      },
+      {
+        "id": "zekrom",
+        "form": "Normal",
+        "types": {
+          "values": [
+            "Dragon",
+            "Electric"
+          ],
+          "evidenceIds": [
+            "pogoapi:pokemon_types:d2979fa632e6"
+          ]
+        },
+        "baseStats": {
+          "attack": 275,
+          "defense": 211,
+          "stamina": 205,
+          "evidenceIds": [
+            "pogoapi:pokemon_stats:ca23e7947d97"
+          ]
+        }
+      }
+    ],
+    "fusionRecipes": [
+      {
+        "id": "black-kyurem",
+        "resultPokemonId": "black-kyurem",
+        "basePokemonId": "kyurem",
+        "partnerPokemonId": "zekrom",
+        "partnerState": "bound_while_fused",
+        "materials": [
+          {
+            "type": "pokemon",
+            "pokemonId": "kyurem",
+            "amount": 1
+          },
+          {
+            "type": "pokemon",
+            "pokemonId": "zekrom",
+            "amount": 1
+          },
+          {
+            "type": "energy",
+            "energyId": "volt-fusion-energy",
+            "label": "볼트 에너지",
+            "amount": 1000
+          },
+          {
+            "type": "candy",
+            "pokemonId": "kyurem",
+            "amount": 30
+          },
+          {
+            "type": "candy",
+            "pokemonId": "zekrom",
+            "amount": 30
+          }
+        ],
+        "preFusionChecks": [
+          {
+            "id": "black-kyurem-glaciate-check",
+            "label": "블랙용 큐레무의 얼어붙은세계 확인",
+            "requiredForFusion": false,
+            "reason": "합체 자체는 가능하지만 프리즈볼트로 기술을 변화시키려면 필요하다.",
+            "evidenceIds": [
+              "official:black-move"
+            ]
+          }
+        ],
+        "moveTransformation": {
+          "sourceMove": "Glaciate",
+          "targetMove": "Freeze Shock",
+          "sourceMoveRequiredForFusion": false,
+          "learnableByChargedTm": false,
+          "learnableByEliteChargedTm": false,
+          "revertsOnSeparation": true,
+          "evidenceIds": [
+            "official:black-move"
+          ]
+        },
+        "fieldEffect": {
+          "move": "Freeze Shock",
+          "stardust": 5000,
+          "kyuremCandy": 5,
+          "durationMinutes": 10,
+          "incompatibleWithOtherFieldEffects": true,
+          "evidenceIds": [
+            "official:black-field-effect",
+            "official:field-effect-exclusivity"
+          ]
+        },
+        "storageRestrictions": {
+          "tradeBlocked": true,
+          "professorTransferBlocked": true,
+          "pokemonHomeTransferBlocked": true,
+          "evidenceIds": [
+            "official:fusion-storage-restrictions"
+          ]
+        },
+        "separation": {
+          "energyCost": 0,
+          "candyCost": 0,
+          "releasesPartner": true,
+          "evidenceIds": [
+            "official:fusion-state-separation"
+          ]
+        },
+        "postFusionGuidePokemonId": "black-kyurem",
+        "evidenceIds": [
+          "official:black-materials",
+          "official:fusion-state-separation",
+          "official:black-move",
+          "official:black-field-effect",
+          "official:fusion-storage-restrictions",
+          "official:field-effect-exclusivity"
+        ]
+      }
+    ],
+    "raidComparison": {
+      "method": "relative_cycle_index_v1",
+      "profiles": [
+        {
+          "subjectId": "kyurem",
+          "label": "kyurem neutral",
+          "fastMove": "Dragon Breath",
+          "chargedMove": "Glaciate",
+          "targetProfile": "neutral",
+          "defenderTypes": [],
+          "fastEffectiveness": 1,
+          "chargedEffectiveness": 1,
+          "fastUsesPerCharged": 25,
+          "cycleSeconds": 15,
+          "relativeCycleIndex": 6100.8
+        },
+        {
+          "subjectId": "kyurem",
+          "label": "kyurem vs Dragon/Flying",
+          "fastMove": "Dragon Breath",
+          "chargedMove": "Glaciate",
+          "targetProfile": "Dragon/Flying",
+          "defenderTypes": [
+            "Dragon",
+            "Flying"
+          ],
+          "fastEffectiveness": 1.6,
+          "chargedEffectiveness": 2.5600000000000005,
+          "fastUsesPerCharged": 25,
+          "cycleSeconds": 15,
+          "relativeCycleIndex": 12784.128
+        },
+        {
+          "subjectId": "white-kyurem",
+          "label": "white-kyurem neutral",
+          "fastMove": "Ice Fang",
+          "chargedMove": "Ice Burn",
+          "targetProfile": "neutral",
+          "defenderTypes": [],
+          "fastEffectiveness": 1,
+          "chargedEffectiveness": 1,
+          "fastUsesPerCharged": 3,
+          "cycleSeconds": 6.5,
+          "relativeCycleIndex": 7211.077
+        },
+        {
+          "subjectId": "white-kyurem",
+          "label": "white-kyurem vs Dragon/Flying",
+          "fastMove": "Ice Fang",
+          "chargedMove": "Ice Burn",
+          "targetProfile": "Dragon/Flying",
+          "defenderTypes": [
+            "Dragon",
+            "Flying"
+          ],
+          "fastEffectiveness": 2.5600000000000005,
+          "chargedEffectiveness": 2.5600000000000005,
+          "fastUsesPerCharged": 3,
+          "cycleSeconds": 6.5,
+          "relativeCycleIndex": 18460.357
+        },
+        {
+          "subjectId": "black-kyurem",
+          "label": "black-kyurem neutral",
+          "fastMove": "Dragon Tail",
+          "chargedMove": "Freeze Shock",
+          "targetProfile": "neutral",
+          "defenderTypes": [],
+          "fastEffectiveness": 1,
+          "chargedEffectiveness": 1,
+          "fastUsesPerCharged": 13,
+          "cycleSeconds": 14.5,
+          "relativeCycleIndex": 8774.069
+        },
+        {
+          "subjectId": "black-kyurem",
+          "label": "black-kyurem vs Dragon/Flying",
+          "fastMove": "Dragon Tail",
+          "chargedMove": "Freeze Shock",
+          "targetProfile": "Dragon/Flying",
+          "defenderTypes": [
+            "Dragon",
+            "Flying"
+          ],
+          "fastEffectiveness": 1.6,
+          "chargedEffectiveness": 2.5600000000000005,
+          "fastUsesPerCharged": 13,
+          "cycleSeconds": 14.5,
+          "relativeCycleIndex": 17979.145
+        },
+        {
+          "subjectId": "black-kyurem",
+          "label": "black-kyurem neutral",
+          "fastMove": "Shadow Claw",
+          "chargedMove": "Freeze Shock",
+          "targetProfile": "neutral",
+          "defenderTypes": [],
+          "fastEffectiveness": 1,
+          "chargedEffectiveness": 1,
+          "fastUsesPerCharged": 25,
+          "cycleSeconds": 14,
+          "relativeCycleIndex": 7572.857
+        },
+        {
+          "subjectId": "black-kyurem",
+          "label": "black-kyurem vs Dragon/Flying",
+          "fastMove": "Shadow Claw",
+          "chargedMove": "Freeze Shock",
+          "targetProfile": "Dragon/Flying",
+          "defenderTypes": [
+            "Dragon",
+            "Flying"
+          ],
+          "fastEffectiveness": 1,
+          "chargedEffectiveness": 2.5600000000000005,
+          "fastUsesPerCharged": 25,
+          "cycleSeconds": 14,
+          "relativeCycleIndex": 14205.086
+        },
+        {
+          "subjectId": "mamoswine",
+          "label": "mamoswine neutral",
+          "fastMove": "Powder Snow",
+          "chargedMove": "Avalanche",
+          "targetProfile": "neutral",
+          "defenderTypes": [],
+          "fastEffectiveness": 1,
+          "chargedEffectiveness": 1,
+          "fastUsesPerCharged": 4,
+          "cycleSeconds": 6.5,
+          "relativeCycleIndex": 4970.4
+        },
+        {
+          "subjectId": "mamoswine",
+          "label": "mamoswine vs Dragon/Flying",
+          "fastMove": "Powder Snow",
+          "chargedMove": "Avalanche",
+          "targetProfile": "Dragon/Flying",
+          "defenderTypes": [
+            "Dragon",
+            "Flying"
+          ],
+          "fastEffectiveness": 2.5600000000000005,
+          "chargedEffectiveness": 2.5600000000000005,
+          "fastUsesPerCharged": 4,
+          "cycleSeconds": 6.5,
+          "relativeCycleIndex": 12724.224
+        },
+        {
+          "subjectId": "galarian-darmanitan",
+          "label": "galarian-darmanitan neutral",
+          "fastMove": "Ice Fang",
+          "chargedMove": "Avalanche",
+          "targetProfile": "neutral",
+          "defenderTypes": [],
+          "fastEffectiveness": 1,
+          "chargedEffectiveness": 1,
+          "fastUsesPerCharged": 3,
+          "cycleSeconds": 7,
+          "relativeCycleIndex": 5455.371
+        },
+        {
+          "subjectId": "galarian-darmanitan",
+          "label": "galarian-darmanitan vs Dragon/Flying",
+          "fastMove": "Ice Fang",
+          "chargedMove": "Avalanche",
+          "targetProfile": "Dragon/Flying",
+          "defenderTypes": [
+            "Dragon",
+            "Flying"
+          ],
+          "fastEffectiveness": 2.5600000000000005,
+          "chargedEffectiveness": 2.5600000000000005,
+          "fastUsesPerCharged": 3,
+          "cycleSeconds": 7,
+          "relativeCycleIndex": 13965.751
+        },
+        {
+          "subjectId": "baxcalibur",
+          "label": "baxcalibur neutral",
+          "fastMove": "Ice Fang",
+          "chargedMove": "Avalanche",
+          "targetProfile": "neutral",
+          "defenderTypes": [],
+          "fastEffectiveness": 1,
+          "chargedEffectiveness": 1,
+          "fastUsesPerCharged": 3,
+          "cycleSeconds": 7,
+          "relativeCycleIndex": 5268.686
+        },
+        {
+          "subjectId": "baxcalibur",
+          "label": "baxcalibur vs Dragon/Flying",
+          "fastMove": "Ice Fang",
+          "chargedMove": "Avalanche",
+          "targetProfile": "Dragon/Flying",
+          "defenderTypes": [
+            "Dragon",
+            "Flying"
+          ],
+          "fastEffectiveness": 2.5600000000000005,
+          "chargedEffectiveness": 2.5600000000000005,
+          "fastUsesPerCharged": 3,
+          "cycleSeconds": 7,
+          "relativeCycleIndex": 13487.835
+        },
+        {
+          "subjectId": "rayquaza",
+          "label": "rayquaza neutral",
+          "fastMove": "Dragon Tail",
+          "chargedMove": "Outrage",
+          "targetProfile": "neutral",
+          "defenderTypes": [],
+          "fastEffectiveness": 1,
+          "chargedEffectiveness": 1,
+          "fastUsesPerCharged": 7,
+          "cycleSeconds": 11,
+          "relativeCycleIndex": 6444.218
+        },
+        {
+          "subjectId": "rayquaza",
+          "label": "rayquaza vs Dragon/Flying",
+          "fastMove": "Dragon Tail",
+          "chargedMove": "Outrage",
+          "targetProfile": "Dragon/Flying",
+          "defenderTypes": [
+            "Dragon",
+            "Flying"
+          ],
+          "fastEffectiveness": 1.6,
+          "chargedEffectiveness": 1.6,
+          "fastUsesPerCharged": 7,
+          "cycleSeconds": 11,
+          "relativeCycleIndex": 10310.749
+        },
+        {
+          "subjectId": "origin-palkia",
+          "label": "origin-palkia neutral",
+          "fastMove": "Dragon Tail",
+          "chargedMove": "Draco Meteor",
+          "targetProfile": "neutral",
+          "defenderTypes": [],
+          "fastEffectiveness": 1,
+          "chargedEffectiveness": 1,
+          "fastUsesPerCharged": 13,
+          "cycleSeconds": 16.5,
+          "relativeCycleIndex": 6905.6
+        },
+        {
+          "subjectId": "origin-palkia",
+          "label": "origin-palkia vs Dragon/Flying",
+          "fastMove": "Dragon Tail",
+          "chargedMove": "Draco Meteor",
+          "targetProfile": "Dragon/Flying",
+          "defenderTypes": [
+            "Dragon",
+            "Flying"
+          ],
+          "fastEffectiveness": 1.6,
+          "chargedEffectiveness": 1.6,
+          "fastUsesPerCharged": 13,
+          "cycleSeconds": 16.5,
+          "relativeCycleIndex": 11048.96
+        }
+      ],
+      "assumptions": [
+        "PoGo API의 기본 공격, PvE 기술 위력·에너지·시전 시간과 타입 상성만 사용한다.",
+        "자속 보정은 1.2배로 적용하고 이중 약점은 타입 상성 배율을 곱한다.",
+        "스페셜 기술에 필요한 에너지는 노말 기술을 올림 횟수만큼 사용해 충전한다고 가정한다."
+      ],
+      "limitations": [
+        "실제 Pokémon GO 피해량 반올림, 보스 방어, 기술 지연, 회피, 재입장, 날씨·우정·메가 보너스를 반영하지 않은 상대 비교 지표다.",
+        "실제 레이드 시뮬레이션이나 타입별 공격수 순위가 아니며 DPS/TDO로 표현하면 안 된다.",
+        "상대 기술과 생존 시간을 반영하지 않으므로 TDO 및 클리어 시간 판단에는 사용할 수 없다."
+      ],
+      "evidenceIds": [
+        "pogoapi:type_effectiveness:f9208ace82f4",
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:fast_moves:3c6781e7ebe7",
+        "pogoapi:pvp_fast_moves:d944f25ce672",
+        "pogoapi:charged_moves:a09029272289",
+        "pogoapi:pvp_charged_moves:e9213b0744b6",
+        "official:white-move",
+        "official:black-move",
+        "pogoapi:pokemon_types:d2979fa632e6"
+      ]
+    },
+    "progression": {
+      "pokemonId": "black-kyurem",
+      "ivAssumption": {
+        "attack": 15,
+        "defense": 15,
+        "stamina": 15
+      },
+      "costBaselineLevel": 20,
+      "levels": [
+        {
+          "level": 30,
+          "cpm": 0.7317000031471252,
+          "cp": 3947,
+          "cpGainFromPreviousTarget": 1316,
+          "effectiveStatPercentOfLevel50": 87.08,
+          "cumulativeCostFromLevel20": {
+            "stardust": 75000,
+            "candy": 66,
+            "xlCandy": 0
+          },
+          "incrementalCostFromPreviousTarget": {
+            "stardust": 75000,
+            "candy": 66,
+            "xlCandy": 0
+          },
+          "evidenceIds": [
+            "pogoapi:cp_multiplier:61c96ee36079",
+            "pogoapi:pokemon_stats:ca23e7947d97",
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+            "reference:cp-formula"
+          ]
+        },
+        {
+          "level": 35,
+          "cpm": 0.7615638375282288,
+          "cp": 4276,
+          "cpGainFromPreviousTarget": 329,
+          "effectiveStatPercentOfLevel50": 90.63,
+          "cumulativeCostFromLevel20": {
+            "stardust": 137000,
+            "candy": 130,
+            "xlCandy": 0
+          },
+          "incrementalCostFromPreviousTarget": {
+            "stardust": 62000,
+            "candy": 64,
+            "xlCandy": 0
+          },
+          "evidenceIds": [
+            "pogoapi:cp_multiplier:61c96ee36079",
+            "pogoapi:pokemon_stats:ca23e7947d97",
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+            "reference:cp-formula"
+          ]
+        },
+        {
+          "level": 40,
+          "cpm": 0.79030001,
+          "cp": 4605,
+          "cpGainFromPreviousTarget": 329,
+          "effectiveStatPercentOfLevel50": 94.05,
+          "cumulativeCostFromLevel20": {
+            "stardust": 225000,
+            "candy": 248,
+            "xlCandy": 0
+          },
+          "incrementalCostFromPreviousTarget": {
+            "stardust": 88000,
+            "candy": 118,
+            "xlCandy": 0
+          },
+          "evidenceIds": [
+            "pogoapi:cp_multiplier:61c96ee36079",
+            "pogoapi:pokemon_stats:ca23e7947d97",
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+            "reference:cp-formula"
+          ]
+        },
+        {
+          "level": 50,
+          "cpm": 0.8403000236,
+          "cp": 5206,
+          "cpGainFromPreviousTarget": 601,
+          "effectiveStatPercentOfLevel50": 100,
+          "cumulativeCostFromLevel20": {
+            "stardust": 475000,
+            "candy": 248,
+            "xlCandy": 296
+          },
+          "incrementalCostFromPreviousTarget": {
+            "stardust": 250000,
+            "candy": 0,
+            "xlCandy": 296
+          },
+          "evidenceIds": [
+            "reference:level-50-cpm",
+            "pogoapi:pokemon_stats:ca23e7947d97",
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+            "reference:cp-formula"
+          ]
+        }
+      ],
+      "notes": [
+        "누적 비용은 일반·럭키·그림자·정화 보정이 없는 레벨 20 포획 개체를 기준으로 한다.",
+        "effectiveStatPercentOfLevel50은 CPM 비율이며 실제 레이드 DPS 증가율이 아니다.",
+        "각 강화는 0.5레벨 단위이며 레벨 40 초과 구간부터 XL사탕을 사용한다.",
+        "PoGo API pokemon_max_cp 값은 레벨 50 공식 계산값과 일치하지 않아 레벨 50 검증 근거로 사용하지 않는다."
+      ]
+    },
+    "evidence": [
+      {
+        "id": "pogoapi:pokemon_stats:ca23e7947d97",
+        "publisher": "PoGo API",
+        "url": "https://pogoapi.net/api/v1/pokemon_stats.json",
+        "reviewStatus": "needs_review",
+        "claim": "PoGo API pokemon_stats.json snapshot used for normalized game data.",
+        "paths": [
+          "pokemon.*.pokemon_stats"
+        ]
+      },
+      {
+        "id": "pogoapi:pokemon_types:d2979fa632e6",
+        "publisher": "PoGo API",
+        "url": "https://pogoapi.net/api/v1/pokemon_types.json",
+        "reviewStatus": "needs_review",
+        "claim": "PoGo API pokemon_types.json snapshot used for normalized game data.",
+        "paths": [
+          "pokemon.*.pokemon_types"
+        ]
+      },
+      {
+        "id": "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "publisher": "PoGo API",
+        "url": "https://pogoapi.net/api/v1/current_pokemon_moves.json",
+        "reviewStatus": "needs_review",
+        "claim": "PoGo API current_pokemon_moves.json snapshot used for normalized game data.",
+        "paths": [
+          "pokemon.*.current_pokemon_moves"
+        ]
+      },
+      {
+        "id": "pogoapi:fast_moves:3c6781e7ebe7",
+        "publisher": "PoGo API",
+        "url": "https://pogoapi.net/api/v1/fast_moves.json",
+        "reviewStatus": "needs_review",
+        "claim": "PoGo API fast_moves.json snapshot used for normalized game data.",
+        "paths": [
+          "pokemon.*.fast_moves"
+        ]
+      },
+      {
+        "id": "pogoapi:charged_moves:a09029272289",
+        "publisher": "PoGo API",
+        "url": "https://pogoapi.net/api/v1/charged_moves.json",
+        "reviewStatus": "needs_review",
+        "claim": "PoGo API charged_moves.json snapshot used for normalized game data.",
+        "paths": [
+          "pokemon.*.charged_moves"
+        ]
+      },
+      {
+        "id": "pogoapi:pvp_fast_moves:d944f25ce672",
+        "publisher": "PoGo API",
+        "url": "https://pogoapi.net/api/v1/pvp_fast_moves.json",
+        "reviewStatus": "needs_review",
+        "claim": "PoGo API pvp_fast_moves.json snapshot used for normalized game data.",
+        "paths": [
+          "pokemon.*.pvp_fast_moves"
+        ]
+      },
+      {
+        "id": "pogoapi:pvp_charged_moves:e9213b0744b6",
+        "publisher": "PoGo API",
+        "url": "https://pogoapi.net/api/v1/pvp_charged_moves.json",
+        "reviewStatus": "needs_review",
+        "claim": "PoGo API pvp_charged_moves.json snapshot used for normalized game data.",
+        "paths": [
+          "pokemon.*.pvp_charged_moves"
+        ]
+      },
+      {
+        "id": "pogoapi:cp_multiplier:61c96ee36079",
+        "publisher": "PoGo API",
+        "url": "https://pogoapi.net/api/v1/cp_multiplier.json",
+        "reviewStatus": "needs_review",
+        "claim": "PoGo API cp_multiplier.json snapshot used for normalized game data.",
+        "paths": [
+          "pokemon.*.cp_multiplier"
+        ]
+      },
+      {
+        "id": "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+        "publisher": "PoGo API",
+        "url": "https://pogoapi.net/api/v1/pokemon_powerup_requirements.json",
+        "reviewStatus": "needs_review",
+        "claim": "PoGo API pokemon_powerup_requirements.json snapshot used for normalized game data.",
+        "paths": [
+          "pokemon.*.pokemon_powerup_requirements"
+        ]
+      },
+      {
+        "id": "pogoapi:type_effectiveness:f9208ace82f4",
+        "publisher": "PoGo API",
+        "url": "https://pogoapi.net/api/v1/type_effectiveness.json",
+        "reviewStatus": "needs_review",
+        "claim": "PoGo API type_effectiveness.json snapshot used for normalized game data.",
+        "paths": [
+          "pokemon.*.type_effectiveness"
+        ]
+      },
+      {
+        "id": "official:black-materials",
+        "publisher": "Pokémon GO",
+        "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+        "reviewStatus": "reviewed",
+        "claim": "블랙큐레무 합체에는 큐레무와 제크로무, 볼트 에너지 1,000, 큐레무와 제크로무의 사탕 각 30개가 필요하다.",
+        "paths": [
+          "fusionRecipes.black-kyurem.materials"
+        ]
+      },
+      {
+        "id": "official:fusion-state-separation",
+        "publisher": "Pokémon GO",
+        "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+        "reviewStatus": "reviewed",
+        "claim": "합체된 큐레무는 분리 전까지 파트너와 결합된 상태이며 분리에는 에너지와 사탕이 들지 않는다.",
+        "paths": [
+          "fusionRecipes.*.partnerState",
+          "fusionRecipes.*.separation"
+        ]
+      },
+      {
+        "id": "official:white-move",
+        "publisher": "Pokémon GO",
+        "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+        "reviewStatus": "reviewed",
+        "claim": "얼어붙은세계를 배운 큐레무를 레시라무와 합체하면 콜드플레어로 바뀌고, 분리하면 되돌아가며 기술머신으로 배울 수 없다.",
+        "paths": [
+          "fusionRecipes.white-kyurem.moveTransformation"
+        ]
+      },
+      {
+        "id": "official:black-move",
+        "publisher": "Pokémon GO",
+        "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+        "reviewStatus": "reviewed",
+        "claim": "얼어붙은세계를 배운 큐레무를 제크로무와 합체하면 프리즈볼트로 바뀌고, 분리하면 되돌아가며 기술머신으로 배울 수 없다.",
+        "paths": [
+          "fusionRecipes.black-kyurem.moveTransformation"
+        ]
+      },
+      {
+        "id": "official:black-field-effect",
+        "publisher": "Pokémon GO",
+        "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+        "reviewStatus": "reviewed",
+        "claim": "프리즈볼트 필드 효과는 별의모래 5,000과 큐레무의 사탕 5개로 10분간 발동한다.",
+        "paths": [
+          "fusionRecipes.black-kyurem.fieldEffect"
+        ]
+      },
+      {
+        "id": "official:fusion-storage-restrictions",
+        "publisher": "Pokémon GO",
+        "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+        "reviewStatus": "reviewed",
+        "claim": "블랙큐레무와 화이트큐레무는 교환하거나 박사에게 보내거나 Pokémon HOME에 맡길 수 없다.",
+        "paths": [
+          "fusionRecipes.*.storageRestrictions"
+        ]
+      },
+      {
+        "id": "official:field-effect-exclusivity",
+        "publisher": "Pokémon GO",
+        "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+        "reviewStatus": "reviewed",
+        "claim": "프리즈볼트와 콜드플레어 필드 효과는 다른 필드 효과와 동시에 사용할 수 없다.",
+        "paths": [
+          "fusionRecipes.*.fieldEffect.incompatibleWithOtherFieldEffects"
+        ]
+      },
+      {
+        "id": "reference:cp-formula",
+        "publisher": "Pokémon GO Hub",
+        "url": "https://db.pokemongohub.net/tools/cp-calculator",
+        "reviewStatus": "reviewed",
+        "claim": "CP는 (기본 공격+공격 IV)×sqrt(기본 방어+방어 IV)×sqrt(기본 체력+체력 IV)×CPM²÷10을 내림하고 최소 10을 적용한다.",
+        "paths": [
+          "decisionSupport.progression.cpFormula"
+        ]
+      },
+      {
+        "id": "reference:level-50-cpm",
+        "publisher": "Pokémon GO Hub",
+        "url": "https://db.pokemongohub.net/tools/cp-calculator",
+        "reviewStatus": "reviewed",
+        "claim": "Game Master 기반 레벨 50 CP multiplier는 0.8403000236이다.",
+        "paths": [
+          "progression.cpMultipliers.level50"
+        ]
+      }
+    ],
+    "evidencePolicy": {
+      "reviewedMeans": "The evidence was manually reviewed; it does not turn AI analysis into a verified fact.",
+      "needsReviewMeans": "Use cautiously and state uncertainty. Never promote it to reviewed or verified."
+    }
+  },
+  "outputJsonSchema": {
+    "type": "object",
+    "properties": {
+      "performanceRating": {
+        "anyOf": [
+          {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "evidenceConfidence": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "editorialStatus": {
+        "type": "string",
+        "enum": [
+          "needs_review",
+          "ready",
+          "blocked"
+        ]
+      },
+      "editorialLimitations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "decisionQuestions": {
+        "minItems": 8,
+        "maxItems": 8,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "fusion_or_base",
+                "white_or_black_priority",
+                "required_moves",
+                "missing_special_move",
+                "post_fusion_first_step",
+                "power_up_target",
+                "second_move",
+                "xl_and_stardust"
+              ]
+            },
+            "conclusion": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "conditions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "evidenceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "id",
+            "conclusion",
+            "reason",
+            "conditions",
+            "evidenceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "applicability": {
+        "type": "object",
+        "properties": {
+          "modes": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "raid",
+                "mega",
+                "max",
+                "pvp"
+              ]
+            }
+          },
+          "secondMove": {
+            "type": "boolean"
+          },
+          "xlCandy": {
+            "type": "boolean"
+          },
+          "maxMove": {
+            "type": "boolean"
+          },
+          "specialActionGuide": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "modes",
+          "secondMove",
+          "xlCandy",
+          "maxMove",
+          "specialActionGuide"
+        ],
+        "additionalProperties": false
+      },
+      "verdict": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "analysis": {
+            "type": "object",
+            "properties": {
+              "reason": {
+                "type": "string"
+              },
+              "evidenceIds": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "modes": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "raid",
+                    "mega",
+                    "max",
+                    "pvp"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "reason",
+              "evidenceIds",
+              "modes"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "label",
+          "summary",
+          "analysis"
+        ],
+        "additionalProperties": false
+      },
+      "useCases": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": [
+                "raid",
+                "mega",
+                "max",
+                "pvp"
+              ]
+            },
+            "performanceRating": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 5
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "analysis": {
+              "type": "object",
+              "properties": {
+                "reason": {
+                  "type": "string"
+                },
+                "evidenceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "modes": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "raid",
+                      "mega",
+                      "max",
+                      "pvp"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "reason",
+                "evidenceIds",
+                "modes"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "mode",
+            "performanceRating",
+            "analysis"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "movesets": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": [
+                "raid",
+                "mega",
+                "max",
+                "pvp"
+              ]
+            },
+            "fastMove": {
+              "type": "string"
+            },
+            "chargedMoves": {
+              "minItems": 1,
+              "maxItems": 2,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "acquisitionConditions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "analysis": {
+              "type": "object",
+              "properties": {
+                "reason": {
+                  "type": "string"
+                },
+                "evidenceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "modes": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "raid",
+                      "mega",
+                      "max",
+                      "pvp"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "reason",
+                "evidenceIds",
+                "modes"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "mode",
+            "fastMove",
+            "chargedMoves",
+            "acquisitionConditions",
+            "analysis"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "raidAnalysis": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string",
+                "const": "relative_cycle_index_v1"
+              },
+              "profiles": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "subjectId": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "fastMove": {
+                      "type": "string"
+                    },
+                    "chargedMove": {
+                      "type": "string"
+                    },
+                    "targetProfile": {
+                      "type": "string"
+                    },
+                    "defenderTypes": {
+                      "maxItems": 2,
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "fastEffectiveness": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "chargedEffectiveness": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "fastUsesPerCharged": {
+                      "type": "integer",
+                      "exclusiveMinimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "cycleSeconds": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "relativeCycleIndex": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    }
+                  },
+                  "required": [
+                    "subjectId",
+                    "label",
+                    "fastMove",
+                    "chargedMove",
+                    "targetProfile",
+                    "defenderTypes",
+                    "fastEffectiveness",
+                    "chargedEffectiveness",
+                    "fastUsesPerCharged",
+                    "cycleSeconds",
+                    "relativeCycleIndex"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "assumptions": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "limitations": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "evidenceIds": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "method",
+              "profiles",
+              "assumptions",
+              "limitations",
+              "evidenceIds"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "pvpAnalysis": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "simulationPerformed": {
+                "type": "boolean",
+                "const": false
+              },
+              "observations": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "limitations": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "evidenceIds": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "simulationPerformed",
+              "observations",
+              "limitations",
+              "evidenceIds"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "investment": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "evidenceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "label",
+                "reason",
+                "evidenceIds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "stardust": {
+            "type": "object",
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "recommended",
+                  "conditional",
+                  "hold",
+                  "low",
+                  "not_applicable"
+                ]
+              },
+              "analysis": {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  },
+                  "evidenceIds": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "modes": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "raid",
+                        "mega",
+                        "max",
+                        "pvp"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "reason",
+                  "evidenceIds",
+                  "modes"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "decision",
+              "analysis"
+            ],
+            "additionalProperties": false
+          },
+          "candy": {
+            "type": "object",
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "recommended",
+                  "conditional",
+                  "hold",
+                  "low",
+                  "not_applicable"
+                ]
+              },
+              "analysis": {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  },
+                  "evidenceIds": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "modes": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "raid",
+                        "mega",
+                        "max",
+                        "pvp"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "reason",
+                  "evidenceIds",
+                  "modes"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "decision",
+              "analysis"
+            ],
+            "additionalProperties": false
+          },
+          "secondMove": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "decision": {
+                    "type": "string",
+                    "enum": [
+                      "high",
+                      "recommended",
+                      "conditional",
+                      "hold",
+                      "low",
+                      "not_applicable"
+                    ]
+                  },
+                  "analysis": {
+                    "type": "object",
+                    "properties": {
+                      "reason": {
+                        "type": "string"
+                      },
+                      "evidenceIds": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "modes": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "raid",
+                            "mega",
+                            "max",
+                            "pvp"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "reason",
+                      "evidenceIds",
+                      "modes"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "decision",
+                  "analysis"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "xlCandy": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "decision": {
+                    "type": "string",
+                    "enum": [
+                      "high",
+                      "recommended",
+                      "conditional",
+                      "hold",
+                      "low",
+                      "not_applicable"
+                    ]
+                  },
+                  "analysis": {
+                    "type": "object",
+                    "properties": {
+                      "reason": {
+                        "type": "string"
+                      },
+                      "evidenceIds": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "modes": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "raid",
+                            "mega",
+                            "max",
+                            "pvp"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "reason",
+                      "evidenceIds",
+                      "modes"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "decision",
+                  "analysis"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "eliteTm": {
+            "type": "object",
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "recommended",
+                  "conditional",
+                  "hold",
+                  "low",
+                  "not_applicable"
+                ]
+              },
+              "analysis": {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string"
+                  },
+                  "evidenceIds": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "modes": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "raid",
+                        "mega",
+                        "max",
+                        "pvp"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "reason",
+                  "evidenceIds",
+                  "modes"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "decision",
+              "analysis"
+            ],
+            "additionalProperties": false
+          },
+          "maxMove": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "decision": {
+                    "type": "string",
+                    "enum": [
+                      "high",
+                      "recommended",
+                      "conditional",
+                      "hold",
+                      "low",
+                      "not_applicable"
+                    ]
+                  },
+                  "analysis": {
+                    "type": "object",
+                    "properties": {
+                      "reason": {
+                        "type": "string"
+                      },
+                      "evidenceIds": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "modes": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "raid",
+                            "mega",
+                            "max",
+                            "pvp"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "reason",
+                      "evidenceIds",
+                      "modes"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "decision",
+                  "analysis"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "powerUpStages": {
+            "minItems": 4,
+            "maxItems": 4,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "level": {
+                  "type": "string",
+                  "enum": [
+                    "30",
+                    "35",
+                    "40",
+                    "50"
+                  ]
+                },
+                "decision": {
+                  "type": "string",
+                  "enum": [
+                    "recommended",
+                    "conditional",
+                    "hold",
+                    "not_evaluated"
+                  ]
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "evidenceIds": {
+                  "minItems": 1,
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "level",
+                "decision",
+                "reason",
+                "evidenceIds"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "order",
+          "stardust",
+          "candy",
+          "secondMove",
+          "xlCandy",
+          "eliteTm",
+          "maxMove",
+          "powerUpStages"
+        ],
+        "additionalProperties": false
+      },
+      "actions": {
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "evidenceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "id",
+            "label",
+            "reason",
+            "evidenceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "evidenceIds": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "id",
+            "label",
+            "reason",
+            "evidenceIds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "specialActionGuideId": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "pokemonId": {
+        "type": "string",
+        "enum": [
+          "kyurem",
+          "white-kyurem",
+          "black-kyurem",
+          "reshiram",
+          "zekrom"
+        ]
+      }
+    },
+    "required": [
+      "performanceRating",
+      "evidenceConfidence",
+      "editorialStatus",
+      "editorialLimitations",
+      "decisionQuestions",
+      "applicability",
+      "verdict",
+      "useCases",
+      "movesets",
+      "raidAnalysis",
+      "pvpAnalysis",
+      "investment",
+      "actions",
+      "warnings",
+      "specialActionGuideId",
+      "pokemonId"
+    ],
+    "additionalProperties": false
+  },
+  "packageHash": "1545374606f676f6b5ca36b6843f6ba7548d4e773b140e815503f974e59cd43b"
+}

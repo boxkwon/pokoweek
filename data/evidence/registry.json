@@ -1,0 +1,441 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-17T01:41:47.440Z",
+  "records": [
+    {
+      "id": "pogoapi:pokemon_stats:ca23e7947d97",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/pokemon_stats.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-17T00:49:59.500Z",
+      "sourceHash": "ca23e7947d9722c1935f91e3abb84ceaf7fb52925accf423d8c6b23e6acaf3e6",
+      "reviewStatus": "needs_review",
+      "rawCollected": true,
+      "claim": "PoGo API pokemon_stats.json snapshot used for normalized game data.",
+      "paths": [
+        "pokemon.*.pokemon_stats"
+      ]
+    },
+    {
+      "id": "pogoapi:pokemon_types:d2979fa632e6",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/pokemon_types.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-17T00:49:59.500Z",
+      "sourceHash": "d2979fa632e6cecd1f5c89db68901b99d3434035efcb0416a97d798ecdc5071a",
+      "reviewStatus": "needs_review",
+      "rawCollected": true,
+      "claim": "PoGo API pokemon_types.json snapshot used for normalized game data.",
+      "paths": [
+        "pokemon.*.pokemon_types"
+      ]
+    },
+    {
+      "id": "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/current_pokemon_moves.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-17T00:49:59.500Z",
+      "sourceHash": "8dff0aa9bb687504542850953814b32c37635d525998d9353f7847bbfad299c6",
+      "reviewStatus": "needs_review",
+      "rawCollected": true,
+      "claim": "PoGo API current_pokemon_moves.json snapshot used for normalized game data.",
+      "paths": [
+        "pokemon.*.current_pokemon_moves"
+      ]
+    },
+    {
+      "id": "pogoapi:fast_moves:3c6781e7ebe7",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/fast_moves.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-17T00:49:59.500Z",
+      "sourceHash": "3c6781e7ebe7d0d95d36557b27a823337ae005b51ae34531163cf3ade96e2fc8",
+      "reviewStatus": "needs_review",
+      "rawCollected": true,
+      "claim": "PoGo API fast_moves.json snapshot used for normalized game data.",
+      "paths": [
+        "pokemon.*.fast_moves"
+      ]
+    },
+    {
+      "id": "pogoapi:charged_moves:a09029272289",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/charged_moves.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-17T00:49:59.500Z",
+      "sourceHash": "a0902927228963f0678ec842c47e0704b3f6ac79889a22840a52a818cd3d2aae",
+      "reviewStatus": "needs_review",
+      "rawCollected": true,
+      "claim": "PoGo API charged_moves.json snapshot used for normalized game data.",
+      "paths": [
+        "pokemon.*.charged_moves"
+      ]
+    },
+    {
+      "id": "pogoapi:pvp_fast_moves:d944f25ce672",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/pvp_fast_moves.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-17T00:49:59.500Z",
+      "sourceHash": "d944f25ce672831f3aeef4965b2705f5023de1a655abdbc215d30ca09470a050",
+      "reviewStatus": "needs_review",
+      "rawCollected": true,
+      "claim": "PoGo API pvp_fast_moves.json snapshot used for normalized game data.",
+      "paths": [
+        "pokemon.*.pvp_fast_moves"
+      ]
+    },
+    {
+      "id": "pogoapi:pvp_charged_moves:e9213b0744b6",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/pvp_charged_moves.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-17T00:49:59.500Z",
+      "sourceHash": "e9213b0744b663e2d51f7e47b94305de8f8101361787b3372d9e4f2c0e7f0fb8",
+      "reviewStatus": "needs_review",
+      "rawCollected": true,
+      "claim": "PoGo API pvp_charged_moves.json snapshot used for normalized game data.",
+      "paths": [
+        "pokemon.*.pvp_charged_moves"
+      ]
+    },
+    {
+      "id": "pogoapi:cp_multiplier:61c96ee36079",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/cp_multiplier.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-17T00:49:59.500Z",
+      "sourceHash": "61c96ee36079edbb09811fda0ff17a961fdd30144c8aa6d3f1ebbfd9f1017ec5",
+      "reviewStatus": "needs_review",
+      "rawCollected": true,
+      "claim": "PoGo API cp_multiplier.json snapshot used for normalized game data.",
+      "paths": [
+        "pokemon.*.cp_multiplier"
+      ]
+    },
+    {
+      "id": "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/pokemon_powerup_requirements.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-17T00:49:59.500Z",
+      "sourceHash": "d8065e28e35b9f4b35990a24c5810adaf80ad2e4dbac5bdac3e84e5622018da2",
+      "reviewStatus": "needs_review",
+      "rawCollected": true,
+      "claim": "PoGo API pokemon_powerup_requirements.json snapshot used for normalized game data.",
+      "paths": [
+        "pokemon.*.pokemon_powerup_requirements"
+      ]
+    },
+    {
+      "id": "pogoapi:type_effectiveness:f9208ace82f4",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/type_effectiveness.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-17T00:49:59.500Z",
+      "sourceHash": "f9208ace82f48db744cfc0e18181a33382ec9ac690dac05cdb35dfef3602c3a8",
+      "reviewStatus": "needs_review",
+      "rawCollected": true,
+      "claim": "PoGo API type_effectiveness.json snapshot used for normalized game data.",
+      "paths": [
+        "pokemon.*.type_effectiveness"
+      ]
+    },
+    {
+      "id": "pogoapi:pokemon_max_cp:466bf226715d",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/pokemon_max_cp.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-17T00:49:59.500Z",
+      "sourceHash": "466bf226715d3838247161e9984105d28dfb69d8819260c0f29fa5f6e952ab3a",
+      "reviewStatus": "needs_review",
+      "rawCollected": true,
+      "claim": "PoGo API pokemon_max_cp.json snapshot used for normalized game data.",
+      "paths": [
+        "pokemon.*.pokemon_max_cp"
+      ]
+    },
+    {
+      "id": "official:white-materials",
+      "sourceId": "pokemon-go-official-kyurem-fusion-raid-day-2026",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-16T09:00:00+09:00",
+      "sourceHash": "b98af88eb166fe9c48cc3f419132384fdd10d04566e005624962494a61d90e22",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "화이트큐레무 합체에는 큐레무와 레시라무, 블레이즈 에너지 1,000, 큐레무와 레시라무의 사탕 각 30개가 필요하다.",
+      "paths": [
+        "fusionRecipes.white-kyurem.materials"
+      ]
+    },
+    {
+      "id": "official:black-materials",
+      "sourceId": "pokemon-go-official-kyurem-fusion-raid-day-2026",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-16T09:00:00+09:00",
+      "sourceHash": "21702f9095d89ba9bb61c42a0628a2de1613862aee0a8b47a69656d0de658021",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "블랙큐레무 합체에는 큐레무와 제크로무, 볼트 에너지 1,000, 큐레무와 제크로무의 사탕 각 30개가 필요하다.",
+      "paths": [
+        "fusionRecipes.black-kyurem.materials"
+      ]
+    },
+    {
+      "id": "official:fusion-state-separation",
+      "sourceId": "pokemon-go-official-kyurem-fusion-raid-day-2026",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-16T09:00:00+09:00",
+      "sourceHash": "06596e172a80b4c6ab3918e6c7ef70fb31c13bcd5872fef4dfd676b10434d60e",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "합체된 큐레무는 분리 전까지 파트너와 결합된 상태이며 분리에는 에너지와 사탕이 들지 않는다.",
+      "paths": [
+        "fusionRecipes.*.partnerState",
+        "fusionRecipes.*.separation"
+      ]
+    },
+    {
+      "id": "official:white-move",
+      "sourceId": "pokemon-go-official-kyurem-fusion-raid-day-2026",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-16T09:00:00+09:00",
+      "sourceHash": "4a6bd13f86a93fb2ca7b3292dff58f92a1208d963e83482c73770c0c215b4e06",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "얼어붙은세계를 배운 큐레무를 레시라무와 합체하면 콜드플레어로 바뀌고, 분리하면 되돌아가며 기술머신으로 배울 수 없다.",
+      "paths": [
+        "fusionRecipes.white-kyurem.moveTransformation"
+      ]
+    },
+    {
+      "id": "official:black-move",
+      "sourceId": "pokemon-go-official-kyurem-fusion-raid-day-2026",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-16T09:00:00+09:00",
+      "sourceHash": "ad69916efbcb881e8f8b22b50df99fc00738c0c65f208704342f36580ccf9121",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "얼어붙은세계를 배운 큐레무를 제크로무와 합체하면 프리즈볼트로 바뀌고, 분리하면 되돌아가며 기술머신으로 배울 수 없다.",
+      "paths": [
+        "fusionRecipes.black-kyurem.moveTransformation"
+      ]
+    },
+    {
+      "id": "official:white-field-effect",
+      "sourceId": "pokemon-go-official-kyurem-fusion-raid-day-2026",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-16T09:00:00+09:00",
+      "sourceHash": "2b8e7f705662f1edf2d1a3c9ed34efacfe6ddb2abd2a08a0729a244cc51a371d",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "콜드플레어 필드 효과는 별의모래 5,000과 큐레무의 사탕 5개로 10분간 발동한다.",
+      "paths": [
+        "fusionRecipes.white-kyurem.fieldEffect"
+      ]
+    },
+    {
+      "id": "official:black-field-effect",
+      "sourceId": "pokemon-go-official-kyurem-fusion-raid-day-2026",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-16T09:00:00+09:00",
+      "sourceHash": "26955c15126caf7845afb85da83b1fb459357ab12179700381eed9fc2e9a4dc2",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "프리즈볼트 필드 효과는 별의모래 5,000과 큐레무의 사탕 5개로 10분간 발동한다.",
+      "paths": [
+        "fusionRecipes.black-kyurem.fieldEffect"
+      ]
+    },
+    {
+      "id": "official:fusion-storage-restrictions",
+      "sourceId": "pokemon-go-official-kyurem-fusion-raid-day-2026",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-16T09:00:00+09:00",
+      "sourceHash": "dea49287715e7308a4175bd58a8ca7864b825769989e00efc6dcd28f75b09f27",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "블랙큐레무와 화이트큐레무는 교환하거나 박사에게 보내거나 Pokémon HOME에 맡길 수 없다.",
+      "paths": [
+        "fusionRecipes.*.storageRestrictions"
+      ]
+    },
+    {
+      "id": "official:field-effect-exclusivity",
+      "sourceId": "pokemon-go-official-kyurem-fusion-raid-day-2026",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-16T09:00:00+09:00",
+      "sourceHash": "f884a0d397033849115da25453a9f5ddd1ebac333a5252863776163c1acbbbae",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "프리즈볼트와 콜드플레어 필드 효과는 다른 필드 효과와 동시에 사용할 수 없다.",
+      "paths": [
+        "fusionRecipes.*.fieldEffect.incompatibleWithOtherFieldEffects"
+      ]
+    },
+    {
+      "id": "reference:cp-formula",
+      "sourceId": "pokemon-go-hub-game-master-cp-2026",
+      "sourceType": "manual",
+      "url": "https://db.pokemongohub.net/tools/cp-calculator",
+      "publisher": "Pokémon GO Hub",
+      "reviewedAt": "2026-11-17T10:00:00+09:00",
+      "sourceHash": "2d3e79ebf14a0f5505d42e83c8518ddfd608a73a88c7269970c6e4f8cbc767b6",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "CP는 (기본 공격+공격 IV)×sqrt(기본 방어+방어 IV)×sqrt(기본 체력+체력 IV)×CPM²÷10을 내림하고 최소 10을 적용한다.",
+      "paths": [
+        "decisionSupport.progression.cpFormula"
+      ]
+    },
+    {
+      "id": "reference:level-50-cpm",
+      "sourceId": "pokemon-go-hub-game-master-cp-2026",
+      "sourceType": "manual",
+      "url": "https://db.pokemongohub.net/tools/cp-calculator",
+      "publisher": "Pokémon GO Hub",
+      "reviewedAt": "2026-11-17T10:00:00+09:00",
+      "sourceHash": "39fcc1b1982f64abb549a1dc61a773d157628c76ec2fa9448e8985428537da67",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "Game Master 기반 레벨 50 CP multiplier는 0.8403000236이다.",
+      "paths": [
+        "progression.cpMultipliers.level50"
+      ]
+    },
+    {
+      "id": "review:kyurem-stats-types",
+      "sourceId": "kyurem-fact-review-2026",
+      "sourceType": "manual",
+      "url": "https://pogoapi.net/api/v1/pokemon_stats.json",
+      "publisher": "PoGo API",
+      "reviewedAt": "2026-11-17T15:30:00+09:00",
+      "sourceHash": "6fe92fa98c463eeac39ba1e8d2de05ecd59c754af5f3431cb84154282df6f286",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "PoGo API 원본 스냅샷, Bulbapedia의 Pokémon GO 폼별 능력치·타입과 일치",
+      "paths": [
+        "factReviews.base_stats_types"
+      ]
+    },
+    {
+      "id": "review:kyurem-form-move-pools",
+      "sourceId": "kyurem-fact-review-2026",
+      "sourceType": "manual",
+      "url": "https://pogoapi.net/api/v1/current_pokemon_moves.json",
+      "publisher": "PoGo API",
+      "reviewedAt": "2026-11-17T15:30:00+09:00",
+      "sourceHash": "6cf185a4defbf8375c3e47fa88c83bbd0792dd8c352fe275420c37e540d4623f",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "PoGo API current move pool과 Bulbapedia의 폼별 Pokémon GO 기술 목록을 대조했으며 대상 기술의 폼 귀속이 일치",
+      "paths": [
+        "factReviews.form_move_pools"
+      ]
+    },
+    {
+      "id": "review:kyurem-move-metrics",
+      "sourceId": "kyurem-fact-review-2026",
+      "sourceType": "manual",
+      "url": "https://pogoapi.net/api/v1/charged_moves.json",
+      "publisher": "PoGo API",
+      "reviewedAt": "2026-11-17T15:30:00+09:00",
+      "sourceHash": "b68555bdcadb01733cd244f181099fe8e76fde2a5590ceaf5c1fcbecab796fd1",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "PoGo API fast/charged 및 PvP move 원본과 Bulbapedia의 현재 기술 표를 대조해 일치. PvE와 PvP 수치를 혼용하지 않음",
+      "paths": [
+        "factReviews.pve_pvp_move_metrics"
+      ]
+    },
+    {
+      "id": "review:kyurem-acquisition-special-conditions",
+      "sourceId": "kyurem-fact-review-2026",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-17T15:30:00+09:00",
+      "sourceHash": "6f97d80d6f44703bb7a5328147c986c2579a5f3a72726aae7ac3610b7d545401",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "Pokémon GO 공식 공지의 재료, 기술 변환, 분리, 보관·교환 제한, 필드 효과 조건과 일치",
+      "paths": [
+        "factReviews.acquisition_special_conditions"
+      ]
+    },
+    {
+      "id": "review:kyurem-cp-level-context",
+      "sourceId": "kyurem-fact-review-2026",
+      "sourceType": "manual",
+      "url": "https://pogoapi.net/api/v1/pokemon_max_cp.json",
+      "publisher": "PoGo API",
+      "reviewedAt": "2026-11-17T15:30:00+09:00",
+      "sourceHash": "e17131aada347926efd70649368dbb2587fe38937038f0e0a95fde7a0ec6f46a",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "CP 공식과 Lv.50 CPM으로 계산한 값은 Lv.50 공개값과 일치하고 PoGo API max_cp는 Lv.51 Best Buddy 공개값과 일치. 서로 다른 레벨 문맥이므로 불일치 오류가 아님",
+      "paths": [
+        "factReviews.cp_level_context"
+      ]
+    },
+    {
+      "id": "review:kyurem-power-up-costs",
+      "sourceId": "kyurem-fact-review-2026",
+      "sourceType": "manual",
+      "url": "https://pogoapi.net/api/v1/pokemon_powerup_requirements.json",
+      "publisher": "PoGo API",
+      "reviewedAt": "2026-11-17T15:30:00+09:00",
+      "sourceHash": "57bea41eff779944813b3f2d8cbaa568f20a54e6c584b85121958bc583c2a47b",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "PoGo API 강화 비용 원본을 0.5레벨 단위로 합산한 값과 Pokémon GO Hub 계산기의 Lv.20 시작 비용이 일치. XL은 Lv.40 초과부터 사용",
+      "paths": [
+        "factReviews.power_up_costs"
+      ]
+    },
+    {
+      "id": "review:kyurem-limited-benchmarks",
+      "sourceId": "kyurem-fact-review-2026",
+      "sourceType": "manual",
+      "url": "https://pogoapi.net/",
+      "publisher": "PoGo API",
+      "sourceHash": "bc052c58f2fac11ef9cc5e38b3d447a3777c3c9b47be74669f94e24e9546a8bd",
+      "reviewStatus": "needs_review",
+      "rawCollected": false,
+      "claim": "입력 기술과 타입 상성은 원본에 연결되지만 실제 DPS/TDO, 보스 방어, 회피, 사망 시간, 전체 공격수 순위를 계산하지 않음",
+      "paths": [
+        "factReviews.limited_benchmark_comparison"
+      ]
+    }
+  ]
+}

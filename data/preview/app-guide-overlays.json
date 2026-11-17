@@ -1,0 +1,257 @@
+[
+  {
+    "id": "kyurem",
+    "validationHash": "80307c9fc1329730f2648bf20d9b38e0a8539fd2c22a752f96f590b83823f97b",
+    "previewOnly": true,
+    "guide": {
+      "overallRating": null,
+      "verdictLabel": "융합 목표부터 정하고 본체 투자는 보류",
+      "reason": "융합 목표부터 정하고 본체 투자는 보류",
+      "summary": "화이트·블랙용 큐레무와 얼어붙은세계 보유 여부를 각각 확정한 뒤, 남는 개체만 본체 육성을 검토하세요.",
+      "useCases": {
+        "raid": {
+          "rating": null,
+          "reason": "Dragon Breath와 Glaciate의 PvE 수치 및 상대 주기 지표는 계산할 수 있지만 보스 방어·생존·경쟁 공격수를 반영하지 않아 실제 레이드 등급은 확정하지 않는다."
+        },
+        "pvp": {
+          "rating": null,
+          "reason": "Glaciate의 에너지와 공격 감소 효과는 확인되지만 실드 운용·리그 CP·매치업을 계산하지 않았으므로 상위 티어나 최적 조합으로 단정하지 않는다."
+        }
+      },
+      "movesets": {
+        "raid": {
+          "fastMove": {
+            "name": "Dragon Breath"
+          },
+          "chargedMove": {
+            "name": "Glaciate"
+          }
+        },
+        "pvp": {
+          "fastMove": {
+            "name": "Dragon Breath"
+          },
+          "chargedMove": {
+            "name": "Glaciate"
+          },
+          "chargedMove2": {
+            "name": "Dragon Claw"
+          }
+        }
+      },
+      "investment": {
+        "order": [
+          {
+            "id": "assign-two-bases",
+            "label": "화이트용·블랙용 큐레무를 각각 지정",
+            "reason": "두 폼을 모두 만들려면 큐레무 2마리가 필요하다."
+          },
+          {
+            "id": "check-two-glaciate",
+            "label": "각 개체의 얼어붙은세계 독립 확인",
+            "reason": "특수 기술 변환은 선택한 큐레무별로 적용된다."
+          },
+          {
+            "id": "reserve-fusion-costs",
+            "label": "목표별 파트너·에너지·사탕 확보",
+            "reason": "화이트와 블랙의 파트너와 융합 에너지가 서로 다르다."
+          },
+          {
+            "id": "decide-base-use",
+            "label": "남는 개체의 본체 사용 모드 결정",
+            "reason": "레이드·PvP 비교 근거가 충분하지 않아 모드 결정 전 큰 투자를 피한다."
+          }
+        ],
+        "stardust": "hold",
+        "candy": "conditional",
+        "secondMove": "conditional",
+        "xlCandy": "hold",
+        "eliteTm": "conditional"
+      },
+      "ivAdvice": {
+        "general": "융합 재료가 있다면 Glaciate를 보유한 좋은 큐레무를 우선 융합하고, 본체는 두 융합용 개체를 확보한 뒤 남는 개체만 키운다. 융합 폼은 공격 310이고 본체는 공격 246이며, 각 융합에는 별도 큐레무가 필요하다."
+      },
+      "values": {
+        "raid": null,
+        "pvp": null
+      },
+      "valueReasons": {
+        "raid": "Dragon Breath와 Glaciate의 PvE 수치 및 상대 주기 지표는 계산할 수 있지만 보스 방어·생존·경쟁 공격수를 반영하지 않아 실제 레이드 등급은 확정하지 않는다.",
+        "pvp": "Glaciate의 에너지와 공격 감소 효과는 확인되지만 실드 운용·리그 CP·매치업을 계산하지 않았으므로 상위 티어나 최적 조합으로 단정하지 않는다."
+      },
+      "recommendations": [
+        "둘 다 만들면 큐레무 2마리를 서로 다른 목표에 배정",
+        "화이트용·블랙용 얼어붙은세계 상태를 별도로 기록",
+        "융합용 사탕과 파트너를 먼저 보존"
+      ]
+    }
+  },
+  {
+    "id": "white-kyurem",
+    "validationHash": "80307c9fc1329730f2648bf20d9b38e0a8539fd2c22a752f96f590b83823f97b",
+    "previewOnly": true,
+    "guide": {
+      "overallRating": null,
+      "verdictLabel": "Ice Burn 확인 후 단계적으로 투자",
+      "reason": "Ice Burn 확인 후 단계적으로 투자",
+      "summary": "Ice Fang + Ice Burn의 얼음 역할은 확인됐지만, 레벨 40·50 투자는 실제 팀 공백과 추가 비교 근거가 있을 때 진행하세요.",
+      "useCases": {
+        "raid": {
+          "rating": null,
+          "reason": "Ice Fang과 Ice Burn은 모두 얼음 타입이며 자속·상성을 함께 받는다. 상대 주기 지표는 본체보다 높은 값을 보이지만 실제 레이드 등급이나 순위로 해석할 수 없다."
+        },
+        "pvp": {
+          "rating": null,
+          "reason": "Ice Burn은 PvP 위력 120·에너지 60이며 30% 확률로 상대 방어를 1단계 낮추지만 실드 운용과 매치업을 검증하지 않았다."
+        }
+      },
+      "movesets": {
+        "raid": {
+          "fastMove": {
+            "name": "Ice Fang"
+          },
+          "chargedMove": {
+            "name": "Ice Burn"
+          }
+        },
+        "pvp": {
+          "fastMove": {
+            "name": "Ice Fang"
+          },
+          "chargedMove": {
+            "name": "Ice Burn"
+          }
+        }
+      },
+      "investment": {
+        "order": [
+          {
+            "id": "verify-ice-burn",
+            "label": "융합 직후 Ice Burn 보유 확인",
+            "reason": "Glaciate를 알고 있던 큐레무만 Ice Burn으로 변환된다."
+          },
+          {
+            "id": "set-ice-fang",
+            "label": "레이드 목적이면 Ice Fang 설정",
+            "reason": "Ice Fang과 Ice Burn을 같은 얼음 역할로 맞춘다."
+          },
+          {
+            "id": "test-team-gap",
+            "label": "현재 얼음 팀의 공백 확인",
+            "reason": "외부 공격수 순위가 없으므로 기존 팀보다 필요한지 먼저 판단한다."
+          },
+          {
+            "id": "stage-white-powerup",
+            "label": "필요한 레이드부터 단계 강화",
+            "reason": "초기 사용 후 실제 부족분이 확인될 때만 레벨 40 이상으로 넘어간다."
+          }
+        ],
+        "stardust": "conditional",
+        "candy": "conditional",
+        "secondMove": "low",
+        "xlCandy": "hold",
+        "eliteTm": "not_needed"
+      },
+      "ivAdvice": {
+        "general": "레이드용 얼음 공격수가 필요하면 Glaciate 보유 큐레무를 화이트로 융합하고, 큐레무 본체 강화보다 화이트를 우선한다. 화이트는 공격 310과 Ice Fang + Ice Burn의 일관된 얼음 조합을 갖고 제한 비교에서도 세 얼음 대표 조합보다 높은 상대 주기 지표를 보였다."
+      },
+      "values": {
+        "raid": null,
+        "pvp": null
+      },
+      "valueReasons": {
+        "raid": "Ice Fang과 Ice Burn은 모두 얼음 타입이며 자속·상성을 함께 받는다. 상대 주기 지표는 본체보다 높은 값을 보이지만 실제 레이드 등급이나 순위로 해석할 수 없다.",
+        "pvp": "Ice Burn은 PvP 위력 120·에너지 60이며 30% 확률로 상대 방어를 1단계 낮추지만 실드 운용과 매치업을 검증하지 않았다."
+      },
+      "recommendations": [
+        "Ice Burn 변환 여부를 먼저 확인",
+        "현재 얼음 공격수 팀의 공백 확인",
+        "필드 효과 사용분 사탕·별의모래 분리"
+      ]
+    }
+  },
+  {
+    "id": "black-kyurem",
+    "validationHash": "80307c9fc1329730f2648bf20d9b38e0a8539fd2c22a752f96f590b83823f97b",
+    "previewOnly": true,
+    "guide": {
+      "overallRating": null,
+      "verdictLabel": "Freeze Shock 역할 확인 후 선택 투자",
+      "reason": "Freeze Shock 역할 확인 후 선택 투자",
+      "summary": "Freeze Shock의 높은 PvE 위력은 확인됐지만 Dragon Tail과의 혼합 타입 역할을 고려해, 실제 상대가 정해진 뒤 단계적으로 강화하세요.",
+      "useCases": {
+        "raid": {
+          "rating": null,
+          "reason": "Dragon Tail은 드래곤, Freeze Shock은 얼음이므로 두 타입 모두 약점인 상대에서는 지표가 높지만 단일 약점 상대와 전체 공격수 순위는 검증되지 않았다."
+        },
+        "pvp": {
+          "rating": null,
+          "reason": "Freeze Shock은 PvP 위력 120·에너지 60이며 30% 확률로 상대 공격을 1단계 낮추지만 실드와 매치업 근거가 없다."
+        }
+      },
+      "movesets": {
+        "raid": {
+          "fastMove": {
+            "name": "Dragon Tail"
+          },
+          "chargedMove": {
+            "name": "Freeze Shock"
+          }
+        },
+        "pvp": {
+          "fastMove": {
+            "name": "Shadow Claw"
+          },
+          "chargedMove": {
+            "name": "Freeze Shock"
+          }
+        }
+      },
+      "investment": {
+        "order": [
+          {
+            "id": "verify-freeze-shock",
+            "label": "융합 직후 Freeze Shock 보유 확인",
+            "reason": "Glaciate를 알고 있던 큐레무만 Freeze Shock으로 변환된다."
+          },
+          {
+            "id": "choose-black-role",
+            "label": "공략 상대의 드래곤·얼음 약점 확인",
+            "reason": "Dragon Tail과 Freeze Shock의 타입이 달라 상대에 따라 효율이 달라진다."
+          },
+          {
+            "id": "test-black-team-gap",
+            "label": "현재 팀에서 필요한 역할 확인",
+            "reason": "외부 공격수 순위가 없으므로 기존 드래곤·얼음 팀과 사용처를 먼저 비교한다."
+          },
+          {
+            "id": "stage-black-powerup",
+            "label": "대상 레이드가 있을 때 단계 강화",
+            "reason": "혼합 타입 역할이 실제로 맞는 상대가 있을 때만 다음 강화 단계로 넘어간다."
+          }
+        ],
+        "stardust": "conditional",
+        "candy": "conditional",
+        "secondMove": "low",
+        "xlCandy": "hold",
+        "eliteTm": "not_needed"
+      },
+      "ivAdvice": {
+        "general": "드래곤·얼음 약점이 함께 있는 목표를 공략하거나 Freeze Shock 필드 효과가 필요하면 Glaciate 보유 큐레무를 블랙으로 융합한다. 블랙은 공격 310과 Dragon Tail + Freeze Shock을 갖고, 이 제한 조건에서 본체와 대표 드래곤 조합보다 높은 상대 주기 지표를 보였다."
+      },
+      "values": {
+        "raid": null,
+        "pvp": null
+      },
+      "valueReasons": {
+        "raid": "Dragon Tail은 드래곤, Freeze Shock은 얼음이므로 두 타입 모두 약점인 상대에서는 지표가 높지만 단일 약점 상대와 전체 공격수 순위는 검증되지 않았다.",
+        "pvp": "Freeze Shock은 PvP 위력 120·에너지 60이며 30% 확률로 상대 공격을 1단계 낮추지만 실드와 매치업 근거가 없다."
+      },
+      "recommendations": [
+        "Freeze Shock 변환 여부를 먼저 확인",
+        "드래곤·얼음 약점이 맞는 공략 상대 선택",
+        "필드 효과 사용분 사탕·별의모래 분리"
+      ]
+    }
+  }
+]

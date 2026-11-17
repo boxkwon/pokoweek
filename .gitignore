@@ -4,3 +4,10 @@ node_modules
 .DS_Store
 npm-debug.log*
 .env*
+
+# Data Engine runtime cache and incomplete writes
+data/raw/
+data/logs/
+data/**/*.tmp
+data/**/*.partial
+*.tsbuildinfo

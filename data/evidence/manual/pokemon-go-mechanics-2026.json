@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "pokemon-go-hub-game-master-cp-2026",
+    "url": "https://db.pokemongohub.net/tools/cp-calculator",
+    "publisher": "Pokémon GO Hub",
+    "reviewedAt": "2026-11-17T10:00:00+09:00",
+    "reviewStatus": "reviewed",
+    "rawCollected": false
+  },
+  "claims": [
+    {
+      "id": "reference:cp-formula",
+      "claim": "CP는 (기본 공격+공격 IV)×sqrt(기본 방어+방어 IV)×sqrt(기본 체력+체력 IV)×CPM²÷10을 내림하고 최소 10을 적용한다.",
+      "paths": ["decisionSupport.progression.cpFormula"]
+    },
+    {
+      "id": "reference:level-50-cpm",
+      "claim": "Game Master 기반 레벨 50 CP multiplier는 0.8403000236이다.",
+      "paths": ["progression.cpMultipliers.level50"]
+    }
+  ],
+  "cpMultipliers": [
+    {
+      "level": 50,
+      "multiplier": 0.8403000236,
+      "evidenceIds": ["reference:level-50-cpm"]
+    }
+  ]
+}

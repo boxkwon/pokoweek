@@ -52,7 +52,8 @@ const moveTagLabels = {
   event_limited: "이벤트 한정 기술",
 } as const;
 
-function ratingLabel(value: number) {
+function ratingLabel(value: number | null) {
+  if (value === null) return "성능 미평가";
   if (value === 5) return "매우 좋음";
   if (value === 4) return "좋음";
   if (value === 3) return "조건부";
@@ -161,6 +162,7 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
     const value = guide.useCases?.[mode.key];
     return value ? [{ ...mode, ...value }] : [];
   });
+  const displayedRating = guide.overallRating === undefined ? guide.rating : guide.overallRating;
 
   return <main className="fresh-screen boss-screen generic-guide-screen decision-guide-screen">
     <AppHeader subtitle={APP_SUBTITLE} />
@@ -175,11 +177,11 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
         <h1>{guide.name}</h1>
         <div className="hero-types">{guide.types.map((type, index) => <span className="type-with-divider" key={type}>{index > 0 ? <em>/</em> : null}<TypeBadge type={type} color={typeColors[type]} /></span>)}</div>
         {guide.summary ? <p className="hero-decision-summary">{guide.summary}</p> : null}
-        <div className="must-catch"><RatingStars value={guide.overallRating ?? guide.rating} /><strong>{guide.verdictLabel ?? guide.reason}</strong></div>
+        <div className="must-catch"><RatingStars value={displayedRating} /><strong>{guide.verdictLabel ?? guide.reason}</strong></div>
       </div>
     </section>
 
-    {useCases.length > 0 ? <section className={`guide-mode-summary mode-count-${Math.min(useCases.length, 4)}`} aria-label="활용도 요약">{useCases.map((item) => <div key={item.key}><b>{item.label}</b><RatingStars value={item.rating} /></div>)}</section> : null}
+    {useCases.length > 0 ? <section className={`guide-mode-summary mode-count-${Math.min(useCases.length, 4)}`} aria-label="활용도 요약">{useCases.map((item) => <div key={item.key}><b>{item.label}</b>{item.rating === null ? <span>성능 미평가</span> : <RatingStars value={item.rating} />}</div>)}</section> : null}
 
     {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} /> : null}
     <GuideUseCases guide={guide} />
@@ -187,7 +189,7 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
     <GuideTrainingOrder guide={guide} />
     <GuideInvestment guide={guide} />
     <PokemonWeaknessSection guide={guide} />
-    <PokemonCounterSection guide={guide} />
+    {guide.dataStatus.counters === "ready" ? <PokemonCounterSection guide={guide} /> : null}
     <GuideIvAdvice guide={guide} />
     <PokemonWeekSchedule pokemonId={guide.id} />
     <PokemonRecommendationSection guide={guide} showSummary={false} />

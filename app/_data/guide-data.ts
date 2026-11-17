@@ -1,4 +1,5 @@
 import type { PokemonImage } from "../_components/pokemon-artwork";
+import { applyApprovedGuideOverlays } from "./approved-guide-adapter";
 
 export type CategoryColor = "legendary" | "mega" | "max" | "shadow" | "event" | "community";
 export type RaidTier = 1 | 3 | 5 | "mega" | "shadow" | "superMega";
@@ -14,7 +15,7 @@ export type PokemonActionGuideType = "fusion" | "evolution" | "form_change" | "m
 export type ActionWarningImportance = "high" | "medium" | "low";
 
 export type GuideUseCase = {
-  rating: 1 | 2 | 3 | 4 | 5;
+  rating: 1 | 2 | 3 | 4 | 5 | null;
   reason: string;
 };
 
@@ -131,7 +132,7 @@ export type PokemonGuide = {
   rating: 1 | 2 | 3 | 4 | 5;
   reason: string;
   heroBackground?: string;
-  overallRating?: 1 | 2 | 3 | 4 | 5;
+  overallRating?: 1 | 2 | 3 | 4 | 5 | null;
   verdict?: "must_build" | "recommended" | "conditional" | "hold" | "low_priority";
   verdictLabel?: string;
   useCases?: Partial<Record<GuideMode, GuideUseCase>>;
@@ -522,7 +523,7 @@ function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
   };
 }
 
-export const pokemonGuides = ([
+const basePokemonGuides = ([
   {
     pokemon: pokemon.zacian,
     category: "raid",
@@ -787,6 +788,8 @@ export const pokemonGuides = ([
   },
   { pokemon: pokemon.eternatus, category: "max", categoryLabel: "무한다이맥스", battleTypes: ["max"], formName: "무한다이맥스", rating: 5, reason: "이번 주 최우선 맥스배틀", weaknesses: ["땅", "에스퍼", "얼음", "드래곤"], recommendations: ["맥스 파티클과 회복 아이템 준비", "무한다이노의 사탕·사탕XL 확보를 목표로 참여"], summary: "전투 후 무한다이맥스 폼을 포획하는 배틀이 아니라 무한다이노 육성 자원 확보가 핵심이에요." },
 ] satisfies readonly PokemonGuideDraft[]).map(createPokemonGuide);
+
+export const pokemonGuides = applyApprovedGuideOverlays(basePokemonGuides);
 
 export const wildAreaEvent = {
   id: "go-wild-area-global-2026",

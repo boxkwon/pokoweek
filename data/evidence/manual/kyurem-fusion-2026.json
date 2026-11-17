@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "pokemon-go-official-kyurem-fusion-raid-day-2026",
+    "url": "https://pokemongo.com/ko/news/kyurem-fusion-raid-day-2026",
+    "publisher": "Pokémon GO",
+    "reviewedAt": "2026-11-16T09:00:00+09:00",
+    "reviewStatus": "reviewed",
+    "rawCollected": false
+  },
+  "claims": [
+    {
+      "id": "official:white-materials",
+      "claim": "화이트큐레무 합체에는 큐레무와 레시라무, 블레이즈 에너지 1,000, 큐레무와 레시라무의 사탕 각 30개가 필요하다.",
+      "paths": ["fusionRecipes.white-kyurem.materials"]
+    },
+    {
+      "id": "official:black-materials",
+      "claim": "블랙큐레무 합체에는 큐레무와 제크로무, 볼트 에너지 1,000, 큐레무와 제크로무의 사탕 각 30개가 필요하다.",
+      "paths": ["fusionRecipes.black-kyurem.materials"]
+    },
+    {
+      "id": "official:fusion-state-separation",
+      "claim": "합체된 큐레무는 분리 전까지 파트너와 결합된 상태이며 분리에는 에너지와 사탕이 들지 않는다.",
+      "paths": ["fusionRecipes.*.partnerState", "fusionRecipes.*.separation"]
+    },
+    {
+      "id": "official:white-move",
+      "claim": "얼어붙은세계를 배운 큐레무를 레시라무와 합체하면 콜드플레어로 바뀌고, 분리하면 되돌아가며 기술머신으로 배울 수 없다.",
+      "paths": ["fusionRecipes.white-kyurem.moveTransformation"]
+    },
+    {
+      "id": "official:black-move",
+      "claim": "얼어붙은세계를 배운 큐레무를 제크로무와 합체하면 프리즈볼트로 바뀌고, 분리하면 되돌아가며 기술머신으로 배울 수 없다.",
+      "paths": ["fusionRecipes.black-kyurem.moveTransformation"]
+    },
+    {
+      "id": "official:white-field-effect",
+      "claim": "콜드플레어 필드 효과는 별의모래 5,000과 큐레무의 사탕 5개로 10분간 발동한다.",
+      "paths": ["fusionRecipes.white-kyurem.fieldEffect"]
+    },
+    {
+      "id": "official:black-field-effect",
+      "claim": "프리즈볼트 필드 효과는 별의모래 5,000과 큐레무의 사탕 5개로 10분간 발동한다.",
+      "paths": ["fusionRecipes.black-kyurem.fieldEffect"]
+    },
+    {
+      "id": "official:fusion-storage-restrictions",
+      "claim": "블랙큐레무와 화이트큐레무는 교환하거나 박사에게 보내거나 Pokémon HOME에 맡길 수 없다.",
+      "paths": ["fusionRecipes.*.storageRestrictions"]
+    },
+    {
+      "id": "official:field-effect-exclusivity",
+      "claim": "프리즈볼트와 콜드플레어 필드 효과는 다른 필드 효과와 동시에 사용할 수 없다.",
+      "paths": ["fusionRecipes.*.fieldEffect.incompatibleWithOtherFieldEffects"]
+    }
+  ],
+  "fusionRecipes": [
+    {
+      "id": "white-kyurem",
+      "resultPokemonId": "white-kyurem",
+      "basePokemonId": "kyurem",
+      "partnerPokemonId": "reshiram",
+      "partnerState": "bound_while_fused",
+      "materials": [
+        { "type": "pokemon", "pokemonId": "kyurem", "amount": 1 },
+        { "type": "pokemon", "pokemonId": "reshiram", "amount": 1 },
+        { "type": "energy", "energyId": "blaze-fusion-energy", "label": "블레이즈 에너지", "amount": 1000 },
+        { "type": "candy", "pokemonId": "kyurem", "amount": 30 },
+        { "type": "candy", "pokemonId": "reshiram", "amount": 30 }
+      ],
+      "preFusionChecks": [
+        {
+          "id": "white-kyurem-glaciate-check",
+          "label": "화이트용 큐레무의 얼어붙은세계 확인",
+          "requiredForFusion": false,
+          "reason": "합체 자체는 가능하지만 콜드플레어로 기술을 변화시키려면 필요하다.",
+          "evidenceIds": ["official:white-move"]
+        }
+      ],
+      "moveTransformation": {
+        "sourceMove": "Glaciate",
+        "targetMove": "Ice Burn",
+        "sourceMoveRequiredForFusion": false,
+        "learnableByChargedTm": false,
+        "learnableByEliteChargedTm": false,
+        "revertsOnSeparation": true,
+        "evidenceIds": ["official:white-move"]
+      },
+      "fieldEffect": {
+        "move": "Ice Burn",
+        "stardust": 5000,
+        "kyuremCandy": 5,
+        "durationMinutes": 10,
+        "incompatibleWithOtherFieldEffects": true,
+        "evidenceIds": ["official:white-field-effect", "official:field-effect-exclusivity"]
+      },
+      "storageRestrictions": {
+        "tradeBlocked": true,
+        "professorTransferBlocked": true,
+        "pokemonHomeTransferBlocked": true,
+        "evidenceIds": ["official:fusion-storage-restrictions"]
+      },
+      "separation": {
+        "energyCost": 0,
+        "candyCost": 0,
+        "releasesPartner": true,
+        "evidenceIds": ["official:fusion-state-separation"]
+      },
+      "postFusionGuidePokemonId": "white-kyurem",
+      "evidenceIds": ["official:white-materials", "official:fusion-state-separation", "official:white-move", "official:white-field-effect", "official:fusion-storage-restrictions", "official:field-effect-exclusivity"]
+    },
+    {
+      "id": "black-kyurem",
+      "resultPokemonId": "black-kyurem",
+      "basePokemonId": "kyurem",
+      "partnerPokemonId": "zekrom",
+      "partnerState": "bound_while_fused",
+      "materials": [
+        { "type": "pokemon", "pokemonId": "kyurem", "amount": 1 },
+        { "type": "pokemon", "pokemonId": "zekrom", "amount": 1 },
+        { "type": "energy", "energyId": "volt-fusion-energy", "label": "볼트 에너지", "amount": 1000 },
+        { "type": "candy", "pokemonId": "kyurem", "amount": 30 },
+        { "type": "candy", "pokemonId": "zekrom", "amount": 30 }
+      ],
+      "preFusionChecks": [
+        {
+          "id": "black-kyurem-glaciate-check",
+          "label": "블랙용 큐레무의 얼어붙은세계 확인",
+          "requiredForFusion": false,
+          "reason": "합체 자체는 가능하지만 프리즈볼트로 기술을 변화시키려면 필요하다.",
+          "evidenceIds": ["official:black-move"]
+        }
+      ],
+      "moveTransformation": {
+        "sourceMove": "Glaciate",
+        "targetMove": "Freeze Shock",
+        "sourceMoveRequiredForFusion": false,
+        "learnableByChargedTm": false,
+        "learnableByEliteChargedTm": false,
+        "revertsOnSeparation": true,
+        "evidenceIds": ["official:black-move"]
+      },
+      "fieldEffect": {
+        "move": "Freeze Shock",
+        "stardust": 5000,
+        "kyuremCandy": 5,
+        "durationMinutes": 10,
+        "incompatibleWithOtherFieldEffects": true,
+        "evidenceIds": ["official:black-field-effect", "official:field-effect-exclusivity"]
+      },
+      "storageRestrictions": {
+        "tradeBlocked": true,
+        "professorTransferBlocked": true,
+        "pokemonHomeTransferBlocked": true,
+        "evidenceIds": ["official:fusion-storage-restrictions"]
+      },
+      "separation": {
+        "energyCost": 0,
+        "candyCost": 0,
+        "releasesPartner": true,
+        "evidenceIds": ["official:fusion-state-separation"]
+      },
+      "postFusionGuidePokemonId": "black-kyurem",
+      "evidenceIds": ["official:black-materials", "official:fusion-state-separation", "official:black-move", "official:black-field-effect", "official:fusion-storage-restrictions", "official:field-effect-exclusivity"]
+    }
+  ]
+}

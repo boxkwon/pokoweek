@@ -6,17 +6,29 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "data:collect": "tsx data-engine/scripts/collect.ts",
+    "data:normalize": "tsx data-engine/scripts/normalize.ts",
+    "data:generate": "tsx data-engine/scripts/generate.ts",
+    "data:manual:prepare": "tsx data-engine/scripts/manual-prepare.ts",
+    "data:manual:import": "tsx data-engine/scripts/manual-import.ts",
+    "data:approve": "tsx data-engine/scripts/approve.ts",
+    "data:publish": "tsx data-engine/scripts/publish.ts",
+    "data:preview:prepare": "tsx data-engine/scripts/preview-prepare.ts",
+    "data:validate": "tsx data-engine/scripts/validate.ts",
+    "data:test": "tsx --test data-engine/tests/*.test.ts"
   },
   "dependencies": {
     "next": "16.4.5",
     "react": "19.3.1",
-    "react-dom": "19.3.1"
+    "react-dom": "19.3.1",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "tsx": "^4.23.15",
     "typescript": "^5.7.2"
   }
 }

@@ -73,7 +73,7 @@ function collectChecklist(goals: readonly ActionGoal[]) {
   const items: ChecklistEntry[] = [];
   for (const goal of goals) {
     for (const item of goal.checklist ?? []) {
-      const key = item.label;
+      const key = `${goal.id}:${item.id}`;
       if (seen.has(key)) continue;
       seen.add(key);
       items.push({ goalId: goal.id, item });

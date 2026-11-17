@@ -1,0 +1,1636 @@
+{
+  "schemaVersion": 1,
+  "runId": "manual-2026-11-17T00-56-23-869Z",
+  "generatedAt": "2026-11-17T00:56:23.869Z",
+  "sourceSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
+  "promptVersion": "pokoweek-manual-guide-v2-data-quality",
+  "candidates": [
+    {
+      "performanceRating": null,
+      "evidenceConfidence": "medium",
+      "editorialStatus": "ready",
+      "editorialLimitations": [
+        "타입별 공격수 순위 또는 실제 레이드 시뮬레이션이 없어 전투 성능 별점을 확정할 수 없다.",
+        "리그별 PvP 시뮬레이션과 매치업 자료가 없어 PvP 성능을 확정할 수 없다."
+      ],
+      "decisionQuestions": [
+        {
+          "id": "fusion_or_base",
+          "conclusion": "융합 재료가 있다면 Glaciate를 보유한 좋은 큐레무를 우선 융합하고, 본체는 두 융합용 개체를 확보한 뒤 남는 개체만 키운다.",
+          "reason": "융합 폼은 공격 310이고 본체는 공격 246이며, 각 융합에는 별도 큐레무가 필요하다.",
+          "conditions": [
+            "화이트·블랙 중 목표 폼의 파트너와 에너지 1,000을 확보",
+            "두 폼을 모두 만들면 큐레무 2마리를 따로 지정"
+          ],
+          "evidenceIds": [
+            "pogoapi:pokemon_stats:ca23e7947d97",
+            "official:white-materials",
+            "official:black-materials"
+          ]
+        },
+        {
+          "id": "white_or_black_priority",
+          "conclusion": "일관된 얼음 레이드 역할이 필요하면 화이트를 먼저, 드래곤·얼음 약점이 함께 있는 상대를 노리면 블랙을 먼저 만든다.",
+          "reason": "화이트는 Ice Fang과 Ice Burn이 모두 얼음 타입이고, 블랙의 Dragon Tail과 Freeze Shock은 서로 다른 타입이다.",
+          "conditions": [
+            "현재 얼음 팀이 부족하면 화이트 우선",
+            "Dragon/Flying처럼 두 기술이 모두 유효한 목표가 있으면 블랙 우선",
+            "전투 역할이 비슷하면 보유 에너지와 원하는 필드 효과로 결정"
+          ],
+          "evidenceIds": [
+            "pogoapi:fast_moves:3c6781e7ebe7",
+            "pogoapi:charged_moves:a09029272289",
+            "pogoapi:type_effectiveness:f9208ace82f4",
+            "official:white-field-effect",
+            "official:black-field-effect"
+          ]
+        },
+        {
+          "id": "required_moves",
+          "conclusion": "융합 전 각 큐레무의 Glaciate를 확인하고, 화이트는 Ice Fang + Ice Burn, 블랙은 목표 상대에 맞춰 Dragon Tail + Freeze Shock을 사용한다.",
+          "reason": "Glaciate가 있어야 융합 시 각 전용 기술로 변환되고 전용 기술은 기술머신으로 배울 수 없다.",
+          "conditions": [
+            "융합 버튼을 누르기 전에 화이트용·블랙용 개체를 각각 확인",
+            "레이드 역할에 맞는 노말 기술은 융합 후 설정"
+          ],
+          "evidenceIds": [
+            "official:white-move",
+            "official:black-move",
+            "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+          ]
+        },
+        {
+          "id": "missing_special_move",
+          "conclusion": "Glaciate가 없는 큐레무도 융합할 수 있지만 전용 기술을 얻지 못하므로, 전투용이라면 다른 개체를 선택하거나 Glaciate 습득 기회를 기다린다.",
+          "reason": "Glaciate는 융합 자체의 필수 재료가 아니지만 Ice Burn·Freeze Shock 변환 조건이며, 결과 기술은 일반·대단한 기술머신으로 복구할 수 없다.",
+          "conditions": [
+            "전용 기술 없이도 융합할 의도가 명확한 경우에만 진행",
+            "대단한 기술머신 사용 가능 여부는 융합 전 게임 화면에서 확인"
+          ],
+          "evidenceIds": [
+            "official:white-move",
+            "official:black-move",
+            "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+          ]
+        },
+        {
+          "id": "post_fusion_first_step",
+          "conclusion": "융합 직후 전용 기술 변환을 확인하고 노말 기술을 역할에 맞춘 다음 Lv.30까지만 먼저 강화한다.",
+          "reason": "레벨 30은 레벨 50 유효 능력치의 약 87.08%이며 레벨 20부터 별의모래 75,000·사탕 66개가 든다.",
+          "conditions": [
+            "전용 기술이 없으면 추가 강화 전에 중단",
+            "실제로 사용할 레이드가 있을 때 Lv.30 진행"
+          ],
+          "evidenceIds": [
+            "reference:cp-formula",
+            "reference:level-50-cpm",
+            "pogoapi:cp_multiplier:61c96ee36079",
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+          ]
+        },
+        {
+          "id": "power_up_target",
+          "conclusion": "Lv.30에서 시작해 전력이 부족하면 35, 반복 사용하면 40으로 올리고, Lv.50은 선택한 융합 폼에만 적용한다.",
+          "reason": "레벨 20 기준 Lv.30/35/40/50 누적 비용은 각각 75,000/137,000/225,000/475,000 별의모래이며 Lv.50에는 XL사탕 296개가 필요하다.",
+          "conditions": [
+            "Lv.35는 Lv.30 사용 후 부족할 때",
+            "Lv.40은 해당 역할을 반복 사용할 때",
+            "Lv.50은 한 폼을 장기 주력으로 확정하고 XL 296개를 감당할 때"
+          ],
+          "evidenceIds": [
+            "pogoapi:cp_multiplier:61c96ee36079",
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+            "reference:level-50-cpm"
+          ]
+        },
+        {
+          "id": "second_move",
+          "conclusion": "큐레무 본체의 기술 해방은 PvP에서 Glaciate와 Dragon Claw를 함께 쓸 때만 조건부로 진행하고, 융합 준비 단계에서는 후순위로 둔다.",
+          "reason": "레이드용 단일 역할에는 두 번째 스페셜 기술 근거가 없고 PvP는 실제 매치업 검증이 추가로 필요하다.",
+          "conditions": [
+            "PvP 사용을 확정",
+            "Glaciate 습득과 리그 CP를 먼저 확인"
+          ],
+          "evidenceIds": [
+            "pogoapi:pvp_charged_moves:e9213b0744b6",
+            "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+          ]
+        },
+        {
+          "id": "xl_and_stardust",
+          "conclusion": "별의모래는 Lv.30 단위로 나눠 쓰고, XL사탕은 화이트·블랙 중 장기 주력 하나를 정한 뒤에만 투자한다.",
+          "reason": "Lv.40에서 50까지 추가로 별의모래 250,000과 XL사탕 296개가 들어가며 본체보다 융합 폼의 역할이 더 명확하다.",
+          "conditions": [
+            "융합 비용과 필드 효과용 사탕을 먼저 보존",
+            "Lv.40 사용 후에도 전력 개선이 필요할 때만 XL 구간 진입"
+          ],
+          "evidenceIds": [
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+            "official:white-materials",
+            "official:black-materials",
+            "official:white-field-effect",
+            "official:black-field-effect"
+          ]
+        }
+      ],
+      "applicability": {
+        "modes": [
+          "raid",
+          "pvp"
+        ],
+        "secondMove": true,
+        "xlCandy": true,
+        "maxMove": false,
+        "specialActionGuide": true
+      },
+      "verdict": {
+        "label": "융합 목표부터 정하고 본체 투자는 보류",
+        "summary": "화이트·블랙용 큐레무와 얼어붙은세계 보유 여부를 각각 확정한 뒤, 남는 개체만 본체 육성을 검토하세요.",
+        "analysis": {
+          "reason": "두 융합에는 각각 큐레무 1마리가 필요하고 특수 기술 변환도 선택한 개체별로 결정된다. 본체의 기술 수치는 확인됐지만 외부 공격수 순위와 PvP 시뮬레이션은 없어 성능 별점은 미평가로 둔다.",
+          "evidenceIds": [
+            "official:white-materials",
+            "official:black-materials",
+            "official:white-move",
+            "official:black-move",
+            "pogoapi:pokemon_stats:ca23e7947d97"
+          ],
+          "modes": [
+            "raid",
+            "pvp"
+          ]
+        }
+      },
+      "useCases": [
+        {
+          "mode": "raid",
+          "performanceRating": null,
+          "analysis": {
+            "reason": "Dragon Breath와 Glaciate의 PvE 수치 및 상대 주기 지표는 계산할 수 있지만 보스 방어·생존·경쟁 공격수를 반영하지 않아 실제 레이드 등급은 확정하지 않는다.",
+            "evidenceIds": [
+              "pogoapi:pokemon_stats:ca23e7947d97",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:type_effectiveness:f9208ace82f4"
+            ],
+            "modes": [
+              "raid"
+            ]
+          }
+        },
+        {
+          "mode": "pvp",
+          "performanceRating": null,
+          "analysis": {
+            "reason": "Glaciate의 에너지와 공격 감소 효과는 확인되지만 실드 운용·리그 CP·매치업을 계산하지 않았으므로 상위 티어나 최적 조합으로 단정하지 않는다.",
+            "evidenceIds": [
+              "pogoapi:pvp_fast_moves:d944f25ce672",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ],
+            "modes": [
+              "pvp"
+            ]
+          }
+        }
+      ],
+      "movesets": [
+        {
+          "mode": "raid",
+          "fastMove": "Dragon Breath",
+          "chargedMoves": [
+            "Glaciate"
+          ],
+          "acquisitionConditions": [
+            "Glaciate는 정규화 데이터에서 elite 기술이므로 이벤트 습득 여부와 대단한 기술머신 사용 가능 여부를 먼저 확인"
+          ],
+          "analysis": {
+            "reason": "두 기술의 PvE 수치와 타입 상성으로 역할을 비교할 수 있는 조합이다. 다만 상대 주기 지표는 실제 DPS 시뮬레이션이 아니다.",
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:type_effectiveness:f9208ace82f4"
+            ],
+            "modes": [
+              "raid"
+            ]
+          }
+        },
+        {
+          "mode": "pvp",
+          "fastMove": "Dragon Breath",
+          "chargedMoves": [
+            "Glaciate",
+            "Dragon Claw"
+          ],
+          "acquisitionConditions": [
+            "Glaciate는 elite 기술이므로 습득 경로를 확인",
+            "두 번째 스페셜 기술 해방이 필요"
+          ],
+          "analysis": {
+            "reason": "입력에 확인된 PvP 기술과 Glaciate의 공격 감소 효과를 반영한 검토 조합이다. 실제 리그 최적성은 시뮬레이션 전까지 미확정이다.",
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:pvp_fast_moves:d944f25ce672",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ],
+            "modes": [
+              "pvp"
+            ]
+          }
+        }
+      ],
+      "raidAnalysis": {
+        "method": "relative_cycle_index_v1",
+        "profiles": [
+          {
+            "subjectId": "kyurem",
+            "label": "kyurem neutral",
+            "fastMove": "Dragon Breath",
+            "chargedMove": "Glaciate",
+            "targetProfile": "neutral",
+            "defenderTypes": [],
+            "fastEffectiveness": 1,
+            "chargedEffectiveness": 1,
+            "fastUsesPerCharged": 25,
+            "cycleSeconds": 15,
+            "relativeCycleIndex": 6100.8
+          },
+          {
+            "subjectId": "kyurem",
+            "label": "kyurem vs Dragon/Flying",
+            "fastMove": "Dragon Breath",
+            "chargedMove": "Glaciate",
+            "targetProfile": "Dragon/Flying",
+            "defenderTypes": [
+              "Dragon",
+              "Flying"
+            ],
+            "fastEffectiveness": 1.6,
+            "chargedEffectiveness": 2.56,
+            "fastUsesPerCharged": 25,
+            "cycleSeconds": 15,
+            "relativeCycleIndex": 12784.128
+          }
+        ],
+        "assumptions": [
+          "기본 공격, PvE 기술 위력·에너지·시전 시간, 자속 1.2배와 타입 상성만 사용한다.",
+          "스페셜 기술 에너지는 노말 기술을 올림 횟수만큼 사용해 충전한다고 가정한다."
+        ],
+        "limitations": [
+          "보스 방어·피해 반올림·회피·생존·날씨·우정·메가 보너스를 반영하지 않은 상대 비교 지표다.",
+          "실제 DPS/TDO 또는 공격수 순위가 아니다."
+        ],
+        "evidenceIds": [
+          "pogoapi:pokemon_stats:ca23e7947d97",
+          "pogoapi:fast_moves:3c6781e7ebe7",
+          "pogoapi:charged_moves:a09029272289",
+          "pogoapi:type_effectiveness:f9208ace82f4"
+        ]
+      },
+      "pvpAnalysis": {
+        "simulationPerformed": false,
+        "observations": [
+          "Glaciate는 PvP에서 에너지 40을 사용하며 100% 확률로 상대 공격을 1단계 낮추는 데이터가 연결돼 있다.",
+          "Dragon Breath·Dragon Claw의 PvP 수치는 정규화 데이터에 존재한다."
+        ],
+        "limitations": [
+          "실드 시나리오, 리그별 CP 제한, 개체값, 상대 매치업을 시뮬레이션하지 않았다."
+        ],
+        "evidenceIds": [
+          "pogoapi:pvp_fast_moves:d944f25ce672",
+          "pogoapi:pvp_charged_moves:e9213b0744b6"
+        ]
+      },
+      "investment": {
+        "order": [
+          {
+            "id": "assign-two-bases",
+            "label": "화이트용·블랙용 큐레무를 각각 지정",
+            "reason": "두 폼을 모두 만들려면 큐레무 2마리가 필요하다.",
+            "evidenceIds": [
+              "official:white-materials",
+              "official:black-materials"
+            ]
+          },
+          {
+            "id": "check-two-glaciate",
+            "label": "각 개체의 얼어붙은세계 독립 확인",
+            "reason": "특수 기술 변환은 선택한 큐레무별로 적용된다.",
+            "evidenceIds": [
+              "official:white-move",
+              "official:black-move"
+            ]
+          },
+          {
+            "id": "reserve-fusion-costs",
+            "label": "목표별 파트너·에너지·사탕 확보",
+            "reason": "화이트와 블랙의 파트너와 융합 에너지가 서로 다르다.",
+            "evidenceIds": [
+              "official:white-materials",
+              "official:black-materials"
+            ]
+          },
+          {
+            "id": "decide-base-use",
+            "label": "남는 개체의 본체 사용 모드 결정",
+            "reason": "레이드·PvP 비교 근거가 충분하지 않아 모드 결정 전 큰 투자를 피한다.",
+            "evidenceIds": [
+              "pogoapi:pokemon_stats:ca23e7947d97",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          }
+        ],
+        "stardust": {
+          "decision": "hold",
+          "analysis": {
+            "reason": "융합용 개체 배정과 실제 사용 모드가 확정되기 전에는 본체 강화에 큰 별의모래를 쓰지 않는다.",
+            "evidenceIds": [
+              "official:white-materials",
+              "official:black-materials",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ],
+            "modes": [
+              "raid",
+              "pvp"
+            ]
+          }
+        },
+        "candy": {
+          "decision": "conditional",
+          "analysis": {
+            "reason": "큐레무 사탕은 각 융합에 30개씩 필요하고 필드 효과에도 쓰이므로 융합 몫을 먼저 분리한다.",
+            "evidenceIds": [
+              "official:white-materials",
+              "official:black-materials",
+              "official:white-field-effect",
+              "official:black-field-effect"
+            ],
+            "modes": [
+              "raid"
+            ]
+          }
+        },
+        "secondMove": {
+          "decision": "conditional",
+          "analysis": {
+            "reason": "PvP 사용을 확정하고 Glaciate·Dragon Claw 두 기술을 실제로 운용할 때만 해방한다.",
+            "evidenceIds": [
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ],
+            "modes": [
+              "pvp"
+            ]
+          }
+        },
+        "xlCandy": {
+          "decision": "hold",
+          "analysis": {
+            "reason": "레벨 40 이후에는 XL사탕이 필요하지만 PvP 목표 레벨과 레이드 상대 순위가 없어 지금은 보류한다.",
+            "evidenceIds": [
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+              "pogoapi:cp_multiplier:61c96ee36079"
+            ],
+            "modes": [
+              "raid",
+              "pvp"
+            ]
+          }
+        },
+        "eliteTm": {
+          "decision": "conditional",
+          "analysis": {
+            "reason": "융합 특수 기술을 원하는 개체가 Glaciate를 갖고 있지 않을 때만 습득 경로와 사용 가능 여부를 확인한다.",
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "official:white-move",
+              "official:black-move"
+            ],
+            "modes": [
+              "raid",
+              "pvp"
+            ]
+          }
+        },
+        "maxMove": null,
+        "powerUpStages": [
+          {
+            "level": "30",
+            "decision": "conditional",
+            "reason": "즉시 본체를 사용할 필요가 있을 때만 초기 실사용 단계로 검토하며 최적 효율점으로 단정하지 않는다.",
+            "evidenceIds": [
+              "pogoapi:cp_multiplier:61c96ee36079",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          },
+          {
+            "level": "35",
+            "decision": "hold",
+            "reason": "융합용 개체와 본체 사용처가 확정되기 전 추가 투자를 보류한다.",
+            "evidenceIds": [
+              "pogoapi:cp_multiplier:61c96ee36079",
+              "official:white-materials",
+              "official:black-materials"
+            ]
+          },
+          {
+            "level": "40",
+            "decision": "hold",
+            "reason": "레이드 비교 또는 PvP 목표가 확인되기 전 일반 사탕·별의모래 대규모 투자를 보류한다.",
+            "evidenceIds": [
+              "pogoapi:cp_multiplier:61c96ee36079",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          },
+          {
+            "level": "50",
+            "decision": "hold",
+            "reason": "본체는 기본 보류하고, 융합 두 폼을 준비한 뒤에도 본체 PvP 사용을 확정한 경우에만 XL 296개 투자를 재검토한다.",
+            "evidenceIds": [
+              "reference:level-50-cpm",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "id": "choose-two-kyurem",
+          "label": "둘 다 만들면 큐레무 2마리를 서로 다른 목표에 배정",
+          "reason": "화이트와 블랙 레시피가 각각 큐레무 1마리를 요구한다.",
+          "evidenceIds": [
+            "official:white-materials",
+            "official:black-materials"
+          ]
+        },
+        {
+          "id": "record-two-glaciate",
+          "label": "화이트용·블랙용 얼어붙은세계 상태를 별도로 기록",
+          "reason": "각 폼의 특수 기술 변환은 선택한 큐레무의 기술 상태에 달려 있다.",
+          "evidenceIds": [
+            "official:white-move",
+            "official:black-move"
+          ]
+        },
+        {
+          "id": "protect-fusion-resources",
+          "label": "융합용 사탕과 파트너를 먼저 보존",
+          "reason": "본체 강화보다 융합 재료 부족을 먼저 막는다.",
+          "evidenceIds": [
+            "official:white-materials",
+            "official:black-materials"
+          ]
+        }
+      ],
+      "warnings": [
+        {
+          "id": "partners-bound",
+          "label": "융합 중 파트너는 결합 상태",
+          "reason": "레시라무 또는 제크로무는 분리할 때까지 결합되며 분리 비용은 없다.",
+          "evidenceIds": [
+            "official:fusion-state-separation"
+          ]
+        }
+      ],
+      "specialActionGuideId": "kyurem-fusion",
+      "schemaVersion": 1,
+      "pokemonId": "kyurem",
+      "origin": "manual_ai",
+      "generationMethod": "manual_ai",
+      "factsSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
+      "generatedBy": {
+        "provider": "codex",
+        "model": "gpt-6.1",
+        "promptVersion": "pokoweek-manual-guide-v2-data-quality",
+        "generatedAt": "2026-11-17T01:30:00.000Z",
+        "sourcePackageHash": "a29cc077440ac0056e081ea21b00c340a5fe81e6d4280287cc3f57def1b19e7e"
+      },
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "performanceRating": null,
+      "evidenceConfidence": "medium",
+      "editorialStatus": "ready",
+      "editorialLimitations": [
+        "Ice Burn 수치는 확보했지만 외부 얼음 공격수 순위와 실제 레이드 시뮬레이션이 없다.",
+        "PvP 실드·리그·매치업 시뮬레이션이 없다."
+      ],
+      "decisionQuestions": [
+        {
+          "id": "fusion_or_base",
+          "conclusion": "레이드용 얼음 공격수가 필요하면 Glaciate 보유 큐레무를 화이트로 융합하고, 큐레무 본체 강화보다 화이트를 우선한다.",
+          "reason": "화이트는 공격 310과 Ice Fang + Ice Burn의 일관된 얼음 조합을 갖고 제한 비교에서도 세 얼음 대표 조합보다 높은 상대 주기 지표를 보였다.",
+          "conditions": [
+            "Glaciate 보유 큐레무와 레시라무 확보",
+            "블레이즈 에너지 1,000과 양쪽 사탕 30개 확보",
+            "현재 얼음 팀에 보강 필요"
+          ],
+          "evidenceIds": [
+            "pogoapi:pokemon_stats:ca23e7947d97",
+            "pogoapi:fast_moves:3c6781e7ebe7",
+            "pogoapi:charged_moves:a09029272289",
+            "official:white-materials",
+            "official:white-move"
+          ]
+        },
+        {
+          "id": "white_or_black_priority",
+          "conclusion": "대부분의 얼음 약점 레이드에 쓸 단일 역할이 필요하면 화이트를 블랙보다 먼저 만든다.",
+          "reason": "화이트의 노말·스페셜 기술은 모두 얼음 타입이지만 블랙의 권장 레이드 조합은 드래곤·얼음 혼합 타입이다.",
+          "conditions": [
+            "얼음 팀의 빈자리를 우선 해결",
+            "블랙이 필요한 특정 이중 약점 상대가 당장 없을 때"
+          ],
+          "evidenceIds": [
+            "pogoapi:fast_moves:3c6781e7ebe7",
+            "pogoapi:charged_moves:a09029272289",
+            "pogoapi:type_effectiveness:f9208ace82f4"
+          ]
+        },
+        {
+          "id": "required_moves",
+          "conclusion": "레이드는 Ice Fang + Ice Burn을 사용하고, 융합 전에 반드시 Glaciate 보유 여부를 확인한다.",
+          "reason": "두 기술 모두 얼음 타입으로 자속과 같은 약점을 활용하며 Ice Burn은 융합 변환으로만 얻는다.",
+          "conditions": [
+            "Ice Burn 변환 확인",
+            "노말 기술을 Ice Fang으로 설정"
+          ],
+          "evidenceIds": [
+            "official:white-move",
+            "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+            "pogoapi:fast_moves:3c6781e7ebe7",
+            "pogoapi:charged_moves:a09029272289"
+          ]
+        },
+        {
+          "id": "missing_special_move",
+          "conclusion": "Glaciate가 없는 큐레무는 화이트로 융합할 수 있지만 Ice Burn을 얻지 못하므로 전투용이면 융합을 미룬다.",
+          "reason": "Ice Burn은 일반·대단한 기술머신으로 배울 수 없고 Glaciate 변환으로만 확인된다.",
+          "conditions": [
+            "다른 Glaciate 개체가 있으면 교체",
+            "없으면 이벤트 또는 대단한 기술머신으로 Glaciate를 준비할 수 있는지 게임에서 확인",
+            "전용 기술 없이 융합할 목적이 명확할 때만 예외"
+          ],
+          "evidenceIds": [
+            "official:white-move",
+            "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+          ]
+        },
+        {
+          "id": "post_fusion_first_step",
+          "conclusion": "Ice Burn 변환 확인 → Ice Fang 설정 → Lv.30 강화 순서로 진행한다.",
+          "reason": "Lv.30에서 15/15/15 예상 CP는 3,947이며 레벨 50 유효 능력치의 약 87.08%를 확보한다.",
+          "conditions": [
+            "Ice Burn이 없으면 강화 중단",
+            "당장 얼음 레이드에 사용할 때 Lv.30 진행"
+          ],
+          "evidenceIds": [
+            "reference:cp-formula",
+            "pogoapi:cp_multiplier:61c96ee36079",
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+            "official:white-move"
+          ]
+        },
+        {
+          "id": "power_up_target",
+          "conclusion": "기본 목표는 Lv.30, 얼음 팀이 여전히 부족하면 35, 반복 주력이면 40, 장기 최우선 얼음 공격수일 때만 50이다.",
+          "reason": "15/15/15 CP는 3,947→4,276→4,605→5,206이며 Lv.40에서 50은 별의모래 250,000과 XL 296개를 추가로 요구한다.",
+          "conditions": [
+            "Lv.30에서 실제 파티 부족을 확인 후 35",
+            "여러 레이드에서 계속 사용하면 40",
+            "다른 융합 폼보다 우선할 이유와 XL 296개가 있을 때 50"
+          ],
+          "evidenceIds": [
+            "reference:cp-formula",
+            "reference:level-50-cpm",
+            "pogoapi:cp_multiplier:61c96ee36079",
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+          ]
+        },
+        {
+          "id": "second_move",
+          "conclusion": "레이드만 사용하면 기술 해방은 후순위이며, PvP에서 두 스페셜 기술을 운용할 계획이 확인될 때만 조건부 투자한다.",
+          "reason": "Ice Burn 단일 레이드 역할에는 두 번째 기술이 필요하지 않고 PvP 최적 조합은 시뮬레이션되지 않았다.",
+          "conditions": [
+            "PvP 리그와 두 번째 스페셜 기술을 확정",
+            "강화와 Ice Burn 확인을 먼저 완료"
+          ],
+          "evidenceIds": [
+            "pogoapi:pvp_charged_moves:e9213b0744b6",
+            "official:white-move"
+          ]
+        },
+        {
+          "id": "xl_and_stardust",
+          "conclusion": "별의모래는 Lv.30/35/40 단계로 나누고 XL은 Lv.40을 충분히 사용한 뒤 화이트를 장기 주력으로 확정했을 때만 쓴다.",
+          "reason": "Lv.20→40은 별의모래 225,000·사탕 248개, 40→50은 별의모래 250,000·XL 296개다.",
+          "conditions": [
+            "필드 효과용 큐레무 사탕을 별도 보존",
+            "Lv.50 투자 전에 블랙 또는 두 번째 화이트의 필요성과 비교"
+          ],
+          "evidenceIds": [
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+            "official:white-field-effect"
+          ]
+        }
+      ],
+      "applicability": {
+        "modes": [
+          "raid",
+          "pvp"
+        ],
+        "secondMove": true,
+        "xlCandy": true,
+        "maxMove": false,
+        "specialActionGuide": false
+      },
+      "verdict": {
+        "label": "Ice Burn 확인 후 단계적으로 투자",
+        "summary": "Ice Fang + Ice Burn의 얼음 역할은 확인됐지만, 레벨 40·50 투자는 실제 팀 공백과 추가 비교 근거가 있을 때 진행하세요.",
+        "analysis": {
+          "reason": "공격 310, Ice Burn의 PvE 90/에너지 50/2초와 Ice Fang 수치가 연결됐고 Dragon/Flying 상대 지표도 계산됐다. 그러나 실제 공격수 순위와 생존을 반영하지 않아 성능 별점은 미평가다.",
+          "evidenceIds": [
+            "pogoapi:pokemon_stats:ca23e7947d97",
+            "pogoapi:fast_moves:3c6781e7ebe7",
+            "pogoapi:charged_moves:a09029272289",
+            "pogoapi:type_effectiveness:f9208ace82f4",
+            "official:white-move"
+          ],
+          "modes": [
+            "raid"
+          ]
+        }
+      },
+      "useCases": [
+        {
+          "mode": "raid",
+          "performanceRating": null,
+          "analysis": {
+            "reason": "Ice Fang과 Ice Burn은 모두 얼음 타입이며 자속·상성을 함께 받는다. 상대 주기 지표는 본체보다 높은 값을 보이지만 실제 레이드 등급이나 순위로 해석할 수 없다.",
+            "evidenceIds": [
+              "pogoapi:pokemon_stats:ca23e7947d97",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:type_effectiveness:f9208ace82f4"
+            ],
+            "modes": [
+              "raid"
+            ]
+          }
+        },
+        {
+          "mode": "pvp",
+          "performanceRating": null,
+          "analysis": {
+            "reason": "Ice Burn은 PvP 위력 120·에너지 60이며 30% 확률로 상대 방어를 1단계 낮추지만 실드 운용과 매치업을 검증하지 않았다.",
+            "evidenceIds": [
+              "pogoapi:pvp_charged_moves:e9213b0744b6",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ],
+            "modes": [
+              "pvp"
+            ]
+          }
+        }
+      ],
+      "movesets": [
+        {
+          "mode": "raid",
+          "fastMove": "Ice Fang",
+          "chargedMoves": [
+            "Ice Burn"
+          ],
+          "acquisitionConditions": [
+            "융합 전에 화이트용 큐레무가 Glaciate를 알고 있어야 Ice Burn으로 변환",
+            "Ice Burn은 일반·대단한 기술머신스페셜로 습득 불가"
+          ],
+          "analysis": {
+            "reason": "두 기술 모두 얼음 타입으로 자속과 얼음 약점을 함께 활용하며 Ice Burn의 50 에너지·2초 PvE 수치가 확인됐다.",
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:charged_moves:a09029272289",
+              "official:white-move"
+            ],
+            "modes": [
+              "raid"
+            ]
+          }
+        },
+        {
+          "mode": "pvp",
+          "fastMove": "Ice Fang",
+          "chargedMoves": [
+            "Ice Burn"
+          ],
+          "acquisitionConditions": [
+            "융합 전에 화이트용 큐레무의 Glaciate 확인",
+            "Ice Burn은 기술머신으로 습득 불가"
+          ],
+          "analysis": {
+            "reason": "PvP 수치와 방어 감소 효과를 확인하기 위한 조합이며 최적 조합으로 단정하지 않는다.",
+            "evidenceIds": [
+              "pogoapi:pvp_fast_moves:d944f25ce672",
+              "pogoapi:pvp_charged_moves:e9213b0744b6",
+              "official:white-move"
+            ],
+            "modes": [
+              "pvp"
+            ]
+          }
+        }
+      ],
+      "raidAnalysis": {
+        "method": "relative_cycle_index_v1",
+        "profiles": [
+          {
+            "subjectId": "white-kyurem",
+            "label": "white-kyurem neutral",
+            "fastMove": "Ice Fang",
+            "chargedMove": "Ice Burn",
+            "targetProfile": "neutral",
+            "defenderTypes": [],
+            "fastEffectiveness": 1,
+            "chargedEffectiveness": 1,
+            "fastUsesPerCharged": 3,
+            "cycleSeconds": 6.5,
+            "relativeCycleIndex": 7211.077
+          },
+          {
+            "subjectId": "white-kyurem",
+            "label": "white-kyurem vs Dragon/Flying",
+            "fastMove": "Ice Fang",
+            "chargedMove": "Ice Burn",
+            "targetProfile": "Dragon/Flying",
+            "defenderTypes": [
+              "Dragon",
+              "Flying"
+            ],
+            "fastEffectiveness": 2.56,
+            "chargedEffectiveness": 2.56,
+            "fastUsesPerCharged": 3,
+            "cycleSeconds": 6.5,
+            "relativeCycleIndex": 18460.357
+          },
+          {
+            "subjectId": "mamoswine",
+            "label": "mamoswine vs Dragon/Flying",
+            "fastMove": "Powder Snow",
+            "chargedMove": "Avalanche",
+            "targetProfile": "Dragon/Flying",
+            "defenderTypes": [
+              "Dragon",
+              "Flying"
+            ],
+            "fastEffectiveness": 2.56,
+            "chargedEffectiveness": 2.56,
+            "fastUsesPerCharged": 4,
+            "cycleSeconds": 6.5,
+            "relativeCycleIndex": 12724.224
+          },
+          {
+            "subjectId": "galarian-darmanitan",
+            "label": "galarian-darmanitan vs Dragon/Flying",
+            "fastMove": "Ice Fang",
+            "chargedMove": "Avalanche",
+            "targetProfile": "Dragon/Flying",
+            "defenderTypes": [
+              "Dragon",
+              "Flying"
+            ],
+            "fastEffectiveness": 2.56,
+            "chargedEffectiveness": 2.56,
+            "fastUsesPerCharged": 3,
+            "cycleSeconds": 7,
+            "relativeCycleIndex": 13965.751
+          },
+          {
+            "subjectId": "baxcalibur",
+            "label": "baxcalibur vs Dragon/Flying",
+            "fastMove": "Ice Fang",
+            "chargedMove": "Avalanche",
+            "targetProfile": "Dragon/Flying",
+            "defenderTypes": [
+              "Dragon",
+              "Flying"
+            ],
+            "fastEffectiveness": 2.56,
+            "chargedEffectiveness": 2.56,
+            "fastUsesPerCharged": 3,
+            "cycleSeconds": 7,
+            "relativeCycleIndex": 13487.835
+          }
+        ],
+        "assumptions": [
+          "기본 공격, PvE 기술 위력·에너지·시전 시간, 자속 1.2배와 타입 상성만 사용한다.",
+          "스페셜 기술 에너지는 노말 기술을 올림 횟수만큼 사용해 충전한다고 가정한다."
+        ],
+        "limitations": [
+          "보스 방어·피해 반올림·회피·생존·날씨·우정·메가 보너스를 반영하지 않는다.",
+          "실제 DPS/TDO 또는 타입별 순위가 아니다."
+        ],
+        "evidenceIds": [
+          "pogoapi:pokemon_stats:ca23e7947d97",
+          "pogoapi:fast_moves:3c6781e7ebe7",
+          "pogoapi:charged_moves:a09029272289",
+          "pogoapi:type_effectiveness:f9208ace82f4",
+          "official:white-move"
+        ]
+      },
+      "pvpAnalysis": {
+        "simulationPerformed": false,
+        "observations": [
+          "Ice Burn은 PvP 위력 120, 에너지 60이다.",
+          "30% 확률로 상대 방어를 1단계 낮추는 효과가 별도 필드로 연결돼 있다."
+        ],
+        "limitations": [
+          "실드 수, 리그 CP, 개체값, 상대 매치업을 시뮬레이션하지 않았다."
+        ],
+        "evidenceIds": [
+          "pogoapi:pvp_charged_moves:e9213b0744b6",
+          "pogoapi:pvp_fast_moves:d944f25ce672"
+        ]
+      },
+      "investment": {
+        "order": [
+          {
+            "id": "verify-ice-burn",
+            "label": "융합 직후 Ice Burn 보유 확인",
+            "reason": "Glaciate를 알고 있던 큐레무만 Ice Burn으로 변환된다.",
+            "evidenceIds": [
+              "official:white-move"
+            ]
+          },
+          {
+            "id": "set-ice-fang",
+            "label": "레이드 목적이면 Ice Fang 설정",
+            "reason": "Ice Fang과 Ice Burn을 같은 얼음 역할로 맞춘다.",
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:charged_moves:a09029272289"
+            ]
+          },
+          {
+            "id": "test-team-gap",
+            "label": "현재 얼음 팀의 공백 확인",
+            "reason": "외부 공격수 순위가 없으므로 기존 팀보다 필요한지 먼저 판단한다.",
+            "evidenceIds": [
+              "pogoapi:type_effectiveness:f9208ace82f4",
+              "pogoapi:pokemon_stats:ca23e7947d97"
+            ]
+          },
+          {
+            "id": "stage-white-powerup",
+            "label": "필요한 레이드부터 단계 강화",
+            "reason": "초기 사용 후 실제 부족분이 확인될 때만 레벨 40 이상으로 넘어간다.",
+            "evidenceIds": [
+              "pogoapi:cp_multiplier:61c96ee36079",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          }
+        ],
+        "stardust": {
+          "decision": "conditional",
+          "analysis": {
+            "reason": "Ice Burn 수치는 확보됐으므로 즉시 얼음 공격수가 필요할 때 단계 투자하되 순위 미확정 상태에서 일괄 최대 강화하지 않는다.",
+            "evidenceIds": [
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ],
+            "modes": [
+              "raid"
+            ]
+          }
+        },
+        "candy": {
+          "decision": "conditional",
+          "analysis": {
+            "reason": "융합 30개와 필드 효과 사용분을 먼저 남긴 뒤 강화에 배분한다.",
+            "evidenceIds": [
+              "official:white-materials",
+              "official:white-field-effect"
+            ],
+            "modes": [
+              "raid"
+            ]
+          }
+        },
+        "secondMove": {
+          "decision": "low",
+          "analysis": {
+            "reason": "레이드 단일 역할에서는 후순위이며, PvP에서 두 번째 스페셜 기술과 리그 계획을 확정한 경우에만 조건부로 재검토한다.",
+            "evidenceIds": [
+              "pogoapi:pvp_charged_moves:e9213b0744b6",
+              "official:white-move"
+            ],
+            "modes": [
+              "pvp"
+            ]
+          }
+        },
+        "xlCandy": {
+          "decision": "hold",
+          "analysis": {
+            "reason": "타입별 외부 순위와 레벨 50 성능 비교가 없으므로 레벨 40 이후 XL 투자는 보류한다.",
+            "evidenceIds": [
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+              "pogoapi:cp_multiplier:61c96ee36079"
+            ],
+            "modes": [
+              "raid",
+              "pvp"
+            ]
+          }
+        },
+        "eliteTm": {
+          "decision": "not_applicable",
+          "analysis": {
+            "reason": "Ice Burn은 기술머신으로 배울 수 없으므로 융합 전 Glaciate 상태를 확인해야 한다.",
+            "evidenceIds": [
+              "official:white-move"
+            ],
+            "modes": [
+              "raid",
+              "pvp"
+            ]
+          }
+        },
+        "maxMove": null,
+        "powerUpStages": [
+          {
+            "level": "30",
+            "decision": "conditional",
+            "reason": "즉시 얼음 공격수 공백을 메울 때 초기 실사용 단계로 검토한다.",
+            "evidenceIds": [
+              "pogoapi:cp_multiplier:61c96ee36079",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          },
+          {
+            "level": "35",
+            "decision": "conditional",
+            "reason": "레벨 30 사용 후 레이드 전력 부족이 확인될 때 일반 사탕 범위에서 추가한다.",
+            "evidenceIds": [
+              "pogoapi:cp_multiplier:61c96ee36079",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          },
+          {
+            "level": "40",
+            "decision": "conditional",
+            "reason": "실제 얼음 역할을 지속적으로 사용할 때만 XL 구간 직전까지 검토한다.",
+            "evidenceIds": [
+              "pogoapi:cp_multiplier:61c96ee36079",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          },
+          {
+            "level": "50",
+            "decision": "hold",
+            "reason": "기본값은 보류하고, 화이트를 장기 최우선 얼음 공격수로 확정하고 XL 296개를 감당할 때만 진행한다.",
+            "evidenceIds": [
+              "reference:level-50-cpm",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "id": "verify-white-move",
+          "label": "Ice Burn 변환 여부를 먼저 확인",
+          "reason": "기술머신으로 복구할 수 없는 융합 전용 기술이다.",
+          "evidenceIds": [
+            "official:white-move"
+          ]
+        },
+        {
+          "id": "compare-white-role",
+          "label": "현재 얼음 공격수 팀의 공백 확인",
+          "reason": "상대 지표만으로 전체 공격수 순위를 정할 수 없다.",
+          "evidenceIds": [
+            "pogoapi:type_effectiveness:f9208ace82f4",
+            "pogoapi:pokemon_stats:ca23e7947d97"
+          ]
+        },
+        {
+          "id": "reserve-white-cost",
+          "label": "필드 효과 사용분 사탕·별의모래 분리",
+          "reason": "10분 사용에 별의모래 5,000과 큐레무 사탕 5개가 든다.",
+          "evidenceIds": [
+            "official:white-field-effect"
+          ]
+        }
+      ],
+      "warnings": [
+        {
+          "id": "white-storage",
+          "label": "융합 상태에서는 교환·박사 전송·HOME 전송 불가",
+          "reason": "공식 공지의 융합 보관 제한을 확인해야 한다.",
+          "evidenceIds": [
+            "official:fusion-storage-restrictions"
+          ]
+        },
+        {
+          "id": "white-field-exclusive",
+          "label": "다른 필드 효과와 동시 사용 불가",
+          "reason": "Ice Burn 필드 효과는 다른 필드 효과와 함께 사용할 수 없다.",
+          "evidenceIds": [
+            "official:field-effect-exclusivity",
+            "official:white-field-effect"
+          ]
+        },
+        {
+          "id": "white-separation",
+          "label": "분리하면 Ice Burn이 Glaciate로 복귀",
+          "reason": "레시라무가 풀리고 특수 기술도 되돌아간다.",
+          "evidenceIds": [
+            "official:white-move",
+            "official:fusion-state-separation"
+          ]
+        }
+      ],
+      "specialActionGuideId": null,
+      "schemaVersion": 1,
+      "pokemonId": "white-kyurem",
+      "origin": "manual_ai",
+      "generationMethod": "manual_ai",
+      "factsSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
+      "generatedBy": {
+        "provider": "codex",
+        "model": "gpt-6.1",
+        "promptVersion": "pokoweek-manual-guide-v2-data-quality",
+        "generatedAt": "2026-11-17T01:30:00.000Z",
+        "sourcePackageHash": "2bddc2d898570066bd7ee2bb1d344c4f78f0ea84acd1368314a14d88eb6f6115"
+      },
+      "review": {
+        "status": "pending"
+      }
+    },
+    {
+      "performanceRating": null,
+      "evidenceConfidence": "medium",
+      "editorialStatus": "ready",
+      "editorialLimitations": [
+        "Freeze Shock 수치는 확보했지만 외부 공격수 순위와 실제 레이드 시뮬레이션이 없다.",
+        "드래곤 노말 기술과 얼음 스페셜 기술의 혼합 역할을 보스별로 검증하지 않았다.",
+        "PvP 실드·리그·매치업 시뮬레이션이 없다."
+      ],
+      "decisionQuestions": [
+        {
+          "id": "fusion_or_base",
+          "conclusion": "드래곤·얼음 약점이 함께 있는 목표를 공략하거나 Freeze Shock 필드 효과가 필요하면 Glaciate 보유 큐레무를 블랙으로 융합한다.",
+          "reason": "블랙은 공격 310과 Dragon Tail + Freeze Shock을 갖고, 이 제한 조건에서 본체와 대표 드래곤 조합보다 높은 상대 주기 지표를 보였다.",
+          "conditions": [
+            "Glaciate 보유 큐레무와 제크로무 확보",
+            "볼트 에너지 1,000과 양쪽 사탕 30개 확보",
+            "혼합 타입 역할 또는 필드 효과가 필요"
+          ],
+          "evidenceIds": [
+            "pogoapi:pokemon_stats:ca23e7947d97",
+            "pogoapi:fast_moves:3c6781e7ebe7",
+            "pogoapi:charged_moves:a09029272289",
+            "official:black-materials",
+            "official:black-move"
+          ]
+        },
+        {
+          "id": "white_or_black_priority",
+          "conclusion": "범용 얼음 역할은 화이트를 먼저, Dragon/Flying처럼 드래곤·얼음 기술이 모두 유효한 명확한 목표가 있으면 블랙을 먼저 만든다.",
+          "reason": "블랙의 Dragon Tail은 드래곤, Freeze Shock은 얼음이어서 상대 타입에 따라 조합 효율이 크게 달라진다.",
+          "conditions": [
+            "블랙의 두 기술이 모두 약점을 찌르는 목표가 예정됨",
+            "기존 얼음 팀이 충분함",
+            "Freeze Shock 필드 효과를 우선 사용하고 싶음"
+          ],
+          "evidenceIds": [
+            "pogoapi:type_effectiveness:f9208ace82f4",
+            "pogoapi:fast_moves:3c6781e7ebe7",
+            "pogoapi:charged_moves:a09029272289",
+            "official:black-field-effect"
+          ]
+        },
+        {
+          "id": "required_moves",
+          "conclusion": "융합 전 Glaciate를 확인하고, 레이드는 목표 상대가 드래곤·얼음 모두 약할 때 Dragon Tail + Freeze Shock을 사용한다.",
+          "reason": "Freeze Shock은 융합으로만 변환되며 Dragon Tail과 타입이 달라 상대 약점 확인이 필수다.",
+          "conditions": [
+            "Freeze Shock 변환 확인",
+            "상대 타입에서 Dragon과 Ice 배율을 각각 확인"
+          ],
+          "evidenceIds": [
+            "official:black-move",
+            "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+            "pogoapi:type_effectiveness:f9208ace82f4"
+          ]
+        },
+        {
+          "id": "missing_special_move",
+          "conclusion": "Glaciate가 없는 큐레무는 블랙으로 융합할 수 있지만 Freeze Shock을 얻지 못하므로 전투용이면 융합을 미룬다.",
+          "reason": "Freeze Shock은 일반·대단한 기술머신으로 배울 수 없고 Glaciate 변환으로만 확인된다.",
+          "conditions": [
+            "다른 Glaciate 개체가 있으면 교체",
+            "없으면 Glaciate 습득 가능 여부를 게임에서 확인",
+            "전용 기술 없이 융합할 목적이 분명할 때만 예외"
+          ],
+          "evidenceIds": [
+            "official:black-move",
+            "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+          ]
+        },
+        {
+          "id": "post_fusion_first_step",
+          "conclusion": "Freeze Shock 변환 확인 → 목표 상대의 약점 확인 → Dragon Tail 설정 → Lv.30 강화 순서로 진행한다.",
+          "reason": "Lv.30에서 15/15/15 예상 CP는 3,947이며 레벨 50 유효 능력치의 약 87.08%다.",
+          "conditions": [
+            "Freeze Shock이 없으면 강화 중단",
+            "두 기술이 모두 유효한 사용처가 있을 때 Lv.30 진행"
+          ],
+          "evidenceIds": [
+            "reference:cp-formula",
+            "pogoapi:cp_multiplier:61c96ee36079",
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+            "official:black-move"
+          ]
+        },
+        {
+          "id": "power_up_target",
+          "conclusion": "기본 목표는 Lv.30, 맞는 상대에서 전력이 부족하면 35, 반복 주력이면 40, 장기 전용 투자일 때만 50이다.",
+          "reason": "15/15/15 CP는 3,947→4,276→4,605→5,206이며 Lv.40에서 50은 별의모래 250,000과 XL 296개를 추가로 요구한다.",
+          "conditions": [
+            "Lv.30 실제 사용 후 35",
+            "혼합 타입 역할을 반복 사용하면 40",
+            "명확한 대상과 XL 296개가 있을 때 50"
+          ],
+          "evidenceIds": [
+            "reference:cp-formula",
+            "reference:level-50-cpm",
+            "pogoapi:cp_multiplier:61c96ee36079",
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+          ]
+        },
+        {
+          "id": "second_move",
+          "conclusion": "레이드만 사용하면 기술 해방은 후순위이며, PvP에서 Freeze Shock과 보조 스페셜 기술을 함께 쓸 계획이 검증될 때만 조건부 투자한다.",
+          "reason": "레이드 혼합 역할에는 Freeze Shock 하나로 판단할 수 있고 PvP 최적 조합은 아직 시뮬레이션되지 않았다.",
+          "conditions": [
+            "PvP 리그와 두 번째 스페셜 기술을 확정",
+            "강화와 Freeze Shock 확인을 먼저 완료"
+          ],
+          "evidenceIds": [
+            "pogoapi:pvp_charged_moves:e9213b0744b6",
+            "official:black-move"
+          ]
+        },
+        {
+          "id": "xl_and_stardust",
+          "conclusion": "별의모래는 실제 목표 레이드가 있을 때 단계 투입하고, XL은 블랙의 혼합 역할을 장기적으로 반복 사용할 때만 쓴다.",
+          "reason": "Lv.20→40은 별의모래 225,000·사탕 248개, 40→50은 별의모래 250,000·XL 296개다.",
+          "conditions": [
+            "필드 효과용 큐레무 사탕을 별도 보존",
+            "화이트보다 블랙을 우선할 구체적인 사용처가 있을 때만 XL 투자"
+          ],
+          "evidenceIds": [
+            "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+            "official:black-field-effect"
+          ]
+        }
+      ],
+      "applicability": {
+        "modes": [
+          "raid",
+          "pvp"
+        ],
+        "secondMove": true,
+        "xlCandy": true,
+        "maxMove": false,
+        "specialActionGuide": false
+      },
+      "verdict": {
+        "label": "Freeze Shock 역할 확인 후 선택 투자",
+        "summary": "Freeze Shock의 높은 PvE 위력은 확인됐지만 Dragon Tail과의 혼합 타입 역할을 고려해, 실제 상대가 정해진 뒤 단계적으로 강화하세요.",
+        "analysis": {
+          "reason": "공격 310과 Freeze Shock의 PvE 160/에너지 100/1.5초가 연결됐다. Dragon/Flying 상대 지표는 높지만 드래곤·얼음 혼합 기술의 범용 순위와 생존 자료가 없어 성능 별점은 미평가다.",
+          "evidenceIds": [
+            "pogoapi:pokemon_stats:ca23e7947d97",
+            "pogoapi:fast_moves:3c6781e7ebe7",
+            "pogoapi:charged_moves:a09029272289",
+            "pogoapi:type_effectiveness:f9208ace82f4",
+            "official:black-move"
+          ],
+          "modes": [
+            "raid"
+          ]
+        }
+      },
+      "useCases": [
+        {
+          "mode": "raid",
+          "performanceRating": null,
+          "analysis": {
+            "reason": "Dragon Tail은 드래곤, Freeze Shock은 얼음이므로 두 타입 모두 약점인 상대에서는 지표가 높지만 단일 약점 상대와 전체 공격수 순위는 검증되지 않았다.",
+            "evidenceIds": [
+              "pogoapi:pokemon_stats:ca23e7947d97",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:type_effectiveness:f9208ace82f4"
+            ],
+            "modes": [
+              "raid"
+            ]
+          }
+        },
+        {
+          "mode": "pvp",
+          "performanceRating": null,
+          "analysis": {
+            "reason": "Freeze Shock은 PvP 위력 120·에너지 60이며 30% 확률로 상대 공격을 1단계 낮추지만 실드와 매치업 근거가 없다.",
+            "evidenceIds": [
+              "pogoapi:pvp_charged_moves:e9213b0744b6",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ],
+            "modes": [
+              "pvp"
+            ]
+          }
+        }
+      ],
+      "movesets": [
+        {
+          "mode": "raid",
+          "fastMove": "Dragon Tail",
+          "chargedMoves": [
+            "Freeze Shock"
+          ],
+          "acquisitionConditions": [
+            "융합 전에 블랙용 큐레무가 Glaciate를 알고 있어야 Freeze Shock으로 변환",
+            "Freeze Shock은 일반·대단한 기술머신스페셜로 습득 불가"
+          ],
+          "analysis": {
+            "reason": "Dragon/Flying처럼 드래곤과 얼음이 모두 유효한 상대에서 비교할 수 있는 조합이다. 단일 타입 약점 상대의 최적 조합으로 일반화하지 않는다.",
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:type_effectiveness:f9208ace82f4",
+              "official:black-move"
+            ],
+            "modes": [
+              "raid"
+            ]
+          }
+        },
+        {
+          "mode": "pvp",
+          "fastMove": "Shadow Claw",
+          "chargedMoves": [
+            "Freeze Shock"
+          ],
+          "acquisitionConditions": [
+            "융합 전에 블랙용 큐레무의 Glaciate 확인",
+            "Freeze Shock은 기술머신으로 습득 불가"
+          ],
+          "analysis": {
+            "reason": "입력에 존재하는 에너지 수급 기술과 Freeze Shock의 디버프를 검토하는 조합이며 최적성은 PvP 시뮬레이션 전까지 미확정이다.",
+            "evidenceIds": [
+              "pogoapi:pvp_fast_moves:d944f25ce672",
+              "pogoapi:pvp_charged_moves:e9213b0744b6",
+              "official:black-move"
+            ],
+            "modes": [
+              "pvp"
+            ]
+          }
+        }
+      ],
+      "raidAnalysis": {
+        "method": "relative_cycle_index_v1",
+        "profiles": [
+          {
+            "subjectId": "black-kyurem",
+            "label": "black-kyurem neutral",
+            "fastMove": "Dragon Tail",
+            "chargedMove": "Freeze Shock",
+            "targetProfile": "neutral",
+            "defenderTypes": [],
+            "fastEffectiveness": 1,
+            "chargedEffectiveness": 1,
+            "fastUsesPerCharged": 13,
+            "cycleSeconds": 14.5,
+            "relativeCycleIndex": 8774.069
+          },
+          {
+            "subjectId": "black-kyurem",
+            "label": "black-kyurem vs Dragon/Flying",
+            "fastMove": "Dragon Tail",
+            "chargedMove": "Freeze Shock",
+            "targetProfile": "Dragon/Flying",
+            "defenderTypes": [
+              "Dragon",
+              "Flying"
+            ],
+            "fastEffectiveness": 1.6,
+            "chargedEffectiveness": 2.56,
+            "fastUsesPerCharged": 13,
+            "cycleSeconds": 14.5,
+            "relativeCycleIndex": 17979.145
+          },
+          {
+            "subjectId": "black-kyurem",
+            "label": "black-kyurem Shadow Claw neutral",
+            "fastMove": "Shadow Claw",
+            "chargedMove": "Freeze Shock",
+            "targetProfile": "neutral",
+            "defenderTypes": [],
+            "fastEffectiveness": 1,
+            "chargedEffectiveness": 1,
+            "fastUsesPerCharged": 25,
+            "cycleSeconds": 14,
+            "relativeCycleIndex": 7572.857
+          },
+          {
+            "subjectId": "rayquaza",
+            "label": "rayquaza vs Dragon/Flying",
+            "fastMove": "Dragon Tail",
+            "chargedMove": "Outrage",
+            "targetProfile": "Dragon/Flying",
+            "defenderTypes": [
+              "Dragon",
+              "Flying"
+            ],
+            "fastEffectiveness": 1.6,
+            "chargedEffectiveness": 1.6,
+            "fastUsesPerCharged": 7,
+            "cycleSeconds": 11,
+            "relativeCycleIndex": 10310.749
+          },
+          {
+            "subjectId": "origin-palkia",
+            "label": "origin-palkia vs Dragon/Flying",
+            "fastMove": "Dragon Tail",
+            "chargedMove": "Draco Meteor",
+            "targetProfile": "Dragon/Flying",
+            "defenderTypes": [
+              "Dragon",
+              "Flying"
+            ],
+            "fastEffectiveness": 1.6,
+            "chargedEffectiveness": 1.6,
+            "fastUsesPerCharged": 13,
+            "cycleSeconds": 16.5,
+            "relativeCycleIndex": 11048.96
+          }
+        ],
+        "assumptions": [
+          "기본 공격, PvE 기술 위력·에너지·시전 시간, 자속 1.2배와 타입 상성만 사용한다.",
+          "스페셜 기술 에너지는 노말 기술을 올림 횟수만큼 사용해 충전한다고 가정한다."
+        ],
+        "limitations": [
+          "보스 방어·피해 반올림·회피·생존·날씨·우정·메가 보너스를 반영하지 않는다.",
+          "실제 DPS/TDO 또는 타입별 순위가 아니다."
+        ],
+        "evidenceIds": [
+          "pogoapi:pokemon_stats:ca23e7947d97",
+          "pogoapi:fast_moves:3c6781e7ebe7",
+          "pogoapi:charged_moves:a09029272289",
+          "pogoapi:type_effectiveness:f9208ace82f4",
+          "official:black-move"
+        ]
+      },
+      "pvpAnalysis": {
+        "simulationPerformed": false,
+        "observations": [
+          "Freeze Shock은 PvP 위력 120, 에너지 60이다.",
+          "30% 확률로 상대 공격을 1단계 낮추는 효과가 별도 필드로 연결돼 있다."
+        ],
+        "limitations": [
+          "실드 수, 리그 CP, 개체값, 상대 매치업을 시뮬레이션하지 않았다."
+        ],
+        "evidenceIds": [
+          "pogoapi:pvp_charged_moves:e9213b0744b6",
+          "pogoapi:pvp_fast_moves:d944f25ce672"
+        ]
+      },
+      "investment": {
+        "order": [
+          {
+            "id": "verify-freeze-shock",
+            "label": "융합 직후 Freeze Shock 보유 확인",
+            "reason": "Glaciate를 알고 있던 큐레무만 Freeze Shock으로 변환된다.",
+            "evidenceIds": [
+              "official:black-move"
+            ]
+          },
+          {
+            "id": "choose-black-role",
+            "label": "공략 상대의 드래곤·얼음 약점 확인",
+            "reason": "Dragon Tail과 Freeze Shock의 타입이 달라 상대에 따라 효율이 달라진다.",
+            "evidenceIds": [
+              "pogoapi:type_effectiveness:f9208ace82f4",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:charged_moves:a09029272289"
+            ]
+          },
+          {
+            "id": "test-black-team-gap",
+            "label": "현재 팀에서 필요한 역할 확인",
+            "reason": "외부 공격수 순위가 없으므로 기존 드래곤·얼음 팀과 사용처를 먼저 비교한다.",
+            "evidenceIds": [
+              "pogoapi:pokemon_stats:ca23e7947d97",
+              "pogoapi:type_effectiveness:f9208ace82f4"
+            ]
+          },
+          {
+            "id": "stage-black-powerup",
+            "label": "대상 레이드가 있을 때 단계 강화",
+            "reason": "혼합 타입 역할이 실제로 맞는 상대가 있을 때만 다음 강화 단계로 넘어간다.",
+            "evidenceIds": [
+              "pogoapi:cp_multiplier:61c96ee36079",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          }
+        ],
+        "stardust": {
+          "decision": "conditional",
+          "analysis": {
+            "reason": "Freeze Shock 수치는 확보됐지만 혼합 타입 역할이므로 실제 공략 상대가 정해졌을 때 단계 투자한다.",
+            "evidenceIds": [
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:type_effectiveness:f9208ace82f4",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ],
+            "modes": [
+              "raid"
+            ]
+          }
+        },
+        "candy": {
+          "decision": "conditional",
+          "analysis": {
+            "reason": "융합 30개와 필드 효과 사용분을 먼저 남긴 뒤 강화에 배분한다.",
+            "evidenceIds": [
+              "official:black-materials",
+              "official:black-field-effect"
+            ],
+            "modes": [
+              "raid"
+            ]
+          }
+        },
+        "secondMove": {
+          "decision": "low",
+          "analysis": {
+            "reason": "레이드 혼합 역할에서는 후순위이며, PvP에서 Freeze Shock과 보조 스페셜 기술 조합을 검증한 뒤에만 조건부로 재검토한다.",
+            "evidenceIds": [
+              "pogoapi:pvp_charged_moves:e9213b0744b6",
+              "official:black-move"
+            ],
+            "modes": [
+              "pvp"
+            ]
+          }
+        },
+        "xlCandy": {
+          "decision": "hold",
+          "analysis": {
+            "reason": "외부 공격수 순위와 레벨 50 비교가 없으므로 역할이 확정돼도 XL 투자는 추가 검토한다.",
+            "evidenceIds": [
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+              "pogoapi:cp_multiplier:61c96ee36079"
+            ],
+            "modes": [
+              "raid",
+              "pvp"
+            ]
+          }
+        },
+        "eliteTm": {
+          "decision": "not_applicable",
+          "analysis": {
+            "reason": "Freeze Shock은 기술머신으로 배울 수 없으므로 융합 전 Glaciate 상태를 확인해야 한다.",
+            "evidenceIds": [
+              "official:black-move"
+            ],
+            "modes": [
+              "raid",
+              "pvp"
+            ]
+          }
+        },
+        "maxMove": null,
+        "powerUpStages": [
+          {
+            "level": "30",
+            "decision": "conditional",
+            "reason": "드래곤·얼음 역할이 모두 필요한 즉시 사용처가 있을 때 초기 단계로 검토한다.",
+            "evidenceIds": [
+              "pogoapi:cp_multiplier:61c96ee36079",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          },
+          {
+            "level": "35",
+            "decision": "conditional",
+            "reason": "레벨 30 사용 후 해당 레이드의 전력 부족이 확인될 때 추가한다.",
+            "evidenceIds": [
+              "pogoapi:cp_multiplier:61c96ee36079",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          },
+          {
+            "level": "40",
+            "decision": "conditional",
+            "reason": "혼합 타입 역할을 반복해서 사용할 계획이 확인될 때만 XL 구간 직전까지 검토한다.",
+            "evidenceIds": [
+              "pogoapi:cp_multiplier:61c96ee36079",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          },
+          {
+            "level": "50",
+            "decision": "hold",
+            "reason": "기본값은 보류하고, 블랙의 혼합 역할을 반복 사용할 명확한 목표와 XL 296개가 있을 때만 진행한다.",
+            "evidenceIds": [
+              "reference:level-50-cpm",
+              "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "id": "verify-black-move",
+          "label": "Freeze Shock 변환 여부를 먼저 확인",
+          "reason": "기술머신으로 복구할 수 없는 융합 전용 기술이다.",
+          "evidenceIds": [
+            "official:black-move"
+          ]
+        },
+        {
+          "id": "select-black-target",
+          "label": "드래곤·얼음 약점이 맞는 공략 상대 선택",
+          "reason": "노말·스페셜 기술 타입이 달라 상대 타입에 따라 역할이 바뀐다.",
+          "evidenceIds": [
+            "pogoapi:type_effectiveness:f9208ace82f4"
+          ]
+        },
+        {
+          "id": "reserve-black-cost",
+          "label": "필드 효과 사용분 사탕·별의모래 분리",
+          "reason": "10분 사용에 별의모래 5,000과 큐레무 사탕 5개가 든다.",
+          "evidenceIds": [
+            "official:black-field-effect"
+          ]
+        }
+      ],
+      "warnings": [
+        {
+          "id": "black-storage",
+          "label": "융합 상태에서는 교환·박사 전송·HOME 전송 불가",
+          "reason": "공식 공지의 융합 보관 제한을 확인해야 한다.",
+          "evidenceIds": [
+            "official:fusion-storage-restrictions"
+          ]
+        },
+        {
+          "id": "black-field-exclusive",
+          "label": "다른 필드 효과와 동시 사용 불가",
+          "reason": "Freeze Shock 필드 효과는 다른 필드 효과와 함께 사용할 수 없다.",
+          "evidenceIds": [
+            "official:field-effect-exclusivity",
+            "official:black-field-effect"
+          ]
+        },
+        {
+          "id": "black-separation",
+          "label": "분리하면 Freeze Shock이 Glaciate로 복귀",
+          "reason": "제크로무가 풀리고 특수 기술도 되돌아간다.",
+          "evidenceIds": [
+            "official:black-move",
+            "official:fusion-state-separation"
+          ]
+        }
+      ],
+      "specialActionGuideId": null,
+      "schemaVersion": 1,
+      "pokemonId": "black-kyurem",
+      "origin": "manual_ai",
+      "generationMethod": "manual_ai",
+      "factsSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
+      "generatedBy": {
+        "provider": "codex",
+        "model": "gpt-6.1",
+        "promptVersion": "pokoweek-manual-guide-v2-data-quality",
+        "generatedAt": "2026-11-17T01:30:00.000Z",
+        "sourcePackageHash": "1545374606f676f6b5ca36b6843f6ba7548d4e773b140e815503f974e59cd43b"
+      },
+      "review": {
+        "status": "pending"
+      }
+    }
+  ],
+  "usage": null
+}

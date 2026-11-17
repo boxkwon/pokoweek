@@ -1,0 +1,3620 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-17T01:41:47.441Z",
+  "sourceSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
+  "pokemon": [
+    {
+      "id": "kyurem",
+      "dexNumber": 646,
+      "gameName": "Kyurem",
+      "form": "Normal",
+      "types": {
+        "values": [
+          "Dragon",
+          "Ice"
+        ],
+        "evidenceIds": [
+          "pogoapi:pokemon_types:d2979fa632e6"
+        ]
+      },
+      "baseStats": {
+        "attack": 246,
+        "defense": 170,
+        "stamina": 245,
+        "evidenceIds": [
+          "pogoapi:pokemon_stats:ca23e7947d97"
+        ]
+      },
+      "moves": {
+        "fast": [
+          {
+            "name": "Dragon Breath",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 6,
+              "energyDelta": 4,
+              "durationMs": 500
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 3,
+              "energyDelta": 4,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          },
+          {
+            "name": "Steel Wing",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Steel",
+              "power": 14,
+              "energyDelta": 8,
+              "durationMs": 1000
+            },
+            "pvp": {
+              "type": "Steel",
+              "power": 7,
+              "energyDelta": 5,
+              "turns": 2
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          }
+        ],
+        "charged": [
+          {
+            "name": "Dragon Claw",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 45,
+              "energyDelta": -33,
+              "durationMs": 1500
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 80,
+              "energyDelta": -50,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Blizzard",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Ice",
+              "power": 130,
+              "energyDelta": -100,
+              "durationMs": 3000
+            },
+            "pvp": {
+              "type": "Ice",
+              "power": 140,
+              "energyDelta": -75,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Draco Meteor",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 150,
+              "energyDelta": -100,
+              "durationMs": 3500
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 150,
+              "energyDelta": -65,
+              "turns": 1,
+              "effects": [
+                {
+                  "activationChance": 1,
+                  "target": "attacker",
+                  "stat": "attack",
+                  "stages": -2
+                }
+              ]
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Glaciate",
+            "kind": "charged",
+            "acquisition": "elite",
+            "pve": {
+              "type": "Ice",
+              "power": 160,
+              "energyDelta": -100,
+              "durationMs": 2500
+            },
+            "pvp": {
+              "type": "Ice",
+              "power": 60,
+              "energyDelta": -40,
+              "turns": 1,
+              "effects": [
+                {
+                  "activationChance": 1,
+                  "target": "opponent",
+                  "stat": "attack",
+                  "stages": -1
+                }
+              ]
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          }
+        ],
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+        ]
+      }
+    },
+    {
+      "id": "white-kyurem",
+      "dexNumber": 646,
+      "gameName": "Kyurem",
+      "form": "White",
+      "types": {
+        "values": [
+          "Dragon",
+          "Ice"
+        ],
+        "evidenceIds": [
+          "pogoapi:pokemon_types:d2979fa632e6"
+        ]
+      },
+      "baseStats": {
+        "attack": 310,
+        "defense": 183,
+        "stamina": 245,
+        "evidenceIds": [
+          "pogoapi:pokemon_stats:ca23e7947d97"
+        ]
+      },
+      "moves": {
+        "fast": [
+          {
+            "name": "Dragon Breath",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 6,
+              "energyDelta": 4,
+              "durationMs": 500
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 3,
+              "energyDelta": 4,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          },
+          {
+            "name": "Steel Wing",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Steel",
+              "power": 14,
+              "energyDelta": 8,
+              "durationMs": 1000
+            },
+            "pvp": {
+              "type": "Steel",
+              "power": 7,
+              "energyDelta": 5,
+              "turns": 2
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          },
+          {
+            "name": "Ice Fang",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Ice",
+              "power": 12,
+              "energyDelta": 20,
+              "durationMs": 1500
+            },
+            "pvp": {
+              "type": "Ice",
+              "power": 8,
+              "energyDelta": 6,
+              "turns": 2
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          }
+        ],
+        "charged": [
+          {
+            "name": "Dragon Pulse",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 90,
+              "energyDelta": -50,
+              "durationMs": 3500
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 90,
+              "energyDelta": -55,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Blizzard",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Ice",
+              "power": 130,
+              "energyDelta": -100,
+              "durationMs": 3000
+            },
+            "pvp": {
+              "type": "Ice",
+              "power": 140,
+              "energyDelta": -75,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Ancient Power",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Rock",
+              "power": 70,
+              "energyDelta": -33,
+              "durationMs": 3500
+            },
+            "pvp": {
+              "type": "Rock",
+              "power": 60,
+              "energyDelta": -45,
+              "turns": 1,
+              "effects": [
+                {
+                  "activationChance": 0.1,
+                  "target": "attacker",
+                  "stat": "attack",
+                  "stages": 1
+                },
+                {
+                  "activationChance": 0.1,
+                  "target": "attacker",
+                  "stat": "defense",
+                  "stages": 1
+                }
+              ]
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Focus Blast",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Fighting",
+              "power": 140,
+              "energyDelta": -100,
+              "durationMs": 3500
+            },
+            "pvp": {
+              "type": "Fighting",
+              "power": 150,
+              "energyDelta": -75,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Fusion Flare",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Fire",
+              "power": 140,
+              "energyDelta": -100,
+              "durationMs": 2000
+            },
+            "pvp": {
+              "type": "Fire",
+              "power": 90,
+              "energyDelta": -45,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Ice Burn",
+            "kind": "charged",
+            "acquisition": "special",
+            "pve": {
+              "type": "Ice",
+              "power": 90,
+              "energyDelta": -50,
+              "durationMs": 2000
+            },
+            "pvp": {
+              "type": "Ice",
+              "power": 120,
+              "energyDelta": -60,
+              "turns": 1,
+              "effects": [
+                {
+                  "activationChance": 0.3,
+                  "target": "opponent",
+                  "stat": "defense",
+                  "stages": -1
+                }
+              ]
+            },
+            "evidenceIds": [
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6",
+              "official:white-move"
+            ]
+          }
+        ],
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+        ]
+      }
+    },
+    {
+      "id": "black-kyurem",
+      "dexNumber": 646,
+      "gameName": "Kyurem",
+      "form": "Black",
+      "types": {
+        "values": [
+          "Dragon",
+          "Ice"
+        ],
+        "evidenceIds": [
+          "pogoapi:pokemon_types:d2979fa632e6"
+        ]
+      },
+      "baseStats": {
+        "attack": 310,
+        "defense": 183,
+        "stamina": 245,
+        "evidenceIds": [
+          "pogoapi:pokemon_stats:ca23e7947d97"
+        ]
+      },
+      "moves": {
+        "fast": [
+          {
+            "name": "Dragon Tail",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 14,
+              "energyDelta": 8,
+              "durationMs": 1000
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 9,
+              "energyDelta": 12,
+              "turns": 3
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          },
+          {
+            "name": "Shadow Claw",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Ghost",
+              "power": 6,
+              "energyDelta": 4,
+              "durationMs": 500
+            },
+            "pvp": {
+              "type": "Ghost",
+              "power": 6,
+              "energyDelta": 8,
+              "turns": 2
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          }
+        ],
+        "charged": [
+          {
+            "name": "Iron Head",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Steel",
+              "power": 60,
+              "energyDelta": -50,
+              "durationMs": 2000
+            },
+            "pvp": {
+              "type": "Steel",
+              "power": 70,
+              "energyDelta": -50,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Blizzard",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Ice",
+              "power": 130,
+              "energyDelta": -100,
+              "durationMs": 3000
+            },
+            "pvp": {
+              "type": "Ice",
+              "power": 140,
+              "energyDelta": -75,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Stone Edge",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Rock",
+              "power": 105,
+              "energyDelta": -100,
+              "durationMs": 2500
+            },
+            "pvp": {
+              "type": "Rock",
+              "power": 100,
+              "energyDelta": -55,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Outrage",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 110,
+              "energyDelta": -50,
+              "durationMs": 4000
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 110,
+              "energyDelta": -60,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Fusion Bolt",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Electric",
+              "power": 140,
+              "energyDelta": -100,
+              "durationMs": 2000
+            },
+            "pvp": {
+              "type": "Electric",
+              "power": 90,
+              "energyDelta": -45,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Freeze Shock",
+            "kind": "charged",
+            "acquisition": "special",
+            "pve": {
+              "type": "Ice",
+              "power": 160,
+              "energyDelta": -100,
+              "durationMs": 1500
+            },
+            "pvp": {
+              "type": "Ice",
+              "power": 120,
+              "energyDelta": -60,
+              "turns": 1,
+              "effects": [
+                {
+                  "activationChance": 0.3,
+                  "target": "opponent",
+                  "stat": "attack",
+                  "stages": -1
+                }
+              ]
+            },
+            "evidenceIds": [
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6",
+              "official:black-move"
+            ]
+          }
+        ],
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+        ]
+      }
+    },
+    {
+      "id": "reshiram",
+      "dexNumber": 643,
+      "gameName": "Reshiram",
+      "form": "Normal",
+      "types": {
+        "values": [
+          "Dragon",
+          "Fire"
+        ],
+        "evidenceIds": [
+          "pogoapi:pokemon_types:d2979fa632e6"
+        ]
+      },
+      "baseStats": {
+        "attack": 275,
+        "defense": 211,
+        "stamina": 205,
+        "evidenceIds": [
+          "pogoapi:pokemon_stats:ca23e7947d97"
+        ]
+      },
+      "moves": {
+        "fast": [
+          {
+            "name": "Dragon Breath",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 6,
+              "energyDelta": 4,
+              "durationMs": 500
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 3,
+              "energyDelta": 4,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          },
+          {
+            "name": "Fire Fang",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Fire",
+              "power": 13,
+              "energyDelta": 9,
+              "durationMs": 1000
+            },
+            "pvp": {
+              "type": "Fire",
+              "power": 8,
+              "energyDelta": 6,
+              "turns": 2
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          }
+        ],
+        "charged": [
+          {
+            "name": "Crunch",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dark",
+              "power": 65,
+              "energyDelta": -33,
+              "durationMs": 3000
+            },
+            "pvp": {
+              "type": "Dark",
+              "power": 70,
+              "energyDelta": -45,
+              "turns": 1,
+              "effects": [
+                {
+                  "activationChance": 0.2,
+                  "target": "opponent",
+                  "stat": "defense",
+                  "stages": -1
+                }
+              ]
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Overheat",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Fire",
+              "power": 160,
+              "energyDelta": -100,
+              "durationMs": 4000
+            },
+            "pvp": {
+              "type": "Fire",
+              "power": 130,
+              "energyDelta": -55,
+              "turns": 1,
+              "effects": [
+                {
+                  "activationChance": 1,
+                  "target": "attacker",
+                  "stat": "attack",
+                  "stages": -2
+                }
+              ]
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Draco Meteor",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 150,
+              "energyDelta": -100,
+              "durationMs": 3500
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 150,
+              "energyDelta": -65,
+              "turns": 1,
+              "effects": [
+                {
+                  "activationChance": 1,
+                  "target": "attacker",
+                  "stat": "attack",
+                  "stages": -2
+                }
+              ]
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Stone Edge",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Rock",
+              "power": 105,
+              "energyDelta": -100,
+              "durationMs": 2500
+            },
+            "pvp": {
+              "type": "Rock",
+              "power": 100,
+              "energyDelta": -55,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Fusion Flare",
+            "kind": "charged",
+            "acquisition": "elite",
+            "pve": {
+              "type": "Fire",
+              "power": 140,
+              "energyDelta": -100,
+              "durationMs": 2000
+            },
+            "pvp": {
+              "type": "Fire",
+              "power": 90,
+              "energyDelta": -45,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          }
+        ],
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+        ]
+      }
+    },
+    {
+      "id": "zekrom",
+      "dexNumber": 644,
+      "gameName": "Zekrom",
+      "form": "Normal",
+      "types": {
+        "values": [
+          "Dragon",
+          "Electric"
+        ],
+        "evidenceIds": [
+          "pogoapi:pokemon_types:d2979fa632e6"
+        ]
+      },
+      "baseStats": {
+        "attack": 275,
+        "defense": 211,
+        "stamina": 205,
+        "evidenceIds": [
+          "pogoapi:pokemon_stats:ca23e7947d97"
+        ]
+      },
+      "moves": {
+        "fast": [
+          {
+            "name": "Dragon Breath",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 6,
+              "energyDelta": 4,
+              "durationMs": 500
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 3,
+              "energyDelta": 4,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          },
+          {
+            "name": "Charge Beam",
+            "kind": "fast",
+            "acquisition": "current",
+            "pve": {
+              "type": "Electric",
+              "power": 7,
+              "energyDelta": 14,
+              "durationMs": 1000
+            },
+            "pvp": {
+              "type": "Electric",
+              "power": 5,
+              "energyDelta": 11,
+              "turns": 3
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:fast_moves:3c6781e7ebe7",
+              "pogoapi:pvp_fast_moves:d944f25ce672"
+            ]
+          }
+        ],
+        "charged": [
+          {
+            "name": "Outrage",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dragon",
+              "power": 110,
+              "energyDelta": -50,
+              "durationMs": 4000
+            },
+            "pvp": {
+              "type": "Dragon",
+              "power": 110,
+              "energyDelta": -60,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Wild Charge",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Electric",
+              "power": 90,
+              "energyDelta": -50,
+              "durationMs": 2500
+            },
+            "pvp": {
+              "type": "Electric",
+              "power": 100,
+              "energyDelta": -45,
+              "turns": 1,
+              "effects": [
+                {
+                  "activationChance": 1,
+                  "target": "attacker",
+                  "stat": "defense",
+                  "stages": -2
+                }
+              ]
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Flash Cannon",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Steel",
+              "power": 100,
+              "energyDelta": -100,
+              "durationMs": 2500
+            },
+            "pvp": {
+              "type": "Steel",
+              "power": 110,
+              "energyDelta": -70,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Crunch",
+            "kind": "charged",
+            "acquisition": "current",
+            "pve": {
+              "type": "Dark",
+              "power": 65,
+              "energyDelta": -33,
+              "durationMs": 3000
+            },
+            "pvp": {
+              "type": "Dark",
+              "power": 70,
+              "energyDelta": -45,
+              "turns": 1,
+              "effects": [
+                {
+                  "activationChance": 0.2,
+                  "target": "opponent",
+                  "stat": "defense",
+                  "stages": -1
+                }
+              ]
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          },
+          {
+            "name": "Fusion Bolt",
+            "kind": "charged",
+            "acquisition": "elite",
+            "pve": {
+              "type": "Electric",
+              "power": 140,
+              "energyDelta": -100,
+              "durationMs": 2000
+            },
+            "pvp": {
+              "type": "Electric",
+              "power": 90,
+              "energyDelta": -45,
+              "turns": 1
+            },
+            "evidenceIds": [
+              "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+              "pogoapi:charged_moves:a09029272289",
+              "pogoapi:pvp_charged_moves:e9213b0744b6"
+            ]
+          }
+        ],
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+        ]
+      }
+    }
+  ],
+  "fusionRecipes": [
+    {
+      "id": "white-kyurem",
+      "resultPokemonId": "white-kyurem",
+      "basePokemonId": "kyurem",
+      "partnerPokemonId": "reshiram",
+      "partnerState": "bound_while_fused",
+      "materials": [
+        {
+          "type": "pokemon",
+          "pokemonId": "kyurem",
+          "amount": 1
+        },
+        {
+          "type": "pokemon",
+          "pokemonId": "reshiram",
+          "amount": 1
+        },
+        {
+          "type": "energy",
+          "energyId": "blaze-fusion-energy",
+          "label": "블레이즈 에너지",
+          "amount": 1000
+        },
+        {
+          "type": "candy",
+          "pokemonId": "kyurem",
+          "amount": 30
+        },
+        {
+          "type": "candy",
+          "pokemonId": "reshiram",
+          "amount": 30
+        }
+      ],
+      "preFusionChecks": [
+        {
+          "id": "white-kyurem-glaciate-check",
+          "label": "화이트용 큐레무의 얼어붙은세계 확인",
+          "requiredForFusion": false,
+          "reason": "합체 자체는 가능하지만 콜드플레어로 기술을 변화시키려면 필요하다.",
+          "evidenceIds": [
+            "official:white-move"
+          ]
+        }
+      ],
+      "moveTransformation": {
+        "sourceMove": "Glaciate",
+        "targetMove": "Ice Burn",
+        "sourceMoveRequiredForFusion": false,
+        "learnableByChargedTm": false,
+        "learnableByEliteChargedTm": false,
+        "revertsOnSeparation": true,
+        "evidenceIds": [
+          "official:white-move"
+        ]
+      },
+      "fieldEffect": {
+        "move": "Ice Burn",
+        "stardust": 5000,
+        "kyuremCandy": 5,
+        "durationMinutes": 10,
+        "incompatibleWithOtherFieldEffects": true,
+        "evidenceIds": [
+          "official:white-field-effect",
+          "official:field-effect-exclusivity"
+        ]
+      },
+      "storageRestrictions": {
+        "tradeBlocked": true,
+        "professorTransferBlocked": true,
+        "pokemonHomeTransferBlocked": true,
+        "evidenceIds": [
+          "official:fusion-storage-restrictions"
+        ]
+      },
+      "separation": {
+        "energyCost": 0,
+        "candyCost": 0,
+        "releasesPartner": true,
+        "evidenceIds": [
+          "official:fusion-state-separation"
+        ]
+      },
+      "postFusionGuidePokemonId": "white-kyurem",
+      "evidenceIds": [
+        "official:white-materials",
+        "official:fusion-state-separation",
+        "official:white-move",
+        "official:white-field-effect",
+        "official:fusion-storage-restrictions",
+        "official:field-effect-exclusivity"
+      ]
+    },
+    {
+      "id": "black-kyurem",
+      "resultPokemonId": "black-kyurem",
+      "basePokemonId": "kyurem",
+      "partnerPokemonId": "zekrom",
+      "partnerState": "bound_while_fused",
+      "materials": [
+        {
+          "type": "pokemon",
+          "pokemonId": "kyurem",
+          "amount": 1
+        },
+        {
+          "type": "pokemon",
+          "pokemonId": "zekrom",
+          "amount": 1
+        },
+        {
+          "type": "energy",
+          "energyId": "volt-fusion-energy",
+          "label": "볼트 에너지",
+          "amount": 1000
+        },
+        {
+          "type": "candy",
+          "pokemonId": "kyurem",
+          "amount": 30
+        },
+        {
+          "type": "candy",
+          "pokemonId": "zekrom",
+          "amount": 30
+        }
+      ],
+      "preFusionChecks": [
+        {
+          "id": "black-kyurem-glaciate-check",
+          "label": "블랙용 큐레무의 얼어붙은세계 확인",
+          "requiredForFusion": false,
+          "reason": "합체 자체는 가능하지만 프리즈볼트로 기술을 변화시키려면 필요하다.",
+          "evidenceIds": [
+            "official:black-move"
+          ]
+        }
+      ],
+      "moveTransformation": {
+        "sourceMove": "Glaciate",
+        "targetMove": "Freeze Shock",
+        "sourceMoveRequiredForFusion": false,
+        "learnableByChargedTm": false,
+        "learnableByEliteChargedTm": false,
+        "revertsOnSeparation": true,
+        "evidenceIds": [
+          "official:black-move"
+        ]
+      },
+      "fieldEffect": {
+        "move": "Freeze Shock",
+        "stardust": 5000,
+        "kyuremCandy": 5,
+        "durationMinutes": 10,
+        "incompatibleWithOtherFieldEffects": true,
+        "evidenceIds": [
+          "official:black-field-effect",
+          "official:field-effect-exclusivity"
+        ]
+      },
+      "storageRestrictions": {
+        "tradeBlocked": true,
+        "professorTransferBlocked": true,
+        "pokemonHomeTransferBlocked": true,
+        "evidenceIds": [
+          "official:fusion-storage-restrictions"
+        ]
+      },
+      "separation": {
+        "energyCost": 0,
+        "candyCost": 0,
+        "releasesPartner": true,
+        "evidenceIds": [
+          "official:fusion-state-separation"
+        ]
+      },
+      "postFusionGuidePokemonId": "black-kyurem",
+      "evidenceIds": [
+        "official:black-materials",
+        "official:fusion-state-separation",
+        "official:black-move",
+        "official:black-field-effect",
+        "official:fusion-storage-restrictions",
+        "official:field-effect-exclusivity"
+      ]
+    }
+  ],
+  "decisionBenchmarks": [
+    {
+      "id": "mamoswine",
+      "role": "ice",
+      "dexNumber": 473,
+      "gameName": "Mamoswine",
+      "form": "Normal",
+      "types": [
+        "Ice",
+        "Ground"
+      ],
+      "baseAttack": 247,
+      "fastMove": {
+        "name": "Powder Snow",
+        "kind": "fast",
+        "acquisition": "current",
+        "pve": {
+          "type": "Ice",
+          "power": 6,
+          "energyDelta": 15,
+          "durationMs": 1000
+        },
+        "pvp": {
+          "type": "Ice",
+          "power": 5,
+          "energyDelta": 8,
+          "turns": 2
+        },
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+          "pogoapi:fast_moves:3c6781e7ebe7",
+          "pogoapi:pvp_fast_moves:d944f25ce672"
+        ]
+      },
+      "chargedMove": {
+        "name": "Avalanche",
+        "kind": "charged",
+        "acquisition": "current",
+        "pve": {
+          "type": "Ice",
+          "power": 85,
+          "energyDelta": -50,
+          "durationMs": 2500
+        },
+        "pvp": {
+          "type": "Ice",
+          "power": 90,
+          "energyDelta": -45,
+          "turns": 1
+        },
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+          "pogoapi:charged_moves:a09029272289",
+          "pogoapi:pvp_charged_moves:e9213b0744b6"
+        ]
+      },
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+      ]
+    },
+    {
+      "id": "galarian-darmanitan",
+      "role": "ice",
+      "dexNumber": 555,
+      "gameName": "Darmanitan",
+      "form": "Galarian_standard",
+      "types": [
+        "Ice"
+      ],
+      "baseAttack": 263,
+      "fastMove": {
+        "name": "Ice Fang",
+        "kind": "fast",
+        "acquisition": "current",
+        "pve": {
+          "type": "Ice",
+          "power": 12,
+          "energyDelta": 20,
+          "durationMs": 1500
+        },
+        "pvp": {
+          "type": "Ice",
+          "power": 8,
+          "energyDelta": 6,
+          "turns": 2
+        },
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+          "pogoapi:fast_moves:3c6781e7ebe7",
+          "pogoapi:pvp_fast_moves:d944f25ce672"
+        ]
+      },
+      "chargedMove": {
+        "name": "Avalanche",
+        "kind": "charged",
+        "acquisition": "current",
+        "pve": {
+          "type": "Ice",
+          "power": 85,
+          "energyDelta": -50,
+          "durationMs": 2500
+        },
+        "pvp": {
+          "type": "Ice",
+          "power": 90,
+          "energyDelta": -45,
+          "turns": 1
+        },
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+          "pogoapi:charged_moves:a09029272289",
+          "pogoapi:pvp_charged_moves:e9213b0744b6"
+        ]
+      },
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+      ]
+    },
+    {
+      "id": "baxcalibur",
+      "role": "ice",
+      "dexNumber": 998,
+      "gameName": "Baxcalibur",
+      "form": "Normal",
+      "types": [
+        "Dragon",
+        "Ice"
+      ],
+      "baseAttack": 254,
+      "fastMove": {
+        "name": "Ice Fang",
+        "kind": "fast",
+        "acquisition": "current",
+        "pve": {
+          "type": "Ice",
+          "power": 12,
+          "energyDelta": 20,
+          "durationMs": 1500
+        },
+        "pvp": {
+          "type": "Ice",
+          "power": 8,
+          "energyDelta": 6,
+          "turns": 2
+        },
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+          "pogoapi:fast_moves:3c6781e7ebe7",
+          "pogoapi:pvp_fast_moves:d944f25ce672"
+        ]
+      },
+      "chargedMove": {
+        "name": "Avalanche",
+        "kind": "charged",
+        "acquisition": "current",
+        "pve": {
+          "type": "Ice",
+          "power": 85,
+          "energyDelta": -50,
+          "durationMs": 2500
+        },
+        "pvp": {
+          "type": "Ice",
+          "power": 90,
+          "energyDelta": -45,
+          "turns": 1
+        },
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+          "pogoapi:charged_moves:a09029272289",
+          "pogoapi:pvp_charged_moves:e9213b0744b6"
+        ]
+      },
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+      ]
+    },
+    {
+      "id": "rayquaza",
+      "role": "dragon",
+      "dexNumber": 384,
+      "gameName": "Rayquaza",
+      "form": "Normal",
+      "types": [
+        "Dragon",
+        "Flying"
+      ],
+      "baseAttack": 284,
+      "fastMove": {
+        "name": "Dragon Tail",
+        "kind": "fast",
+        "acquisition": "current",
+        "pve": {
+          "type": "Dragon",
+          "power": 14,
+          "energyDelta": 8,
+          "durationMs": 1000
+        },
+        "pvp": {
+          "type": "Dragon",
+          "power": 9,
+          "energyDelta": 12,
+          "turns": 3
+        },
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+          "pogoapi:fast_moves:3c6781e7ebe7",
+          "pogoapi:pvp_fast_moves:d944f25ce672"
+        ]
+      },
+      "chargedMove": {
+        "name": "Outrage",
+        "kind": "charged",
+        "acquisition": "current",
+        "pve": {
+          "type": "Dragon",
+          "power": 110,
+          "energyDelta": -50,
+          "durationMs": 4000
+        },
+        "pvp": {
+          "type": "Dragon",
+          "power": 110,
+          "energyDelta": -60,
+          "turns": 1
+        },
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+          "pogoapi:charged_moves:a09029272289",
+          "pogoapi:pvp_charged_moves:e9213b0744b6"
+        ]
+      },
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+      ]
+    },
+    {
+      "id": "origin-palkia",
+      "role": "dragon",
+      "dexNumber": 484,
+      "gameName": "Palkia",
+      "form": "Origin",
+      "types": [
+        "Water",
+        "Dragon"
+      ],
+      "baseAttack": 286,
+      "fastMove": {
+        "name": "Dragon Tail",
+        "kind": "fast",
+        "acquisition": "current",
+        "pve": {
+          "type": "Dragon",
+          "power": 14,
+          "energyDelta": 8,
+          "durationMs": 1000
+        },
+        "pvp": {
+          "type": "Dragon",
+          "power": 9,
+          "energyDelta": 12,
+          "turns": 3
+        },
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+          "pogoapi:fast_moves:3c6781e7ebe7",
+          "pogoapi:pvp_fast_moves:d944f25ce672"
+        ]
+      },
+      "chargedMove": {
+        "name": "Draco Meteor",
+        "kind": "charged",
+        "acquisition": "current",
+        "pve": {
+          "type": "Dragon",
+          "power": 150,
+          "energyDelta": -100,
+          "durationMs": 3500
+        },
+        "pvp": {
+          "type": "Dragon",
+          "power": 150,
+          "energyDelta": -65,
+          "turns": 1,
+          "effects": [
+            {
+              "activationChance": 1,
+              "target": "attacker",
+              "stat": "attack",
+              "stages": -2
+            }
+          ]
+        },
+        "evidenceIds": [
+          "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+          "pogoapi:charged_moves:a09029272289",
+          "pogoapi:pvp_charged_moves:e9213b0744b6"
+        ]
+      },
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68"
+      ]
+    }
+  ],
+  "typeEffectiveness": {
+    "values": {
+      "Bug": {
+        "Bug": 1,
+        "Dark": 1.6,
+        "Dragon": 1,
+        "Electric": 1,
+        "Fairy": 0.625,
+        "Fighting": 0.625,
+        "Fire": 0.625,
+        "Flying": 0.625,
+        "Ghost": 0.625,
+        "Grass": 1.6,
+        "Ground": 1,
+        "Ice": 1,
+        "Normal": 1,
+        "Poison": 0.625,
+        "Psychic": 1.6,
+        "Rock": 1,
+        "Steel": 0.625,
+        "Water": 1
+      },
+      "Dark": {
+        "Bug": 1,
+        "Dark": 0.625,
+        "Dragon": 1,
+        "Electric": 1,
+        "Fairy": 0.625,
+        "Fighting": 0.625,
+        "Fire": 1,
+        "Flying": 1,
+        "Ghost": 1.6,
+        "Grass": 1,
+        "Ground": 1,
+        "Ice": 1,
+        "Normal": 1,
+        "Poison": 1,
+        "Psychic": 1.6,
+        "Rock": 1,
+        "Steel": 1,
+        "Water": 1
+      },
+      "Dragon": {
+        "Bug": 1,
+        "Dark": 1,
+        "Dragon": 1.6,
+        "Electric": 1,
+        "Fairy": 0.390625,
+        "Fighting": 1,
+        "Fire": 1,
+        "Flying": 1,
+        "Ghost": 1,
+        "Grass": 1,
+        "Ground": 1,
+        "Ice": 1,
+        "Normal": 1,
+        "Poison": 1,
+        "Psychic": 1,
+        "Rock": 1,
+        "Steel": 0.625,
+        "Water": 1
+      },
+      "Electric": {
+        "Bug": 1,
+        "Dark": 1,
+        "Dragon": 0.625,
+        "Electric": 0.625,
+        "Fairy": 1,
+        "Fighting": 1,
+        "Fire": 1,
+        "Flying": 1.6,
+        "Ghost": 1,
+        "Grass": 0.625,
+        "Ground": 0.390625,
+        "Ice": 1,
+        "Normal": 1,
+        "Poison": 1,
+        "Psychic": 1,
+        "Rock": 1,
+        "Steel": 1,
+        "Water": 1.6
+      },
+      "Fairy": {
+        "Bug": 1,
+        "Dark": 1.6,
+        "Dragon": 1.6,
+        "Electric": 1,
+        "Fairy": 1,
+        "Fighting": 1.6,
+        "Fire": 0.625,
+        "Flying": 1,
+        "Ghost": 1,
+        "Grass": 1,
+        "Ground": 1,
+        "Ice": 1,
+        "Normal": 1,
+        "Poison": 0.625,
+        "Psychic": 1,
+        "Rock": 1,
+        "Steel": 0.625,
+        "Water": 1
+      },
+      "Fighting": {
+        "Bug": 0.625,
+        "Dark": 1.6,
+        "Dragon": 1,
+        "Electric": 1,
+        "Fairy": 0.625,
+        "Fighting": 1,
+        "Fire": 1,
+        "Flying": 0.625,
+        "Ghost": 0.390625,
+        "Grass": 1,
+        "Ground": 1,
+        "Ice": 1.6,
+        "Normal": 1.6,
+        "Poison": 0.625,
+        "Psychic": 0.625,
+        "Rock": 1.6,
+        "Steel": 1.6,
+        "Water": 1
+      },
+      "Fire": {
+        "Bug": 1.6,
+        "Dark": 1,
+        "Dragon": 0.625,
+        "Electric": 1,
+        "Fairy": 1,
+        "Fighting": 1,
+        "Fire": 0.625,
+        "Flying": 1,
+        "Ghost": 1,
+        "Grass": 1.6,
+        "Ground": 1,
+        "Ice": 1.6,
+        "Normal": 1,
+        "Poison": 1,
+        "Psychic": 1,
+        "Rock": 0.625,
+        "Steel": 1.6,
+        "Water": 0.625
+      },
+      "Flying": {
+        "Bug": 1.6,
+        "Dark": 1,
+        "Dragon": 1,
+        "Electric": 0.625,
+        "Fairy": 1,
+        "Fighting": 1.6,
+        "Fire": 1,
+        "Flying": 1,
+        "Ghost": 1,
+        "Grass": 1.6,
+        "Ground": 1,
+        "Ice": 1,
+        "Normal": 1,
+        "Poison": 1,
+        "Psychic": 1,
+        "Rock": 0.625,
+        "Steel": 0.625,
+        "Water": 1
+      },
+      "Ghost": {
+        "Bug": 1,
+        "Dark": 0.625,
+        "Dragon": 1,
+        "Electric": 1,
+        "Fairy": 1,
+        "Fighting": 1,
+        "Fire": 1,
+        "Flying": 1,
+        "Ghost": 1.6,
+        "Grass": 1,
+        "Ground": 1,
+        "Ice": 1,
+        "Normal": 0.390625,
+        "Poison": 1,
+        "Psychic": 1.6,
+        "Rock": 1,
+        "Steel": 1,
+        "Water": 1
+      },
+      "Grass": {
+        "Bug": 0.625,
+        "Dark": 1,
+        "Dragon": 0.625,
+        "Electric": 1,
+        "Fairy": 1,
+        "Fighting": 1,
+        "Fire": 0.625,
+        "Flying": 0.625,
+        "Ghost": 1,
+        "Grass": 0.625,
+        "Ground": 1.6,
+        "Ice": 1,
+        "Normal": 1,
+        "Poison": 0.625,
+        "Psychic": 1,
+        "Rock": 1.6,
+        "Steel": 0.625,
+        "Water": 1.6
+      },
+      "Ground": {
+        "Bug": 0.625,
+        "Dark": 1,
+        "Dragon": 1,
+        "Electric": 1.6,
+        "Fairy": 1,
+        "Fighting": 1,
+        "Fire": 1.6,
+        "Flying": 0.390625,
+        "Ghost": 1,
+        "Grass": 0.625,
+        "Ground": 1,
+        "Ice": 1,
+        "Normal": 1,
+        "Poison": 1.6,
+        "Psychic": 1,
+        "Rock": 1.6,
+        "Steel": 1.6,
+        "Water": 1
+      },
+      "Ice": {
+        "Bug": 1,
+        "Dark": 1,
+        "Dragon": 1.6,
+        "Electric": 1,
+        "Fairy": 1,
+        "Fighting": 1,
+        "Fire": 0.625,
+        "Flying": 1.6,
+        "Ghost": 1,
+        "Grass": 1.6,
+        "Ground": 1.6,
+        "Ice": 0.625,
+        "Normal": 1,
+        "Poison": 1,
+        "Psychic": 1,
+        "Rock": 1,
+        "Steel": 0.625,
+        "Water": 0.625
+      },
+      "Normal": {
+        "Bug": 1,
+        "Dark": 1,
+        "Dragon": 1,
+        "Electric": 1,
+        "Fairy": 1,
+        "Fighting": 1,
+        "Fire": 1,
+        "Flying": 1,
+        "Ghost": 0.390625,
+        "Grass": 1,
+        "Ground": 1,
+        "Ice": 1,
+        "Normal": 1,
+        "Poison": 1,
+        "Psychic": 1,
+        "Rock": 0.625,
+        "Steel": 0.625,
+        "Water": 1
+      },
+      "Poison": {
+        "Bug": 1,
+        "Dark": 1,
+        "Dragon": 1,
+        "Electric": 1,
+        "Fairy": 1.6,
+        "Fighting": 1,
+        "Fire": 1,
+        "Flying": 1,
+        "Ghost": 0.625,
+        "Grass": 1.6,
+        "Ground": 0.625,
+        "Ice": 1,
+        "Normal": 1,
+        "Poison": 0.625,
+        "Psychic": 1,
+        "Rock": 0.625,
+        "Steel": 0.390625,
+        "Water": 1
+      },
+      "Psychic": {
+        "Bug": 1,
+        "Dark": 0.390625,
+        "Dragon": 1,
+        "Electric": 1,
+        "Fairy": 1,
+        "Fighting": 1.6,
+        "Fire": 1,
+        "Flying": 1,
+        "Ghost": 1,
+        "Grass": 1,
+        "Ground": 1,
+        "Ice": 1,
+        "Normal": 1,
+        "Poison": 1.6,
+        "Psychic": 0.625,
+        "Rock": 1,
+        "Steel": 0.625,
+        "Water": 1
+      },
+      "Rock": {
+        "Bug": 1.6,
+        "Dark": 1,
+        "Dragon": 1,
+        "Electric": 1,
+        "Fairy": 1,
+        "Fighting": 0.625,
+        "Fire": 1.6,
+        "Flying": 1.6,
+        "Ghost": 1,
+        "Grass": 1,
+        "Ground": 0.625,
+        "Ice": 1.6,
+        "Normal": 1,
+        "Poison": 1,
+        "Psychic": 1,
+        "Rock": 1,
+        "Steel": 0.625,
+        "Water": 1
+      },
+      "Steel": {
+        "Bug": 1,
+        "Dark": 1,
+        "Dragon": 1,
+        "Electric": 0.625,
+        "Fairy": 1.6,
+        "Fighting": 1,
+        "Fire": 0.625,
+        "Flying": 1,
+        "Ghost": 1,
+        "Grass": 1,
+        "Ground": 1,
+        "Ice": 1.6,
+        "Normal": 1,
+        "Poison": 1,
+        "Psychic": 1,
+        "Rock": 1.6,
+        "Steel": 0.625,
+        "Water": 0.625
+      },
+      "Water": {
+        "Bug": 1,
+        "Dark": 1,
+        "Dragon": 0.625,
+        "Electric": 1,
+        "Fairy": 1,
+        "Fighting": 1,
+        "Fire": 1.6,
+        "Flying": 1,
+        "Ghost": 1,
+        "Grass": 0.625,
+        "Ground": 1.6,
+        "Ice": 1,
+        "Normal": 1,
+        "Poison": 1,
+        "Psychic": 1,
+        "Rock": 1.6,
+        "Steel": 1,
+        "Water": 0.625
+      }
+    },
+    "evidenceIds": [
+      "pogoapi:type_effectiveness:f9208ace82f4"
+    ]
+  },
+  "progression": {
+    "cpMultipliers": [
+      {
+        "level": 1,
+        "multiplier": 0.09399999678134918,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 1.5,
+        "multiplier": 0.1351374313235283,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 2,
+        "multiplier": 0.16639786958694458,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 2.5,
+        "multiplier": 0.1926509141921997,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 3,
+        "multiplier": 0.21573247015476227,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 3.5,
+        "multiplier": 0.23657265305519104,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 4,
+        "multiplier": 0.2557200491428375,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 4.5,
+        "multiplier": 0.27353037893772125,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 5,
+        "multiplier": 0.29024988412857056,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 5.5,
+        "multiplier": 0.3060573786497116,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 6,
+        "multiplier": 0.3210875988006592,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 6.5,
+        "multiplier": 0.33544503152370453,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 7,
+        "multiplier": 0.3492126762866974,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 7.5,
+        "multiplier": 0.362457737326622,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 8,
+        "multiplier": 0.37523558735847473,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 8.5,
+        "multiplier": 0.38759241108516856,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 9,
+        "multiplier": 0.39956727623939514,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 9.5,
+        "multiplier": 0.4111935495172506,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 10,
+        "multiplier": 0.4225000143051148,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 10.5,
+        "multiplier": 0.4329264134104144,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 11,
+        "multiplier": 0.443107545375824,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 11.5,
+        "multiplier": 0.4530599538719858,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 12,
+        "multiplier": 0.46279838681221,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 12.5,
+        "multiplier": 0.4723360780626535,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 13,
+        "multiplier": 0.4816849529743195,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 13.5,
+        "multiplier": 0.4908558102324605,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 14,
+        "multiplier": 0.4998584389686584,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 14.5,
+        "multiplier": 0.5087017565965652,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 15,
+        "multiplier": 0.517393946647644,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 15.5,
+        "multiplier": 0.5259425118565559,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 16,
+        "multiplier": 0.5343543291091919,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 16.5,
+        "multiplier": 0.5426357612013817,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 17,
+        "multiplier": 0.5507926940917969,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 17.5,
+        "multiplier": 0.5588305993005633,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 18,
+        "multiplier": 0.5667545199394226,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 18.5,
+        "multiplier": 0.574569147080183,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 19,
+        "multiplier": 0.5822789072990417,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 19.5,
+        "multiplier": 0.5898879119195044,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 20,
+        "multiplier": 0.5974000096321106,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 20.5,
+        "multiplier": 0.6048236563801765,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 21,
+        "multiplier": 0.6121572852134705,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 21.5,
+        "multiplier": 0.6194041110575199,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 22,
+        "multiplier": 0.6265671253204346,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 22.5,
+        "multiplier": 0.633649181574583,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 23,
+        "multiplier": 0.6406529545783997,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 23.5,
+        "multiplier": 0.6475809663534164,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 24,
+        "multiplier": 0.654435634613037,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 24.5,
+        "multiplier": 0.6612192690372467,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 25,
+        "multiplier": 0.667934000492096,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 25.5,
+        "multiplier": 0.6745819002389908,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 26,
+        "multiplier": 0.6811649203300476,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 26.5,
+        "multiplier": 0.6876849085092545,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 27,
+        "multiplier": 0.6941436529159546,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 27.5,
+        "multiplier": 0.7005428969860077,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 28,
+        "multiplier": 0.7068842053413391,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 28.5,
+        "multiplier": 0.7131690979003906,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 29,
+        "multiplier": 0.719399094581604,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 29.5,
+        "multiplier": 0.7255756109952927,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 30,
+        "multiplier": 0.7317000031471252,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 30.5,
+        "multiplier": 0.7347410172224045,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 31,
+        "multiplier": 0.7377694845199585,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 31.5,
+        "multiplier": 0.740785576403141,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 32,
+        "multiplier": 0.7437894344329834,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 32.5,
+        "multiplier": 0.7467812150716782,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 33,
+        "multiplier": 0.7497610449790955,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 33.5,
+        "multiplier": 0.7527291029691696,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 34,
+        "multiplier": 0.7556855082511902,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 34.5,
+        "multiplier": 0.7586303651332855,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 35,
+        "multiplier": 0.7615638375282288,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 35.5,
+        "multiplier": 0.7644860669970512,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 36,
+        "multiplier": 0.7673971652984619,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 36.5,
+        "multiplier": 0.7702972739934921,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 37,
+        "multiplier": 0.7731865048408508,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 37.5,
+        "multiplier": 0.7760649472475052,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 38,
+        "multiplier": 0.7789327502250671,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 38.5,
+        "multiplier": 0.78179006,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 39,
+        "multiplier": 0.78463697,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 39.5,
+        "multiplier": 0.78747358,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 40,
+        "multiplier": 0.79030001,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 40.5,
+        "multiplier": 0.79280001,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 41,
+        "multiplier": 0.79530001,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 41.5,
+        "multiplier": 0.79780001,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 42,
+        "multiplier": 0.8003,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 42.5,
+        "multiplier": 0.8028,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 43,
+        "multiplier": 0.8053,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 43.5,
+        "multiplier": 0.8078,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 44,
+        "multiplier": 0.81029999,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 44.5,
+        "multiplier": 0.81279999,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 45,
+        "multiplier": 0.81529999,
+        "evidenceIds": [
+          "pogoapi:cp_multiplier:61c96ee36079"
+        ]
+      },
+      {
+        "level": 50,
+        "multiplier": 0.8403000236,
+        "evidenceIds": [
+          "reference:level-50-cpm"
+        ]
+      }
+    ],
+    "powerUpRequirements": [
+      {
+        "currentLevel": 1,
+        "nextLevel": 1.5,
+        "stardust": 200,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 2,
+        "nextLevel": 2.5,
+        "stardust": 200,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 3,
+        "nextLevel": 3.5,
+        "stardust": 400,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 4,
+        "nextLevel": 4.5,
+        "stardust": 400,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 5,
+        "nextLevel": 5.5,
+        "stardust": 600,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 6,
+        "nextLevel": 6.5,
+        "stardust": 600,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 7,
+        "nextLevel": 7.5,
+        "stardust": 800,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 8,
+        "nextLevel": 8.5,
+        "stardust": 800,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 9,
+        "nextLevel": 9.5,
+        "stardust": 1000,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 10,
+        "nextLevel": 10.5,
+        "stardust": 1000,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 11,
+        "nextLevel": 11.5,
+        "stardust": 1300,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 12,
+        "nextLevel": 12.5,
+        "stardust": 1300,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 13,
+        "nextLevel": 13.5,
+        "stardust": 1600,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 14,
+        "nextLevel": 14.5,
+        "stardust": 1600,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 15,
+        "nextLevel": 15.5,
+        "stardust": 1900,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 16,
+        "nextLevel": 16.5,
+        "stardust": 1900,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 17,
+        "nextLevel": 17.5,
+        "stardust": 2200,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 18,
+        "nextLevel": 18.5,
+        "stardust": 2200,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 19,
+        "nextLevel": 19.5,
+        "stardust": 2500,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 20,
+        "nextLevel": 20.5,
+        "stardust": 2500,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 21,
+        "nextLevel": 21.5,
+        "stardust": 3000,
+        "candy": 3,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 22,
+        "nextLevel": 22.5,
+        "stardust": 3000,
+        "candy": 3,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 23,
+        "nextLevel": 23.5,
+        "stardust": 3500,
+        "candy": 3,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 24,
+        "nextLevel": 24.5,
+        "stardust": 3500,
+        "candy": 3,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 25,
+        "nextLevel": 25.5,
+        "stardust": 4000,
+        "candy": 3,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 26,
+        "nextLevel": 26.5,
+        "stardust": 4000,
+        "candy": 4,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 27,
+        "nextLevel": 27.5,
+        "stardust": 4500,
+        "candy": 4,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 28,
+        "nextLevel": 28.5,
+        "stardust": 4500,
+        "candy": 4,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 29,
+        "nextLevel": 29.5,
+        "stardust": 5000,
+        "candy": 4,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 30,
+        "nextLevel": 30.5,
+        "stardust": 5000,
+        "candy": 4,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 31,
+        "nextLevel": 31.5,
+        "stardust": 6000,
+        "candy": 6,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 32,
+        "nextLevel": 32.5,
+        "stardust": 6000,
+        "candy": 6,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 33,
+        "nextLevel": 33.5,
+        "stardust": 7000,
+        "candy": 8,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 34,
+        "nextLevel": 34.5,
+        "stardust": 7000,
+        "candy": 8,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 35,
+        "nextLevel": 35.5,
+        "stardust": 8000,
+        "candy": 10,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 36,
+        "nextLevel": 36.5,
+        "stardust": 8000,
+        "candy": 10,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 37,
+        "nextLevel": 37.5,
+        "stardust": 9000,
+        "candy": 12,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 38,
+        "nextLevel": 38.5,
+        "stardust": 9000,
+        "candy": 12,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 39,
+        "nextLevel": 39.5,
+        "stardust": 10000,
+        "candy": 15,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 40,
+        "nextLevel": 40.5,
+        "stardust": 10000,
+        "candy": 0,
+        "xlCandy": 10,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 41,
+        "nextLevel": 41.5,
+        "stardust": 11000,
+        "candy": 0,
+        "xlCandy": 10,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 42,
+        "nextLevel": 42.5,
+        "stardust": 11000,
+        "candy": 0,
+        "xlCandy": 12,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 43,
+        "nextLevel": 43.5,
+        "stardust": 12000,
+        "candy": 0,
+        "xlCandy": 12,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 44,
+        "nextLevel": 44.5,
+        "stardust": 12000,
+        "candy": 0,
+        "xlCandy": 15,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 45,
+        "nextLevel": 45.5,
+        "stardust": 13000,
+        "candy": 0,
+        "xlCandy": 15,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 46,
+        "nextLevel": 46.5,
+        "stardust": 13000,
+        "candy": 0,
+        "xlCandy": 17,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 47,
+        "nextLevel": 47.5,
+        "stardust": 14000,
+        "candy": 0,
+        "xlCandy": 17,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 48,
+        "nextLevel": 48.5,
+        "stardust": 14000,
+        "candy": 0,
+        "xlCandy": 20,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 49,
+        "nextLevel": 49.5,
+        "stardust": 15000,
+        "candy": 0,
+        "xlCandy": 20,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 1.5,
+        "nextLevel": 2,
+        "stardust": 200,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 2.5,
+        "nextLevel": 3,
+        "stardust": 200,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 3.5,
+        "nextLevel": 4,
+        "stardust": 400,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 4.5,
+        "nextLevel": 5,
+        "stardust": 400,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 5.5,
+        "nextLevel": 6,
+        "stardust": 600,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 6.5,
+        "nextLevel": 7,
+        "stardust": 600,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 7.5,
+        "nextLevel": 8,
+        "stardust": 800,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 8.5,
+        "nextLevel": 9,
+        "stardust": 800,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 9.5,
+        "nextLevel": 10,
+        "stardust": 1000,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 10.5,
+        "nextLevel": 11,
+        "stardust": 1000,
+        "candy": 1,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 11.5,
+        "nextLevel": 12,
+        "stardust": 1300,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 12.5,
+        "nextLevel": 13,
+        "stardust": 1300,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 13.5,
+        "nextLevel": 14,
+        "stardust": 1600,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 14.5,
+        "nextLevel": 15,
+        "stardust": 1600,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 15.5,
+        "nextLevel": 16,
+        "stardust": 1900,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 16.5,
+        "nextLevel": 17,
+        "stardust": 1900,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 17.5,
+        "nextLevel": 18,
+        "stardust": 2200,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 18.5,
+        "nextLevel": 19,
+        "stardust": 2200,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 19.5,
+        "nextLevel": 20,
+        "stardust": 2500,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 20.5,
+        "nextLevel": 21,
+        "stardust": 2500,
+        "candy": 2,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 21.5,
+        "nextLevel": 22,
+        "stardust": 3000,
+        "candy": 3,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 22.5,
+        "nextLevel": 23,
+        "stardust": 3000,
+        "candy": 3,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 23.5,
+        "nextLevel": 24,
+        "stardust": 3500,
+        "candy": 3,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 24.5,
+        "nextLevel": 25,
+        "stardust": 3500,
+        "candy": 3,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 25.5,
+        "nextLevel": 26,
+        "stardust": 4000,
+        "candy": 3,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 26.5,
+        "nextLevel": 27,
+        "stardust": 4000,
+        "candy": 4,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 27.5,
+        "nextLevel": 28,
+        "stardust": 4500,
+        "candy": 4,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 28.5,
+        "nextLevel": 29,
+        "stardust": 4500,
+        "candy": 4,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 29.5,
+        "nextLevel": 30,
+        "stardust": 5000,
+        "candy": 4,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 30.5,
+        "nextLevel": 31,
+        "stardust": 5000,
+        "candy": 4,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 31.5,
+        "nextLevel": 32,
+        "stardust": 6000,
+        "candy": 6,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 32.5,
+        "nextLevel": 33,
+        "stardust": 6000,
+        "candy": 6,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 33.5,
+        "nextLevel": 34,
+        "stardust": 7000,
+        "candy": 8,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 34.5,
+        "nextLevel": 35,
+        "stardust": 7000,
+        "candy": 8,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 35.5,
+        "nextLevel": 36,
+        "stardust": 8000,
+        "candy": 10,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 36.5,
+        "nextLevel": 37,
+        "stardust": 8000,
+        "candy": 10,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 37.5,
+        "nextLevel": 38,
+        "stardust": 9000,
+        "candy": 12,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 38.5,
+        "nextLevel": 39,
+        "stardust": 9000,
+        "candy": 12,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 39.5,
+        "nextLevel": 40,
+        "stardust": 10000,
+        "candy": 15,
+        "xlCandy": 0,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 40.5,
+        "nextLevel": 41,
+        "stardust": 10000,
+        "candy": 0,
+        "xlCandy": 10,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 41.5,
+        "nextLevel": 42,
+        "stardust": 11000,
+        "candy": 0,
+        "xlCandy": 10,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 42.5,
+        "nextLevel": 43,
+        "stardust": 11000,
+        "candy": 0,
+        "xlCandy": 12,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 43.5,
+        "nextLevel": 44,
+        "stardust": 12000,
+        "candy": 0,
+        "xlCandy": 12,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 44.5,
+        "nextLevel": 45,
+        "stardust": 12000,
+        "candy": 0,
+        "xlCandy": 15,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 45.5,
+        "nextLevel": 46,
+        "stardust": 13000,
+        "candy": 0,
+        "xlCandy": 15,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 46.5,
+        "nextLevel": 47,
+        "stardust": 13000,
+        "candy": 0,
+        "xlCandy": 17,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 47.5,
+        "nextLevel": 48,
+        "stardust": 14000,
+        "candy": 0,
+        "xlCandy": 17,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 48.5,
+        "nextLevel": 49,
+        "stardust": 14000,
+        "candy": 0,
+        "xlCandy": 20,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      },
+      {
+        "currentLevel": 49.5,
+        "nextLevel": 50,
+        "stardust": 15000,
+        "candy": 0,
+        "xlCandy": 20,
+        "evidenceIds": [
+          "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+        ]
+      }
+    ],
+    "cpReferences": [
+      {
+        "pokemonId": "kyurem",
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level50": {
+          "level": 50,
+          "bestBuddyBoost": false,
+          "cp": 4041
+        },
+        "level51": {
+          "level": 51,
+          "bestBuddyBoost": true,
+          "cp": 4090
+        },
+        "apiReportedMaxCp": 4090,
+        "evidenceIds": [
+          "review:kyurem-cp-level-context"
+        ]
+      },
+      {
+        "pokemonId": "white-kyurem",
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level50": {
+          "level": 50,
+          "bestBuddyBoost": false,
+          "cp": 5206
+        },
+        "level51": {
+          "level": 51,
+          "bestBuddyBoost": true,
+          "cp": 5268
+        },
+        "apiReportedMaxCp": 5268,
+        "evidenceIds": [
+          "review:kyurem-cp-level-context"
+        ]
+      },
+      {
+        "pokemonId": "black-kyurem",
+        "ivs": {
+          "attack": 15,
+          "defense": 15,
+          "stamina": 15
+        },
+        "level50": {
+          "level": 50,
+          "bestBuddyBoost": false,
+          "cp": 5206
+        },
+        "level51": {
+          "level": 51,
+          "bestBuddyBoost": true,
+          "cp": 5268
+        },
+        "apiReportedMaxCp": 5268,
+        "evidenceIds": [
+          "review:kyurem-cp-level-context"
+        ]
+      }
+    ]
+  }
+}

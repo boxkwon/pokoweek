@@ -1,0 +1,66 @@
+{
+  "importedAt": "2026-11-17T00:56:23.869Z",
+  "status": "candidate_saved_for_review",
+  "inputPath": "data/manual/drafts/kyurem-family-v2.json",
+  "authoringTool": "codex",
+  "model": "gpt-6.1",
+  "apiCostUsd": 0,
+  "approvalPerformed": false,
+  "publicationPerformed": false,
+  "qaTracking": [
+    {
+      "id": "independent-white-black-selection",
+      "status": "covered_by_candidate_actions"
+    },
+    {
+      "id": "independent-glaciate-checks",
+      "status": "covered_by_candidate_actions"
+    },
+    {
+      "id": "fusion-partner-bound-state",
+      "status": "covered_by_candidate_warnings"
+    },
+    {
+      "id": "post-fusion-training-not-repeated",
+      "status": "covered_by_white_black_investment_guides"
+    }
+  ],
+  "structuralCompleteness": [
+    {
+      "pokemonId": "kyurem",
+      "status": "complete",
+      "missing": []
+    },
+    {
+      "pokemonId": "white-kyurem",
+      "status": "complete",
+      "missing": []
+    },
+    {
+      "pokemonId": "black-kyurem",
+      "status": "complete",
+      "missing": []
+    }
+  ],
+  "editorialReadiness": [
+    {
+      "pokemonId": "kyurem",
+      "status": "ready",
+      "ready": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "white-kyurem",
+      "status": "ready",
+      "ready": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "black-kyurem",
+      "status": "ready",
+      "ready": true,
+      "blockers": []
+    }
+  ],
+  "issues": []
+}

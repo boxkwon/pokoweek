@@ -26,7 +26,8 @@ export function CategoryBadge({ icon, children, className = "" }: { icon?: React
   return <span className={`category-badge ${className}`.trim()}>{icon}{children}</span>;
 }
 
-export function RatingStars({ value = 5, className = "" }: { value?: number; className?: string }) {
+export function RatingStars({ value, className = "" }: { value?: number | null; className?: string }) {
+  if (value === undefined || value === null) return null;
   return <span className={`star-line ${className}`.trim()} aria-label={`추천도 ${value}점`}>{[0,1,2,3,4].map((index) => <i className={index < value ? "on" : ""} key={index}>★</i>)}</span>;
 }
 
