@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-18T00:17:06.000Z",
+  "sourceSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
+  "pokemon": [
+    {
+      "id": "cresselia",
+      "dexNumber": 488,
+      "displayName": "크레세리아",
+      "ownedFormName": "일반",
+      "types": ["Psychic"],
+      "baseStats": { "attack": 152, "defense": 258, "stamina": 260 },
+      "moves": {
+        "fast": [
+          { "name": "Psycho Cut", "kind": "fast", "acquisition": "current", "pve": { "type": "Psychic", "power": 4, "energyDelta": 7, "durationMs": 500 }, "pvp": { "type": "Psychic", "power": 3, "energyDelta": 9, "turns": 2 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:fast_moves:3c6781e7ebe7", "pogoapi:pvp_fast_moves:d944f25ce672"] },
+          { "name": "Confusion", "kind": "fast", "acquisition": "current", "pve": { "type": "Psychic", "power": 19, "energyDelta": 14, "durationMs": 1500 }, "pvp": { "type": "Psychic", "power": 16, "energyDelta": 14, "turns": 4 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:fast_moves:3c6781e7ebe7", "pogoapi:pvp_fast_moves:d944f25ce672"] }
+        ],
+        "charged": [
+          { "name": "Grass Knot", "kind": "charged", "acquisition": "elite", "pve": { "type": "Grass", "power": 90, "energyDelta": -50, "durationMs": 2500 }, "pvp": { "type": "Grass", "power": 90, "energyDelta": -50, "turns": 1 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:charged_moves:a09029272289", "pogoapi:pvp_charged_moves:e9213b0744b6", "official:cresselia-grass-knot"] },
+          { "name": "Moonblast", "kind": "charged", "acquisition": "current", "pve": { "type": "Fairy", "power": 130, "energyDelta": -100, "durationMs": 4000 }, "pvp": { "type": "Fairy", "power": 110, "energyDelta": -60, "turns": 1, "effects": [{ "activationChance": 0.1, "target": "opponent", "stat": "attack", "stages": -1 }] }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:charged_moves:a09029272289", "pogoapi:pvp_charged_moves:e9213b0744b6"] },
+          { "name": "Futuresight", "kind": "charged", "acquisition": "current", "pve": { "type": "Psychic", "power": 115, "energyDelta": -100, "durationMs": 2500 }, "pvp": { "type": "Psychic", "power": 110, "energyDelta": -65, "turns": 1 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:charged_moves:a09029272289", "pogoapi:pvp_charged_moves:e9213b0744b6"] }
+        ]
+      },
+      "notes": ["PvP 시뮬레이션과 리그별 최적 IV 순위는 이번 후보에서 생성하지 않았다.", "레이드 포획 개체는 Great League CP 상한을 넘을 수 있으므로 강화 전에 현재 CP를 확인해야 한다."],
+      "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:pokemon_types:d2979fa632e6", "pogoapi:current_pokemon_moves:8dff0aa9bb68", "official:cresselia-grass-knot"]
+    },
+    {
+      "id": "mega-banette",
+      "dexNumber": 354,
+      "displayName": "메가다크펫",
+      "ownedFormName": "다크펫",
+      "encounterFormName": "메가다크펫",
+      "types": ["Ghost"],
+      "baseStats": { "attack": 218, "defense": 126, "stamina": 162 },
+      "combatFormStats": { "attack": 312, "defense": 160, "stamina": 162 },
+      "moves": {
+        "fast": [
+          { "name": "Shadow Claw", "kind": "fast", "acquisition": "current", "pve": { "type": "Ghost", "power": 6, "energyDelta": 4, "durationMs": 500 }, "pvp": { "type": "Ghost", "power": 6, "energyDelta": 8, "turns": 2 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:fast_moves:3c6781e7ebe7", "pogoapi:pvp_fast_moves:d944f25ce672"] },
+          { "name": "Hex", "kind": "fast", "acquisition": "current", "pve": { "type": "Ghost", "power": 8, "energyDelta": 13, "durationMs": 1000 }, "pvp": { "type": "Ghost", "power": 7, "energyDelta": 13, "turns": 3 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:fast_moves:3c6781e7ebe7", "pogoapi:pvp_fast_moves:d944f25ce672"] }
+        ],
+        "charged": [
+          { "name": "Shadow Ball", "kind": "charged", "acquisition": "current", "pve": { "type": "Ghost", "power": 100, "energyDelta": -50, "durationMs": 3000 }, "pvp": { "type": "Ghost", "power": 100, "energyDelta": -55, "turns": 1 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:charged_moves:a09029272289", "pogoapi:pvp_charged_moves:e9213b0744b6"] },
+          { "name": "Dazzling Gleam", "kind": "charged", "acquisition": "current", "pve": { "type": "Fairy", "power": 100, "energyDelta": -50, "durationMs": 3500 }, "pvp": { "type": "Fairy", "power": 90, "energyDelta": -55, "turns": 1 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:charged_moves:a09029272289", "pogoapi:pvp_charged_moves:e9213b0744b6"] }
+        ]
+      },
+      "progression": {
+        "ivLabel": "15/15/15 다크펫이 메가진화한 상태의 예상 CP",
+        "costBaselineLabel": "일반 다크펫 Lv.20에서 강화하는 표준 누적 비용",
+        "costStatus": "verified",
+        "costNote": "강화 비용은 메가 에너지와 별개이며, 실제 보유 개체의 레벨·IV·럭키 여부에 따라 달라집니다.",
+        "stages": [
+          { "level": 30, "cp": 3081, "cumulativeCost": { "stardust": 75000, "candy": 66, "xlCandy": 0 }, "incrementalCost": { "stardust": 75000, "candy": 66, "xlCandy": 0 } },
+          { "level": 35, "cp": 3337, "cumulativeCost": { "stardust": 137000, "candy": 130, "xlCandy": 0 }, "incrementalCost": { "stardust": 62000, "candy": 64, "xlCandy": 0 } },
+          { "level": 40, "cp": 3594, "cumulativeCost": { "stardust": 225000, "candy": 248, "xlCandy": 0 }, "incrementalCost": { "stardust": 88000, "candy": 118, "xlCandy": 0 } },
+          { "level": 50, "cp": 4063, "cumulativeCost": { "stardust": 475000, "candy": 248, "xlCandy": 296 }, "incrementalCost": { "stardust": 250000, "candy": 0, "xlCandy": 296 } }
+        ]
+      },
+      "notes": ["메가진화는 일시적이며 실제로 강화하는 대상은 기본 다크펫이다.", "첫 메가진화 비용과 재진화 비용은 PoGo API 현재값을 사용한다."],
+      "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:mega-banette", "pogoapi:mega-settings", "official:mega-evolution-rules", "reference:cp-formula", "review:kyurem-power-up-costs"]
+    },
+    {
+      "id": "eternamax-eternatus",
+      "dexNumber": 890,
+      "displayName": "무한다이노",
+      "ownedFormName": "무한다이노",
+      "encounterFormName": "무한다이맥스 무한다이노",
+      "types": ["Poison", "Dragon"],
+      "baseStats": { "attack": 278, "defense": 192, "stamina": 268 },
+      "combatFormStats": { "attack": 251, "defense": 505, "stamina": 452 },
+      "moves": {
+        "fast": [
+          { "name": "Dragon Tail", "kind": "fast", "acquisition": "current", "pve": { "type": "Dragon", "power": 14, "energyDelta": 8, "durationMs": 1000 }, "pvp": { "type": "Dragon", "power": 9, "energyDelta": 12, "turns": 3 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:fast_moves:3c6781e7ebe7", "pogoapi:pvp_fast_moves:d944f25ce672"] },
+          { "name": "Poison Jab", "kind": "fast", "acquisition": "current", "pve": { "type": "Poison", "power": 13, "energyDelta": 9, "durationMs": 1000 }, "pvp": { "type": "Poison", "power": 7, "energyDelta": 7, "turns": 2 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:fast_moves:3c6781e7ebe7", "pogoapi:pvp_fast_moves:d944f25ce672"] }
+        ],
+        "charged": [
+          { "name": "Dynamax Cannon", "kind": "charged", "acquisition": "elite", "pve": { "type": "Dragon", "power": 215, "energyDelta": -100, "durationMs": 1500 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:charged_moves:a09029272289", "official:eternatus-dynamax-cannon"] },
+          { "name": "Dragon Pulse", "kind": "charged", "acquisition": "current", "pve": { "type": "Dragon", "power": 90, "energyDelta": -50, "durationMs": 3500 }, "pvp": { "type": "Dragon", "power": 90, "energyDelta": -55, "turns": 1 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:charged_moves:a09029272289", "pogoapi:pvp_charged_moves:e9213b0744b6"] },
+          { "name": "Sludge Bomb", "kind": "charged", "acquisition": "current", "pve": { "type": "Poison", "power": 85, "energyDelta": -50, "durationMs": 2500 }, "pvp": { "type": "Poison", "power": 80, "energyDelta": -50, "turns": 1 }, "evidenceIds": ["pogoapi:current_pokemon_moves:8dff0aa9bb68", "pogoapi:charged_moves:a09029272289", "pogoapi:pvp_charged_moves:e9213b0744b6"] }
+        ]
+      },
+      "progression": {
+        "ivLabel": "15/15/15 무한다이노 기준 예상 CP",
+        "costBaselineLabel": "정확한 종별 강화 비용은 게임 내 개체 화면에서 확인",
+        "costStatus": "check_in_game",
+        "costNote": "공식 공지는 무한다이노가 일반 포켓몬보다 훨씬 많은 사탕과 XL사탕을 사용한다고 안내합니다. 표준 강화 비용표를 개인별 정확한 비용처럼 표시하지 않습니다.",
+        "stages": [
+          { "level": 30, "cp": 3796, "cumulativeCost": null, "incrementalCost": null },
+          { "level": 35, "cp": 4112, "cumulativeCost": null, "incrementalCost": null },
+          { "level": 40, "cp": 4429, "cumulativeCost": null, "incrementalCost": null },
+          { "level": 50, "cp": 5007, "cumulativeCost": null, "incrementalCost": null }
+        ]
+      },
+      "notes": ["소유·육성 가능한 형태는 무한다이노이며 무한다이맥스는 맥스배틀 보스 형태다.", "무한다이맥스는 배틀 후 포획할 수 없고 현재 폼체인지 대상으로 안내되지 않았다."],
+      "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:pokemon_types:d2979fa632e6", "pogoapi:current_pokemon_moves:8dff0aa9bb68", "official:eternatus-2026-event", "official:eternatus-dynamax-cannon", "reference:cp-formula"]
+    }
+  ],
+  "mechanics": {
+    "mega": {
+      "firstEvolutionEnergy": 100,
+      "repeatEnergy": 20,
+      "durationHours": 8,
+      "generalAttackBoost": 1.1,
+      "sameTypeAttackBoost": 1.3,
+      "freeAfterRest": true,
+      "evidenceIds": ["pogoapi:mega-banette", "pogoapi:mega-settings", "official:mega-evolution-rules"]
+    },
+    "eternatus": {
+      "obtainableForm": "Normal",
+      "eternamaxCatchable": false,
+      "eternamaxOwnable": false,
+      "formChangeSupported": false,
+      "oneCatchDuringEvent": true,
+      "adventureEffect": { "move": "Dynamax Cannon", "stardust": 5000, "candy": 30, "durationMinutes": 10, "maxMinutesPerUse": 120, "maxTotalMinutes": 1440 },
+      "evidenceIds": ["official:eternatus-2026-event", "official:eternatus-dynamax-cannon"]
+    }
+  }
+}

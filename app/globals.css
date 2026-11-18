@@ -453,6 +453,19 @@ svg { display: block; }
 .progression-stage-list dt { color: #52627d; font-size: var(--type-caption); font-weight: 800; }
 .progression-stage-list dd { margin: 0; color: #172743; font-size: var(--type-caption); font-weight: 800; text-align: right; }
 .progression-stage-list article > small { display: block; margin-top: var(--space-2); color: #69758a; font-size: var(--type-caption); font-weight: 700; line-height: 1.45; }
+.progression-cost-note { margin: var(--space-2) 0 0; padding: var(--space-2) var(--space-3); border-left: 4px solid #075fc9; background: #f2f6fc; color: #52627d; font-size: var(--type-caption); font-weight: 750; line-height: 1.45; }
+.progression-cost-note.cost-check_in_game { border-left-color: #c27b00; background: #fff8e8; }
+.guide-league-list article { padding: var(--space-3) 0; }
+.guide-league-list article + article { border-top: 1px solid #e0e5ec; }
+.guide-league-list article > header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.guide-league-list article > header > div { display: flex; align-items: baseline; gap: var(--space-2); }
+.guide-league-list article > header b { color: #082f69; font-size: var(--type-card-title); }
+.guide-league-list article > header strong { color: #172743; font-size: var(--type-caption); }
+.guide-league-list article > header > span { padding: 3px var(--space-2); border: 1px solid #cbd4e1; color: #52627d; font-size: 12px; font-weight: 900; }
+.guide-league-list article > header > .league-recommended { border-color: #075fc9; color: #075fc9; }
+.guide-league-list article > header > .league-conditional { border-color: #c27b00; color: #8a5900; }
+.guide-league-list article > p { margin: var(--space-2) 0; color: #273650; font-size: var(--type-body); font-weight: 750; line-height: 1.45; }
+.guide-league-list article > small { display: block; color: #69758a; font-size: var(--type-caption); font-weight: 700; line-height: 1.45; }
 .iv-advice-list > div { min-height: 52px; display: grid; grid-template-columns: 88px minmax(0,1fr); align-items: center; gap: var(--space-2); }
 .iv-advice-list > div + div { border-top: 1px solid #e0e5ec; }
 .iv-advice-list b { color: var(--blue); font-size: var(--type-body); }

@@ -49,8 +49,8 @@ export function PokemonCounterSection({ guide }: { guide: PokemonGuide }) {
     <SectionHeader icon={<SwordsIcon />} title="추천 공격수" description={getCounterSectionDescription(guide)} />
     {guide.dataStatus.counters === "ready" ? <>
       <div className="reference-counter-grid">
-      {guide.counters.slice(0, 5).map((counter, index) => <article className={["gold", "silver", "bronze"][index] ?? "silver"} key={`${counter.pokemonId}-${index}`}>
-        <b>{index + 1}</b>
+      {guide.counters.slice(0, 5).map((counter, index) => <article className={guide.counterRankingMode === "examples" ? "example" : (["gold", "silver", "bronze"][index] ?? "silver")} key={`${counter.pokemonId}-${index}`}>
+        <b>{guide.counterRankingMode === "examples" ? "예시" : index + 1}</b>
         {counter.image ? <PokemonArtwork className="counter-artwork" image={counter.image} alt={counter.name} size="lg" /> : <span className="counter-artwork counter-artwork-placeholder" aria-hidden="true" />}
         <h3>{counter.name.split(" ").map((line) => <span key={line}>{line}</span>)}</h3>
         {counter.recommendedMove ? <p>{counter.recommendedMove}</p> : null}

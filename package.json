@@ -15,6 +15,8 @@
     "data:approve": "tsx data-engine/scripts/approve.ts",
     "data:publish": "tsx data-engine/scripts/publish.ts",
     "data:preview:prepare": "tsx data-engine/scripts/preview-prepare.ts",
+    "data:standardize:validate": "tsx data-engine/scripts/standardization-validate.ts",
+    "data:standardize:preview": "tsx data-engine/scripts/standardization-preview.ts",
     "data:validate": "tsx data-engine/scripts/validate.ts",
     "data:test": "tsx --test data-engine/tests/*.test.ts"
   },

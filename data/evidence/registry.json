@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-17T05:14:01.479Z",
+  "generatedAt": "2026-11-18T00:17:06.000Z",
   "records": [
     {
       "id": "pogoapi:pokemon_stats:ca23e7947d97",
@@ -436,6 +436,99 @@
       "paths": [
         "factReviews.limited_benchmark_comparison"
       ]
+    },
+    {
+      "id": "official:cresselia-grass-knot",
+      "sourceId": "pokemon-detail-standard-v1",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/news/brilliant-diamond-shining-pearl-event",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-18T09:17:06+09:00",
+      "sourceHash": "756b296ec107b890cc9ef8e31d07a13a229db87d435d08748ae56a6405a8adbd",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "크레세리아의 이벤트 한정 기술 풀묶기 습득 이력을 공식 공지에서 확인했다.",
+      "paths": ["pokemon.cresselia.moves.Grass Knot"]
+    },
+    {
+      "id": "official:mega-evolution-rules",
+      "sourceId": "pokemon-detail-standard-v1",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/news/mega-evolution-2022-update-soft",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-18T09:17:06+09:00",
+      "sourceHash": "8352e90de1f8fd2c530635b068d636930041db40476d27f157788435ee6263f6",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "첫 메가진화 이후 휴식시간과 무료 재진화, 메가 레벨 및 레이드·포획 보너스 규칙을 확인했다.",
+      "paths": ["mechanics.mega"]
+    },
+    {
+      "id": "official:mega-energy-help",
+      "sourceId": "pokemon-detail-standard-v1",
+      "sourceType": "manual",
+      "url": "https://niantic.helpshift.com/hc/en/6-pokemon-go/faq/3329-how-do-i-collect-mega-energy/",
+      "publisher": "Pokémon GO Help Center",
+      "reviewedAt": "2026-11-18T09:17:06+09:00",
+      "sourceHash": "93c9035778b6447303c26356e1285eb8977efa75f0c922dc0579e630a1b00e4a",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "메가 레이드·리서치·파트너 걷기로 메가 에너지를 얻고 휴식 후 무료 재진화할 수 있다.",
+      "paths": ["mechanics.mega.energySources"]
+    },
+    {
+      "id": "pogoapi:mega-banette",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/mega_pokemon.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-18T00:17:06.000Z",
+      "sourceHash": "4d5a2760d190287befffd759881581b5b02a15f7321428f34e56562bcabc4a09",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-11-18T09:17:06+09:00",
+      "rawCollected": true,
+      "claim": "메가다크펫 능력치와 첫 메가진화 100 에너지·재진화 20 에너지를 확인했다.",
+      "paths": ["pokemon.mega-banette.combatFormStats", "mechanics.mega.energy"]
+    },
+    {
+      "id": "pogoapi:mega-settings",
+      "sourceId": "pogoapi",
+      "sourceType": "api",
+      "url": "https://pogoapi.net/api/v1/mega_evolution_settings.json",
+      "publisher": "PoGo API",
+      "retrievedAt": "2026-11-18T00:17:06.000Z",
+      "sourceHash": "f83d6c436c4a7ca3062a543bb77031b6bc36912ff18e92a30296ed1ddeb48c06",
+      "reviewStatus": "reviewed",
+      "reviewedAt": "2026-11-18T09:17:06+09:00",
+      "rawCollected": true,
+      "claim": "메가진화 8시간, 일반 공격 1.1배·같은 타입 공격 1.3배 규칙을 확인했다.",
+      "paths": ["mechanics.mega.duration", "mechanics.mega.attackBoost"]
+    },
+    {
+      "id": "official:eternatus-2026-event",
+      "sourceId": "pokemon-detail-standard-v1",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/news/dynamax-trails-eternamax-eternatus-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-18T09:17:06+09:00",
+      "sourceHash": "fe7d4ef80978710e6b42fc9cbfb9ffc08c8c6aa327b457bf78bee1e46ed2056b",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "GO Pass에서 일반 무한다이노를 한 번 포획하고 무한다이맥스 배틀에서는 사탕·사탕XL을 얻으며 보스 폼은 포획할 수 없다.",
+      "paths": ["mechanics.eternatus.obtainableForm", "mechanics.eternatus.eternamaxCatchable"]
+    },
+    {
+      "id": "official:eternatus-dynamax-cannon",
+      "sourceId": "pokemon-detail-standard-v1",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/en/news/adventure-effect-eternatus",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-18T09:17:06+09:00",
+      "sourceHash": "f4a22680685f4c64c2a577d9d45cba25e6cc4dcc5032615ed93129454d3f3142",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "다이맥스포 필드 효과는 별의모래 5,000과 무한다이노 사탕 30개로 10분 동안 맥스기술을 한 단계 올리며 최대 2시간씩, 총 24시간까지 연장할 수 있다.",
+      "paths": ["mechanics.eternatus.adventureEffect"]
     }
   ]
 }

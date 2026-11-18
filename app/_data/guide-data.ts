@@ -7,7 +7,7 @@ export type ScheduleFilter = "all" | "tier5" | "tier3" | "mega" | "max" | "shado
 export type GuideCategory = "raid" | "mega" | "max" | "shadow";
 export type ScheduleType = "single" | "range" | "featuredHour";
 export type BattleType = "raid" | "mega" | "max" | "gigantamax" | "shadow";
-export type GuideMode = "raid" | "mega" | "max" | "pvp";
+export type GuideMode = "raid" | "mega" | "max" | "pvp" | "special";
 export type PokemonType = "강철" | "드래곤" | "격투" | "땅" | "불꽃" | "물" | "얼음" | "전기" | "악" | "페어리" | "에스퍼" | "비행" | "독" | "고스트" | "벌레" | "바위" | "풀" | "노말";
 export type InvestmentLevel = "high" | "recommended" | "conditional" | "hold" | "low";
 export type GuideDataStatus = "ready" | "partial" | "missing";
@@ -33,7 +33,16 @@ export type GuideMoveset = {
   reason?: string;
 };
 
-export type GuidePresentationMode = "default" | "fusion-first" | "training-first";
+export type GuidePresentationMode = "default" | "fusion-first" | "training-first" | "action-first";
+
+export type GuideLeagueTarget = {
+  league: "great" | "ultra" | "master";
+  label: string;
+  cpLimit?: number;
+  decision: "recommended" | "conditional" | "hold";
+  reason: string;
+  checkBeforePowerUp: string;
+};
 
 export type GuideProgression = {
   ivLabel: string;
@@ -44,9 +53,11 @@ export type GuideProgression = {
     decision: "recommended" | "conditional" | "hold" | "not_evaluated";
     reason: string;
     stopCondition: string;
-    cumulativeCost: { stardust: number; candy: number; xlCandy: number };
-    incrementalCost: { stardust: number; candy: number; xlCandy: number };
+    cumulativeCost?: { stardust: number; candy: number; xlCandy: number };
+    incrementalCost?: { stardust: number; candy: number; xlCandy: number };
   }[];
+  costStatus?: "verified" | "check_in_game";
+  costNote?: string;
 };
 
 export type GuideFusionSummary = {
@@ -190,7 +201,9 @@ export type PokemonGuide = {
   };
   investmentReasons?: Partial<Record<"stardust" | "candy" | "powerUp" | "secondMove" | "maxMove" | "megaEnergy" | "xlCandy" | "rareCandy", string>>;
   progression?: GuideProgression;
+  pvpLeagueTargets?: readonly GuideLeagueTarget[];
   fusionSummary?: GuideFusionSummary;
+  counterRankingMode?: "ranked" | "examples";
   ivAdvice?: {
     general?: string;
     raid?: string;
@@ -211,12 +224,14 @@ export type PokemonGuide = {
     mega?: number | null;
     max?: number | null;
     pvp?: number | null;
+    special?: number | null;
   };
   valueReasons?: {
     raid?: string;
     mega?: string;
     max?: string;
     pvp?: string;
+    special?: string;
   };
   dataStatus: {
     counters: "ready" | "missing";
@@ -518,6 +533,11 @@ type PokemonGuideDraft = {
   summary: string;
   source?: PokemonGuide["source"];
   actionGuide?: PokemonGuide["actionGuide"];
+  presentationMode?: PokemonGuide["presentationMode"];
+  progression?: PokemonGuide["progression"];
+  pvpLeagueTargets?: PokemonGuide["pvpLeagueTargets"];
+  counterRankingMode?: PokemonGuide["counterRankingMode"];
+  investmentReasons?: PokemonGuide["investmentReasons"];
 };
 
 function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
@@ -562,6 +582,11 @@ function createPokemonGuide(draft: PokemonGuideDraft): PokemonGuide {
     summary: draft.summary,
     source: draft.source,
     actionGuide: draft.actionGuide,
+    presentationMode: draft.presentationMode,
+    progression: draft.progression,
+    pvpLeagueTargets: draft.pvpLeagueTargets,
+    counterRankingMode: draft.counterRankingMode,
+    investmentReasons: draft.investmentReasons,
   };
 }
 

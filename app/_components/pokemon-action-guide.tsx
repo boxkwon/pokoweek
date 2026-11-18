@@ -15,6 +15,14 @@ import { PokemonArtwork } from "./pokemon-artwork";
 
 const COMBINED_GOAL_ID = "all-goals";
 
+const actionGuideCopy = {
+  fusion: { requirements: "융합 자체에 필요한 것", warnings: "특별 기술과 융합 후 주의사항", flow: "완성 순서", checklist: "융합 조건과 특별 기술을 확인하세요", selector: "융합 목표 선택" },
+  mega: { requirements: "첫 메가진화에 필요한 것", warnings: "메가진화 전 확인사항", flow: "메가진화 준비 순서", checklist: "메가진화 준비를 확인하세요", selector: "메가진화 목표 선택" },
+  max_upgrade: { requirements: "이벤트와 육성에 필요한 것", warnings: "특수 콘텐츠 주의사항", flow: "획득·육성 순서", checklist: "획득과 육성 조건을 확인하세요", selector: "행동 목표 선택" },
+  evolution: { requirements: "진화에 필요한 것", warnings: "진화 전 확인사항", flow: "진화 순서", checklist: "진화 조건을 확인하세요", selector: "진화 목표 선택" },
+  form_change: { requirements: "폼체인지에 필요한 것", warnings: "폼체인지 전 확인사항", flow: "폼체인지 순서", checklist: "폼체인지 조건을 확인하세요", selector: "폼체인지 목표 선택" },
+} as const;
+
 function getPokemonEntry(pokemonId: string) {
   return Object.values(pokemon).find((entry) => entry.id === pokemonId);
 }
@@ -101,6 +109,7 @@ export function PokemonActionGuide({
   actionGuide: PokemonActionGuideData;
 }) {
   const initialGoalId = actionGuide.defaultGoalId ?? actionGuide.goals[0]?.id ?? "";
+  const copy = actionGuideCopy[actionGuide.type];
   const [selectedGoalId, setSelectedGoalId] = useState(initialGoalId);
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const storageKey = `pokoweek:action-guide:${actionGuide.id}`;
@@ -143,7 +152,7 @@ export function PokemonActionGuide({
     <SectionHeader icon={<TargetIcon />} title={actionGuide.title} />
     {actionGuide.summary ? <p className="action-guide-summary">{actionGuide.summary}</p> : null}
 
-    <div className="action-goal-selector" role="group" aria-label="융합 목표 선택">
+    <div className="action-goal-selector" role="group" aria-label={copy.selector}>
       {actionGuide.goals.map((goal) => <button
         className={selectedGoalId === goal.id ? "selected" : ""}
         type="button"
@@ -160,7 +169,7 @@ export function PokemonActionGuide({
     </div>
 
     <div className="action-guide-block action-requirements-block">
-      <h3><BagIcon />융합 자체에 필요한 것</h3>
+      <h3><BagIcon />{copy.requirements}</h3>
       {actionGuide.type === "fusion" ? <p className="action-fusion-requirement-note"><b>중요</b> 얼어붙은세계가 없어도 융합 자체는 가능해요. 아래 준비물과 특별 기술 확인을 구분해 주세요.</p> : null}
       <ul>{requirements.map((requirement) => <RequirementRow requirement={requirement} key={requirementKey(requirement)} />)}</ul>
       <div className="action-keep-summary">
@@ -172,7 +181,7 @@ export function PokemonActionGuide({
       </div>
     </div>
 
-    <div className="action-guide-block action-raid-estimate">
+    {energyRequirements.length > 0 ? <div className="action-guide-block action-raid-estimate">
       <h3><SwordsIcon />예상 레이드 횟수</h3>
       {energyRequirements.map((requirement) => {
         const estimate = getRaidEstimate(requirement);
@@ -182,10 +191,10 @@ export function PokemonActionGuide({
           {!estimate ? <p>공식 안내에 레이드 1회당 지급량이 없어 임의 계산하지 않았어요.</p> : null}
         </div>;
       })}
-    </div>
+    </div> : null}
 
     {warnings.length > 0 ? <div className="action-guide-block action-warning-block">
-      <h3><TargetIcon />특별 기술과 융합 후 주의사항</h3>
+      <h3><TargetIcon />{copy.warnings}</h3>
       {warnings.map((warning) => <article className={`warning-${warning.importance}`} key={warning.id}>
         <strong>{warning.title}</strong>
         <p>{warning.description}</p>
@@ -193,7 +202,7 @@ export function PokemonActionGuide({
     </div> : null}
 
     <div className="action-guide-block action-flow-block">
-      <h3><TargetIcon />완성 순서</h3>
+      <h3><TargetIcon />{copy.flow}</h3>
       {selectedGoals.map((goal) => <div className="action-goal-flow" key={goal.id}>
         {selectedGoals.length > 1 ? <h4>{goal.label}</h4> : null}
         <ol>{goal.steps.map((step, index) => <li key={step.id}>
@@ -204,7 +213,7 @@ export function PokemonActionGuide({
     </div>
 
     {checklist.length > 0 ? <div className="action-guide-block action-checklist-block">
-      <h3><CheckIcon />융합 조건과 특별 기술을 확인하세요</h3>
+      <h3><CheckIcon />{copy.checklist}</h3>
       <ul>{checklist.map(({ goalId, item }) => {
         const itemKey = `${goalId}:${item.id}`;
         return <li key={itemKey}>

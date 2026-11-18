@@ -16,6 +16,8 @@ const ENDPOINTS = [
   "pokemon_powerup_requirements.json",
   "type_effectiveness.json",
   "pokemon_max_cp.json",
+  "mega_pokemon.json",
+  "mega_evolution_settings.json",
 ] as const;
 
 type ApiHashEntry = {

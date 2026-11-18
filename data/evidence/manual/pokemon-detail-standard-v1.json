@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-18T09:17:06+09:00",
+  "reviewer": "Codex manual editorial review",
+  "sources": [
+    { "id": "official:cresselia-grass-knot", "url": "https://pokemongo.com/news/brilliant-diamond-shining-pearl-event", "publisher": "Pokémon GO", "claim": "크레세리아가 이벤트 한정 기술 풀묶기를 배운 채 등장한 공식 이력", "sourceHash": "756b296ec107b890cc9ef8e31d07a13a229db87d435d08748ae56a6405a8adbd" },
+    { "id": "official:mega-evolution-rules", "url": "https://pokemongo.com/news/mega-evolution-2022-update-soft", "publisher": "Pokémon GO", "claim": "첫 메가진화 이후 휴식시간과 무료 재진화, 메가 레벨 및 레이드·포획 보너스 규칙", "sourceHash": "8352e90de1f8fd2c530635b068d636930041db40476d27f157788435ee6263f6" },
+    { "id": "official:mega-energy-help", "url": "https://niantic.helpshift.com/hc/en/6-pokemon-go/faq/3329-how-do-i-collect-mega-energy/", "publisher": "Pokémon GO Help Center", "claim": "메가 레이드·리서치·파트너 걷기로 메가 에너지를 얻고 휴식 후 무료 재진화 가능", "sourceHash": "93c9035778b6447303c26356e1285eb8977efa75f0c922dc0579e630a1b00e4a" },
+    { "id": "official:eternatus-2026-event", "url": "https://pokemongo.com/news/dynamax-trails-eternamax-eternatus-2026", "publisher": "Pokémon GO", "claim": "GO Pass에서 일반 무한다이노를 한 번 포획하고 무한다이맥스 배틀에서는 사탕·사탕XL만 획득하며 보스 폼은 포획 불가", "sourceHash": "fe7d4ef80978710e6b42fc9cbfb9ffc08c8c6aa327b457bf78bee1e46ed2056b" },
+    { "id": "official:eternatus-dynamax-cannon", "url": "https://pokemongo.com/en/news/adventure-effect-eternatus", "publisher": "Pokémon GO", "claim": "다이맥스포의 필드 효과 비용·지속시간·연장 한도와 동시 사용 제한", "sourceHash": "f4a22680685f4c64c2a577d9d45cba25e6cc4dcc5032615ed93129454d3f3142" },
+    { "id": "pogoapi:mega-banette", "url": "https://pogoapi.net/api/v1/mega_pokemon.json", "publisher": "PoGo API", "claim": "메가다크펫 능력치와 첫 메가진화 100 에너지·재진화 20 에너지", "sourceHash": "4d5a2760d190287befffd759881581b5b02a15f7321428f34e56562bcabc4a09" },
+    { "id": "pogoapi:mega-settings", "url": "https://pogoapi.net/api/v1/mega_evolution_settings.json", "publisher": "PoGo API", "claim": "메가진화 8시간, 일반 공격 1.1배·같은 타입 공격 1.3배, 파트너 걷기 에너지 규칙", "sourceHash": "f83d6c436c4a7ca3062a543bb77031b6bc36912ff18e92a30296ed1ddeb48c06" }
+  ],
+  "limitations": [
+    "크레세리아의 PvP 티어·승률·리그별 최적 IV 순위는 시뮬레이션하지 않았다.",
+    "무한다이노의 종별 강화 비용 배수는 공식 공지에 정확한 표가 없어 게임 내 확인 대상으로 남겼다.",
+    "무한다이맥스 무한다이노의 공략 공격수 순위는 검증 가능한 맥스배틀 시뮬레이션 없이 생성하지 않았다.",
+    "메가다크펫의 Super Max 지원 여부는 공식적으로 확인되지 않아 안내하지 않는다."
+  ]
+}

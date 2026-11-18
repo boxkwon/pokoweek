@@ -17,6 +17,7 @@ const modeDefinitions = [
   { key: "mega", label: "메가" },
   { key: "max", label: "맥스배틀" },
   { key: "pvp", label: "PvP" },
+  { key: "special", label: "특수 콘텐츠" },
 ] as const;
 
 const investmentDefinitions = [
@@ -178,10 +179,30 @@ export function GuideProgression({ guide }: { guide: PokemonGuide }) {
       </header>
       <p>{stage.reason}</p>
       <dl>
-        <div><dt>누적 비용</dt><dd>{resourceCostLabel(stage.cumulativeCost)}</dd></div>
-        {index > 0 ? <div><dt>이전 목표에서 추가</dt><dd>{resourceCostLabel(stage.incrementalCost)}</dd></div> : null}
+        <div><dt>누적 비용</dt><dd>{stage.cumulativeCost ? resourceCostLabel(stage.cumulativeCost) : "게임 내 개체 화면에서 확인"}</dd></div>
+        {index > 0 ? <div><dt>이전 목표에서 추가</dt><dd>{stage.incrementalCost ? resourceCostLabel(stage.incrementalCost) : "게임 내 개체 화면에서 확인"}</dd></div> : null}
       </dl>
       <small>{stage.stopCondition}</small>
+    </article>)}</div>
+    {progression.costNote ? <p className={`progression-cost-note cost-${progression.costStatus ?? "verified"}`}>{progression.costNote}</p> : null}
+  </section>;
+}
+
+const leagueDecisionLabels = {
+  recommended: "추천",
+  conditional: "조건부",
+  hold: "보류",
+} as const;
+
+export function GuideLeagueTargets({ guide }: { guide: PokemonGuide }) {
+  const targets = guide.pvpLeagueTargets ?? [];
+  if (targets.length === 0) return null;
+  return <section className="decision-guide-board guide-league-board">
+    <SectionHeader icon={<ChartIcon />} title="리그별 육성 목표" />
+    <div className="guide-league-list">{targets.map((target) => <article key={target.league}>
+      <header><div><b>{target.label}</b>{target.cpLimit ? <strong>CP {target.cpLimit.toLocaleString("ko-KR")} 이하</strong> : null}</div><span className={`league-${target.decision}`}>{leagueDecisionLabels[target.decision]}</span></header>
+      <p>{target.reason}</p>
+      <small>{target.checkBeforePowerUp}</small>
     </article>)}</div>
   </section>;
 }
@@ -263,6 +284,7 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
       {modeSummary}
       <GuideUseCases guide={guide} />
       <GuideMovesets guide={guide} />
+      <GuideLeagueTargets guide={guide} />
       <GuideTrainingOrder guide={guide} />
       <GuideProgression guide={guide} />
       <GuideInvestment guide={guide} />
@@ -270,17 +292,29 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
     </> : presentationMode === "training-first" ? <>
       <GuideTrainingOrder guide={guide} title="지금 가장 먼저 할 일" />
       <GuideMovesets guide={guide} />
+      <GuideLeagueTargets guide={guide} />
       <GuideProgression guide={guide} />
       <GuideInvestment guide={guide} />
       {modeSummary}
       <GuideUseCases guide={guide} />
       {commonClosingSections}
       <GuideFusionSummary guide={guide} />
+    </> : presentationMode === "action-first" ? <>
+      {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} /> : null}
+      <GuideTrainingOrder guide={guide} title="지금 가장 먼저 할 일" />
+      <GuideMovesets guide={guide} />
+      <GuideLeagueTargets guide={guide} />
+      <GuideProgression guide={guide} />
+      <GuideInvestment guide={guide} />
+      {modeSummary}
+      <GuideUseCases guide={guide} />
+      {commonClosingSections}
     </> : <>
       {modeSummary}
       {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} /> : null}
       <GuideUseCases guide={guide} />
       <GuideMovesets guide={guide} />
+      <GuideLeagueTargets guide={guide} />
       <GuideTrainingOrder guide={guide} />
       <GuideProgression guide={guide} />
       <GuideInvestment guide={guide} />
