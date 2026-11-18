@@ -2,6 +2,9 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { GuideProgression } from "../../app/_components/pokemon-reference-detail";
 import { applyApprovedGuideOverlays } from "../../app/_data/approved-guide-adapter";
 import { pokemonGuides, type PokemonGuide } from "../../app/_data/guide-data";
 import { derivePokemonGuideView, getActionEventPhase, getOwnershipPresentation } from "../../app/_lib/pokemon-detail-view-model";
@@ -174,12 +177,41 @@ test("Eternatus ownership and event phase matrix never revives unavailable GO Pa
   assert.equal(neverCaughtEnded.investment?.powerUp, "hold");
   assert.equal(neverCaughtEnded.investment?.secondMove, "hold");
   assert.equal(neverCaughtEnded.investment?.xlCandy, "hold");
+  assert.equal(neverCaughtEnded.progressionContext?.mode, "reference");
+  assert.equal(neverCaughtEnded.progressionContext?.title, "획득 후 강화 참고");
   const ownedEnded = derivePokemonGuideView({ guide, ownershipId: "caught-before", eventPhase: "ended" });
   assert.match((ownedEnded.investment?.order ?? []).map((item) => item.label).join(" "), /기존 무한다이노 선택/);
   assert.doesNotMatch(`${ownedEnded.summary} ${(ownedEnded.investment?.order ?? []).map((item) => item.label).join(" ")}`, /GO Pass 랭크 진행|조우 보상/);
+  assert.equal(ownedEnded.progressionContext?.mode, "default");
   const ownedActive = derivePokemonGuideView({ guide, ownershipId: "caught-before", eventPhase: "active" });
   assert.match(ownedActive.verdictLabel ?? "", /사탕 100개/);
   assert.doesNotMatch(ownedActive.verdictLabel ?? "", /본체 확보|조우/);
+});
+
+test("Eternatus progression card renders CP as reference without a recommendation badge until owned", async () => {
+  const bundle = StandardGuideCandidateBundleSchema.parse(await readFixture("data/candidates/pokemon-detail-standard-v1.json"));
+  const projection = bundle.candidates.find((candidate) => candidate.pokemonId === "eternamax-eternatus")!.guide;
+  const base = pokemonGuides.find((guide) => guide.id === "eternamax-eternatus")!;
+  const guide = { ...base, ...projection } as unknown as PokemonGuide;
+  const unselected = derivePokemonGuideView({ guide, eventPhase: "active" });
+  const neverCaught = derivePokemonGuideView({ guide, ownershipId: "never-caught", eventPhase: "ended" });
+  const caughtBefore = derivePokemonGuideView({ guide, ownershipId: "caught-before", eventPhase: "ended" });
+
+  const unselectedMarkup = renderToStaticMarkup(createElement(GuideProgression, { guide: unselected }));
+  assert.match(unselectedMarkup, /보유한 경우의 육성 참고 정보/);
+  assert.doesNotMatch(unselectedMarkup, /progression-recommended/);
+  assert.match(unselectedMarkup, /CP 3,796/);
+
+  const neverCaughtMarkup = renderToStaticMarkup(createElement(GuideProgression, { guide: neverCaught }));
+  assert.match(neverCaughtMarkup, /획득 후 강화 참고/);
+  assert.match(neverCaughtMarkup, /아직 무한다이노를 보유하지 않았다면 강화 투자는 진행할 수 없습니다/);
+  assert.doesNotMatch(neverCaughtMarkup, /progression-recommended/);
+  assert.match(neverCaughtMarkup, /CP 3,796/);
+
+  const caughtBeforeMarkup = renderToStaticMarkup(createElement(GuideProgression, { guide: caughtBefore }));
+  assert.match(caughtBeforeMarkup, /단계별 CP 강화/);
+  assert.match(caughtBeforeMarkup, /progression-recommended/);
+  assert.doesNotMatch(caughtBeforeMarkup, /획득 후 강화 참고/);
 });
 
 test("candidate overlays are Preview-only and never replace Production guides", { concurrency: false }, () => {

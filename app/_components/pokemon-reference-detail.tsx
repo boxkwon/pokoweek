@@ -178,13 +178,16 @@ function resourceCostLabel(cost: { stardust: number; candy: number; xlCandy: num
 export function GuideProgression({ guide }: { guide: PokemonGuide }) {
   const progression = guide.progression;
   if (!progression?.stages.length) return null;
-  return <section className="decision-guide-board guide-progression-board">
-    <SectionHeader icon={<ChartIcon />} title="단계별 CP 강화" />
+  const progressionContext = guide.progressionContext;
+  const referenceOnly = progressionContext?.mode === "reference";
+  return <section className={`decision-guide-board guide-progression-board${referenceOnly ? " progression-reference" : ""}`}>
+    <SectionHeader icon={<ChartIcon />} title={progressionContext?.title ?? "단계별 CP 강화"} />
+    {progressionContext?.notice ? <p className="progression-context-notice">{progressionContext.notice}</p> : null}
     <p className="progression-assumption"><b>{progression.ivLabel}</b><span>{progression.costBaselineLabel}</span></p>
     <div className="progression-stage-list">{progression.stages.map((stage, index) => <article key={stage.level}>
       <header>
         <div><b>Lv.{stage.level}</b><strong>CP {stage.cp.toLocaleString("ko-KR")}</strong></div>
-        <span className={`progression-${stage.decision}`}>{progressionDecisionLabels[stage.decision]}</span>
+        {!referenceOnly ? <span className={`progression-${stage.decision}`}>{progressionDecisionLabels[stage.decision]}</span> : null}
       </header>
       <p>{stage.reason}</p>
       <dl>

@@ -125,6 +125,11 @@ const GuideMovesetSchema = z.object({
 });
 
 const InvestmentLevelSchema = z.enum(["high", "recommended", "conditional", "hold", "low"]);
+const GuideProgressionContextSchema = z.object({
+  mode: z.enum(["default", "reference"]),
+  title: z.string().min(1).optional(),
+  notice: z.string().min(1).optional(),
+});
 const GuideIvAdviceSchema = z.partialRecord(z.enum(["general", "raid", "mega", "max", "pvp"]), z.string().min(1));
 const PokemonImageSchema = z.object({
   src: z.string().min(1),
@@ -141,6 +146,7 @@ const GuideContextViewSchema = z.object({
   order: z.array(z.object({ id: z.string().min(1), label: z.string().min(1), reason: z.string().min(1).optional() })).optional(),
   investment: z.partialRecord(z.enum(["stardust", "candy", "powerUp", "secondMove", "maxMove", "megaEnergy", "xlCandy", "rareCandy"]), InvestmentLevelSchema).optional(),
   investmentReasons: z.partialRecord(z.enum(["stardust", "candy", "powerUp", "secondMove", "maxMove", "megaEnergy", "xlCandy", "rareCandy"]), z.string().min(1)).optional(),
+  progressionContext: GuideProgressionContextSchema.optional(),
   ivAdvice: GuideIvAdviceSchema.optional(),
   recommendations: z.array(z.string().min(1)).optional(),
 });
@@ -176,6 +182,7 @@ export const StandardAppGuideProjectionSchema = z.object({
   investment: z.record(z.string(), z.unknown()),
   investmentReasons: z.record(z.string(), z.string()).optional(),
   progression: z.unknown().optional(),
+  progressionContext: GuideProgressionContextSchema.optional(),
   pvpLeagueTargets: z.array(PvpLeagueTargetSchema).optional(),
   ivAdvice: GuideIvAdviceSchema,
   weaknesses: z.array(z.object({ type: z.string().min(1), multiplier: z.number().positive().optional() })),

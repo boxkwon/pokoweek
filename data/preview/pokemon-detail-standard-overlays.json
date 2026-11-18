@@ -1,7 +1,7 @@
 [
   {
     "id": "cresselia",
-    "validationHash": "d48dd4750bd6dacdf57aaa773f33677fd365cd55673a21b29e428308bd4d4a1f",
+    "validationHash": "01307fbe46300620b66f22393fde9ed98b7b49ffb1a91b4ba87e5547c020fd83",
     "previewOnly": true,
     "guide": {
       "name": "크레세리아",
@@ -429,7 +429,7 @@
   },
   {
     "id": "mega-banette",
-    "validationHash": "d48dd4750bd6dacdf57aaa773f33677fd365cd55673a21b29e428308bd4d4a1f",
+    "validationHash": "01307fbe46300620b66f22393fde9ed98b7b49ffb1a91b4ba87e5547c020fd83",
     "previewOnly": true,
     "guide": {
       "name": "메가다크펫",
@@ -779,7 +779,7 @@
   },
   {
     "id": "eternamax-eternatus",
-    "validationHash": "d48dd4750bd6dacdf57aaa773f33677fd365cd55673a21b29e428308bd4d4a1f",
+    "validationHash": "01307fbe46300620b66f22393fde9ed98b7b49ffb1a91b4ba87e5547c020fd83",
     "previewOnly": true,
     "guide": {
       "name": "무한다이노",
@@ -909,6 +909,11 @@
             "stopCondition": "한정 XL을 이 개체에 집중할 명확한 이유가 있을 때만 진행하세요."
           }
         ]
+      },
+      "progressionContext": {
+        "mode": "reference",
+        "title": "보유한 경우의 육성 참고 정보",
+        "notice": "포획 이력을 선택하기 전에는 강화 추천으로 단정하지 않습니다. 아래 CP 정보는 무한다이노를 보유한 경우의 참고용입니다."
       },
       "ivAdvice": {
         "general": "한 번만 포획 가능한 이벤트 조건이므로 개체 선택보다 기술 보유와 자원 배분을 먼저 확인하세요.",
@@ -1139,6 +1144,11 @@
               "view": {
                 "verdictLabel": "GO Pass 조우 보상부터 확보",
                 "summary": "이전에 잡은 적이 없다면 랭크 진행 기간에 무한다이노 조우 보상을 해금하고 수령하는 것이 첫 목표예요.",
+                "progressionContext": {
+                  "mode": "reference",
+                  "title": "획득 후 강화 참고",
+                  "notice": "아직 무한다이노를 보유하지 않았다면 강화 투자는 진행할 수 없습니다. 아래 CP 정보는 획득 후 참고용입니다."
+                },
                 "order": [
                   {
                     "id": "new-rank",
@@ -1347,6 +1357,9 @@
               "view": {
                 "verdictLabel": "GO Pass 사탕 100개부터 확보",
                 "summary": "이전에 잡은 적이 있다면 GO Pass 랭크를 진행해 신규 조우 대신 사탕 100개를 받는 것이 목표예요. 기존 개체의 기술과 육성 상태도 함께 확인하세요.",
+                "progressionContext": {
+                  "mode": "default"
+                },
                 "order": [
                   {
                     "id": "owned-rank",

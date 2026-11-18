@@ -34,6 +34,11 @@ export type GuideMoveset = {
 };
 
 export type GuidePresentationMode = "default" | "fusion-first" | "training-first" | "action-first";
+export type GuideProgressionContext = {
+  mode: "default" | "reference";
+  title?: string;
+  notice?: string;
+};
 export type GuideIvAdvice = {
   general?: string;
   raid?: string;
@@ -50,6 +55,7 @@ export type GuideContextView = {
   order?: readonly { id: string; label: string; reason?: string }[];
   investment?: Partial<Record<"stardust" | "candy" | "powerUp" | "secondMove" | "maxMove" | "megaEnergy" | "xlCandy" | "rareCandy", InvestmentLevel>>;
   investmentReasons?: Partial<Record<"stardust" | "candy" | "powerUp" | "secondMove" | "maxMove" | "megaEnergy" | "xlCandy" | "rareCandy", string>>;
+  progressionContext?: GuideProgressionContext;
   ivAdvice?: GuideIvAdvice;
   recommendations?: readonly string[];
 };
@@ -292,6 +298,7 @@ export type PokemonGuide = {
   };
   investmentReasons?: Partial<Record<"stardust" | "candy" | "powerUp" | "secondMove" | "maxMove" | "megaEnergy" | "xlCandy" | "rareCandy", string>>;
   progression?: GuideProgression;
+  progressionContext?: GuideProgressionContext;
   pvpLeagueTargets?: readonly GuideLeagueTarget[];
   fusionSummary?: GuideFusionSummary;
   counterRankingMode?: "ranked" | "examples";

@@ -45,6 +45,7 @@ function applyContextView(guide: PokemonGuide, view?: GuideContextView): Pokemon
     presentationMode: view.presentationMode ?? guide.presentationMode,
     investment,
     investmentReasons: view.investmentReasons ? { ...guide.investmentReasons, ...view.investmentReasons } : guide.investmentReasons,
+    progressionContext: view.progressionContext ?? guide.progressionContext,
     ivAdvice: view.ivAdvice ?? guide.ivAdvice,
     recommendations: view.recommendations ?? guide.recommendations,
   };
@@ -70,5 +71,8 @@ export function derivePokemonGuideView({
   derived = applyContextView(derived, actionGuide.phaseGuidance?.[eventPhase]?.view);
   const ownership = actionGuide.ownershipCondition?.options.find((option) => option.id === ownershipId);
   const ownershipPresentation = getOwnershipPresentation(ownership, eventPhase);
-  return applyContextView(derived, ownershipPresentation?.view);
+  const ownershipView = ownershipPresentation?.view;
+  return applyContextView(derived, ownershipView && ownership?.view.progressionContext && !ownershipView.progressionContext
+    ? { ...ownershipView, progressionContext: ownership.view.progressionContext }
+    : ownershipView);
 }

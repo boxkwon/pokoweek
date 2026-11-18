@@ -143,7 +143,7 @@ function checkTargetRules(candidate: StandardGuideCandidate, dataset: ReturnType
       eventId?: string;
       claimEndAt?: string;
       phaseGuidance?: Record<string, { summary?: string; view?: { presentationMode?: string; order?: unknown[]; recommendations?: string[] } }>;
-      ownershipCondition?: { options?: { id?: string; summary?: string; steps?: { title?: string; description?: string }[]; checklist?: unknown[]; view?: unknown; phaseGuidance?: Record<string, unknown> }[] };
+      ownershipCondition?: { options?: { id?: string; summary?: string; steps?: { title?: string; description?: string }[]; checklist?: unknown[]; view?: { progressionContext?: { mode?: string; title?: string; notice?: string } }; phaseGuidance?: Record<string, unknown> }[] };
       conditionalCost?: { baseCost?: { label?: string; amount?: number }[]; activeCost?: { label?: string; amount?: number }[]; facts?: string[]; note?: string };
       goals?: { warnings?: { title?: string; description?: string }[] }[];
       relatedFormArtwork?: { label?: string; image?: { src?: string; placeholder?: boolean }; note?: string };
@@ -162,6 +162,16 @@ function checkTargetRules(candidate: StandardGuideCandidate, dataset: ReturnType
     if (!neverCaught || !caughtBefore) issues.push({ pokemonId: candidate.pokemonId, code: "ownership_branch_missing", message: "미포획·기존 포획 보상 분기가 모두 필요합니다.", severity: "error" });
     if ([neverCaught, caughtBefore].some((option) => !option?.view || !option?.phaseGuidance?.claim_only || !option?.phaseGuidance?.ended)) {
       issues.push({ pokemonId: candidate.pokemonId, code: "ownership_phase_matrix_incomplete", message: "각 포획 이력에 진행·수령·종료 안내가 모두 필요합니다.", severity: "error" });
+    }
+    const baseProgressionContext = guide.progressionContext as { mode?: string; title?: string; notice?: string } | undefined;
+    if (baseProgressionContext?.mode !== "reference" || !baseProgressionContext.title?.includes("참고") || !baseProgressionContext.notice) {
+      issues.push({ pokemonId: candidate.pokemonId, code: "unselected_progression_not_neutral", message: "포획 이력 미선택 상태의 CP 강화 카드는 중립적인 참고 정보로 표시해야 합니다.", severity: "error" });
+    }
+    if (neverCaught?.view?.progressionContext?.mode !== "reference" || neverCaught.view.progressionContext.title !== "획득 후 강화 참고" || !neverCaught.view.progressionContext.notice?.includes("강화 투자는 진행할 수 없습니다")) {
+      issues.push({ pokemonId: candidate.pokemonId, code: "unowned_progression_not_reference", message: "미포획 상태의 CP 강화 카드는 획득 후 참고용이며 추천 상태를 노출하면 안 됩니다.", severity: "error" });
+    }
+    if (caughtBefore?.view?.progressionContext?.mode !== "default") {
+      issues.push({ pokemonId: candidate.pokemonId, code: "owned_progression_not_restored", message: "기존 포획 상태에서는 원래 CP 강화 로드맵을 복원해야 합니다.", severity: "error" });
     }
     const neverCaughtEnded = JSON.stringify(neverCaught?.phaseGuidance?.ended ?? {});
     if (/보유한 무한다이노 선택|현재 보유 개체 확인|보유 개체의 다이맥스포|단계 육성|Lv\.30|조우 보상 받기|GO Pass 랭크 (?:진행|올리기)/.test(neverCaughtEnded)) {
