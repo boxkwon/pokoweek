@@ -1,6 +1,6 @@
 import Image from "next/image";
-import type { GuideMoveset, InvestmentLevel, PokemonGuide } from "../_data/guide-data";
-import { typeColors } from "../_data/guide-data";
+import type { GuideMode, GuideMoveset, InvestmentLevel, PokemonGuide } from "../_data/guide-data";
+import { crossWeekEvents, eventsById, typeColors } from "../_data/guide-data";
 import { APP_SUBTITLE } from "../_config/app";
 import { AppHeader } from "./app-header";
 import { BottomNavigation } from "./bottom-nav";
@@ -9,6 +9,7 @@ import { DetailBackButton } from "./detail-back-button";
 import { BagIcon, ChartIcon, CheckIcon, StarOutlineIcon, SwordsIcon, TargetIcon } from "./icons";
 import { PokemonArtwork } from "./pokemon-artwork";
 import { PokemonActionGuide } from "./pokemon-action-guide";
+import { PokemonLeagueGuide } from "./pokemon-league-guide";
 import { PokemonCounterSection, PokemonRecommendationSection, PokemonWeaknessSection } from "./pokemon-guide-shared-sections";
 import { PokemonWeekSchedule } from "./pokemon-week-schedule";
 
@@ -90,11 +91,13 @@ function MovesetRows({ moveset }: { moveset: GuideMoveset }) {
   </div>] : [])}</div>;
 }
 
-export function GuideMovesets({ guide }: { guide: PokemonGuide }) {
+export function GuideMovesets({ guide, excludeModes = [] }: { guide: PokemonGuide; excludeModes?: readonly GuideMode[] }) {
   const items = modeDefinitions.flatMap((mode) => {
+    if (excludeModes.includes(mode.key)) return [];
     const value = guide.movesets?.[mode.key];
     return value ? [{ ...mode, value }] : [];
   });
+  if (items.length === 0 && excludeModes.length > 0) return null;
   return <section className="decision-guide-board guide-moves-board">
     <SectionHeader icon={<SwordsIcon />} title="추천 기술" />
     {items.length > 0 ? <div className="moveset-mode-list">{items.map((item) => <article key={item.key}>
@@ -188,23 +191,19 @@ export function GuideProgression({ guide }: { guide: PokemonGuide }) {
   </section>;
 }
 
-const leagueDecisionLabels = {
-  recommended: "추천",
-  conditional: "조건부",
-  hold: "보류",
-} as const;
-
 export function GuideLeagueTargets({ guide }: { guide: PokemonGuide }) {
   const targets = guide.pvpLeagueTargets ?? [];
   if (targets.length === 0) return null;
-  return <section className="decision-guide-board guide-league-board">
-    <SectionHeader icon={<ChartIcon />} title="리그별 육성 목표" />
-    <div className="guide-league-list">{targets.map((target) => <article key={target.league}>
-      <header><div><b>{target.label}</b>{target.cpLimit ? <strong>CP {target.cpLimit.toLocaleString("ko-KR")} 이하</strong> : null}</div><span className={`league-${target.decision}`}>{leagueDecisionLabels[target.decision]}</span></header>
-      <p>{target.reason}</p>
-      <small>{target.checkBeforePowerUp}</small>
-    </article>)}</div>
-  </section>;
+  return <PokemonLeagueGuide targets={targets} />;
+}
+
+function getActionEventWindow(guide: PokemonGuide) {
+  const eventId = guide.actionGuide?.eventId;
+  if (!eventId) return undefined;
+  const schedule = crossWeekEvents.find((event) => event.featuredEventId === eventId);
+  const event = eventsById[eventId as keyof typeof eventsById];
+  if (!schedule?.startAt || !schedule.endAt || !event) return undefined;
+  return { id: eventId, label: event.dateLabel, startAt: schedule.startAt, endAt: schedule.endAt };
 }
 
 export function GuideFusionSummary({ guide }: { guide: PokemonGuide }) {
@@ -253,6 +252,8 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
   });
   const displayedRating = guide.overallRating === undefined ? guide.rating : guide.overallRating;
   const presentationMode = guide.presentationMode ?? "default";
+  const actionEventWindow = getActionEventWindow(guide);
+  const movesetExclusions: readonly GuideMode[] = guide.pvpLeagueTargets?.length ? ["pvp"] : [];
   const modeSummary = useCases.length > 0 ? <section className={`guide-mode-summary mode-count-${Math.min(useCases.length, 4)}`} aria-label="활용도 요약">{useCases.map((item) => <div key={item.key}><b>{item.label}</b>{item.rating === null ? <span>성능 미평가</span> : <RatingStars value={item.rating} />}</div>)}</section> : null;
   const commonClosingSections = <>
     <PokemonWeaknessSection guide={guide} />
@@ -280,10 +281,10 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
     </section>
 
     {presentationMode === "fusion-first" ? <>
-      {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} /> : null}
+      {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} eventWindow={actionEventWindow} /> : null}
       {modeSummary}
       <GuideUseCases guide={guide} />
-      <GuideMovesets guide={guide} />
+      <GuideMovesets guide={guide} excludeModes={movesetExclusions} />
       <GuideLeagueTargets guide={guide} />
       <GuideTrainingOrder guide={guide} />
       <GuideProgression guide={guide} />
@@ -291,7 +292,7 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
       {commonClosingSections}
     </> : presentationMode === "training-first" ? <>
       <GuideTrainingOrder guide={guide} title="지금 가장 먼저 할 일" />
-      <GuideMovesets guide={guide} />
+      <GuideMovesets guide={guide} excludeModes={movesetExclusions} />
       <GuideLeagueTargets guide={guide} />
       <GuideProgression guide={guide} />
       <GuideInvestment guide={guide} />
@@ -300,9 +301,9 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
       {commonClosingSections}
       <GuideFusionSummary guide={guide} />
     </> : presentationMode === "action-first" ? <>
-      {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} /> : null}
+      {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} eventWindow={actionEventWindow} /> : null}
       <GuideTrainingOrder guide={guide} title="지금 가장 먼저 할 일" />
-      <GuideMovesets guide={guide} />
+      <GuideMovesets guide={guide} excludeModes={movesetExclusions} />
       <GuideLeagueTargets guide={guide} />
       <GuideProgression guide={guide} />
       <GuideInvestment guide={guide} />
@@ -311,9 +312,9 @@ export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
       {commonClosingSections}
     </> : <>
       {modeSummary}
-      {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} /> : null}
+      {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} eventWindow={actionEventWindow} /> : null}
       <GuideUseCases guide={guide} />
-      <GuideMovesets guide={guide} />
+      <GuideMovesets guide={guide} excludeModes={movesetExclusions} />
       <GuideLeagueTargets guide={guide} />
       <GuideTrainingOrder guide={guide} />
       <GuideProgression guide={guide} />

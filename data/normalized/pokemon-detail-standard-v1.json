@@ -102,7 +102,8 @@
       "generalAttackBoost": 1.1,
       "sameTypeAttackBoost": 1.3,
       "freeAfterRest": true,
-      "evidenceIds": ["pogoapi:mega-banette", "pogoapi:mega-settings", "official:mega-evolution-rules"]
+      "restPolicy": { "decreasesWithMegaLevel": true, "earlyReactivationUsesEnergy": true, "statusCheckedOnPokemonDetail": true, "superMaxRestHours": 24, "superMaxEligibilitySpeciesSpecific": true },
+      "evidenceIds": ["pogoapi:mega-banette", "pogoapi:mega-settings", "official:mega-evolution-rules", "official:mega-evolution-2026", "official:mega-energy-help-2026"]
     },
     "eternatus": {
       "obtainableForm": "Normal",
@@ -110,8 +111,9 @@
       "eternamaxOwnable": false,
       "formChangeSupported": false,
       "oneCatchDuringEvent": true,
+      "event": { "id": "dynamax-trails-2026", "startAt": "2026-11-16T10:00:00+09:00", "endAt": "2026-11-23T20:00:00+09:00", "neverCaughtReward": "encounter", "alreadyCaughtCandy": 100, "rank35AdventureEffectDiscount": { "factor": 0.5, "stardust": 2500, "candy": 15 } },
       "adventureEffect": { "move": "Dynamax Cannon", "stardust": 5000, "candy": 30, "durationMinutes": 10, "maxMinutesPerUse": 120, "maxTotalMinutes": 1440 },
-      "evidenceIds": ["official:eternatus-2026-event", "official:eternatus-dynamax-cannon"]
+      "evidenceIds": ["official:eternatus-2026-event", "official:eternatus-2026-rewards", "official:eternatus-dynamax-cannon"]
     }
   }
 }

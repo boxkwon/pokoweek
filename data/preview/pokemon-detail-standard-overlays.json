@@ -1,7 +1,7 @@
 [
   {
     "id": "cresselia",
-    "validationHash": "96a4e2a3b1462a1bb0e802ea13830839bc24c1fc2caecaab4855841ea01502c7",
+    "validationHash": "39fd25b842d67c70f05cae2ed031960fbb80d70ece005c4277de182558be69a7",
     "previewOnly": true,
     "guide": {
       "name": "크레세리아",
@@ -94,26 +94,118 @@
       "pvpLeagueTargets": [
         {
           "league": "great",
-          "label": "Great League",
+          "label": "슈퍼리그",
           "cpLimit": 1500,
           "decision": "conditional",
           "reason": "레이드 포획 개체는 CP 상한을 넘을 수 있어 낮은 레벨 개체나 교환 후 개체가 필요할 수 있습니다.",
-          "checkBeforePowerUp": "강화 전에 현재 CP와 예상 강화 CP를 확인하세요. 정확한 최적 IV 순위는 제공하지 않습니다."
+          "checkBeforePowerUp": "강화 전에 현재 CP와 예상 강화 CP를 확인하세요. 정확한 최적 IV 순위는 제공하지 않습니다.",
+          "ivDirection": "공격 IV를 낮추고 방어·HP를 높이는 방향을 검토하되, 정확한 순위는 리그별 IV 계산기로 확인하세요.",
+          "powerUpTarget": "CP 1,500을 넘지 않는 보유 개체만 후보로 두고, 강화 미리보기에서 다음 단계 CP를 확인하세요.",
+          "moveset": {
+            "fastMove": {
+              "name": "사이코커터",
+              "tags": [
+                "fast_tm"
+              ]
+            },
+            "chargedMove": {
+              "name": "풀묶기",
+              "tags": [
+                "elite_tm",
+                "event_limited"
+              ]
+            },
+            "chargedMove2": {
+              "name": "문포스",
+              "tags": [
+                "charged_tm"
+              ]
+            },
+            "conditions": [
+              "풀묶기는 이벤트 한정 기술이므로 대단한 기술머신스페셜 사용 가능 여부를 게임에서 확인하세요."
+            ],
+            "reason": "에너지 수급과 견제 범위를 함께 보는 조합입니다."
+          },
+          "secondMove": {
+            "decision": "recommended",
+            "reason": "PvP에서 풀묶기와 문포스를 함께 운용할 때 전술 선택지가 늘어납니다."
+          },
+          "xlCandy": {
+            "decision": "low",
+            "reason": "슈퍼리그 CP 상한 안에서 XL이 필요한지는 보유 개체의 IV와 레벨에 따라 달라집니다."
+          },
+          "useCase": {
+            "rating": null,
+            "reason": "정확한 매치업 시뮬레이션 없이 리그 성능 별점을 만들지 않았습니다."
+          }
         },
         {
           "league": "ultra",
-          "label": "Ultra League",
+          "label": "하이퍼리그",
           "cpLimit": 2500,
           "decision": "recommended",
           "reason": "방어·HP 중심 능력치와 사이코커터의 에너지 수급을 활용하기 좋은 기본 목표입니다.",
-          "checkBeforePowerUp": "CP 2,500을 넘지 않도록 보유 개체별 강화 미리보기를 확인하세요."
+          "checkBeforePowerUp": "CP 2,500을 넘지 않도록 보유 개체별 강화 미리보기를 확인하세요.",
+          "ivDirection": "공격 IV보다 방어·HP 비중이 높은 개체를 우선 검토하되, 정확한 최적 IV는 계산기로 확인하세요.",
+          "powerUpTarget": "CP 2,500 바로 아래에서 멈추는 단계를 게임의 강화 미리보기로 확인하세요.",
+          "moveset": {
+            "fastMove": {
+              "name": "사이코커터",
+              "tags": [
+                "fast_tm"
+              ]
+            },
+            "chargedMove": {
+              "name": "풀묶기",
+              "tags": [
+                "elite_tm",
+                "event_limited"
+              ]
+            },
+            "chargedMove2": {
+              "name": "문포스",
+              "tags": [
+                "charged_tm"
+              ]
+            },
+            "conditions": [
+              "풀묶기는 이벤트 한정 기술이므로 대단한 기술머신스페셜 사용 가능 여부를 게임에서 확인하세요."
+            ],
+            "reason": "하이퍼리그에서 에너지 수급과 물·땅 견제를 함께 노리는 조합입니다."
+          },
+          "secondMove": {
+            "decision": "high",
+            "reason": "두 스페셜 기술을 함께 쓰는 PvP 운용이 확정됐다면 우선 투자 대상으로 봅니다."
+          },
+          "xlCandy": {
+            "decision": "conditional",
+            "reason": "보유 개체가 CP 2,500에 도달하는 데 XL이 필요한 경우에만 투자하세요."
+          },
+          "useCase": {
+            "rating": null,
+            "reason": "활용 방향은 분명하지만 현재 메타 승률·매치업 별점은 검증하지 않았습니다."
+          }
         },
         {
           "league": "master",
-          "label": "Master League",
+          "label": "마스터리그",
           "decision": "hold",
-          "reason": "공격 능력치가 낮아 무제한 CP 환경에 별의모래를 먼저 투자할 근거가 부족합니다.",
-          "checkBeforePowerUp": "Master League 전용 육성은 별도 시뮬레이션 근거가 생길 때까지 보류하세요."
+          "reason": "공격 능력치가 낮아 CP 제한이 없는 환경에 별의모래를 먼저 투자할 근거가 부족합니다.",
+          "checkBeforePowerUp": "마스터리그 전용 육성은 별도 시뮬레이션 근거가 생길 때까지 보류하세요.",
+          "ivDirection": "마스터리그용이라면 높은 개체값을 검토해야 하지만, 현재 자료로 최적 기준을 단정하지 않습니다.",
+          "powerUpTarget": "CP 상한이 없습니다. 검증된 매치업 목적이 생기기 전에는 전용 강화를 시작하지 마세요.",
+          "secondMove": {
+            "decision": "hold",
+            "reason": "마스터리그 투입을 확정하지 않았다면 기술 해방 자원을 먼저 쓰지 않습니다."
+          },
+          "xlCandy": {
+            "decision": "hold",
+            "reason": "무제한 CP 육성에는 큰 XL 투자가 필요하므로 검증된 사용 목적 전까지 보류합니다."
+          },
+          "useCase": {
+            "rating": null,
+            "reason": "마스터리그 성능을 판단할 검증된 시뮬레이션 자료가 없어 미평가로 둡니다."
+          }
         }
       ],
       "ivAdvice": {
@@ -188,7 +280,7 @@
   },
   {
     "id": "mega-banette",
-    "validationHash": "96a4e2a3b1462a1bb0e802ea13830839bc24c1fc2caecaab4855841ea01502c7",
+    "validationHash": "39fd25b842d67c70f05cae2ed031960fbb80d70ece005c4277de182558be69a7",
     "previewOnly": true,
     "guide": {
       "name": "메가다크펫",
@@ -425,6 +517,18 @@
         "title": "메가다크펫 완성 가이드",
         "summary": "첫 메가진화를 해제하면 휴식시간 후 같은 개체를 에너지 없이 다시 메가진화할 수 있어요.",
         "defaultGoalId": "mega-banette",
+        "megaRestGuide": {
+          "title": "무료 재진화 대기시간",
+          "summary": "첫 메가진화 이후에는 휴식시간이 생기며, 휴식시간이 끝나면 같은 개체를 메가 에너지 없이 다시 메가진화할 수 있어요.",
+          "levelNote": "메가 레벨이 오를수록 무료 재진화까지 기다리는 시간이 짧아집니다. 휴식시간이 끝나기 전에는 화면에 표시된 메가 에너지를 사용해 바로 재진화할 수 있어요.",
+          "gameCheck": "현재 남은 대기시간과 필요한 에너지는 Pokémon GO의 다크펫 상세 화면에서 확인하세요.",
+          "decisionGuide": [
+            "오늘 레이드에 바로 필요하면 남은 시간과 에너지 비용을 먼저 확인",
+            "급하지 않으면 휴식 종료까지 기다려 무료 재진화",
+            "반복해서 사용할 개체라면 메가진화 횟수를 쌓아 메가 레벨 상승을 검토"
+          ],
+          "superMaxNote": "2026년 Super Max의 확인된 무료 재진화 대기시간은 24시간이지만, 지원 포켓몬만 도달할 수 있습니다. 메가다크펫의 Super Max 지원은 확인되지 않아 적용된다고 단정하지 않아요."
+        },
         "goals": [
           {
             "id": "mega-banette",
@@ -526,7 +630,7 @@
   },
   {
     "id": "eternamax-eternatus",
-    "validationHash": "96a4e2a3b1462a1bb0e802ea13830839bc24c1fc2caecaab4855841ea01502c7",
+    "validationHash": "39fd25b842d67c70f05cae2ed031960fbb80d70ece005c4277de182558be69a7",
     "previewOnly": true,
     "guide": {
       "name": "무한다이노",
@@ -688,21 +792,166 @@
         "ivAdvice": "ready"
       },
       "recommendations": [
-        "GO Pass에서 일반 무한다이노를 먼저 확보",
-        "포획 직후 다이맥스포 보유 여부를 확인하고 기술 변경 전 보존 판단",
-        "무한다이맥스 배틀은 본체 포획이 아니라 사탕·XL 확보 목적으로 참여",
+        "GO Pass 진행 전 이전 포획 이력을 확인해 조우 또는 사탕 100개 목표를 구분",
+        "받은 무한다이노의 다이맥스포 보유 여부를 확인하고 기술 변경 전 보존 판단",
+        "무한다이맥스 배틀은 보스 포획이 아니라 사탕·XL 확보 목적으로 참여",
         "Lv.30에서 사용 목적과 실제 비용을 확인한 뒤 다음 단계 결정"
       ],
       "source": {
         "name": "Pokémon GO · Dynamax Trails 2026",
-        "url": "https://pokemongo.com/news/dynamax-trails-eternamax-eternatus-2026"
+        "url": "https://pokemongo.com/en/news/dynamax-trails-eternamax-eternatus-2026"
       },
       "actionGuide": {
         "id": "eternatus-special-content",
         "type": "max_upgrade",
         "title": "무한다이노 획득·육성 가이드",
-        "summary": "GO Pass에서 일반 무한다이노를 받고, 무한다이맥스 배틀에서는 본체 육성용 사탕과 XL을 모으세요.",
+        "summary": "이전 포획 이력에 따라 GO Pass 보상이 달라져요. 먼저 포획한 적이 있는지 선택하세요.",
         "defaultGoalId": "eternatus",
+        "eventId": "dynamax-trails-2026",
+        "ownershipCondition": {
+          "id": "eternatus-catch-history-2026",
+          "question": "이전에 무한다이노를 잡은 적이 있나요?",
+          "unselectedDescription": "현재 보관함이 아니라 계정의 과거 포획 이력이 기준이에요. 앱이 계정 상태를 자동으로 확인하지 않습니다.",
+          "options": [
+            {
+              "id": "never-caught",
+              "label": "아직 잡은 적 없음",
+              "summary": "GO Pass를 진행해 일반 무한다이노 조우 보상을 받는 것이 핵심 목표예요.",
+              "steps": [
+                {
+                  "id": "receive-pass-new",
+                  "title": "GO Pass 받기",
+                  "description": "Dynamax Trails 이벤트 기간에 패스를 받고 랭크를 올립니다."
+                },
+                {
+                  "id": "claim-encounter",
+                  "title": "무한다이노 조우 보상 받기",
+                  "description": "이전에 포획한 적이 없는 계정에 제공되는 조우 보상을 기간 안에 수령합니다."
+                },
+                {
+                  "id": "check-cannon-new",
+                  "title": "다이맥스포 보유 여부 확인",
+                  "description": "기술을 바꾸기 전에 필드 효과 사용 가능 여부를 확인합니다."
+                },
+                {
+                  "id": "collect-candy-new",
+                  "title": "무한다이맥스 배틀로 사탕 확보",
+                  "description": "보스 포획이 아니라 일반 무한다이노 육성용 사탕과 XL 확보를 목표로 합니다."
+                },
+                {
+                  "id": "power-new",
+                  "title": "Lv.30부터 단계 강화",
+                  "description": "게임 내 실제 비용과 사용 목적을 확인하며 다음 단계로 이동합니다."
+                }
+              ],
+              "checklist": [
+                {
+                  "id": "pass-received-new",
+                  "label": "GO Pass: Dynamax Trails를 받았나요?",
+                  "severity": "high"
+                },
+                {
+                  "id": "encounter-claimed",
+                  "label": "일반 무한다이노 조우 보상을 받았나요?",
+                  "severity": "high"
+                },
+                {
+                  "id": "cannon-checked-new",
+                  "label": "다이맥스포 보유 여부를 확인했나요?",
+                  "severity": "high"
+                },
+                {
+                  "id": "cost-checked-new",
+                  "label": "강화 전 실제 사탕·XL 비용을 확인했나요?",
+                  "severity": "medium"
+                }
+              ]
+            },
+            {
+              "id": "caught-before",
+              "label": "이전에 잡은 적 있음",
+              "summary": "GO Pass를 진행해 무한다이노 사탕 100개를 받고 기존 무한다이노를 육성하는 것이 핵심 목표예요.",
+              "steps": [
+                {
+                  "id": "receive-pass-owned",
+                  "title": "GO Pass 받기",
+                  "description": "Dynamax Trails 이벤트 기간에 패스를 받고 랭크를 올립니다."
+                },
+                {
+                  "id": "claim-candy",
+                  "title": "무한다이노 사탕 100개 받기",
+                  "description": "이전에 포획한 이력이 있는 계정은 신규 조우 대신 사탕 보상을 받습니다."
+                },
+                {
+                  "id": "choose-existing",
+                  "title": "육성할 기존 무한다이노 선택",
+                  "description": "다이맥스포 보유 여부와 실제 사용 목적을 확인합니다."
+                },
+                {
+                  "id": "collect-candy-owned",
+                  "title": "무한다이맥스 배틀로 추가 사탕 확보",
+                  "description": "보스 포획이 아니라 기존 무한다이노 육성 자원을 모읍니다."
+                },
+                {
+                  "id": "power-owned",
+                  "title": "기존 무한다이노 단계 강화",
+                  "description": "게임 내 실제 비용을 확인하고 Lv.30부터 투자 여부를 판단합니다."
+                }
+              ],
+              "checklist": [
+                {
+                  "id": "pass-received-owned",
+                  "label": "GO Pass: Dynamax Trails를 받았나요?",
+                  "severity": "high"
+                },
+                {
+                  "id": "candy-claimed",
+                  "label": "무한다이노 사탕 100개를 받았나요?",
+                  "severity": "high"
+                },
+                {
+                  "id": "existing-selected",
+                  "label": "육성할 기존 무한다이노를 골랐나요?",
+                  "severity": "high"
+                },
+                {
+                  "id": "cost-checked-owned",
+                  "label": "강화 전 실제 사탕·XL 비용을 확인했나요?",
+                  "severity": "medium"
+                }
+              ]
+            }
+          ]
+        },
+        "conditionalCost": {
+          "id": "dynamax-trails-rank-35",
+          "title": "다이맥스포 필드 효과 비용",
+          "selectionLabel": "GO Pass 랭크 35 보너스 활성화",
+          "description": "랭크 35 보너스가 활성화되면 다이맥스포 필드 효과에 필요한 별의모래와 사탕이 절반으로 감소합니다.",
+          "baseLabel": "기본 비용",
+          "activeLabel": "랭크 35 이벤트 비용",
+          "baseCost": [
+            {
+              "label": "별의모래",
+              "amount": 5000
+            },
+            {
+              "label": "무한다이노 사탕",
+              "amount": 30
+            }
+          ],
+          "activeCost": [
+            {
+              "label": "별의모래",
+              "amount": 2500
+            },
+            {
+              "label": "무한다이노 사탕",
+              "amount": 15
+            }
+          ],
+          "note": "Dynamax Trails 기간의 필드 효과 발동 비용 할인입니다. 무한다이노 CP 강화 비용 할인은 아니며, 앱은 랭크 달성 여부를 자동으로 확인하지 않아요."
+        },
         "goals": [
           {
             "id": "eternatus",
@@ -715,7 +964,7 @@
                 "itemId": "dynamax-trails-pass",
                 "label": "GO Pass: Dynamax Trails",
                 "amount": 1,
-                "note": "본체 조우 경로"
+                "note": "포획 이력에 따라 조우 또는 사탕 100개 보상"
               }
             ],
             "steps": [
@@ -779,7 +1028,7 @@
                 "id": "cannon-effect",
                 "type": "move_check",
                 "title": "다이맥스포 필드 효과",
-                "description": "별의모래 5,000과 무한다이노 사탕 30개로 10분 동안 아군 맥스기술을 한 단계 올립니다. 한 번에 2시간, 반복 사용으로 총 24시간까지 연장할 수 있으며 다른 필드 효과와 동시에 사용할 수 없습니다.",
+                "description": "기본 비용은 별의모래 5,000과 무한다이노 사탕 30개입니다. GO Pass 랭크 35 이벤트 보너스가 활성화되면 필드 효과 비용만 절반으로 줄며, CP 강화 비용 할인은 아닙니다.",
                 "importance": "medium"
               },
               {
@@ -794,7 +1043,7 @@
         ],
         "source": {
           "name": "Pokémon GO · Dynamax Trails 2026",
-          "url": "https://pokemongo.com/news/dynamax-trails-eternamax-eternatus-2026"
+          "url": "https://pokemongo.com/en/news/dynamax-trails-eternamax-eternatus-2026"
         }
       }
     }

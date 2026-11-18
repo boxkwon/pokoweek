@@ -42,6 +42,48 @@ export type GuideLeagueTarget = {
   decision: "recommended" | "conditional" | "hold";
   reason: string;
   checkBeforePowerUp: string;
+  ivDirection: string;
+  powerUpTarget: string;
+  moveset?: GuideMoveset;
+  secondMove: { decision: InvestmentLevel; reason: string };
+  xlCandy: { decision: InvestmentLevel; reason: string };
+  useCase: GuideUseCase;
+};
+
+export type ActionOwnershipOption = {
+  id: string;
+  label: string;
+  summary: string;
+  steps: readonly ActionStep[];
+  checklist: readonly ActionChecklistItem[];
+};
+
+export type ActionOwnershipCondition = {
+  id: string;
+  question: string;
+  unselectedDescription: string;
+  options: readonly ActionOwnershipOption[];
+};
+
+export type ActionConditionalCost = {
+  id: string;
+  title: string;
+  selectionLabel: string;
+  description: string;
+  baseLabel: string;
+  activeLabel: string;
+  baseCost: readonly { label: string; amount: number }[];
+  activeCost: readonly { label: string; amount: number }[];
+  note: string;
+};
+
+export type MegaRestGuide = {
+  title: string;
+  summary: string;
+  levelNote: string;
+  gameCheck: string;
+  decisionGuide: readonly string[];
+  superMaxNote: string;
 };
 
 export type GuideProgression = {
@@ -154,6 +196,10 @@ export type PokemonActionGuide = {
   summary?: string;
   defaultGoalId?: string;
   allowCombinedGoals?: boolean;
+  eventId?: string;
+  ownershipCondition?: ActionOwnershipCondition;
+  conditionalCost?: ActionConditionalCost;
+  megaRestGuide?: MegaRestGuide;
   goals: readonly ActionGoal[];
   source?: {
     name: string;

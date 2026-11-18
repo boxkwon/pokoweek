@@ -73,6 +73,13 @@ export const StandardizedGuideDatasetSchema = z.object({
       generalAttackBoost: z.number().positive(),
       sameTypeAttackBoost: z.number().positive(),
       freeAfterRest: z.boolean(),
+      restPolicy: z.object({
+        decreasesWithMegaLevel: z.literal(true),
+        earlyReactivationUsesEnergy: z.literal(true),
+        statusCheckedOnPokemonDetail: z.literal(true),
+        superMaxRestHours: z.literal(24),
+        superMaxEligibilitySpeciesSpecific: z.literal(true),
+      }),
       evidenceIds: EvidenceIdsSchema,
     }),
     eternatus: z.object({
@@ -81,6 +88,18 @@ export const StandardizedGuideDatasetSchema = z.object({
       eternamaxOwnable: z.literal(false),
       formChangeSupported: z.literal(false),
       oneCatchDuringEvent: z.literal(true),
+      event: z.object({
+        id: z.string().min(1),
+        startAt: DateTimeSchema,
+        endAt: DateTimeSchema,
+        neverCaughtReward: z.literal("encounter"),
+        alreadyCaughtCandy: z.literal(100),
+        rank35AdventureEffectDiscount: z.object({
+          factor: z.literal(0.5),
+          stardust: z.literal(2500),
+          candy: z.literal(15),
+        }),
+      }),
       adventureEffect: z.object({
         move: z.literal("Dynamax Cannon"),
         stardust: z.number().int().nonnegative(),
@@ -104,6 +123,22 @@ const GuideMovesetSchema = z.object({
   reason: z.string().min(1).optional(),
 });
 
+const InvestmentLevelSchema = z.enum(["high", "recommended", "conditional", "hold", "low"]);
+const PvpLeagueTargetSchema = z.object({
+  league: z.enum(["great", "ultra", "master"]),
+  label: z.string().min(1),
+  cpLimit: z.number().int().positive().optional(),
+  decision: z.enum(["recommended", "conditional", "hold"]),
+  reason: z.string().min(1),
+  checkBeforePowerUp: z.string().min(1),
+  ivDirection: z.string().min(1),
+  powerUpTarget: z.string().min(1),
+  moveset: GuideMovesetSchema.optional(),
+  secondMove: z.object({ decision: InvestmentLevelSchema, reason: z.string().min(1) }),
+  xlCandy: z.object({ decision: InvestmentLevelSchema, reason: z.string().min(1) }),
+  useCase: GuideUseCaseSchema,
+});
+
 export const StandardAppGuideProjectionSchema = z.object({
   name: z.string().min(1).optional(),
   formName: z.string().min(1).optional(),
@@ -119,7 +154,7 @@ export const StandardAppGuideProjectionSchema = z.object({
   investment: z.record(z.string(), z.unknown()),
   investmentReasons: z.record(z.string(), z.string()).optional(),
   progression: z.unknown().optional(),
-  pvpLeagueTargets: z.unknown().optional(),
+  pvpLeagueTargets: z.array(PvpLeagueTargetSchema).optional(),
   ivAdvice: z.record(z.string(), z.string()),
   weaknesses: z.array(z.object({ type: z.string().min(1), multiplier: z.number().positive().optional() })),
   counters: z.array(z.record(z.string(), z.unknown())),

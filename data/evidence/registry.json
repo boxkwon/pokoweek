@@ -477,6 +477,32 @@
       "paths": ["mechanics.mega.energySources"]
     },
     {
+      "id": "official:mega-evolution-2026",
+      "sourceId": "pokemon-detail-standard-v1-qa-fix",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/news/mega-evolution-2026-update",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-18T12:00:00+09:00",
+      "sourceHash": "c1021b94b632718ec652698db8dea2293b16e32470b711eb30e6b76144f3b50d",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "2026년 Super Max는 지원 포켓몬만 도달할 수 있고 확인된 무료 재진화 대기시간은 24시간이다. 메가다크펫 지원 여부는 확인되지 않았다.",
+      "paths": ["mechanics.mega.restPolicy.superMaxRestHours", "mechanics.mega.restPolicy.superMaxEligibilitySpeciesSpecific"]
+    },
+    {
+      "id": "official:mega-energy-help-2026",
+      "sourceId": "pokemon-detail-standard-v1-qa-fix",
+      "sourceType": "manual",
+      "url": "https://scopelyexplore.helpshift.com/hc/en/5-pokemon-go/faq/1198-how-do-i-collect-mega-energy/",
+      "publisher": "Pokémon GO Help Center",
+      "reviewedAt": "2026-11-18T12:00:00+09:00",
+      "sourceHash": "34fd1aaa4dee3a0d703c8cd3cfde815030d9e26c051cc279a11928b76693d264",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "첫 메가진화 뒤 휴식시간 종료 시 무료 재진화가 가능하고 현재 남은 시간과 에너지 요구량은 포켓몬 상세 화면에서 확인한다.",
+      "paths": ["mechanics.mega.restPolicy"]
+    },
+    {
       "id": "pogoapi:mega-banette",
       "sourceId": "pogoapi",
       "sourceType": "api",
@@ -516,6 +542,19 @@
       "rawCollected": false,
       "claim": "GO Pass에서 일반 무한다이노를 한 번 포획하고 무한다이맥스 배틀에서는 사탕·사탕XL을 얻으며 보스 폼은 포획할 수 없다.",
       "paths": ["mechanics.eternatus.obtainableForm", "mechanics.eternatus.eternamaxCatchable"]
+    },
+    {
+      "id": "official:eternatus-2026-rewards",
+      "sourceId": "pokemon-detail-standard-v1-qa-fix",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/en/news/dynamax-trails-eternamax-eternatus-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-18T12:00:00+09:00",
+      "sourceHash": "d727a4250d15fdf550d4ead38947553a7cbf3c7598d479a1dd14b2168f3fc480",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "Dynamax Trails는 11월 16일 10:00부터 11월 23일 20:00까지 진행되며, 무한다이노 미포획자는 조우 보상, 기존 포획자는 사탕 100개를 받는다. GO Pass 랭크 35 보너스는 다이맥스포 필드 효과 별의모래와 사탕 비용을 절반으로 줄인다.",
+      "paths": ["mechanics.eternatus.event"]
     },
     {
       "id": "official:eternatus-dynamax-cannon",
