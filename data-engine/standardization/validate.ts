@@ -118,6 +118,12 @@ function checkTargetRules(candidate: StandardGuideCandidate, dataset: ReturnType
     if (targets.some((target) => !target.ivDirection || !target.powerUpTarget || !target.secondMove || !target.xlCandy || !target.useCase)) {
       issues.push({ pokemonId: candidate.pokemonId, code: "league_decision_incomplete", message: "리그별 개체·강화·해방·XL·활용도 판단이 모두 필요합니다.", severity: "error" });
     }
+    if (targets.some((target) => !target.contextView.order?.length || !target.contextView.investment?.stardust || !target.contextView.investment?.secondMove || !target.contextView.investment?.xlCandy)) {
+      issues.push({ pokemonId: candidate.pokemonId, code: "league_context_incomplete", message: "리그 선택이 Hero·육성 순서·별의모래·해방·XL 판단을 함께 변경해야 합니다.", severity: "error" });
+    }
+    if (master?.contextView.investment?.secondMove !== "hold" || master.contextView.investment?.xlCandy !== "hold" || master.contextView.investment?.stardust !== "hold") {
+      issues.push({ pokemonId: candidate.pokemonId, code: "master_investment_conflict", message: "Master League 보류 판단이 전체 투자 상태와 일치하지 않습니다.", severity: "error" });
+    }
     if (!guide.movesets.pvp) issues.push({ pokemonId: candidate.pokemonId, code: "missing_pvp_moveset", message: "PvP 추천 기술이 없습니다.", severity: "error" });
   }
   if (candidate.pokemonId === "mega-banette") {
@@ -135,20 +141,30 @@ function checkTargetRules(candidate: StandardGuideCandidate, dataset: ReturnType
     const action = guide.actionGuide as {
       type?: string;
       eventId?: string;
-      ownershipCondition?: { options?: { id?: string; summary?: string; steps?: { title?: string; description?: string }[]; checklist?: unknown[] }[] };
-      conditionalCost?: { baseCost?: { label?: string; amount?: number }[]; activeCost?: { label?: string; amount?: number }[]; note?: string };
+      claimEndAt?: string;
+      phaseGuidance?: Record<string, { summary?: string; view?: { presentationMode?: string; order?: unknown[]; recommendations?: string[] } }>;
+      ownershipCondition?: { options?: { id?: string; summary?: string; steps?: { title?: string; description?: string }[]; checklist?: unknown[]; view?: unknown; phaseGuidance?: Record<string, unknown> }[] };
+      conditionalCost?: { baseCost?: { label?: string; amount?: number }[]; activeCost?: { label?: string; amount?: number }[]; facts?: string[]; note?: string };
       goals?: { warnings?: { title?: string; description?: string }[] }[];
     } | undefined;
     if (action?.type !== "max_upgrade") issues.push({ pokemonId: candidate.pokemonId, code: "invalid_special_action", message: "특수 콘텐츠 Action Guide가 필요합니다.", severity: "error" });
     const warningText = action?.goals?.[0]?.warnings?.map((warning) => `${warning.title ?? ""} ${warning.description ?? ""}`).join(" ") ?? "";
     if (!warningText.includes("포획할 수 없")) issues.push({ pokemonId: candidate.pokemonId, code: "missing_uncatchable_warning", message: "무한다이맥스 보스가 포획 대상이 아니라는 안내가 없습니다.", severity: "error" });
     if (action?.eventId !== dataset.mechanics.eternatus.event.id) issues.push({ pokemonId: candidate.pokemonId, code: "event_link_mismatch", message: "Action Guide가 정규화된 Event ID와 연결되지 않았습니다.", severity: "error" });
+    if (action?.claimEndAt !== dataset.mechanics.eternatus.event.claimEndAt) issues.push({ pokemonId: candidate.pokemonId, code: "claim_deadline_mismatch", message: "보상 수령 종료 시각이 정규화 사실과 일치하지 않습니다.", severity: "error" });
+    if (!action?.phaseGuidance?.active || !action.phaseGuidance.claim_only || !action.phaseGuidance.ended || action.phaseGuidance.ended.view?.presentationMode !== "training-first") {
+      issues.push({ pokemonId: candidate.pokemonId, code: "event_phase_guidance_incomplete", message: "진행·수령·종료 단계별 행동과 종료 후 상시 육성 우선순위가 필요합니다.", severity: "error" });
+    }
     const ownershipOptions = action?.ownershipCondition?.options ?? [];
     const neverCaught = ownershipOptions.find((option) => option.id === "never-caught");
     const caughtBefore = ownershipOptions.find((option) => option.id === "caught-before");
     if (!neverCaught || !caughtBefore) issues.push({ pokemonId: candidate.pokemonId, code: "ownership_branch_missing", message: "미포획·기존 포획 보상 분기가 모두 필요합니다.", severity: "error" });
+    if ([neverCaught, caughtBefore].some((option) => !option?.view || !option?.phaseGuidance?.claim_only || !option?.phaseGuidance?.ended)) {
+      issues.push({ pokemonId: candidate.pokemonId, code: "ownership_phase_matrix_incomplete", message: "각 포획 이력에 진행·수령·종료 안내가 모두 필요합니다.", severity: "error" });
+    }
     const caughtCopy = JSON.stringify(caughtBefore ?? {});
-    if (!caughtCopy.includes(String(dataset.mechanics.eternatus.event.alreadyCaughtCandy)) || caughtCopy.includes("조우 보상")) {
+    const promisesEncounterReward = /(?:신규\s*)?조우\s*보상\s*(?:받기|수령|획득)/.test(caughtCopy);
+    if (!caughtCopy.includes(String(dataset.mechanics.eternatus.event.alreadyCaughtCandy)) || promisesEncounterReward) {
       issues.push({ pokemonId: candidate.pokemonId, code: "owned_reward_invalid", message: "기존 포획자 분기는 사탕 100개를 안내하고 신규 조우를 약속하지 않아야 합니다.", severity: "error" });
     }
     const baseCost = action?.conditionalCost?.baseCost ?? [];
@@ -159,6 +175,10 @@ function checkTargetRules(candidate: StandardGuideCandidate, dataset: ReturnType
       issues.push({ pokemonId: candidate.pokemonId, code: "rank35_cost_mismatch", message: "기본·랭크 35 필드 효과 비용이 정규화 사실과 일치하지 않습니다.", severity: "error" });
     }
     if (!action?.conditionalCost?.note?.includes("CP 강화 비용")) issues.push({ pokemonId: candidate.pokemonId, code: "discount_scope_missing", message: "필드 효과 할인과 CP 강화 비용을 구분해야 합니다.", severity: "error" });
+    const fieldFacts = action?.conditionalCost?.facts?.join(" ") ?? "";
+    for (const requiredFact of ["10분", "2시간", "24시간", "동시에 사용 불가"]) {
+      if (!fieldFacts.includes(requiredFact)) issues.push({ pokemonId: candidate.pokemonId, code: "field_effect_rule_missing", message: `필드 효과 규칙 누락: ${requiredFact}`, severity: "error" });
+    }
     const progression = guide.progression as { costStatus?: string } | undefined;
     if (progression?.costStatus !== "check_in_game") issues.push({ pokemonId: candidate.pokemonId, code: "unverified_cost_exposed", message: "미검증 종별 강화 비용은 게임 내 확인 상태로 남겨야 합니다.", severity: "error" });
   }

@@ -111,7 +111,7 @@
       "eternamaxOwnable": false,
       "formChangeSupported": false,
       "oneCatchDuringEvent": true,
-      "event": { "id": "dynamax-trails-2026", "startAt": "2026-11-16T10:00:00+09:00", "endAt": "2026-11-23T20:00:00+09:00", "neverCaughtReward": "encounter", "alreadyCaughtCandy": 100, "rank35AdventureEffectDiscount": { "factor": 0.5, "stardust": 2500, "candy": 15 } },
+      "event": { "id": "dynamax-trails-2026", "startAt": "2026-11-16T10:00:00+09:00", "endAt": "2026-11-23T20:00:00+09:00", "claimEndAt": "2026-11-25T20:00:00+09:00", "neverCaughtReward": "encounter", "alreadyCaughtCandy": 100, "rank35AdventureEffectDiscount": { "factor": 0.5, "stardust": 2500, "candy": 15 } },
       "adventureEffect": { "move": "Dynamax Cannon", "stardust": 5000, "candy": 30, "durationMinutes": 10, "maxMinutesPerUse": 120, "maxTotalMinutes": 1440 },
       "evidenceIds": ["official:eternatus-2026-event", "official:eternatus-2026-rewards", "official:eternatus-dynamax-cannon"]
     }

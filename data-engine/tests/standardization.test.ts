@@ -3,6 +3,8 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
 import { applyApprovedGuideOverlays } from "../../app/_data/approved-guide-adapter";
+import { pokemonGuides, type PokemonGuide } from "../../app/_data/guide-data";
+import { derivePokemonGuideView, getActionEventPhase } from "../../app/_lib/pokemon-detail-view-model";
 import { StandardGuideCandidateBundleSchema, StandardizedGuideDatasetSchema } from "../standardization/schemas";
 import { validatePokemonDetailStandardization } from "../standardization/validate";
 
@@ -33,8 +35,28 @@ test("Cresselia preserves PvP league decisions and limited move conditions", asy
   assert.equal(guide.pvpLeagueTargets.find((target) => target.league === "master")?.cpLimit, undefined);
   assert.ok(guide.pvpLeagueTargets.every((target) => target.ivDirection && target.powerUpTarget && target.secondMove && target.xlCandy && target.useCase));
   assert.equal(guide.pvpLeagueTargets.find((target) => target.league === "master")?.moveset, undefined);
+  assert.equal(guide.pvpLeagueTargets.find((target) => target.league === "master")?.contextView.investment?.secondMove, "hold");
   assert.ok(guide.movesets.pvp?.conditions?.some((condition) => condition.includes("대단한 기술머신")));
   assert.equal(guide.useCases.raid, undefined);
+});
+
+test("Cresselia league selection derives one coherent hero, order, and investment view", async () => {
+  const bundle = StandardGuideCandidateBundleSchema.parse(await readFixture("data/candidates/pokemon-detail-standard-v1.json"));
+  const projection = bundle.candidates.find((candidate) => candidate.pokemonId === "cresselia")!.guide;
+  const base = pokemonGuides.find((guide) => guide.id === "cresselia")!;
+  const guide = { ...base, ...projection } as unknown as PokemonGuide;
+  const great = derivePokemonGuideView({ guide, selectedLeague: "great", eventPhase: "active" });
+  const master = derivePokemonGuideView({ guide, selectedLeague: "master", eventPhase: "active" });
+  const ultra = derivePokemonGuideView({ guide, selectedLeague: "ultra", eventPhase: "active" });
+  assert.match(great.verdictLabel ?? "", /슈퍼리그/);
+  assert.equal(great.investment?.secondMove, "recommended");
+  assert.match(master.verdictLabel ?? "", /마스터리그/);
+  assert.equal(master.investment?.secondMove, "hold");
+  assert.equal(master.investment?.xlCandy, "hold");
+  assert.equal(master.investment?.stardust, "hold");
+  assert.doesNotMatch((master.investment?.order ?? []).map((item) => item.label).join(" "), /CP 상한 직전/);
+  assert.match(ultra.verdictLabel ?? "", /하이퍼리그/);
+  assert.equal(ultra.investment?.secondMove, "high");
 });
 
 test("Mega Banette uses verified mega energy and staged investment data", async () => {
@@ -64,7 +86,7 @@ test("Eternatus separates the obtainable Pokemon from the uncatchable Eternamax 
   const action = guide.actionGuide as {
     eventId: string;
     ownershipCondition: { options: { id: string; summary: string; steps: { title: string; description?: string }[] }[] };
-    conditionalCost: { baseCost: { label: string; amount: number }[]; activeCost: { label: string; amount: number }[]; note: string };
+    conditionalCost: { baseCost: { label: string; amount: number }[]; activeCost: { label: string; amount: number }[]; note: string; facts: string[] };
   };
   assert.equal(action.eventId, dataset.mechanics.eternatus.event.id);
   assert.deepEqual(action.ownershipCondition.options.map((option) => option.id), ["never-caught", "caught-before"]);
@@ -74,6 +96,45 @@ test("Eternatus separates the obtainable Pokemon from the uncatchable Eternamax 
   assert.deepEqual(action.conditionalCost.baseCost.map((cost) => cost.amount), [5000, 30]);
   assert.deepEqual(action.conditionalCost.activeCost.map((cost) => cost.amount), [2500, 15]);
   assert.match(action.conditionalCost.note, /CP 강화 비용/);
+  assert.match(action.conditionalCost.facts.join(" "), /10분/);
+  assert.match(action.conditionalCost.facts.join(" "), /2시간/);
+  assert.match(action.conditionalCost.facts.join(" "), /24시간/);
+  assert.match(action.conditionalCost.facts.join(" "), /동시에 사용 불가/);
+});
+
+test("Eternatus event phase boundaries distinguish rank progress, claims, and expiration", () => {
+  const window = {
+    id: "dynamax-trails-2026",
+    label: "11/16 ~ 11/23",
+    startAt: "2026-11-16T10:00:00+09:00",
+    endAt: "2026-11-23T20:00:00+09:00",
+    claimEndAt: "2026-11-25T20:00:00+09:00",
+  };
+  assert.equal(getActionEventPhase(new Date("2026-11-18T12:00:00+09:00"), window), "active");
+  assert.equal(getActionEventPhase(new Date("2026-11-23T19:59:00+09:00"), window), "active");
+  assert.equal(getActionEventPhase(new Date("2026-11-23T20:00:00+09:00"), window), "claim_only");
+  assert.equal(getActionEventPhase(new Date("2026-11-24T12:00:00+09:00"), window), "claim_only");
+  assert.equal(getActionEventPhase(new Date("2026-11-25T20:00:00+09:00"), window), "ended");
+  assert.equal(getActionEventPhase(new Date("2026-11-26T12:00:00+09:00"), window), "ended");
+});
+
+test("Eternatus ownership and event phase matrix never revives unavailable GO Pass actions", async () => {
+  const bundle = StandardGuideCandidateBundleSchema.parse(await readFixture("data/candidates/pokemon-detail-standard-v1.json"));
+  const projection = bundle.candidates.find((candidate) => candidate.pokemonId === "eternamax-eternatus")!.guide;
+  const base = pokemonGuides.find((guide) => guide.id === "eternamax-eternatus")!;
+  const guide = { ...base, ...projection } as unknown as PokemonGuide;
+  for (const ownershipId of [undefined, "never-caught", "caught-before"] as const) {
+    const active = derivePokemonGuideView({ guide, ownershipId, eventPhase: "active" });
+    const claimOnly = derivePokemonGuideView({ guide, ownershipId, eventPhase: "claim_only" });
+    const ended = derivePokemonGuideView({ guide, ownershipId, eventPhase: "ended" });
+    assert.match(active.summary ?? "", /GO Pass|랭크/);
+    assert.doesNotMatch((claimOnly.investment?.order ?? []).map((item) => item.label).join(" "), /랭크 진행/);
+    assert.equal(ended.presentationMode, "training-first");
+    assert.doesNotMatch(`${ended.summary} ${(ended.investment?.order ?? []).map((item) => item.label).join(" ")}`, /보상 수령|랭크 진행/);
+  }
+  const ownedActive = derivePokemonGuideView({ guide, ownershipId: "caught-before", eventPhase: "active" });
+  assert.match(ownedActive.verdictLabel ?? "", /사탕 100개/);
+  assert.doesNotMatch(ownedActive.verdictLabel ?? "", /본체 확보|조우/);
 });
 
 test("candidate overlays are Preview-only and never replace Production guides", { concurrency: false }, () => {

@@ -553,7 +553,7 @@
       "sourceHash": "d727a4250d15fdf550d4ead38947553a7cbf3c7598d479a1dd14b2168f3fc480",
       "reviewStatus": "reviewed",
       "rawCollected": false,
-      "claim": "Dynamax Trails는 11월 16일 10:00부터 11월 23일 20:00까지 진행되며, 무한다이노 미포획자는 조우 보상, 기존 포획자는 사탕 100개를 받는다. GO Pass 랭크 35 보너스는 다이맥스포 필드 효과 별의모래와 사탕 비용을 절반으로 줄인다.",
+      "claim": "Dynamax Trails GO Pass 랭크 진행은 11월 23일 20:00에 종료되고 해금 보상은 11월 25일 20:00에 만료된다. 무한다이노 미포획자는 조우 보상, 기존 포획자는 사탕 100개를 받으며, 랭크 35 보너스는 다이맥스포 필드 효과 비용을 절반으로 줄인다.",
       "paths": ["mechanics.eternatus.event"]
     },
     {

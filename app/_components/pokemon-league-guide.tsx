@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import type { GuideLeagueTarget, InvestmentLevel } from "../_data/guide-data";
 import { RatingStars, SectionHeader } from "./design-system";
 import { ChartIcon } from "./icons";
@@ -30,8 +29,15 @@ function MovesetSummary({ target }: { target: GuideLeagueTarget }) {
   return <dl className="league-moveset">{moves.map(([label, move]) => <div key={label}><dt>{label}</dt><dd>{move}</dd></div>)}</dl>;
 }
 
-export function PokemonLeagueGuide({ targets }: { targets: readonly GuideLeagueTarget[] }) {
-  const [selectedLeague, setSelectedLeague] = useState(targets[0]?.league ?? "great");
+export function PokemonLeagueGuide({
+  targets,
+  selectedLeague,
+  onSelect,
+}: {
+  targets: readonly GuideLeagueTarget[];
+  selectedLeague: GuideLeagueTarget["league"];
+  onSelect: (league: GuideLeagueTarget["league"]) => void;
+}) {
   const selected = targets.find((target) => target.league === selectedLeague) ?? targets[0];
   if (!selected) return null;
 
@@ -44,7 +50,7 @@ export function PokemonLeagueGuide({ targets }: { targets: readonly GuideLeagueT
         role="tab"
         aria-selected={selected.league === target.league}
         className={selected.league === target.league ? "selected" : ""}
-        onClick={() => setSelectedLeague(target.league)}
+        onClick={() => onSelect(target.league)}
       >{target.label}</button>)}
     </div>
     <article className="guide-league-selected" role="tabpanel">

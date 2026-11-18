@@ -1,7 +1,7 @@
 [
   {
     "id": "cresselia",
-    "validationHash": "39fd25b842d67c70f05cae2ed031960fbb80d70ece005c4277de182558be69a7",
+    "validationHash": "67e9644855e205b3587a210068e44a261b06a4ea18349748a22adba389e22474",
     "previewOnly": true,
     "guide": {
       "name": "크레세리아",
@@ -137,6 +137,55 @@
           "useCase": {
             "rating": null,
             "reason": "정확한 매치업 시뮬레이션 없이 리그 성능 별점을 만들지 않았습니다."
+          },
+          "contextView": {
+            "overallRating": null,
+            "verdictLabel": "슈퍼리그용 개체가 있을 때 조건부 육성",
+            "summary": "CP 1,500 이하로 들어오는 개체를 먼저 확인하세요. 리그 투입이 확정되기 전에는 강화와 해방을 서두르지 않습니다.",
+            "order": [
+              {
+                "id": "great-check-cp",
+                "label": "CP 1,500 이하 투입 가능 여부 확인",
+                "reason": "레이드 포획 개체는 상한을 넘을 수 있습니다."
+              },
+              {
+                "id": "great-check-iv",
+                "label": "슈퍼리그용 개체 방향 확인",
+                "reason": "정확한 IV 순위는 계산기로 확인합니다."
+              },
+              {
+                "id": "great-check-move",
+                "label": "풀묶기 보유·습득 가능 여부 확인",
+                "reason": "이벤트 한정 기술 조건을 먼저 확인합니다."
+              },
+              {
+                "id": "great-unlock",
+                "label": "투입 확정 후 기술 해방",
+                "reason": "풀묶기와 문포스를 함께 쓸 때만 우선 투자합니다."
+              },
+              {
+                "id": "great-power",
+                "label": "CP 1,500 직전 단계에서 멈추기",
+                "reason": "강화 미리보기로 상한 초과를 방지합니다."
+              }
+            ],
+            "investment": {
+              "powerUp": "conditional",
+              "stardust": "conditional",
+              "secondMove": "recommended",
+              "xlCandy": "low"
+            },
+            "investmentReasons": {
+              "powerUp": "CP 1,500 이하 개체와 투입 계획이 모두 확인된 뒤 강화하세요.",
+              "stardust": "슈퍼리그 투입 전에는 보류하고, 상한을 넘지 않는 단계에만 사용하세요.",
+              "secondMove": "풀묶기와 문포스를 함께 운용할 때 투자 추천입니다.",
+              "xlCandy": "슈퍼리그 목표에서 실제 필요 레벨을 확인하기 전에는 우선순위가 낮습니다."
+            },
+            "recommendations": [
+              "CP 1,500 이하 투입 가능한 개체부터 확인",
+              "풀묶기 조건을 확인하고 투입 확정 후 기술 해방",
+              "강화 미리보기에서 상한 직전 단계까지만 투자"
+            ]
           }
         },
         {
@@ -184,6 +233,55 @@
           "useCase": {
             "rating": null,
             "reason": "활용 방향은 분명하지만 현재 메타 승률·매치업 별점은 검증하지 않았습니다."
+          },
+          "contextView": {
+            "overallRating": null,
+            "verdictLabel": "하이퍼리그 목표라면 육성 추천",
+            "summary": "CP 2,500 이하 목표 개체와 풀묶기 조건을 확인한 뒤 강화하세요. 하이퍼리그 투입이 확정되면 기술 해방 우선순위가 높습니다.",
+            "order": [
+              {
+                "id": "ultra-check-cp",
+                "label": "하이퍼리그용 개체 선택",
+                "reason": "CP 2,500 아래에서 멈출 수 있는 개체를 고릅니다."
+              },
+              {
+                "id": "ultra-check-move",
+                "label": "풀묶기 보유·습득 가능 여부 확인",
+                "reason": "한정 기술 조건을 강화 전에 확인합니다."
+              },
+              {
+                "id": "ultra-unlock",
+                "label": "PvP 투입 확정 후 기술 해방",
+                "reason": "두 스페셜 기술 운용이 핵심입니다."
+              },
+              {
+                "id": "ultra-power",
+                "label": "CP 2,500 직전까지 단계 강화",
+                "reason": "게임의 강화 미리보기로 최종 CP를 확인합니다."
+              },
+              {
+                "id": "ultra-xl",
+                "label": "필요한 개체에만 XL 투자",
+                "reason": "보유 개체의 도달 레벨에 따라 필요 여부가 달라집니다."
+              }
+            ],
+            "investment": {
+              "powerUp": "recommended",
+              "stardust": "recommended",
+              "secondMove": "high",
+              "xlCandy": "conditional"
+            },
+            "investmentReasons": {
+              "powerUp": "하이퍼리그 투입 개체가 확정되면 CP 2,500 직전까지 강화하세요.",
+              "stardust": "투입 개체와 기술 조건이 확인된 뒤 투자 추천입니다.",
+              "secondMove": "풀묶기와 문포스를 함께 운용할 경우 적극 투자합니다.",
+              "xlCandy": "CP 2,500 도달에 실제로 필요한 개체에만 조건부 투자하세요."
+            },
+            "recommendations": [
+              "하이퍼리그용 개체와 CP 도달 구간 확인",
+              "풀묶기 조건 확인 후 기술 해방",
+              "CP 2,500을 넘지 않도록 단계 강화"
+            ]
           }
         },
         {
@@ -205,6 +303,45 @@
           "useCase": {
             "rating": null,
             "reason": "마스터리그 성능을 판단할 검증된 시뮬레이션 자료가 없어 미평가로 둡니다."
+          },
+          "contextView": {
+            "overallRating": null,
+            "verdictLabel": "마스터리그 전용 투자는 보류",
+            "summary": "CP 상한은 없지만 현재 자료로 마스터리그 전용 강화 근거가 부족합니다. 별도 매치업 근거가 생기기 전에는 자원을 아끼세요.",
+            "order": [
+              {
+                "id": "master-check-purpose",
+                "label": "마스터리그 사용 목적부터 확인",
+                "reason": "검증된 매치업 목적이 없다면 투자를 시작하지 않습니다."
+              },
+              {
+                "id": "master-hold-moves",
+                "label": "기술 해방 보류",
+                "reason": "전용 투입을 확정하지 않았다면 자원을 아낍니다."
+              },
+              {
+                "id": "master-hold-power",
+                "label": "강화·XL 투자 보류",
+                "reason": "CP 상한이 없으므로 투자량이 크고 현재 성능 근거가 부족합니다."
+              }
+            ],
+            "investment": {
+              "powerUp": "hold",
+              "stardust": "hold",
+              "secondMove": "hold",
+              "xlCandy": "hold"
+            },
+            "investmentReasons": {
+              "powerUp": "마스터리그 전용 사용 근거가 확인될 때까지 보류하세요.",
+              "stardust": "검증된 매치업 근거 없이 대량 투자하지 않습니다.",
+              "secondMove": "마스터리그 투입이 확정되지 않았다면 보류합니다.",
+              "xlCandy": "무제한 CP 육성은 큰 투자가 필요하므로 현재는 보류합니다."
+            },
+            "recommendations": [
+              "마스터리그 전용 강화는 현재 보류",
+              "기술 해방과 XL사탕을 다른 확정 전력에 우선 사용",
+              "별도 매치업 근거가 생기면 다시 검토"
+            ]
           }
         }
       ],
@@ -280,7 +417,7 @@
   },
   {
     "id": "mega-banette",
-    "validationHash": "39fd25b842d67c70f05cae2ed031960fbb80d70ece005c4277de182558be69a7",
+    "validationHash": "67e9644855e205b3587a210068e44a261b06a4ea18349748a22adba389e22474",
     "previewOnly": true,
     "guide": {
       "name": "메가다크펫",
@@ -630,7 +767,7 @@
   },
   {
     "id": "eternamax-eternatus",
-    "validationHash": "39fd25b842d67c70f05cae2ed031960fbb80d70ece005c4277de182558be69a7",
+    "validationHash": "67e9644855e205b3587a210068e44a261b06a4ea18349748a22adba389e22474",
     "previewOnly": true,
     "guide": {
       "name": "무한다이노",
@@ -638,10 +775,10 @@
       "heroBackground": "/images/events/dynamax-trails-2026.jpg",
       "overallRating": null,
       "verdict": "conditional",
-      "verdictLabel": "먼저 GO Pass로 본체 확보",
+      "verdictLabel": "포획 이력과 이벤트 상태부터 확인",
       "presentationMode": "action-first",
-      "reason": "먼저 GO Pass로 본체 확보",
-      "summary": "소유·육성하는 것은 일반 무한다이노예요. 무한다이맥스는 포획·폼체인지 대상이 아니라 사탕과 XL을 얻는 배틀 보스입니다.",
+      "reason": "포획 이력과 이벤트 상태부터 확인",
+      "summary": "소유·육성하는 것은 일반 무한다이노예요. 포획 이력과 현재 이벤트 단계를 확인한 뒤 가능한 행동을 선택하세요.",
       "useCases": {
         "special": {
           "rating": null,
@@ -678,9 +815,9 @@
       "investment": {
         "order": [
           {
-            "id": "claim-eternatus-pass",
-            "label": "GO Pass에서 무한다이노 본체 확보",
-            "reason": "무한다이맥스 배틀 보스 자체는 포획할 수 없습니다."
+            "id": "check-eternatus-context",
+            "label": "포획 이력과 이벤트 단계 확인",
+            "reason": "미포획·기존 포획 및 보상 수령 가능 기간에 따라 현재 행동이 달라집니다."
           },
           {
             "id": "check-dynamax-cannon",
@@ -808,6 +945,122 @@
         "summary": "이전 포획 이력에 따라 GO Pass 보상이 달라져요. 먼저 포획한 적이 있는지 선택하세요.",
         "defaultGoalId": "eternatus",
         "eventId": "dynamax-trails-2026",
+        "claimEndAt": "2026-11-25T20:00:00+09:00",
+        "phaseGuidance": {
+          "active": {
+            "statusLabel": "랭크 진행 가능",
+            "summary": "11월 23일 20:00 전에는 GO Pass 랭크를 올릴 수 있어요. 포획 이력을 선택하면 맞는 목표 보상을 안내합니다.",
+            "view": {
+              "verdictLabel": "포획 이력에 맞는 GO Pass 목표 확인",
+              "summary": "GO Pass 랭크 진행 기간입니다. 이전 포획 이력을 선택해 조우 또는 사탕 100개 중 맞는 목표를 확인하세요.",
+              "presentationMode": "action-first",
+              "order": [
+                {
+                  "id": "active-select-history",
+                  "label": "이전 포획 이력 선택",
+                  "reason": "조우와 사탕 100개 중 목표 보상이 달라집니다."
+                },
+                {
+                  "id": "active-rank",
+                  "label": "11월 23일 20:00 전까지 GO Pass 랭크 진행",
+                  "reason": "랭크 종료 뒤에는 새 보상을 해금할 수 없습니다."
+                },
+                {
+                  "id": "active-claim",
+                  "label": "해금한 보상 수령",
+                  "reason": "11월 25일 20:00 전에 받아야 합니다."
+                },
+                {
+                  "id": "active-train",
+                  "label": "기술 확인 후 단계 육성",
+                  "reason": "다이맥스포와 실제 비용을 확인합니다."
+                }
+              ],
+              "recommendations": [
+                "포획 이력을 선택해 목표 보상 구분",
+                "11월 23일 20:00 전까지 필요한 랭크 진행",
+                "해금한 보상 수령 후 기술과 강화 비용 확인"
+              ]
+            }
+          },
+          "claim_only": {
+            "statusLabel": "랭크 종료 · 보상 수령 가능",
+            "summary": "GO Pass 랭크 진행은 종료됐습니다. 이미 해금한 보상이 있다면 11월 25일 20:00 전에 받아주세요.",
+            "view": {
+              "verdictLabel": "이미 해금한 보상만 수령",
+              "summary": "새로운 랭크는 올릴 수 없어요. 이미 해금한 보상이 있다면 수령 기한 전에 받고, 이후 보유 개체를 점검하세요.",
+              "presentationMode": "action-first",
+              "order": [
+                {
+                  "id": "claim-check-unlocked",
+                  "label": "이미 해금한 보상 확인",
+                  "reason": "지금 새 랭크를 올릴 수는 없습니다."
+                },
+                {
+                  "id": "claim-before-deadline",
+                  "label": "11월 25일 20:00 전에 수령",
+                  "reason": "수령 기한이 지나면 보상이 만료됩니다."
+                },
+                {
+                  "id": "claim-check-pokemon",
+                  "label": "보유 무한다이노 기술 확인",
+                  "reason": "다이맥스포를 바꾸기 전에 확인합니다."
+                },
+                {
+                  "id": "claim-train",
+                  "label": "사용 목적에 맞춰 단계 육성",
+                  "reason": "Lv.30부터 실제 비용을 확인합니다."
+                }
+              ],
+              "recommendations": [
+                "새 랭크 진행 대신 해금한 보상만 확인",
+                "11월 25일 20:00 전 수령",
+                "보유 무한다이노 기술·강화 상태 점검"
+              ]
+            }
+          },
+          "ended": {
+            "statusLabel": "지난 이벤트",
+            "summary": "GO Pass 랭크 진행과 보상 수령이 모두 종료됐습니다. 아래에는 당시 조건을 기록으로 남기고, 현재는 보유한 무한다이노 육성을 우선 안내합니다.",
+            "view": {
+              "verdictLabel": "보유한 무한다이노 육성 여부 판단",
+              "summary": "Dynamax Trails 보상 기간은 끝났어요. 현재 보유한 무한다이노의 기술과 자원을 확인해 일반 육성 가이드로 활용하세요.",
+              "presentationMode": "training-first",
+              "order": [
+                {
+                  "id": "ended-choose-owned",
+                  "label": "보유한 무한다이노 선택",
+                  "reason": "지난 GO Pass 보상은 더 이상 현재 행동이 아닙니다."
+                },
+                {
+                  "id": "ended-check-cannon",
+                  "label": "다이맥스포 보유 여부 확인",
+                  "reason": "필드 효과를 사용할 개체라면 기술 변경 전에 확인합니다."
+                },
+                {
+                  "id": "ended-check-cost",
+                  "label": "게임에서 실제 강화 비용 확인",
+                  "reason": "종별 비용을 확인하고 과투자를 피합니다."
+                },
+                {
+                  "id": "ended-power-30",
+                  "label": "실사용 목적이 있으면 Lv.30 검토",
+                  "reason": "사용 빈도를 확인한 뒤 다음 단계로 넘어갑니다."
+                },
+                {
+                  "id": "ended-long-term",
+                  "label": "장기 주력일 때만 XL 투자",
+                  "reason": "Lv.40 이후는 자원 부담이 큰 장기 투자입니다."
+                }
+              ],
+              "recommendations": [
+                "지난 GO Pass 보상은 현재 획득 경로가 아님",
+                "보유 개체의 다이맥스포와 강화 비용 확인",
+                "Lv.30부터 사용성을 확인하고 XL은 장기 주력일 때만 투자"
+              ]
+            }
+          }
+        },
         "ownershipCondition": {
           "id": "eternatus-catch-history-2026",
           "question": "이전에 무한다이노를 잡은 적이 있나요?",
@@ -865,7 +1118,138 @@
                   "label": "강화 전 실제 사탕·XL 비용을 확인했나요?",
                   "severity": "medium"
                 }
-              ]
+              ],
+              "view": {
+                "verdictLabel": "GO Pass 조우 보상부터 확보",
+                "summary": "이전에 잡은 적이 없다면 랭크 진행 기간에 무한다이노 조우 보상을 해금하고 수령하는 것이 첫 목표예요.",
+                "order": [
+                  {
+                    "id": "new-rank",
+                    "label": "GO Pass 랭크 진행",
+                    "reason": "11월 23일 20:00 전까지 조우 보상을 해금합니다."
+                  },
+                  {
+                    "id": "new-claim",
+                    "label": "일반 무한다이노 조우 보상 수령",
+                    "reason": "해금한 보상은 11월 25일 20:00 전에 받습니다."
+                  },
+                  {
+                    "id": "new-move",
+                    "label": "다이맥스포 보유 여부 확인",
+                    "reason": "기술 변경 전에 필드 효과 사용 가능 여부를 확인합니다."
+                  },
+                  {
+                    "id": "new-candy",
+                    "label": "육성용 사탕·XL 확보",
+                    "reason": "무한다이맥스 보스는 포획 대상이 아닙니다."
+                  },
+                  {
+                    "id": "new-power",
+                    "label": "Lv.30부터 단계 강화",
+                    "reason": "실제 비용과 사용 목적을 확인합니다."
+                  }
+                ],
+                "recommendations": [
+                  "GO Pass 조우 보상 해금·수령",
+                  "포획 직후 다이맥스포 확인",
+                  "사탕을 모은 뒤 Lv.30부터 단계 육성"
+                ]
+              },
+              "phaseGuidance": {
+                "claim_only": {
+                  "summary": "새 랭크는 올릴 수 없어요. 조우 보상을 이미 해금했다면 11월 25일 20:00 전에 수령하세요.",
+                  "steps": [
+                    {
+                      "id": "new-claim-check",
+                      "title": "해금 여부 확인",
+                      "description": "미해금 조우 보상을 지금 새로 획득할 수는 없습니다."
+                    },
+                    {
+                      "id": "new-claim-now",
+                      "title": "해금한 조우 보상 수령",
+                      "description": "11월 25일 20:00 전에 받아주세요."
+                    },
+                    {
+                      "id": "new-claim-move",
+                      "title": "수령한 개체의 기술 확인",
+                      "description": "다이맥스포를 바꾸기 전에 확인합니다."
+                    },
+                    {
+                      "id": "new-claim-train",
+                      "title": "Lv.30부터 육성 판단",
+                      "description": "실제 비용과 사용 목적을 확인합니다."
+                    }
+                  ],
+                  "checklist": [
+                    {
+                      "id": "new-unlocked",
+                      "label": "조우 보상을 이미 해금했나요?",
+                      "severity": "high"
+                    },
+                    {
+                      "id": "new-claimed-deadline",
+                      "label": "11월 25일 20:00 전 수령했나요?",
+                      "severity": "high"
+                    },
+                    {
+                      "id": "new-move-after-claim",
+                      "label": "수령한 개체의 다이맥스포를 확인했나요?",
+                      "severity": "medium"
+                    }
+                  ],
+                  "view": {
+                    "verdictLabel": "해금한 조우 보상만 기한 내 수령",
+                    "summary": "랭크 진행은 끝났어요. 조우 보상을 이미 해금한 경우에만 수령 기한 전에 받고 기술을 확인하세요.",
+                    "recommendations": [
+                      "새 랭크 진행 불가",
+                      "해금한 조우 보상만 11월 25일 20:00 전 수령",
+                      "수령 후 기술과 강화 비용 확인"
+                    ]
+                  }
+                },
+                "ended": {
+                  "summary": "조우 보상 수령 기한도 종료됐어요. 지금은 보유한 무한다이노의 기술과 육성 상태를 확인하세요.",
+                  "steps": [
+                    {
+                      "id": "new-ended-owned",
+                      "title": "현재 보유 개체 확인",
+                      "description": "지난 이벤트 조우를 현재 획득 경로로 안내하지 않습니다."
+                    },
+                    {
+                      "id": "new-ended-move",
+                      "title": "다이맥스포 보유 여부 확인",
+                      "description": "기술 변경 전에 확인합니다."
+                    },
+                    {
+                      "id": "new-ended-power",
+                      "title": "실사용 목적에 맞춰 단계 육성",
+                      "description": "Lv.30부터 사용성을 확인합니다."
+                    }
+                  ],
+                  "checklist": [
+                    {
+                      "id": "new-ended-move-check",
+                      "label": "보유 개체의 다이맥스포를 확인했나요?",
+                      "severity": "high"
+                    },
+                    {
+                      "id": "new-ended-cost-check",
+                      "label": "게임에서 실제 강화 비용을 확인했나요?",
+                      "severity": "medium"
+                    }
+                  ],
+                  "view": {
+                    "verdictLabel": "보유한 무한다이노 육성 판단",
+                    "summary": "지난 GO Pass 조우 보상은 종료됐어요. 현재 보유한 개체가 있다면 기술과 자원을 확인해 육성하세요.",
+                    "presentationMode": "training-first",
+                    "recommendations": [
+                      "지난 조우 보상은 현재 획득 불가",
+                      "보유 개체의 다이맥스포 확인",
+                      "Lv.30부터 단계 육성"
+                    ]
+                  }
+                }
+              }
             },
             {
               "id": "caught-before",
@@ -919,7 +1303,143 @@
                   "label": "강화 전 실제 사탕·XL 비용을 확인했나요?",
                   "severity": "medium"
                 }
-              ]
+              ],
+              "view": {
+                "verdictLabel": "GO Pass 사탕 100개부터 확보",
+                "summary": "이전에 잡은 적이 있다면 GO Pass 랭크를 진행해 신규 조우 대신 사탕 100개를 받는 것이 목표예요. 기존 개체의 기술과 육성 상태도 함께 확인하세요.",
+                "order": [
+                  {
+                    "id": "owned-rank",
+                    "label": "GO Pass 랭크 진행",
+                    "reason": "11월 23일 20:00 전까지 사탕 보상을 해금합니다."
+                  },
+                  {
+                    "id": "owned-claim",
+                    "label": "무한다이노 사탕 100개 수령",
+                    "reason": "신규 조우 보상이 아니라 기존 개체 육성 자원입니다."
+                  },
+                  {
+                    "id": "owned-select",
+                    "label": "육성할 기존 무한다이노 선택",
+                    "reason": "기술과 현재 강화 상태를 확인합니다."
+                  },
+                  {
+                    "id": "owned-move",
+                    "label": "다이맥스포 보유 여부 확인",
+                    "reason": "필드 효과를 쓸 개체라면 기술 변경 전에 확인합니다."
+                  },
+                  {
+                    "id": "owned-power",
+                    "label": "Lv.30부터 단계 강화",
+                    "reason": "사탕 100개와 기존 자원을 목적에 맞게 사용합니다."
+                  }
+                ],
+                "recommendations": [
+                  "GO Pass 사탕 100개 보상 해금·수령",
+                  "기존 무한다이노 기술과 강화 상태 확인",
+                  "실사용 개체를 Lv.30부터 단계 육성"
+                ]
+              },
+              "phaseGuidance": {
+                "claim_only": {
+                  "summary": "새 랭크는 올릴 수 없어요. 사탕 100개 보상을 이미 해금했다면 11월 25일 20:00 전에 수령하세요.",
+                  "steps": [
+                    {
+                      "id": "owned-claim-check",
+                      "title": "사탕 보상 해금 여부 확인",
+                      "description": "미해금 보상을 지금 새로 획득할 수는 없습니다."
+                    },
+                    {
+                      "id": "owned-claim-now",
+                      "title": "해금한 사탕 100개 수령",
+                      "description": "11월 25일 20:00 전에 받아주세요."
+                    },
+                    {
+                      "id": "owned-check-existing",
+                      "title": "기존 무한다이노 기술 확인",
+                      "description": "다이맥스포와 강화 상태를 확인합니다."
+                    },
+                    {
+                      "id": "owned-claim-train",
+                      "title": "기존 개체 단계 육성",
+                      "description": "게임 내 실제 비용을 확인합니다."
+                    }
+                  ],
+                  "checklist": [
+                    {
+                      "id": "owned-unlocked",
+                      "label": "사탕 100개 보상을 이미 해금했나요?",
+                      "severity": "high"
+                    },
+                    {
+                      "id": "owned-claimed-deadline",
+                      "label": "11월 25일 20:00 전 수령했나요?",
+                      "severity": "high"
+                    },
+                    {
+                      "id": "owned-existing-check",
+                      "label": "기존 개체의 기술과 강화 상태를 확인했나요?",
+                      "severity": "medium"
+                    }
+                  ],
+                  "view": {
+                    "verdictLabel": "해금한 사탕 100개만 기한 내 수령",
+                    "summary": "랭크 진행은 끝났어요. 사탕 보상을 이미 해금한 경우에만 기한 내 받고 기존 개체를 점검하세요.",
+                    "recommendations": [
+                      "새 랭크 진행 불가",
+                      "해금한 사탕 100개만 11월 25일 20:00 전 수령",
+                      "기존 개체 기술·강화 상태 확인"
+                    ]
+                  }
+                },
+                "ended": {
+                  "summary": "사탕 100개 보상 수령 기한도 종료됐어요. 지금은 기존 무한다이노의 기술과 자원을 확인해 육성하세요.",
+                  "steps": [
+                    {
+                      "id": "owned-ended-select",
+                      "title": "육성할 기존 무한다이노 선택",
+                      "description": "지난 이벤트 사탕 보상을 현재 획득 경로로 안내하지 않습니다."
+                    },
+                    {
+                      "id": "owned-ended-move",
+                      "title": "다이맥스포 보유 여부 확인",
+                      "description": "기술 변경 전에 확인합니다."
+                    },
+                    {
+                      "id": "owned-ended-power",
+                      "title": "실사용 목적에 맞춰 단계 육성",
+                      "description": "Lv.30부터 사용성을 확인합니다."
+                    }
+                  ],
+                  "checklist": [
+                    {
+                      "id": "owned-ended-pokemon",
+                      "label": "육성할 기존 무한다이노를 골랐나요?",
+                      "severity": "high"
+                    },
+                    {
+                      "id": "owned-ended-move-check",
+                      "label": "다이맥스포 보유 여부를 확인했나요?",
+                      "severity": "high"
+                    },
+                    {
+                      "id": "owned-ended-cost-check",
+                      "label": "게임에서 실제 강화 비용을 확인했나요?",
+                      "severity": "medium"
+                    }
+                  ],
+                  "view": {
+                    "verdictLabel": "기존 무한다이노 육성 판단",
+                    "summary": "지난 GO Pass 사탕 보상은 종료됐어요. 기존 무한다이노의 기술과 자원을 확인해 육성 여부를 결정하세요.",
+                    "presentationMode": "training-first",
+                    "recommendations": [
+                      "지난 사탕 100개 보상은 현재 수령 불가",
+                      "기존 개체의 다이맥스포 확인",
+                      "Lv.30부터 단계 육성"
+                    ]
+                  }
+                }
+              }
             }
           ]
         },
@@ -949,6 +1469,13 @@
               "label": "무한다이노 사탕",
               "amount": 15
             }
+          ],
+          "facts": [
+            "기본 지속시간 10분",
+            "자원을 추가해 10분 단위로 연장",
+            "한 번의 사용 동작에서 최대 2시간까지 연장",
+            "반복 사용으로 최대 24시간까지 연장",
+            "다른 필드 효과와 동시에 사용 불가"
           ],
           "note": "Dynamax Trails 기간의 필드 효과 발동 비용 할인입니다. 무한다이노 CP 강화 비용 할인은 아니며, 앱은 랭크 달성 여부를 자동으로 확인하지 않아요."
         },

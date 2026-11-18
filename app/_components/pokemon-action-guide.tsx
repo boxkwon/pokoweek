@@ -3,28 +3,19 @@
 import { useEffect, useMemo, useState } from "react";
 import type {
   ActionChecklistItem,
+  ActionEventPhase,
   ActionGoal,
   ActionRequirement,
   ActionWarning,
   PokemonActionGuide as PokemonActionGuideData,
 } from "../_data/guide-data";
 import { pokemon } from "../_data/guide-data";
-import { getDateContextFromSearch } from "../_lib/internal-url";
-import { getAppNow } from "../_lib/time";
+import { getOwnershipPresentation, type ActionEventWindow } from "../_lib/pokemon-detail-view-model";
 import { PrimaryCTA, SectionHeader } from "./design-system";
 import { BagIcon, CheckIcon, ChevronIcon, SwordsIcon, TargetIcon } from "./icons";
 import { PokemonArtwork } from "./pokemon-artwork";
 
 const COMBINED_GOAL_ID = "all-goals";
-
-type ActionEventWindow = {
-  id: string;
-  label: string;
-  startAt: string;
-  endAt: string;
-};
-
-type EventStatus = "unknown" | "upcoming" | "active" | "ended";
 
 const actionGuideCopy = {
   fusion: { requirements: "융합 자체에 필요한 것", warnings: "특별 기술과 융합 후 주의사항", flow: "완성 순서", checklist: "융합 조건과 특별 기술을 확인하세요", selector: "융합 목표 선택" },
@@ -116,20 +107,23 @@ export function PokemonActionGuide({
   guideId,
   actionGuide,
   eventWindow,
+  eventPhase,
+  ownershipId,
+  onOwnershipChange,
 }: {
   guideId: string;
   actionGuide: PokemonActionGuideData;
   eventWindow?: ActionEventWindow;
+  eventPhase: ActionEventPhase;
+  ownershipId?: string;
+  onOwnershipChange: (ownershipId: string) => void;
 }) {
   const initialGoalId = actionGuide.defaultGoalId ?? actionGuide.goals[0]?.id ?? "";
   const copy = actionGuideCopy[actionGuide.type];
   const [selectedGoalId, setSelectedGoalId] = useState(initialGoalId);
   const [checked, setChecked] = useState<Record<string, boolean>>({});
-  const [ownershipId, setOwnershipId] = useState<string>();
   const [conditionalCostActive, setConditionalCostActive] = useState(false);
-  const [eventStatus, setEventStatus] = useState<EventStatus>(eventWindow ? "unknown" : "active");
   const storageKey = `pokoweek:action-guide:${actionGuide.id}`;
-  const ownershipStorageKey = `${storageKey}:ownership:${actionGuide.ownershipCondition?.id ?? "none"}`;
   const conditionalCostStorageKey = `${storageKey}:conditional-cost:${actionGuide.conditionalCost?.id ?? "none"}`;
 
   useEffect(() => {
@@ -146,17 +140,6 @@ export function PokemonActionGuide({
   }, [storageKey]);
 
   useEffect(() => {
-    if (!actionGuide.ownershipCondition) return;
-    try {
-      const stored = window.localStorage.getItem(ownershipStorageKey) ?? undefined;
-      const valid = actionGuide.ownershipCondition.options.some((option) => option.id === stored);
-      setOwnershipId(valid ? stored : undefined);
-    } catch {
-      setOwnershipId(undefined);
-    }
-  }, [actionGuide.ownershipCondition, ownershipStorageKey]);
-
-  useEffect(() => {
     if (!actionGuide.conditionalCost) return;
     try {
       setConditionalCostActive(window.localStorage.getItem(conditionalCostStorageKey) === "true");
@@ -165,31 +148,21 @@ export function PokemonActionGuide({
     }
   }, [actionGuide.conditionalCost, conditionalCostStorageKey]);
 
-  useEffect(() => {
-    if (!eventWindow) {
-      setEventStatus("active");
-      return;
-    }
-    const now = getAppNow(getDateContextFromSearch(window.location.search)).getTime();
-    const start = new Date(eventWindow.startAt).getTime();
-    const end = new Date(eventWindow.endAt).getTime();
-    setEventStatus(now < start ? "upcoming" : now > end ? "ended" : "active");
-  }, [eventWindow]);
-
   const selectedGoals = useMemo(() => {
     if (selectedGoalId === COMBINED_GOAL_ID) return actionGuide.goals;
     return actionGuide.goals.filter((goal) => goal.id === selectedGoalId);
   }, [actionGuide.goals, selectedGoalId]);
 
   const selectedOwnership = actionGuide.ownershipCondition?.options.find((option) => option.id === ownershipId);
+  const ownershipPresentation = getOwnershipPresentation(selectedOwnership, eventPhase);
   const displayedGoals = useMemo(() => {
     if (!actionGuide.ownershipCondition) return selectedGoals;
     return selectedGoals.map((goal) => ({
       ...goal,
-      steps: selectedOwnership?.steps ?? [],
-      checklist: selectedOwnership?.checklist ?? [],
+      steps: ownershipPresentation?.steps ?? [],
+      checklist: ownershipPresentation?.checklist ?? [],
     }));
-  }, [actionGuide.ownershipCondition, selectedGoals, selectedOwnership]);
+  }, [actionGuide.ownershipCondition, selectedGoals, ownershipPresentation]);
 
   const requirements = useMemo(() => combineRequirements(selectedGoals), [selectedGoals]);
   const checklist = useMemo(() => collectChecklist(displayedGoals), [displayedGoals]);
@@ -207,17 +180,8 @@ export function PokemonActionGuide({
     }
   }
 
-  function selectOwnership(nextId: string) {
-    setOwnershipId(nextId);
-    try {
-      window.localStorage.setItem(ownershipStorageKey, nextId);
-    } catch {
-      // The selection still works for this session when storage is unavailable.
-    }
-  }
-
   function toggleConditionalCost() {
-    if (eventStatus !== "active") return;
+    if (eventPhase !== "active") return;
     const next = !conditionalCostActive;
     setConditionalCostActive(next);
     try {
@@ -229,10 +193,10 @@ export function PokemonActionGuide({
 
   return <section className="decision-guide-board action-guide-board">
     <SectionHeader icon={<TargetIcon />} title={actionGuide.title} />
-    {actionGuide.summary ? <p className="action-guide-summary">{actionGuide.summary}</p> : null}
-    {eventWindow ? <p className={`action-event-status status-${eventStatus}`}>
-      <b>{eventStatus === "active" ? "진행 중" : eventStatus === "upcoming" ? "예정" : eventStatus === "ended" ? "종료됨" : "기간 확인 중"}</b>
-      <span>{eventWindow.label}{eventStatus === "ended" ? " · 아래 보상과 할인은 당시 이벤트 조건입니다." : ""}</span>
+    {(actionGuide.phaseGuidance?.[eventPhase]?.summary ?? actionGuide.summary) ? <p className="action-guide-summary">{actionGuide.phaseGuidance?.[eventPhase]?.summary ?? actionGuide.summary}</p> : null}
+    {eventWindow ? <p className={`action-event-status status-${eventPhase}`}>
+      <b>{actionGuide.phaseGuidance?.[eventPhase]?.statusLabel ?? (eventPhase === "active" ? "진행 중" : eventPhase === "upcoming" ? "예정" : eventPhase === "claim_only" ? "보상 수령 기간" : eventPhase === "ended" ? "종료됨" : "기간 확인 중")}</b>
+      <span>{eventWindow.label}{eventPhase === "claim_only" ? " · 랭크 진행은 끝났고 해금한 보상만 수령할 수 있어요." : eventPhase === "ended" ? " · 보상 수령까지 종료된 지난 이벤트입니다." : ""}</span>
     </p> : null}
 
     {actionGuide.ownershipCondition ? <div className="action-guide-block action-ownership-block">
@@ -243,13 +207,13 @@ export function PokemonActionGuide({
           type="button"
           className={ownershipId === option.id ? "selected" : ""}
           aria-pressed={ownershipId === option.id}
-          onClick={() => selectOwnership(option.id)}
+          onClick={() => onOwnershipChange(option.id)}
         >{option.label}</button>)}
       </div>
-      {selectedOwnership ? <p className="action-ownership-summary"><b>선택한 목표</b>{selectedOwnership.summary}</p> : <div className="action-ownership-options"><p>{actionGuide.ownershipCondition.unselectedDescription}</p>{actionGuide.ownershipCondition.options.map((option) => <p key={option.id}><b>{option.label}</b>{option.summary}</p>)}</div>}
+      {ownershipPresentation ? <p className="action-ownership-summary"><b>선택한 안내</b>{ownershipPresentation.summary}</p> : <div className="action-ownership-options"><p>{actionGuide.ownershipCondition.unselectedDescription}</p>{actionGuide.ownershipCondition.options.map((option) => <p key={option.id}><b>{option.label}</b>{getOwnershipPresentation(option, eventPhase)?.summary ?? option.summary}</p>)}</div>}
     </div> : null}
 
-    <div className="action-goal-selector" role="group" aria-label={copy.selector}>
+    {actionGuide.goals.length > 1 || actionGuide.allowCombinedGoals ? <div className="action-goal-selector" role="group" aria-label={copy.selector}>
       {actionGuide.goals.map((goal) => <button
         className={selectedGoalId === goal.id ? "selected" : ""}
         type="button"
@@ -263,20 +227,20 @@ export function PokemonActionGuide({
         onClick={() => setSelectedGoalId(COMBINED_GOAL_ID)}
         aria-pressed={selectedGoalId === COMBINED_GOAL_ID}
       >둘 다</button> : null}
-    </div>
+    </div> : null}
 
-    <div className="action-guide-block action-requirements-block">
+    {!eventWindow || eventPhase === "active" || eventPhase === "upcoming" || eventPhase === "unknown" ? <div className="action-guide-block action-requirements-block">
       <h3><BagIcon />{copy.requirements}</h3>
       {actionGuide.type === "fusion" ? <p className="action-fusion-requirement-note"><b>중요</b> 얼어붙은세계가 없어도 융합 자체는 가능해요. 아래 준비물과 특별 기술 확인을 구분해 주세요.</p> : null}
       <ul>{requirements.map((requirement) => <RequirementRow requirement={requirement} key={requirementKey(requirement)} />)}</ul>
-      <div className="action-keep-summary">
+      {pokemonRequirements.length > 0 ? <div className="action-keep-summary">
         <b>몇 마리를 남겨야 하나요?</b>
         {pokemonRequirements.map((requirement) => <p key={requirementKey(requirement)}>
           <strong>{getRequirementLabel(requirement)}</strong>
           <span>융합용 {requirement.amount}마리 보관</span>
         </p>)}
-      </div>
-    </div>
+      </div> : null}
+    </div> : null}
 
     {energyRequirements.length > 0 ? <div className="action-guide-block action-raid-estimate">
       <h3><SwordsIcon />예상 레이드 횟수</h3>
@@ -310,14 +274,15 @@ export function PokemonActionGuide({
     {actionGuide.conditionalCost ? <div className="action-guide-block action-conditional-cost-block">
       <h3><BagIcon />{actionGuide.conditionalCost.title}</h3>
       <p>{actionGuide.conditionalCost.description}</p>
-      <button type="button" className={conditionalCostActive && eventStatus === "active" ? "selected" : ""} aria-pressed={conditionalCostActive && eventStatus === "active"} disabled={eventStatus !== "active"} onClick={toggleConditionalCost}>
-        <i>{conditionalCostActive && eventStatus === "active" ? <CheckIcon /> : null}</i><span>{actionGuide.conditionalCost.selectionLabel}</span>
+      <button type="button" className={conditionalCostActive && eventPhase === "active" ? "selected" : ""} aria-pressed={conditionalCostActive && eventPhase === "active"} disabled={eventPhase !== "active"} onClick={toggleConditionalCost}>
+        <i>{conditionalCostActive && eventPhase === "active" ? <CheckIcon /> : null}</i><span>{actionGuide.conditionalCost.selectionLabel}</span>
       </button>
       <div className="conditional-cost-options">
-        <section className={!conditionalCostActive || eventStatus !== "active" ? "selected" : ""}><b>{actionGuide.conditionalCost.baseLabel}</b>{actionGuide.conditionalCost.baseCost.map((cost) => <p key={cost.label}><span>{cost.label}</span><strong>{cost.amount.toLocaleString("ko-KR")}</strong></p>)}</section>
-        <section className={conditionalCostActive && eventStatus === "active" ? "selected" : ""}><b>{actionGuide.conditionalCost.activeLabel}</b>{actionGuide.conditionalCost.activeCost.map((cost) => <p key={cost.label}><span>{cost.label}</span><strong>{cost.amount.toLocaleString("ko-KR")}</strong></p>)}</section>
+        <section className={!conditionalCostActive || eventPhase !== "active" ? "selected" : ""}><b>{actionGuide.conditionalCost.baseLabel}</b>{actionGuide.conditionalCost.baseCost.map((cost) => <p key={cost.label}><span>{cost.label}</span><strong>{cost.amount.toLocaleString("ko-KR")}</strong></p>)}</section>
+        <section className={conditionalCostActive && eventPhase === "active" ? "selected" : ""}><b>{actionGuide.conditionalCost.activeLabel}</b>{actionGuide.conditionalCost.activeCost.map((cost) => <p key={cost.label}><span>{cost.label}</span><strong>{cost.amount.toLocaleString("ko-KR")}</strong></p>)}</section>
       </div>
-      <small>{eventStatus === "ended" ? "이 이벤트 보너스는 종료되어 현재 비용에 적용되지 않아요. " : ""}{actionGuide.conditionalCost.note}</small>
+      <ul className="conditional-cost-facts">{actionGuide.conditionalCost.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
+      <small>{eventPhase === "claim_only" || eventPhase === "ended" ? "랭크 35 이벤트 할인은 현재 적용되지 않아요. " : ""}{actionGuide.conditionalCost.note}</small>
     </div> : null}
 
     {displayedGoals.some((goal) => goal.steps.length > 0) ? <div className="action-guide-block action-flow-block">

@@ -1,7 +1,13 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import type { GuideMode, GuideMoveset, InvestmentLevel, PokemonGuide } from "../_data/guide-data";
 import { crossWeekEvents, eventsById, typeColors } from "../_data/guide-data";
 import { APP_SUBTITLE } from "../_config/app";
+import { getDateContextFromSearch } from "../_lib/internal-url";
+import { derivePokemonGuideView, getActionEventPhase } from "../_lib/pokemon-detail-view-model";
+import { getAppNow } from "../_lib/time";
 import { AppHeader } from "./app-header";
 import { BottomNavigation } from "./bottom-nav";
 import { CategoryBadge, PrimaryCTA, RatingStars, SectionHeader, TypeBadge } from "./design-system";
@@ -191,10 +197,18 @@ export function GuideProgression({ guide }: { guide: PokemonGuide }) {
   </section>;
 }
 
-export function GuideLeagueTargets({ guide }: { guide: PokemonGuide }) {
+export function GuideLeagueTargets({
+  guide,
+  selectedLeague,
+  onSelect,
+}: {
+  guide: PokemonGuide;
+  selectedLeague: "great" | "ultra" | "master";
+  onSelect: (league: "great" | "ultra" | "master") => void;
+}) {
   const targets = guide.pvpLeagueTargets ?? [];
   if (targets.length === 0) return null;
-  return <PokemonLeagueGuide targets={targets} />;
+  return <PokemonLeagueGuide targets={targets} selectedLeague={selectedLeague} onSelect={onSelect} />;
 }
 
 function getActionEventWindow(guide: PokemonGuide) {
@@ -203,7 +217,7 @@ function getActionEventWindow(guide: PokemonGuide) {
   const schedule = crossWeekEvents.find((event) => event.featuredEventId === eventId);
   const event = eventsById[eventId as keyof typeof eventsById];
   if (!schedule?.startAt || !schedule.endAt || !event) return undefined;
-  return { id: eventId, label: event.dateLabel, startAt: schedule.startAt, endAt: schedule.endAt };
+  return { id: eventId, label: event.dateLabel, startAt: schedule.startAt, endAt: schedule.endAt, claimEndAt: guide.actionGuide?.claimEndAt };
 }
 
 export function GuideFusionSummary({ guide }: { guide: PokemonGuide }) {
@@ -246,79 +260,121 @@ export function GuideIvAdvice({ guide }: { guide: PokemonGuide }) {
 }
 
 export function PokemonGuideDetail({ guide }: { guide: PokemonGuide }) {
+  const defaultLeague = guide.pvpLeagueTargets?.[0]?.league ?? "great";
+  const [selectedLeague, setSelectedLeague] = useState<"great" | "ultra" | "master">(defaultLeague);
+  const [ownershipId, setOwnershipId] = useState<string>();
+  const actionEventWindow = getActionEventWindow(guide);
+  const [eventPhase, setEventPhase] = useState<"unknown" | "upcoming" | "active" | "claim_only" | "ended">(actionEventWindow ? "unknown" : "active");
+  const ownershipStorageKey = `pokoweek:action-guide:${guide.actionGuide?.id ?? guide.id}:ownership:${guide.actionGuide?.ownershipCondition?.id ?? "none"}`;
+
+  useEffect(() => {
+    const condition = guide.actionGuide?.ownershipCondition;
+    if (!condition) return;
+    try {
+      const stored = window.localStorage.getItem(ownershipStorageKey) ?? undefined;
+      setOwnershipId(condition.options.some((option) => option.id === stored) ? stored : undefined);
+    } catch {
+      setOwnershipId(undefined);
+    }
+  }, [guide.actionGuide?.ownershipCondition, ownershipStorageKey]);
+
+  useEffect(() => {
+    const now = getAppNow(getDateContextFromSearch(window.location.search));
+    setEventPhase(getActionEventPhase(now, actionEventWindow));
+  }, [actionEventWindow?.startAt, actionEventWindow?.endAt, actionEventWindow?.claimEndAt]);
+
+  function selectOwnership(nextId: string) {
+    setOwnershipId(nextId);
+    try {
+      window.localStorage.setItem(ownershipStorageKey, nextId);
+    } catch {
+      // The selection still works for this session when storage is unavailable.
+    }
+  }
+
+  const contextualGuide = derivePokemonGuideView({ guide, selectedLeague, ownershipId, eventPhase });
   const useCases = modeDefinitions.flatMap((mode) => {
-    const value = guide.useCases?.[mode.key];
+    const value = contextualGuide.useCases?.[mode.key];
     return value ? [{ ...mode, ...value }] : [];
   });
-  const displayedRating = guide.overallRating === undefined ? guide.rating : guide.overallRating;
-  const presentationMode = guide.presentationMode ?? "default";
-  const actionEventWindow = getActionEventWindow(guide);
-  const movesetExclusions: readonly GuideMode[] = guide.pvpLeagueTargets?.length ? ["pvp"] : [];
+  const displayedRating = contextualGuide.overallRating === undefined ? contextualGuide.rating : contextualGuide.overallRating;
+  const presentationMode = contextualGuide.presentationMode ?? "default";
+  const movesetExclusions: readonly GuideMode[] = contextualGuide.pvpLeagueTargets?.length ? ["pvp"] : [];
   const modeSummary = useCases.length > 0 ? <section className={`guide-mode-summary mode-count-${Math.min(useCases.length, 4)}`} aria-label="활용도 요약">{useCases.map((item) => <div key={item.key}><b>{item.label}</b>{item.rating === null ? <span>성능 미평가</span> : <RatingStars value={item.rating} />}</div>)}</section> : null;
   const commonClosingSections = <>
-    <PokemonWeaknessSection guide={guide} />
-    {guide.dataStatus.counters === "ready" ? <PokemonCounterSection guide={guide} /> : null}
-    <GuideIvAdvice guide={guide} />
-    <PokemonWeekSchedule pokemonId={guide.id} />
-    <PokemonRecommendationSection guide={guide} showSummary={false} />
+    <PokemonWeaknessSection guide={contextualGuide} />
+    {contextualGuide.dataStatus.counters === "ready" ? <PokemonCounterSection guide={contextualGuide} /> : null}
+    <GuideIvAdvice guide={contextualGuide} />
+    <PokemonWeekSchedule pokemonId={contextualGuide.id} />
+    <PokemonRecommendationSection guide={contextualGuide} showSummary={false} />
   </>;
+  const actionSection = contextualGuide.actionGuide ? <PokemonActionGuide
+    guideId={contextualGuide.id}
+    actionGuide={contextualGuide.actionGuide}
+    eventWindow={actionEventWindow}
+    eventPhase={eventPhase}
+    ownershipId={ownershipId}
+    onOwnershipChange={selectOwnership}
+  /> : null;
+  const leagueSection = <GuideLeagueTargets guide={contextualGuide} selectedLeague={selectedLeague} onSelect={setSelectedLeague} />;
 
   return <main className="fresh-screen boss-screen generic-guide-screen decision-guide-screen">
     <AppHeader subtitle={APP_SUBTITLE} />
 
     <section className="reference-raid-hero generic-guide-hero decision-guide-hero">
-      <Image className="raid-hero-backdrop" src={guide.heroBackground ?? "/images/events/dialgaraids.jpg"} alt="" fill sizes="430px" priority />
+      <Image className="raid-hero-backdrop" src={contextualGuide.heroBackground ?? "/images/events/dialgaraids.jpg"} alt="" fill sizes="430px" priority />
       <span className="raid-hero-shade" />
       <DetailBackButton />
-      <PokemonArtwork className="guide-hero-art" image={guide.image} alt={guide.image.alt} size="hero" priority />
+      <PokemonArtwork className="guide-hero-art" image={contextualGuide.image} alt={contextualGuide.image.alt} size="hero" priority />
       <div className="raid-hero-copy">
-        <CategoryBadge className="max-label" icon={<SwordsIcon />}>{guide.formName ?? guide.categoryLabel}</CategoryBadge>
-        <h1>{guide.name}</h1>
-        <div className="hero-types">{guide.types.map((type, index) => <span className="type-with-divider" key={type}>{index > 0 ? <em>/</em> : null}<TypeBadge type={type} color={typeColors[type]} /></span>)}</div>
-        {guide.summary ? <p className="hero-decision-summary">{guide.summary}</p> : null}
-        <div className="must-catch"><RatingStars value={displayedRating} /><strong>{guide.verdictLabel ?? guide.reason}</strong></div>
+        <CategoryBadge className="max-label" icon={<SwordsIcon />}>{contextualGuide.formName ?? contextualGuide.categoryLabel}</CategoryBadge>
+        <h1>{contextualGuide.name}</h1>
+        <div className="hero-types">{contextualGuide.types.map((type, index) => <span className="type-with-divider" key={type}>{index > 0 ? <em>/</em> : null}<TypeBadge type={type} color={typeColors[type]} /></span>)}</div>
+        {contextualGuide.summary ? <p className="hero-decision-summary">{contextualGuide.summary}</p> : null}
+        <div className="must-catch"><RatingStars value={displayedRating} /><strong>{contextualGuide.verdictLabel ?? contextualGuide.reason}</strong></div>
       </div>
     </section>
 
     {presentationMode === "fusion-first" ? <>
-      {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} eventWindow={actionEventWindow} /> : null}
+      {actionSection}
       {modeSummary}
-      <GuideUseCases guide={guide} />
-      <GuideMovesets guide={guide} excludeModes={movesetExclusions} />
-      <GuideLeagueTargets guide={guide} />
-      <GuideTrainingOrder guide={guide} />
-      <GuideProgression guide={guide} />
-      <GuideInvestment guide={guide} />
+      <GuideUseCases guide={contextualGuide} />
+      <GuideMovesets guide={contextualGuide} excludeModes={movesetExclusions} />
+      {leagueSection}
+      <GuideTrainingOrder guide={contextualGuide} />
+      <GuideProgression guide={contextualGuide} />
+      <GuideInvestment guide={contextualGuide} />
       {commonClosingSections}
     </> : presentationMode === "training-first" ? <>
-      <GuideTrainingOrder guide={guide} title="지금 가장 먼저 할 일" />
-      <GuideMovesets guide={guide} excludeModes={movesetExclusions} />
-      <GuideLeagueTargets guide={guide} />
-      <GuideProgression guide={guide} />
-      <GuideInvestment guide={guide} />
+      <GuideTrainingOrder guide={contextualGuide} title="지금 가장 먼저 할 일" />
+      <GuideMovesets guide={contextualGuide} excludeModes={movesetExclusions} />
+      {leagueSection}
+      <GuideProgression guide={contextualGuide} />
+      <GuideInvestment guide={contextualGuide} />
+      {actionSection}
       {modeSummary}
-      <GuideUseCases guide={guide} />
+      <GuideUseCases guide={contextualGuide} />
       {commonClosingSections}
-      <GuideFusionSummary guide={guide} />
+      <GuideFusionSummary guide={contextualGuide} />
     </> : presentationMode === "action-first" ? <>
-      {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} eventWindow={actionEventWindow} /> : null}
-      <GuideTrainingOrder guide={guide} title="지금 가장 먼저 할 일" />
-      <GuideMovesets guide={guide} excludeModes={movesetExclusions} />
-      <GuideLeagueTargets guide={guide} />
-      <GuideProgression guide={guide} />
-      <GuideInvestment guide={guide} />
+      {actionSection}
+      <GuideTrainingOrder guide={contextualGuide} title="지금 가장 먼저 할 일" />
+      <GuideMovesets guide={contextualGuide} excludeModes={movesetExclusions} />
+      {leagueSection}
+      <GuideProgression guide={contextualGuide} />
+      <GuideInvestment guide={contextualGuide} />
       {modeSummary}
-      <GuideUseCases guide={guide} />
+      <GuideUseCases guide={contextualGuide} />
       {commonClosingSections}
     </> : <>
       {modeSummary}
-      {guide.actionGuide ? <PokemonActionGuide guideId={guide.id} actionGuide={guide.actionGuide} eventWindow={actionEventWindow} /> : null}
-      <GuideUseCases guide={guide} />
-      <GuideMovesets guide={guide} excludeModes={movesetExclusions} />
-      <GuideLeagueTargets guide={guide} />
-      <GuideTrainingOrder guide={guide} />
-      <GuideProgression guide={guide} />
-      <GuideInvestment guide={guide} />
+      {actionSection}
+      <GuideUseCases guide={contextualGuide} />
+      <GuideMovesets guide={contextualGuide} excludeModes={movesetExclusions} />
+      {leagueSection}
+      <GuideTrainingOrder guide={contextualGuide} />
+      <GuideProgression guide={contextualGuide} />
+      <GuideInvestment guide={contextualGuide} />
       {commonClosingSections}
     </>}
 

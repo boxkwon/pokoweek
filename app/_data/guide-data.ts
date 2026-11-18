@@ -35,6 +35,17 @@ export type GuideMoveset = {
 
 export type GuidePresentationMode = "default" | "fusion-first" | "training-first" | "action-first";
 
+export type GuideContextView = {
+  overallRating?: 1 | 2 | 3 | 4 | 5 | null;
+  verdictLabel?: string;
+  summary?: string;
+  presentationMode?: GuidePresentationMode;
+  order?: readonly { id: string; label: string; reason?: string }[];
+  investment?: Partial<Record<"stardust" | "candy" | "powerUp" | "secondMove" | "maxMove" | "megaEnergy" | "xlCandy" | "rareCandy", InvestmentLevel>>;
+  investmentReasons?: Partial<Record<"stardust" | "candy" | "powerUp" | "secondMove" | "maxMove" | "megaEnergy" | "xlCandy" | "rareCandy", string>>;
+  recommendations?: readonly string[];
+};
+
 export type GuideLeagueTarget = {
   league: "great" | "ultra" | "master";
   label: string;
@@ -48,6 +59,16 @@ export type GuideLeagueTarget = {
   secondMove: { decision: InvestmentLevel; reason: string };
   xlCandy: { decision: InvestmentLevel; reason: string };
   useCase: GuideUseCase;
+  contextView: GuideContextView;
+};
+
+export type ActionEventPhase = "unknown" | "upcoming" | "active" | "claim_only" | "ended";
+
+export type ActionOwnershipPhaseGuidance = {
+  summary: string;
+  steps: readonly ActionStep[];
+  checklist: readonly ActionChecklistItem[];
+  view: GuideContextView;
 };
 
 export type ActionOwnershipOption = {
@@ -56,6 +77,8 @@ export type ActionOwnershipOption = {
   summary: string;
   steps: readonly ActionStep[];
   checklist: readonly ActionChecklistItem[];
+  view: GuideContextView;
+  phaseGuidance?: Partial<Record<"claim_only" | "ended", ActionOwnershipPhaseGuidance>>;
 };
 
 export type ActionOwnershipCondition = {
@@ -74,7 +97,14 @@ export type ActionConditionalCost = {
   activeLabel: string;
   baseCost: readonly { label: string; amount: number }[];
   activeCost: readonly { label: string; amount: number }[];
+  facts: readonly string[];
   note: string;
+};
+
+export type ActionPhaseGuidance = {
+  statusLabel: string;
+  summary: string;
+  view: GuideContextView;
 };
 
 export type MegaRestGuide = {
@@ -197,6 +227,8 @@ export type PokemonActionGuide = {
   defaultGoalId?: string;
   allowCombinedGoals?: boolean;
   eventId?: string;
+  claimEndAt?: string;
+  phaseGuidance?: Partial<Record<ActionEventPhase, ActionPhaseGuidance>>;
   ownershipCondition?: ActionOwnershipCondition;
   conditionalCost?: ActionConditionalCost;
   megaRestGuide?: MegaRestGuide;

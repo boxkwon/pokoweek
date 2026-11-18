@@ -492,6 +492,8 @@ svg { display: block; }
 .action-event-status b { color: #075fc9; }
 .action-event-status.status-ended { border-color: #8793a5; background: #f2f4f7; }
 .action-event-status.status-ended b { color: #52627d; }
+.action-event-status.status-claim_only { border-color: #c27b00; background: #fff8e8; }
+.action-event-status.status-claim_only b { color: #8a5900; }
 .action-goal-selector { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--space-1); padding-bottom: var(--space-3); border-bottom: 1px solid #dce2ea; }
 .action-goal-selector button { min-height: 42px; padding: var(--space-1) var(--space-2); border: 1px solid #cbd4e1; border-radius: var(--radius-sm); background: #f7f9fc; color: #35445c; font: inherit; font-size: 13px; font-weight: 900; }
 .action-goal-selector button.selected { border-color: #075fc9; background: #075fc9; color: #fff; }
@@ -549,6 +551,8 @@ svg { display: block; }
 .conditional-cost-options p { display: flex; justify-content: space-between; gap: var(--space-1); margin: 2px 0 0; color: #35445c; font-size: var(--type-caption); font-weight: 750; }
 .conditional-cost-options strong { color: #075fc9; }
 .action-conditional-cost-block > small { display: block; margin-top: var(--space-2); color: #69758a; font-size: var(--type-caption); font-weight: 750; line-height: 1.45; }
+.conditional-cost-facts { margin: var(--space-2) 0 0; padding: var(--space-2) var(--space-3) var(--space-2) 30px; background: #f2f6fc; color: #35445c; font-size: var(--type-caption); font-weight: 750; line-height: 1.45; }
+.conditional-cost-facts li + li { margin-top: 4px; }
 .action-selection-prompt { margin: var(--space-3) 0 0; padding: var(--space-2) var(--space-3); background: #f2f6fc; color: #52627d; font-size: var(--type-caption); font-weight: 750; line-height: 1.45; }
 .action-goal-flow + .action-goal-flow { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid #dce2ea; }
 .action-goal-flow h4 { margin: 0 0 var(--space-2); color: #075fc9; font-size: var(--type-body); }

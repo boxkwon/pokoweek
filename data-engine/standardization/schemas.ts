@@ -92,6 +92,7 @@ export const StandardizedGuideDatasetSchema = z.object({
         id: z.string().min(1),
         startAt: DateTimeSchema,
         endAt: DateTimeSchema,
+        claimEndAt: DateTimeSchema,
         neverCaughtReward: z.literal("encounter"),
         alreadyCaughtCandy: z.literal(100),
         rank35AdventureEffectDiscount: z.object({
@@ -124,6 +125,16 @@ const GuideMovesetSchema = z.object({
 });
 
 const InvestmentLevelSchema = z.enum(["high", "recommended", "conditional", "hold", "low"]);
+const GuideContextViewSchema = z.object({
+  overallRating: z.number().int().min(1).max(5).nullable().optional(),
+  verdictLabel: z.string().min(1).optional(),
+  summary: z.string().min(1).optional(),
+  presentationMode: z.enum(["training-first", "action-first"]).optional(),
+  order: z.array(z.object({ id: z.string().min(1), label: z.string().min(1), reason: z.string().min(1).optional() })).optional(),
+  investment: z.partialRecord(z.enum(["stardust", "candy", "powerUp", "secondMove", "maxMove", "megaEnergy", "xlCandy", "rareCandy"]), InvestmentLevelSchema).optional(),
+  investmentReasons: z.partialRecord(z.enum(["stardust", "candy", "powerUp", "secondMove", "maxMove", "megaEnergy", "xlCandy", "rareCandy"]), z.string().min(1)).optional(),
+  recommendations: z.array(z.string().min(1)).optional(),
+});
 const PvpLeagueTargetSchema = z.object({
   league: z.enum(["great", "ultra", "master"]),
   label: z.string().min(1),
@@ -137,6 +148,7 @@ const PvpLeagueTargetSchema = z.object({
   secondMove: z.object({ decision: InvestmentLevelSchema, reason: z.string().min(1) }),
   xlCandy: z.object({ decision: InvestmentLevelSchema, reason: z.string().min(1) }),
   useCase: GuideUseCaseSchema,
+  contextView: GuideContextViewSchema,
 });
 
 export const StandardAppGuideProjectionSchema = z.object({
