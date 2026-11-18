@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import type { CSSProperties } from "react";
+import { useEffect, useState } from "react";
 
 export type PokemonImage = {
   src: string;
@@ -28,19 +31,25 @@ export function PokemonArtwork({
   className?: string;
   priority?: boolean;
 }) {
-  if (size === "hero" && !hasRealPokemonArtwork(image)) return null;
+  const [failed, setFailed] = useState(false);
+  useEffect(() => setFailed(false), [image.src]);
+  const displayImage = failed
+    ? { src: "/images/backgrounds/pokemon-placeholder.svg", placeholder: true }
+    : image;
+  if (size === "hero" && (!hasRealPokemonArtwork(image) || failed)) return null;
   const style: ArtworkStyle = {
-    "--art-scale": image.scale ?? 1,
-    "--art-position": image.objectPosition ?? "50% 50%",
+    "--art-scale": displayImage.scale ?? 1,
+    "--art-position": displayImage.objectPosition ?? "50% 50%",
   };
   return (
     <span className={`pokemon-artwork artwork-${size} ${className}`} style={style}>
       <Image
-        src={image.src}
+        src={displayImage.src}
         alt={alt}
         fill
         sizes={size === "hero" ? "280px" : size === "lg" ? "150px" : size === "md" ? "112px" : "72px"}
         priority={priority}
+        onError={() => setFailed(true)}
       />
     </span>
   );

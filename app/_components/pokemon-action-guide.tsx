@@ -256,6 +256,13 @@ export function PokemonActionGuide({
 
     {warnings.length > 0 ? <div className="action-guide-block action-warning-block">
       <h3><TargetIcon />{copy.warnings}</h3>
+      {actionGuide.relatedFormArtwork ? <figure className="action-related-form-artwork">
+        <PokemonArtwork image={actionGuide.relatedFormArtwork.image} alt={actionGuide.relatedFormArtwork.label} size="md" />
+        <figcaption>
+          <strong>{actionGuide.relatedFormArtwork.label}</strong>
+          {actionGuide.relatedFormArtwork.note ? <span>{actionGuide.relatedFormArtwork.note}</span> : null}
+        </figcaption>
+      </figure> : null}
       {warnings.map((warning) => <article className={`warning-${warning.importance}`} key={warning.id}>
         <strong>{warning.title}</strong>
         <p>{warning.description}</p>

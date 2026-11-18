@@ -4,7 +4,7 @@ import path from "node:path";
 import test from "node:test";
 import { applyApprovedGuideOverlays } from "../../app/_data/approved-guide-adapter";
 import { pokemonGuides, type PokemonGuide } from "../../app/_data/guide-data";
-import { derivePokemonGuideView, getActionEventPhase } from "../../app/_lib/pokemon-detail-view-model";
+import { derivePokemonGuideView, getActionEventPhase, getOwnershipPresentation } from "../../app/_lib/pokemon-detail-view-model";
 import { StandardGuideCandidateBundleSchema, StandardizedGuideDatasetSchema } from "../standardization/schemas";
 import { validatePokemonDetailStandardization } from "../standardization/validate";
 
@@ -46,17 +46,26 @@ test("Cresselia league selection derives one coherent hero, order, and investmen
   const base = pokemonGuides.find((guide) => guide.id === "cresselia")!;
   const guide = { ...base, ...projection } as unknown as PokemonGuide;
   const great = derivePokemonGuideView({ guide, selectedLeague: "great", eventPhase: "active" });
-  const master = derivePokemonGuideView({ guide, selectedLeague: "master", eventPhase: "active" });
   const ultra = derivePokemonGuideView({ guide, selectedLeague: "ultra", eventPhase: "active" });
+  const master = derivePokemonGuideView({ guide, selectedLeague: "master", eventPhase: "active" });
+  const greatAgain = derivePokemonGuideView({ guide, selectedLeague: "great", eventPhase: "active" });
   assert.match(great.verdictLabel ?? "", /슈퍼리그/);
   assert.equal(great.investment?.secondMove, "recommended");
+  assert.match(`${great.ivAdvice?.general} ${great.ivAdvice?.pvp}`, /1,500/);
+  assert.match(great.ivAdvice?.pvp ?? "", /낮은 공격 IV/);
+  assert.match(ultra.verdictLabel ?? "", /하이퍼리그/);
+  assert.equal(ultra.investment?.secondMove, "high");
+  assert.match(`${ultra.ivAdvice?.general} ${ultra.ivAdvice?.pvp}`, /2,500/);
+  assert.match(ultra.ivAdvice?.pvp ?? "", /하이퍼리그 기준/);
   assert.match(master.verdictLabel ?? "", /마스터리그/);
   assert.equal(master.investment?.secondMove, "hold");
   assert.equal(master.investment?.xlCandy, "hold");
   assert.equal(master.investment?.stardust, "hold");
   assert.doesNotMatch((master.investment?.order ?? []).map((item) => item.label).join(" "), /CP 상한 직전/);
-  assert.match(ultra.verdictLabel ?? "", /하이퍼리그/);
-  assert.equal(ultra.investment?.secondMove, "high");
+  assert.match(`${master.ivAdvice?.general} ${master.ivAdvice?.pvp}`, /CP 상한이 없|CP 상한 없음/);
+  assert.match(`${master.ivAdvice?.general} ${master.ivAdvice?.pvp}`, /높은 개체값/);
+  assert.doesNotMatch(master.ivAdvice?.pvp ?? "", /낮은 공격 IV가 유리/);
+  assert.deepEqual(greatAgain.ivAdvice, great.ivAdvice);
 });
 
 test("Mega Banette uses verified mega energy and staged investment data", async () => {
@@ -87,7 +96,15 @@ test("Eternatus separates the obtainable Pokemon from the uncatchable Eternamax 
     eventId: string;
     ownershipCondition: { options: { id: string; summary: string; steps: { title: string; description?: string }[] }[] };
     conditionalCost: { baseCost: { label: string; amount: number }[]; activeCost: { label: string; amount: number }[]; note: string; facts: string[] };
+    relatedFormArtwork: { label: string; image: { src: string; placeholder?: boolean }; note: string };
   };
+  assert.equal((guide.image as { src: string }).src, "/images/pokemon/pokemon-official-artwork-890.png");
+  assert.equal(action.relatedFormArtwork.image.src, "/images/pokemon/pokemon-official-artwork-10190.png");
+  assert.notEqual(action.relatedFormArtwork.image.src, (guide.image as { src: string }).src);
+  assert.equal(action.relatedFormArtwork.label, "무한다이맥스 무한다이노");
+  assert.match(action.relatedFormArtwork.note, /포획할 수 없음/);
+  assert.ok((await readFile(path.join(process.cwd(), "public/images/pokemon/pokemon-official-artwork-890.png"))).byteLength > 0);
+  assert.ok((await readFile(path.join(process.cwd(), "public/images/pokemon/pokemon-official-artwork-10190.png"))).byteLength > 0);
   assert.equal(action.eventId, dataset.mechanics.eternatus.event.id);
   assert.deepEqual(action.ownershipCondition.options.map((option) => option.id), ["never-caught", "caught-before"]);
   const caughtBefore = action.ownershipCondition.options.find((option) => option.id === "caught-before")!;
@@ -123,15 +140,43 @@ test("Eternatus ownership and event phase matrix never revives unavailable GO Pa
   const projection = bundle.candidates.find((candidate) => candidate.pokemonId === "eternamax-eternatus")!.guide;
   const base = pokemonGuides.find((guide) => guide.id === "eternamax-eternatus")!;
   const guide = { ...base, ...projection } as unknown as PokemonGuide;
+  const actionGuide = guide.actionGuide!;
+  const neverCaught = actionGuide.ownershipCondition!.options.find((option) => option.id === "never-caught")!;
+  const caughtBefore = actionGuide.ownershipCondition!.options.find((option) => option.id === "caught-before")!;
   for (const ownershipId of [undefined, "never-caught", "caught-before"] as const) {
     const active = derivePokemonGuideView({ guide, ownershipId, eventPhase: "active" });
     const claimOnly = derivePokemonGuideView({ guide, ownershipId, eventPhase: "claim_only" });
     const ended = derivePokemonGuideView({ guide, ownershipId, eventPhase: "ended" });
     assert.match(active.summary ?? "", /GO Pass|랭크/);
     assert.doesNotMatch((claimOnly.investment?.order ?? []).map((item) => item.label).join(" "), /랭크 진행/);
-    assert.equal(ended.presentationMode, "training-first");
-    assert.doesNotMatch(`${ended.summary} ${(ended.investment?.order ?? []).map((item) => item.label).join(" ")}`, /보상 수령|랭크 진행/);
+    assert.equal(ended.presentationMode, ownershipId === "caught-before" ? "training-first" : "action-first");
+    assert.doesNotMatch((ended.investment?.order ?? []).map((item) => item.label).join(" "), /GO Pass 랭크 진행|조우 보상 수령|사탕 100개 수령/);
   }
+  for (const phase of ["active", "claim_only", "ended"] as const) {
+    for (const option of [neverCaught, caughtBefore]) {
+      const presentation = getOwnershipPresentation(option, phase)!;
+      assert.ok(presentation.summary.length > 0);
+      assert.ok(presentation.steps.length > 0);
+      assert.ok(presentation.checklist.length > 0);
+    }
+  }
+  const neverCaughtEndedAction = getOwnershipPresentation(neverCaught, "ended")!;
+  const neverCaughtEndedActionText = JSON.stringify(neverCaughtEndedAction);
+  assert.doesNotMatch(neverCaughtEndedActionText, /보유한 무한다이노 선택|현재 보유 개체 확인|보유 개체의 다이맥스포|Lv\.30|조우 보상 받기|GO Pass 랭크 (?:진행|올리기)/);
+  assert.match(neverCaughtEndedActionText, /다음 공식/);
+  const caughtEndedAction = getOwnershipPresentation(caughtBefore, "ended")!;
+  assert.match(JSON.stringify(caughtEndedAction), /기존 무한다이노/);
+  const neverCaughtEnded = derivePokemonGuideView({ guide, ownershipId: "never-caught", eventPhase: "ended" });
+  const neverCaughtEndedText = `${neverCaughtEnded.summary} ${(neverCaughtEnded.investment?.order ?? []).map((item) => `${item.label} ${item.reason ?? ""}`).join(" ")} ${neverCaughtEnded.recommendations?.join(" ")}`;
+  assert.match(neverCaughtEndedText, /수령 기간이 종료|조우 보상 종료/);
+  assert.match(neverCaughtEndedText, /다음 공식/);
+  assert.doesNotMatch(neverCaughtEndedText, /보유한 무한다이노 선택|보유 개체의|Lv\.30|조우 보상 받기|GO Pass 랭크 (?:진행|올리기)/);
+  assert.equal(neverCaughtEnded.investment?.powerUp, "hold");
+  assert.equal(neverCaughtEnded.investment?.secondMove, "hold");
+  assert.equal(neverCaughtEnded.investment?.xlCandy, "hold");
+  const ownedEnded = derivePokemonGuideView({ guide, ownershipId: "caught-before", eventPhase: "ended" });
+  assert.match((ownedEnded.investment?.order ?? []).map((item) => item.label).join(" "), /기존 무한다이노 선택/);
+  assert.doesNotMatch(`${ownedEnded.summary} ${(ownedEnded.investment?.order ?? []).map((item) => item.label).join(" ")}`, /GO Pass 랭크 진행|조우 보상/);
   const ownedActive = derivePokemonGuideView({ guide, ownershipId: "caught-before", eventPhase: "active" });
   assert.match(ownedActive.verdictLabel ?? "", /사탕 100개/);
   assert.doesNotMatch(ownedActive.verdictLabel ?? "", /본체 확보|조우/);

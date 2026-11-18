@@ -2,9 +2,18 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 
 const root = process.cwd();
-const monthly = JSON.parse(await readFile(join(root, "app/data/generated/monthly-events.json"), "utf8"));
-const bossesSource = await readFile(join(root, "app/data/bosses.ts"), "utf8");
-const pokemonSource = await readFile(join(root, "app/lib/pokemon.ts"), "utf8");
+async function readOptional(relativePath, fallback) {
+  try {
+    return await readFile(join(root, relativePath), "utf8");
+  } catch (error) {
+    if (error?.code === "ENOENT") return fallback;
+    throw error;
+  }
+}
+
+const monthly = JSON.parse(await readOptional("app/data/generated/monthly-events.json", '{"events":[]}'));
+const bossesSource = await readOptional("app/data/bosses.ts", "");
+const pokemonSource = await readOptional("app/lib/pokemon.ts", "");
 
 const pokemonDir = join(root, "public/images/pokemon");
 const eventDir = join(root, "public/images/events");
@@ -27,6 +36,16 @@ for (const match of bossesSource.matchAll(/dex:\s*(\d+)/g)) {
 
 const eventUrls = new Set(monthly.events.map((event) => event.image).filter(Boolean));
 const counterIds = new Set([...pokemonSource.matchAll(/:\s*(\d+),?$/gm)].map((match) => match[1]).filter((value) => Number(value) > 18));
+const curatedPokemonArtwork = [
+  {
+    url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/890.png",
+    filename: "pokemon-official-artwork-890.png",
+  },
+  {
+    url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10190.png",
+    filename: "pokemon-official-artwork-10190.png",
+  },
+];
 
 const typeNames = ["노말", "격투", "비행", "독", "땅", "바위", "벌레", "고스트", "강철", "불꽃", "물", "풀", "전기", "에스퍼", "얼음", "드래곤", "악", "페어리"];
 
@@ -48,6 +67,10 @@ const tasks = [
   ...[...counterIds].map((dex) => ({
     url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${dex}.png`,
     target: join(pokemonDir, `counter-${dex}.png`),
+  })),
+  ...curatedPokemonArtwork.map(({ url, filename }) => ({
+    url,
+    target: join(pokemonDir, filename),
   })),
 ];
 

@@ -1,7 +1,7 @@
 [
   {
     "id": "cresselia",
-    "validationHash": "67e9644855e205b3587a210068e44a261b06a4ea18349748a22adba389e22474",
+    "validationHash": "d48dd4750bd6dacdf57aaa773f33677fd365cd55673a21b29e428308bd4d4a1f",
     "previewOnly": true,
     "guide": {
       "name": "크레세리아",
@@ -181,6 +181,10 @@
               "secondMove": "풀묶기와 문포스를 함께 운용할 때 투자 추천입니다.",
               "xlCandy": "슈퍼리그 목표에서 실제 필요 레벨을 확인하기 전에는 우선순위가 낮습니다."
             },
+            "ivAdvice": {
+              "general": "슈퍼리그 CP 1,500 제한 안에 들어오는 개체인지 먼저 확인하세요.",
+              "pvp": "낮은 공격 IV와 높은 방어·HP가 유리할 수 있지만, 정확한 최적 IV 순위는 리그별 계산기로 확인하세요."
+            },
             "recommendations": [
               "CP 1,500 이하 투입 가능한 개체부터 확인",
               "풀묶기 조건을 확인하고 투입 확정 후 기술 해방",
@@ -277,6 +281,10 @@
               "secondMove": "풀묶기와 문포스를 함께 운용할 경우 적극 투자합니다.",
               "xlCandy": "CP 2,500 도달에 실제로 필요한 개체에만 조건부 투자하세요."
             },
+            "ivAdvice": {
+              "general": "하이퍼리그 CP 2,500 제한과 보유 개체의 강화 미리보기를 함께 확인하세요.",
+              "pvp": "방어·HP 비중이 높은 개체를 우선 검토하되, 슈퍼리그와 같은 최적 IV를 그대로 적용하지 말고 하이퍼리그 기준으로 계산하세요."
+            },
             "recommendations": [
               "하이퍼리그용 개체와 CP 도달 구간 확인",
               "풀묶기 조건 확인 후 기술 해방",
@@ -336,6 +344,10 @@
               "stardust": "검증된 매치업 근거 없이 대량 투자하지 않습니다.",
               "secondMove": "마스터리그 투입이 확정되지 않았다면 보류합니다.",
               "xlCandy": "무제한 CP 육성은 큰 투자가 필요하므로 현재는 보류합니다."
+            },
+            "ivAdvice": {
+              "general": "마스터리그에는 CP 상한이 없으므로 높은 개체값을 우선 검토하세요. 이는 육성 적극 추천을 뜻하지 않습니다.",
+              "pvp": "낮은 공격 IV 권고를 적용하지 않습니다. 다만 현재 성능 근거가 부족해 마스터리그 전용 투자는 계속 보류합니다."
             },
             "recommendations": [
               "마스터리그 전용 강화는 현재 보류",
@@ -417,7 +429,7 @@
   },
   {
     "id": "mega-banette",
-    "validationHash": "67e9644855e205b3587a210068e44a261b06a4ea18349748a22adba389e22474",
+    "validationHash": "d48dd4750bd6dacdf57aaa773f33677fd365cd55673a21b29e428308bd4d4a1f",
     "previewOnly": true,
     "guide": {
       "name": "메가다크펫",
@@ -767,12 +779,18 @@
   },
   {
     "id": "eternamax-eternatus",
-    "validationHash": "67e9644855e205b3587a210068e44a261b06a4ea18349748a22adba389e22474",
+    "validationHash": "d48dd4750bd6dacdf57aaa773f33677fd365cd55673a21b29e428308bd4d4a1f",
     "previewOnly": true,
     "guide": {
       "name": "무한다이노",
       "formName": "무한다이맥스 배틀 연계",
       "heroBackground": "/images/events/dynamax-trails-2026.jpg",
+      "image": {
+        "src": "/images/pokemon/pokemon-official-artwork-890.png",
+        "alt": "일반 무한다이노",
+        "scale": 1.08,
+        "objectPosition": "50% 50%"
+      },
       "overallRating": null,
       "verdict": "conditional",
       "verdictLabel": "포획 이력과 이벤트 상태부터 확인",
@@ -946,6 +964,15 @@
         "defaultGoalId": "eternatus",
         "eventId": "dynamax-trails-2026",
         "claimEndAt": "2026-11-25T20:00:00+09:00",
+        "relatedFormArtwork": {
+          "label": "무한다이맥스 무한다이노",
+          "image": {
+            "src": "/images/pokemon/pokemon-official-artwork-10190.png",
+            "scale": 1,
+            "objectPosition": "50% 50%"
+          },
+          "note": "맥스배틀 보스 형태 · 배틀 후 포획할 수 없음"
+        },
         "phaseGuidance": {
           "active": {
             "statusLabel": "랭크 진행 가능",
@@ -1021,42 +1048,32 @@
           },
           "ended": {
             "statusLabel": "지난 이벤트",
-            "summary": "GO Pass 랭크 진행과 보상 수령이 모두 종료됐습니다. 아래에는 당시 조건을 기록으로 남기고, 현재는 보유한 무한다이노 육성을 우선 안내합니다.",
+            "summary": "GO Pass 랭크 진행과 보상 수령이 모두 종료됐습니다. 이전 포획 이력을 선택하면 현재 가능한 행동을 구분해 안내합니다.",
             "view": {
-              "verdictLabel": "보유한 무한다이노 육성 여부 판단",
-              "summary": "Dynamax Trails 보상 기간은 끝났어요. 현재 보유한 무한다이노의 기술과 자원을 확인해 일반 육성 가이드로 활용하세요.",
-              "presentationMode": "training-first",
+              "verdictLabel": "지난 GO Pass 종료 · 포획 이력 확인",
+              "summary": "Dynamax Trails 보상 기간은 끝났어요. 이전 포획 이력을 선택해 보유 개체 육성 또는 다음 공식 획득 일정 확인 중 맞는 행동을 확인하세요.",
+              "presentationMode": "action-first",
               "order": [
                 {
-                  "id": "ended-choose-owned",
-                  "label": "보유한 무한다이노 선택",
-                  "reason": "지난 GO Pass 보상은 더 이상 현재 행동이 아닙니다."
+                  "id": "ended-select-history",
+                  "label": "이전 포획 이력 확인",
+                  "reason": "현재 가능한 행동은 과거 포획 여부에 따라 달라집니다."
                 },
                 {
-                  "id": "ended-check-cannon",
-                  "label": "다이맥스포 보유 여부 확인",
-                  "reason": "필드 효과를 사용할 개체라면 기술 변경 전에 확인합니다."
+                  "id": "ended-no-reward",
+                  "label": "지난 GO Pass 보상 종료 확인",
+                  "reason": "랭크 진행과 보상 수령은 모두 끝났습니다."
                 },
                 {
-                  "id": "ended-check-cost",
-                  "label": "게임에서 실제 강화 비용 확인",
-                  "reason": "종별 비용을 확인하고 과투자를 피합니다."
-                },
-                {
-                  "id": "ended-power-30",
-                  "label": "실사용 목적이 있으면 Lv.30 검토",
-                  "reason": "사용 빈도를 확인한 뒤 다음 단계로 넘어갑니다."
-                },
-                {
-                  "id": "ended-long-term",
-                  "label": "장기 주력일 때만 XL 투자",
-                  "reason": "Lv.40 이후는 자원 부담이 큰 장기 투자입니다."
+                  "id": "ended-next-action",
+                  "label": "포획 이력에 맞는 다음 행동 확인",
+                  "reason": "미포획자는 다음 공식 일정, 기존 포획자는 보유 개체 육성을 확인합니다."
                 }
               ],
               "recommendations": [
                 "지난 GO Pass 보상은 현재 획득 경로가 아님",
-                "보유 개체의 다이맥스포와 강화 비용 확인",
-                "Lv.30부터 사용성을 확인하고 XL은 장기 주력일 때만 투자"
+                "포획 이력을 선택해 현재 가능한 행동 구분",
+                "새 공식 획득 일정은 POKOWEEK 일정에서 확인"
               ]
             }
           }
@@ -1208,44 +1225,67 @@
                   }
                 },
                 "ended": {
-                  "summary": "조우 보상 수령 기한도 종료됐어요. 지금은 보유한 무한다이노의 기술과 육성 상태를 확인하세요.",
+                  "summary": "이번 GO Pass의 무한다이노 조우 보상 수령 기간이 종료됐습니다. 현재 확인된 새 획득 경로는 없으며 다음 공식 일정을 확인하세요.",
                   "steps": [
                     {
-                      "id": "new-ended-owned",
-                      "title": "현재 보유 개체 확인",
-                      "description": "지난 이벤트 조우를 현재 획득 경로로 안내하지 않습니다."
+                      "id": "new-ended-expired",
+                      "title": "이번 GO Pass 보상 기간 종료 확인",
+                      "description": "랭크 진행과 조우 보상 수령을 지금 새로 시작할 수 없습니다."
                     },
                     {
-                      "id": "new-ended-move",
-                      "title": "다이맥스포 보유 여부 확인",
-                      "description": "기술 변경 전에 확인합니다."
-                    },
-                    {
-                      "id": "new-ended-power",
-                      "title": "실사용 목적에 맞춰 단계 육성",
-                      "description": "Lv.30부터 사용성을 확인합니다."
+                      "id": "new-ended-next-event",
+                      "title": "다음 공식 획득 일정 확인",
+                      "description": "새 획득 이벤트가 공식 발표되면 POKOWEEK 일정에서 확인하세요."
                     }
                   ],
                   "checklist": [
                     {
-                      "id": "new-ended-move-check",
-                      "label": "보유 개체의 다이맥스포를 확인했나요?",
+                      "id": "new-ended-expired-check",
+                      "label": "지난 GO Pass의 보상 기간이 종료된 것을 확인했나요?",
                       "severity": "high"
                     },
                     {
-                      "id": "new-ended-cost-check",
-                      "label": "게임에서 실제 강화 비용을 확인했나요?",
+                      "id": "new-ended-schedule-check",
+                      "label": "다음 공식 획득 일정이 공개됐는지 확인했나요?",
                       "severity": "medium"
                     }
                   ],
                   "view": {
-                    "verdictLabel": "보유한 무한다이노 육성 판단",
-                    "summary": "지난 GO Pass 조우 보상은 종료됐어요. 현재 보유한 개체가 있다면 기술과 자원을 확인해 육성하세요.",
-                    "presentationMode": "training-first",
+                    "verdictLabel": "이번 GO Pass 조우 보상 종료",
+                    "summary": "이번 GO Pass의 무한다이노 조우 보상 수령 기간이 종료됐습니다. 현재 확인되지 않은 획득 경로를 안내하지 않으며 다음 공식 일정을 확인하세요.",
+                    "presentationMode": "action-first",
+                    "order": [
+                      {
+                        "id": "new-ended-confirm",
+                        "label": "이번 GO Pass 보상 종료 확인",
+                        "reason": "랭크 진행과 조우 보상 수령을 지금 시작할 수 없습니다."
+                      },
+                      {
+                        "id": "new-ended-watch",
+                        "label": "다음 공식 획득 일정 확인",
+                        "reason": "확인되지 않은 획득 경로를 임의로 안내하지 않습니다."
+                      }
+                    ],
+                    "investment": {
+                      "powerUp": "hold",
+                      "stardust": "hold",
+                      "candy": "hold",
+                      "secondMove": "hold",
+                      "xlCandy": "hold",
+                      "rareCandy": "hold"
+                    },
+                    "investmentReasons": {
+                      "powerUp": "현재 육성할 무한다이노가 없으므로 다음 공식 획득 기회 전까지 보류하세요.",
+                      "stardust": "보유 개체가 없으므로 다른 확정 전력에 우선 사용하세요.",
+                      "candy": "현재 획득 경로가 확인되지 않아 투자 대상으로 잡지 않습니다.",
+                      "secondMove": "보유 개체가 없으므로 기술 해방 투자를 시작하지 않습니다.",
+                      "xlCandy": "보유 개체와 사용 목적이 모두 확인되기 전까지 보류하세요.",
+                      "rareCandy": "새 획득 일정이 확인되기 전에는 다른 확정 전력에 우선 사용하세요."
+                    },
                     "recommendations": [
                       "지난 조우 보상은 현재 획득 불가",
-                      "보유 개체의 다이맥스포 확인",
-                      "Lv.30부터 단계 육성"
+                      "보유 개체를 전제로 한 강화 안내를 적용하지 않음",
+                      "다음 공식 획득 일정은 POKOWEEK 일정에서 확인"
                     ]
                   }
                 }
@@ -1432,6 +1472,33 @@
                     "verdictLabel": "기존 무한다이노 육성 판단",
                     "summary": "지난 GO Pass 사탕 보상은 종료됐어요. 기존 무한다이노의 기술과 자원을 확인해 육성 여부를 결정하세요.",
                     "presentationMode": "training-first",
+                    "order": [
+                      {
+                        "id": "owned-ended-select-order",
+                        "label": "육성할 기존 무한다이노 선택",
+                        "reason": "지난 GO Pass 보상은 더 이상 현재 행동이 아닙니다."
+                      },
+                      {
+                        "id": "owned-ended-move-order",
+                        "label": "다이맥스포 보유 여부 확인",
+                        "reason": "필드 효과를 사용할 개체라면 기술 변경 전에 확인합니다."
+                      },
+                      {
+                        "id": "owned-ended-cost-order",
+                        "label": "게임에서 실제 강화 비용 확인",
+                        "reason": "종별 비용을 확인하고 과투자를 피합니다."
+                      },
+                      {
+                        "id": "owned-ended-power-order",
+                        "label": "실사용 목적이 있으면 Lv.30 검토",
+                        "reason": "사용 빈도를 확인한 뒤 다음 단계로 넘어갑니다."
+                      },
+                      {
+                        "id": "owned-ended-xl-order",
+                        "label": "장기 주력일 때만 XL 투자",
+                        "reason": "Lv.40 이후는 자원 부담이 큰 장기 투자입니다."
+                      }
+                    ],
                     "recommendations": [
                       "지난 사탕 100개 보상은 현재 수령 불가",
                       "기존 개체의 다이맥스포 확인",

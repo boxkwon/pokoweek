@@ -45,6 +45,7 @@ function applyContextView(guide: PokemonGuide, view?: GuideContextView): Pokemon
     presentationMode: view.presentationMode ?? guide.presentationMode,
     investment,
     investmentReasons: view.investmentReasons ? { ...guide.investmentReasons, ...view.investmentReasons } : guide.investmentReasons,
+    ivAdvice: view.ivAdvice ?? guide.ivAdvice,
     recommendations: view.recommendations ?? guide.recommendations,
   };
 }

@@ -125,6 +125,14 @@ const GuideMovesetSchema = z.object({
 });
 
 const InvestmentLevelSchema = z.enum(["high", "recommended", "conditional", "hold", "low"]);
+const GuideIvAdviceSchema = z.partialRecord(z.enum(["general", "raid", "mega", "max", "pvp"]), z.string().min(1));
+const PokemonImageSchema = z.object({
+  src: z.string().min(1),
+  alt: z.string().min(1),
+  scale: z.number().positive().optional(),
+  objectPosition: z.string().min(1).optional(),
+  placeholder: z.boolean().optional(),
+});
 const GuideContextViewSchema = z.object({
   overallRating: z.number().int().min(1).max(5).nullable().optional(),
   verdictLabel: z.string().min(1).optional(),
@@ -133,6 +141,7 @@ const GuideContextViewSchema = z.object({
   order: z.array(z.object({ id: z.string().min(1), label: z.string().min(1), reason: z.string().min(1).optional() })).optional(),
   investment: z.partialRecord(z.enum(["stardust", "candy", "powerUp", "secondMove", "maxMove", "megaEnergy", "xlCandy", "rareCandy"]), InvestmentLevelSchema).optional(),
   investmentReasons: z.partialRecord(z.enum(["stardust", "candy", "powerUp", "secondMove", "maxMove", "megaEnergy", "xlCandy", "rareCandy"]), z.string().min(1)).optional(),
+  ivAdvice: GuideIvAdviceSchema.optional(),
   recommendations: z.array(z.string().min(1)).optional(),
 });
 const PvpLeagueTargetSchema = z.object({
@@ -155,6 +164,7 @@ export const StandardAppGuideProjectionSchema = z.object({
   name: z.string().min(1).optional(),
   formName: z.string().min(1).optional(),
   heroBackground: z.string().min(1).optional(),
+  image: PokemonImageSchema.optional(),
   overallRating: z.number().int().min(1).max(5).nullable(),
   verdict: z.enum(["must_build", "recommended", "conditional", "hold", "low_priority"]),
   verdictLabel: z.string().min(1),
@@ -167,7 +177,7 @@ export const StandardAppGuideProjectionSchema = z.object({
   investmentReasons: z.record(z.string(), z.string()).optional(),
   progression: z.unknown().optional(),
   pvpLeagueTargets: z.array(PvpLeagueTargetSchema).optional(),
-  ivAdvice: z.record(z.string(), z.string()),
+  ivAdvice: GuideIvAdviceSchema,
   weaknesses: z.array(z.object({ type: z.string().min(1), multiplier: z.number().positive().optional() })),
   counters: z.array(z.record(z.string(), z.unknown())),
   counterRankingMode: z.enum(["ranked", "examples"]).optional(),

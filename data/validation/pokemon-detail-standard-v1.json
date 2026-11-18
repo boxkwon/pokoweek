@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-18T07:32:33.355Z",
+  "generatedAt": "2026-11-18T23:05:37.495Z",
   "datasetHash": "50945b8219907dffa83d145c75a521dbfa34bfbf8159194a0f899d2eba2cf2cd",
-  "candidateHash": "e3d967a6a48867678d60a1c171b8a134281b8a9d5b350569c97dadd9f287e041",
-  "validationHash": "0e8a729046c26293c31f2557f3351a36d65752f64f4147f6986c1c0ab681724a",
+  "candidateHash": "fcea3c3d66975970712de19c85fd6a8bac514f110109519787001f62ee7753c0",
+  "validationHash": "e147b539804f020ca3f55a7a5814304db3308ff538c3860a8aea26d849b05dbb",
   "schemaValid": true,
   "issues": [],
   "editorialReadiness": [

@@ -34,6 +34,13 @@ export type GuideMoveset = {
 };
 
 export type GuidePresentationMode = "default" | "fusion-first" | "training-first" | "action-first";
+export type GuideIvAdvice = {
+  general?: string;
+  raid?: string;
+  mega?: string;
+  max?: string;
+  pvp?: string;
+};
 
 export type GuideContextView = {
   overallRating?: 1 | 2 | 3 | 4 | 5 | null;
@@ -43,6 +50,7 @@ export type GuideContextView = {
   order?: readonly { id: string; label: string; reason?: string }[];
   investment?: Partial<Record<"stardust" | "candy" | "powerUp" | "secondMove" | "maxMove" | "megaEnergy" | "xlCandy" | "rareCandy", InvestmentLevel>>;
   investmentReasons?: Partial<Record<"stardust" | "candy" | "powerUp" | "secondMove" | "maxMove" | "megaEnergy" | "xlCandy" | "rareCandy", string>>;
+  ivAdvice?: GuideIvAdvice;
   recommendations?: readonly string[];
 };
 
@@ -232,6 +240,11 @@ export type PokemonActionGuide = {
   ownershipCondition?: ActionOwnershipCondition;
   conditionalCost?: ActionConditionalCost;
   megaRestGuide?: MegaRestGuide;
+  relatedFormArtwork?: {
+    label: string;
+    image: PokemonImage;
+    note?: string;
+  };
   goals: readonly ActionGoal[];
   source?: {
     name: string;
@@ -282,13 +295,7 @@ export type PokemonGuide = {
   pvpLeagueTargets?: readonly GuideLeagueTarget[];
   fusionSummary?: GuideFusionSummary;
   counterRankingMode?: "ranked" | "examples";
-  ivAdvice?: {
-    general?: string;
-    raid?: string;
-    mega?: string;
-    max?: string;
-    pvp?: string;
-  };
+  ivAdvice?: GuideIvAdvice;
   weaknesses: readonly { type: PokemonType; multiplier?: number }[];
   counters: readonly {
     pokemonId: string;
@@ -428,8 +435,8 @@ const guideHref = (id: string) => `/pokemon/${id}`;
 
 export const pokemonArtworkAssets = {
   kyurem: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%", placeholder: true },
-  eternatus: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%", placeholder: true },
-  eternamaxEternatus: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%", placeholder: true },
+  eternatus: { src: "/images/pokemon/pokemon-official-artwork-890.png", scale: 1.08, objectPosition: "50% 50%" },
+  eternamaxEternatus: { src: "/images/pokemon/pokemon-official-artwork-10190.png", scale: 1, objectPosition: "50% 50%" },
 } satisfies Record<"kyurem" | "eternatus" | "eternamaxEternatus", PokemonImage>;
 
 export const pokemon = {

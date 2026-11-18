@@ -118,8 +118,8 @@ function checkTargetRules(candidate: StandardGuideCandidate, dataset: ReturnType
     if (targets.some((target) => !target.ivDirection || !target.powerUpTarget || !target.secondMove || !target.xlCandy || !target.useCase)) {
       issues.push({ pokemonId: candidate.pokemonId, code: "league_decision_incomplete", message: "리그별 개체·강화·해방·XL·활용도 판단이 모두 필요합니다.", severity: "error" });
     }
-    if (targets.some((target) => !target.contextView.order?.length || !target.contextView.investment?.stardust || !target.contextView.investment?.secondMove || !target.contextView.investment?.xlCandy)) {
-      issues.push({ pokemonId: candidate.pokemonId, code: "league_context_incomplete", message: "리그 선택이 Hero·육성 순서·별의모래·해방·XL 판단을 함께 변경해야 합니다.", severity: "error" });
+    if (targets.some((target) => !target.contextView.order?.length || !target.contextView.investment?.stardust || !target.contextView.investment?.secondMove || !target.contextView.investment?.xlCandy || !target.contextView.ivAdvice?.general || !target.contextView.ivAdvice?.pvp)) {
+      issues.push({ pokemonId: candidate.pokemonId, code: "league_context_incomplete", message: "리그 선택이 Hero·육성 순서·개체 선택·별의모래·해방·XL 판단을 함께 변경해야 합니다.", severity: "error" });
     }
     if (master?.contextView.investment?.secondMove !== "hold" || master.contextView.investment?.xlCandy !== "hold" || master.contextView.investment?.stardust !== "hold") {
       issues.push({ pokemonId: candidate.pokemonId, code: "master_investment_conflict", message: "Master League 보류 판단이 전체 투자 상태와 일치하지 않습니다.", severity: "error" });
@@ -146,14 +146,15 @@ function checkTargetRules(candidate: StandardGuideCandidate, dataset: ReturnType
       ownershipCondition?: { options?: { id?: string; summary?: string; steps?: { title?: string; description?: string }[]; checklist?: unknown[]; view?: unknown; phaseGuidance?: Record<string, unknown> }[] };
       conditionalCost?: { baseCost?: { label?: string; amount?: number }[]; activeCost?: { label?: string; amount?: number }[]; facts?: string[]; note?: string };
       goals?: { warnings?: { title?: string; description?: string }[] }[];
+      relatedFormArtwork?: { label?: string; image?: { src?: string; placeholder?: boolean }; note?: string };
     } | undefined;
     if (action?.type !== "max_upgrade") issues.push({ pokemonId: candidate.pokemonId, code: "invalid_special_action", message: "특수 콘텐츠 Action Guide가 필요합니다.", severity: "error" });
     const warningText = action?.goals?.[0]?.warnings?.map((warning) => `${warning.title ?? ""} ${warning.description ?? ""}`).join(" ") ?? "";
     if (!warningText.includes("포획할 수 없")) issues.push({ pokemonId: candidate.pokemonId, code: "missing_uncatchable_warning", message: "무한다이맥스 보스가 포획 대상이 아니라는 안내가 없습니다.", severity: "error" });
     if (action?.eventId !== dataset.mechanics.eternatus.event.id) issues.push({ pokemonId: candidate.pokemonId, code: "event_link_mismatch", message: "Action Guide가 정규화된 Event ID와 연결되지 않았습니다.", severity: "error" });
     if (action?.claimEndAt !== dataset.mechanics.eternatus.event.claimEndAt) issues.push({ pokemonId: candidate.pokemonId, code: "claim_deadline_mismatch", message: "보상 수령 종료 시각이 정규화 사실과 일치하지 않습니다.", severity: "error" });
-    if (!action?.phaseGuidance?.active || !action.phaseGuidance.claim_only || !action.phaseGuidance.ended || action.phaseGuidance.ended.view?.presentationMode !== "training-first") {
-      issues.push({ pokemonId: candidate.pokemonId, code: "event_phase_guidance_incomplete", message: "진행·수령·종료 단계별 행동과 종료 후 상시 육성 우선순위가 필요합니다.", severity: "error" });
+    if (!action?.phaseGuidance?.active || !action.phaseGuidance.claim_only || !action.phaseGuidance.ended || action.phaseGuidance.ended.view?.presentationMode !== "action-first") {
+      issues.push({ pokemonId: candidate.pokemonId, code: "event_phase_guidance_incomplete", message: "진행·수령·종료 단계별 행동과 종료 후 포획 이력 선택 안내가 필요합니다.", severity: "error" });
     }
     const ownershipOptions = action?.ownershipCondition?.options ?? [];
     const neverCaught = ownershipOptions.find((option) => option.id === "never-caught");
@@ -161,6 +162,10 @@ function checkTargetRules(candidate: StandardGuideCandidate, dataset: ReturnType
     if (!neverCaught || !caughtBefore) issues.push({ pokemonId: candidate.pokemonId, code: "ownership_branch_missing", message: "미포획·기존 포획 보상 분기가 모두 필요합니다.", severity: "error" });
     if ([neverCaught, caughtBefore].some((option) => !option?.view || !option?.phaseGuidance?.claim_only || !option?.phaseGuidance?.ended)) {
       issues.push({ pokemonId: candidate.pokemonId, code: "ownership_phase_matrix_incomplete", message: "각 포획 이력에 진행·수령·종료 안내가 모두 필요합니다.", severity: "error" });
+    }
+    const neverCaughtEnded = JSON.stringify(neverCaught?.phaseGuidance?.ended ?? {});
+    if (/보유한 무한다이노 선택|현재 보유 개체 확인|보유 개체의 다이맥스포|단계 육성|Lv\.30|조우 보상 받기|GO Pass 랭크 (?:진행|올리기)/.test(neverCaughtEnded)) {
+      issues.push({ pokemonId: candidate.pokemonId, code: "expired_never_caught_action_invalid", message: "종료 후 미포획자에게 보유 개체·강화·GO Pass 진행을 현재 행동으로 안내하면 안 됩니다.", severity: "error" });
     }
     const caughtCopy = JSON.stringify(caughtBefore ?? {});
     const promisesEncounterReward = /(?:신규\s*)?조우\s*보상\s*(?:받기|수령|획득)/.test(caughtCopy);
@@ -181,6 +186,13 @@ function checkTargetRules(candidate: StandardGuideCandidate, dataset: ReturnType
     }
     const progression = guide.progression as { costStatus?: string } | undefined;
     if (progression?.costStatus !== "check_in_game") issues.push({ pokemonId: candidate.pokemonId, code: "unverified_cost_exposed", message: "미검증 종별 강화 비용은 게임 내 확인 상태로 남겨야 합니다.", severity: "error" });
+    const guideImage = guide.image as { src?: string; placeholder?: boolean } | undefined;
+    if (!guideImage?.src?.includes("pokemon-official-artwork-890.png") || guideImage.placeholder === true) {
+      issues.push({ pokemonId: candidate.pokemonId, code: "eternatus_artwork_missing", message: "Hero에는 일반 무한다이노 전용 로컬 아트워크가 필요합니다.", severity: "error" });
+    }
+    if (!action?.relatedFormArtwork?.image?.src?.includes("pokemon-official-artwork-10190.png") || action.relatedFormArtwork.image.placeholder === true || action.relatedFormArtwork.image.src === guideImage?.src) {
+      issues.push({ pokemonId: candidate.pokemonId, code: "eternamax_artwork_missing", message: "무한다이맥스 보스는 일반 무한다이노와 다른 전용 로컬 아트워크가 필요합니다.", severity: "error" });
+    }
   }
 }
 
