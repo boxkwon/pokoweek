@@ -312,7 +312,7 @@ test("Eternatus progression card renders CP as reference without a recommendatio
   assert.doesNotMatch(caughtBeforeMarkup, /획득 후 강화 참고/);
 });
 
-test("candidate overlays are Preview-only and never replace Production guides", { concurrency: false }, () => {
+test("Production ignores the candidate flag and uses only the approved standard guide", { concurrency: false }, () => {
   const previousFlag = process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES;
   const previousVercelEnv = process.env.VERCEL_ENV;
   try {
@@ -322,8 +322,12 @@ test("candidate overlays are Preview-only and never replace Production guides", 
     assert.notEqual(previewGuide.reason, "legacy");
 
     process.env.VERCEL_ENV = "production";
-    const [productionGuide] = applyApprovedGuideOverlays([{ id: "cresselia", reason: "legacy" }]);
-    assert.equal(productionGuide.reason, "legacy");
+    const [productionWithCandidateFlag] = applyApprovedGuideOverlays([{ id: "cresselia", reason: "legacy" }]);
+    process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES = "false";
+    const [productionWithoutCandidateFlag] = applyApprovedGuideOverlays([{ id: "cresselia", reason: "legacy" }]);
+    assert.notEqual(productionWithCandidateFlag.reason, "legacy");
+    assert.equal(productionWithCandidateFlag.reason, productionWithoutCandidateFlag.reason);
+    assert.equal(productionWithoutCandidateFlag.reason, "PvP 목표가 있으면 육성");
   } finally {
     process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES = previousFlag;
     process.env.VERCEL_ENV = previousVercelEnv;
