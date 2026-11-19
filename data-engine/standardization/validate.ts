@@ -1,5 +1,7 @@
+import path from "node:path";
 import { readJson } from "../lib/files";
 import { sha256 } from "../lib/hash";
+import { dataRoot } from "../lib/paths";
 import { EvidenceRegistrySchema, type EvidenceRegistry } from "../schemas";
 import {
   StandardGuideCandidateBundleSchema,
@@ -12,13 +14,19 @@ import {
 
 const TARGETS = ["cresselia", "mega-banette", "eternamax-eternatus"] as const satisfies readonly StandardGuidePokemonId[];
 
-export const standardizationPaths = {
-  dataset: "data/normalized/pokemon-detail-standard-v1.json",
-  candidates: "data/candidates/pokemon-detail-standard-v1.json",
-  evidence: "data/evidence/registry.json",
-  validation: "data/validation/pokemon-detail-standard-v1.json",
-  preview: "data/preview/pokemon-detail-standard-overlays.json",
-} as const;
+export function getStandardizationPaths(root = dataRoot) {
+  return {
+    dataset: path.join(root, "normalized", "pokemon-detail-standard-v1.json"),
+    candidates: path.join(root, "candidates", "pokemon-detail-standard-v1.json"),
+    evidence: path.join(root, "evidence", "registry.json"),
+    validation: path.join(root, "validation", "pokemon-detail-standard-v1.json"),
+    preview: path.join(root, "preview", "pokemon-detail-standard-overlays.json"),
+    approval: path.join(root, "manifests", "pokemon-detail-standard-v1-approved.json"),
+    approvedOverlays: path.join(root, "approved", "app-guide-overlays.json"),
+  } as const;
+}
+
+export const standardizationPaths = getStandardizationPaths();
 
 type Issue = {
   pokemonId?: StandardGuidePokemonId;
@@ -206,11 +214,12 @@ function checkTargetRules(candidate: StandardGuideCandidate, dataset: ReturnType
   }
 }
 
-export async function validatePokemonDetailStandardization() {
+export async function validatePokemonDetailStandardization(options: { dataRoot?: string } = {}) {
+  const paths = getStandardizationPaths(options.dataRoot);
   const issues: Issue[] = [];
-  const dataset = StandardizedGuideDatasetSchema.parse(await readJson(standardizationPaths.dataset));
-  const bundle = StandardGuideCandidateBundleSchema.parse(await readJson(standardizationPaths.candidates));
-  const registry = EvidenceRegistrySchema.parse(await readJson(standardizationPaths.evidence));
+  const dataset = StandardizedGuideDatasetSchema.parse(await readJson(paths.dataset));
+  const bundle = StandardGuideCandidateBundleSchema.parse(await readJson(paths.candidates));
+  const registry = EvidenceRegistrySchema.parse(await readJson(paths.evidence));
 
   if (bundle.sourceSnapshotHash !== dataset.sourceSnapshotHash) {
     issues.push({ code: "snapshot_mismatch", message: "후보와 정규화 데이터의 snapshot hash가 다릅니다.", severity: "error" });

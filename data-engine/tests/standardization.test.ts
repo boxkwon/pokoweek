@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { cp, mkdtemp, readFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { createElement } from "react";
@@ -9,10 +10,35 @@ import { applyApprovedGuideOverlays } from "../../app/_data/approved-guide-adapt
 import { pokemonGuides, type PokemonGuide } from "../../app/_data/guide-data";
 import { derivePokemonGuideView, getActionEventPhase, getOwnershipPresentation } from "../../app/_lib/pokemon-detail-view-model";
 import { StandardGuideCandidateBundleSchema, StandardizedGuideDatasetSchema } from "../standardization/schemas";
+import { approveStandardGuides, planStandardGuideApproval, publishStandardGuides, STANDARD_GUIDE_TARGETS, standardValidationFingerprint } from "../standardization/release";
 import { validatePokemonDetailStandardization } from "../standardization/validate";
+import { sha256 } from "../lib/hash";
+import { writeJsonAtomic } from "../lib/files";
 
 async function readFixture(file: string) {
   return JSON.parse(await readFile(path.join(process.cwd(), file), "utf8"));
+}
+
+const QA_COMMIT = "6357fc35735f1784e529e9e2fc9690eeb04bec73";
+
+async function createIsolatedDataRoot() {
+  const root = await mkdtemp(path.join(tmpdir(), "pokoweek-standard-release-"));
+  for (const directory of ["normalized", "candidates", "evidence", "preview", "approved"]) {
+    await cp(path.join(process.cwd(), "data", directory), path.join(root, directory), { recursive: true });
+  }
+  return root;
+}
+
+async function approvalOptions(dataRoot: string) {
+  const { report } = await validatePokemonDetailStandardization({ dataRoot });
+  return {
+    reviewer: "boxkwon",
+    qaCommitSha: QA_COMMIT,
+    expectedCandidateHash: report.candidateHash,
+    targets: STANDARD_GUIDE_TARGETS,
+    dataRoot,
+    approvedAt: "2026-11-19T01:00:00.000Z",
+  } as const;
 }
 
 test("standardization candidates remain pending and cover exactly the three requested Pokemon", async () => {
@@ -29,6 +55,78 @@ test("standardization validator accepts evidence, moves, and editorial answerabi
   assert.equal(report.approvalPerformed, false);
   assert.equal(report.publicationPerformed, false);
 });
+
+test("standardization approval accepts only the explicit three-Pokemon allowlist and final QA hashes", async () => {
+  const dataRoot = await createIsolatedDataRoot();
+  const options = await approvalOptions(dataRoot);
+  const plan = await planStandardGuideApproval(options);
+  assert.deepEqual([...plan.manifest.targets].sort(), [...STANDARD_GUIDE_TARGETS].sort());
+  assert.equal(plan.manifest.candidateHash, options.expectedCandidateHash);
+  assert.equal(plan.manifest.validationHash, standardValidationFingerprint(plan.report));
+  assert.equal(plan.manifest.qaCommitSha, QA_COMMIT);
+  assert.ok(plan.manifest.guides.every((guide) => guide.candidateGuideHash === guide.publicationGuideHash));
+  await assert.rejects(
+    () => planStandardGuideApproval({ ...options, targets: ["cresselia", "mega-banette"] }),
+    /Targets must be exactly/,
+  );
+  await assert.rejects(
+    () => planStandardGuideApproval({ ...options, targets: [...STANDARD_GUIDE_TARGETS, "kyurem"] }),
+    /Targets must be exactly/,
+  );
+});
+
+test("standardization approval and publication are idempotent and preserve Kyurem overlays", async () => {
+  const dataRoot = await createIsolatedDataRoot();
+  const options = await approvalOptions(dataRoot);
+  const approvedPath = path.join(dataRoot, "approved", "app-guide-overlays.json");
+  const before = await readFixtureFromPath(approvedPath) as { id: string; guide: Record<string, unknown> }[];
+  const kyuremBefore = new Map(before.map((overlay) => [overlay.id, sha256(overlay)]));
+
+  const firstApproval = await approveStandardGuides({ ...options, dryRun: false });
+  const secondApproval = await approveStandardGuides({ ...options, dryRun: false });
+  assert.equal(firstApproval.noOp, false);
+  assert.equal(secondApproval.noOp, true);
+  assert.equal(sha256(firstApproval.manifest), sha256(secondApproval.manifest));
+
+  const firstPublish = await publishStandardGuides({ targets: STANDARD_GUIDE_TARGETS, dataRoot, dryRun: false });
+  const secondPublish = await publishStandardGuides({ targets: STANDARD_GUIDE_TARGETS, dataRoot, dryRun: false });
+  assert.equal(firstPublish.noOp, false);
+  assert.equal(secondPublish.noOp, true);
+  assert.equal(firstPublish.resultHash, secondPublish.resultHash);
+  assert.equal(new Set(firstPublish.overlays.map((overlay) => overlay.id)).size, firstPublish.overlays.length);
+  assert.deepEqual(firstPublish.overlays.map((overlay) => overlay.id), [
+    "kyurem", "white-kyurem", "black-kyurem", ...STANDARD_GUIDE_TARGETS,
+  ]);
+  for (const id of ["kyurem", "white-kyurem", "black-kyurem"]) {
+    assert.equal(sha256(firstPublish.overlays.find((overlay) => overlay.id === id)), kyuremBefore.get(id));
+  }
+  for (const entry of firstPublish.manifest.guides) {
+    const overlay = firstPublish.overlays.find((item) => item.id === entry.pokemonId)!;
+    assert.equal(sha256(overlay.guide), entry.candidateGuideHash);
+    assert.equal(sha256(overlay.guide), entry.publicationGuideHash);
+  }
+});
+
+test("stale approval and failed publication leave existing approved overlays unchanged", async () => {
+  const dataRoot = await createIsolatedDataRoot();
+  const options = await approvalOptions(dataRoot);
+  await approveStandardGuides({ ...options, dryRun: false });
+  const approvedPath = path.join(dataRoot, "approved", "app-guide-overlays.json");
+  const before = await readFile(approvedPath, "utf8");
+  const candidatePath = path.join(dataRoot, "candidates", "pokemon-detail-standard-v1.json");
+  const bundle = StandardGuideCandidateBundleSchema.parse(await readFixtureFromPath(candidatePath));
+  bundle.candidates[0].guide.summary = `${bundle.candidates[0].guide.summary} changed-after-qa`;
+  await writeJsonAtomic(candidatePath, bundle);
+  await assert.rejects(
+    () => publishStandardGuides({ targets: STANDARD_GUIDE_TARGETS, dataRoot, dryRun: false }),
+    /Approval is stale/,
+  );
+  assert.equal(await readFile(approvedPath, "utf8"), before);
+});
+
+async function readFixtureFromPath(file: string) {
+  return JSON.parse(await readFile(file, "utf8"));
+}
 
 test("Cresselia preserves PvP league decisions and limited move conditions", async () => {
   const bundle = StandardGuideCandidateBundleSchema.parse(await readFixture("data/candidates/pokemon-detail-standard-v1.json"));

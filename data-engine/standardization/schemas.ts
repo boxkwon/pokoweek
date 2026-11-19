@@ -247,7 +247,25 @@ export const StandardGuideValidationReportSchema = z.object({
   publicationPerformed: z.literal(false),
 });
 
+export const StandardGuideApprovalManifestSchema = z.object({
+  schemaVersion: z.literal(1),
+  dataset: z.literal("pokemon-detail-standard-v1"),
+  targets: z.array(StandardGuidePokemonIdSchema).length(3),
+  candidateHash: Sha256Schema,
+  sourceSnapshotHash: Sha256Schema,
+  validationHash: Sha256Schema,
+  approvedAt: DateTimeSchema,
+  approvedBy: z.string().min(1),
+  qaCommitSha: z.string().regex(/^[0-9a-f]{40}$/),
+  guides: z.array(z.object({
+    pokemonId: StandardGuidePokemonIdSchema,
+    candidateGuideHash: Sha256Schema,
+    publicationGuideHash: Sha256Schema,
+  })).length(3),
+});
+
 export type StandardGuidePokemonId = z.infer<typeof StandardGuidePokemonIdSchema>;
 export type StandardizedGuideDataset = z.infer<typeof StandardizedGuideDatasetSchema>;
 export type StandardGuideCandidate = z.infer<typeof StandardGuideCandidateSchema>;
 export type StandardGuideCandidateBundle = z.infer<typeof StandardGuideCandidateBundleSchema>;
+export type StandardGuideApprovalManifest = z.infer<typeof StandardGuideApprovalManifestSchema>;
