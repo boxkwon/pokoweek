@@ -24,8 +24,8 @@ import {
   getWeekEventActionHref,
   getWeekEventActionLabel,
 } from "../_data/queries";
-import { getAppNow, isValidDateOverride } from "../_lib/time";
-import { withCurrentDateContext } from "../_lib/internal-url";
+import { getAppNow, isDateKey, isValidDateOverride } from "../_lib/time";
+import { getDateContextForWeek, withDateContext } from "../_lib/internal-url";
 import { hasRealPokemonArtwork } from "../_lib/pokemon-artwork";
 
 const filters = [
@@ -45,13 +45,9 @@ function firstValue(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;
 }
 
-function isDateKey(value: string | undefined): value is string {
-  return Boolean(value && /^\d{4}-\d{2}-\d{2}$/.test(value));
-}
-
-function scheduleHref(week: string, category: ScheduleCategory, dateOverride?: string) {
+function scheduleHref(week: string, category: ScheduleCategory, dateContext?: string) {
   const query = new URLSearchParams({ week, category });
-  return withCurrentDateContext(`/schedule?${query.toString()}`, dateOverride);
+  return withDateContext(`/schedule?${query.toString()}`, getDateContextForWeek(week, dateContext));
 }
 
 function hasUsableArtwork(event: WeekEvent) {
@@ -95,6 +91,7 @@ function ScheduleEventRow({ event, dateKey }: { event: WeekEvent; dateKey: strin
 export default async function SchedulePage({ searchParams }: { searchParams: SearchParams }) {
   const query = await searchParams;
   const requestedDate = firstValue(query.date);
+  const routeDateContext = isDateKey(requestedDate) ? requestedDate : undefined;
   const dateOverride = isValidDateOverride(requestedDate) ? requestedDate : undefined;
   const now = getAppNow(dateOverride);
   const currentWeek = getCurrentWeek(now);
@@ -112,21 +109,21 @@ export default async function SchedulePage({ searchParams }: { searchParams: Sea
 
   return <main className="fresh-screen boss-screen schedule-screen">
     <AppHeader subtitle={APP_SUBTITLE} />
-    <SchedulePreferenceSync selectedCategory={category} selectedWeek={week.startDate} hasCategoryQuery={filters.some((filter) => filter.key === requestedCategory)} hasWeekQuery={isDateKey(requestedWeek)} dateOverride={dateOverride} />
+    <SchedulePreferenceSync selectedCategory={category} selectedWeek={week.startDate} hasCategoryQuery={filters.some((filter) => filter.key === requestedCategory)} hasWeekQuery={isDateKey(requestedWeek)} dateContext={routeDateContext} />
 
     <section className="schedule-week-nav" aria-label="주차 이동">
-      <ContextLink href={scheduleHref(getAdjacentWeekKey(week.startDate, -1), category, dateOverride)} aria-label="이전 주"><ChevronIcon /></ContextLink>
+      <ContextLink href={scheduleHref(getAdjacentWeekKey(week.startDate, -1), category, routeDateContext)} aria-label="이전 주"><ChevronIcon /></ContextLink>
       <div>
         <b>{formatWeekRange(week)}</b>
         {isCurrentWeek
           ? <span>이번 주</span>
-          : <ContextLink href={scheduleHref(currentWeek.startDate, category, dateOverride)}>이번 주로 돌아가기</ContextLink>}
+          : <ContextLink href={scheduleHref(currentWeek.startDate, category, routeDateContext)}>이번 주로 돌아가기</ContextLink>}
       </div>
-      <ContextLink href={scheduleHref(getAdjacentWeekKey(week.startDate, 1), category, dateOverride)} aria-label="다음 주"><ChevronIcon /></ContextLink>
+      <ContextLink href={scheduleHref(getAdjacentWeekKey(week.startDate, 1), category, routeDateContext)} aria-label="다음 주"><ChevronIcon /></ContextLink>
     </section>
 
     <nav className="schedule-filters" aria-label="일정 카테고리">
-      {filters.map((filter) => <ContextLink aria-current={category === filter.key ? "page" : undefined} className={category === filter.key ? "selected" : ""} href={scheduleHref(week.startDate, filter.key, dateOverride)} key={filter.key}>
+      {filters.map((filter) => <ContextLink aria-current={category === filter.key ? "page" : undefined} className={category === filter.key ? "selected" : ""} href={scheduleHref(week.startDate, filter.key, routeDateContext)} key={filter.key}>
         <CategoryBadge className={`schedule-filter-badge filter-${filter.key} category-${filter.key}`}>{filter.label}</CategoryBadge>
       </ContextLink>)}
     </nav>

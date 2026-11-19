@@ -4,20 +4,20 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import type { ScheduleFilter } from "../_data/guide-data";
 import { isScheduleWeek, normalizeScheduleFilter, SCHEDULE_CATEGORY_KEY, SCHEDULE_WEEK_KEY } from "../_lib/schedule-preferences";
-import { withCurrentDateContext } from "../_lib/internal-url";
+import { getDateContextForWeek, withDateContext } from "../_lib/internal-url";
 
 export function SchedulePreferenceSync({
   selectedCategory,
   selectedWeek,
   hasCategoryQuery,
   hasWeekQuery,
-  dateOverride,
+  dateContext,
 }: {
   selectedCategory: ScheduleFilter;
   selectedWeek: string;
   hasCategoryQuery: boolean;
   hasWeekQuery: boolean;
-  dateOverride?: string;
+  dateContext?: string;
 }) {
   const router = useRouter();
   const initialized = useRef(false);
@@ -33,22 +33,23 @@ export function SchedulePreferenceSync({
       : storedCategory ?? selectedCategory;
     const week = hasWeekQuery && selectedWeek
       ? selectedWeek
-      : dateOverride ? selectedWeek : isScheduleWeek(storedWeek) ? storedWeek : selectedWeek;
+      : dateContext ? selectedWeek : isScheduleWeek(storedWeek) ? storedWeek : selectedWeek;
+    const normalizedDate = getDateContextForWeek(week, dateContext);
 
     localStorage.setItem(SCHEDULE_CATEGORY_KEY, category);
     localStorage.setItem(SCHEDULE_WEEK_KEY, week);
 
-    if (!hasCategoryQuery || !hasWeekQuery) {
+    if (!hasCategoryQuery || !hasWeekQuery || normalizedDate !== dateContext) {
       const query = new URLSearchParams({ week, category });
-      router.replace(withCurrentDateContext(`/schedule?${query.toString()}`, dateOverride));
+      router.replace(withDateContext(`/schedule?${query.toString()}`, normalizedDate));
     }
-  }, [dateOverride, hasCategoryQuery, hasWeekQuery, router, selectedCategory, selectedWeek]);
+  }, [dateContext, hasCategoryQuery, hasWeekQuery, router, selectedCategory, selectedWeek]);
 
   useEffect(() => {
     if (!initialized.current || !hasCategoryQuery || !hasWeekQuery) return;
     localStorage.setItem(SCHEDULE_CATEGORY_KEY, selectedCategory);
     localStorage.setItem(SCHEDULE_WEEK_KEY, selectedWeek);
-  }, [dateOverride, hasCategoryQuery, hasWeekQuery, router, selectedCategory, selectedWeek]);
+  }, [dateContext, hasCategoryQuery, hasWeekQuery, router, selectedCategory, selectedWeek]);
 
   return null;
 }

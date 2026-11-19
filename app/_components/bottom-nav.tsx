@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getCurrentWeek } from "../_data/queries";
-import { withCurrentDateContext } from "../_lib/internal-url";
+import { getDateContextForWeek, getRouteDateContextFromSearch, withCurrentDateContext, withDateContext } from "../_lib/internal-url";
 import { isScheduleWeek, normalizeScheduleFilter, SCHEDULE_CATEGORY_KEY, SCHEDULE_WEEK_KEY } from "../_lib/schedule-preferences";
 import { getAppNow, isValidDateOverride } from "../_lib/time";
 import { BagIcon, CalendarIcon, HomeIcon, SwordsIcon } from "./icons";
@@ -14,6 +14,7 @@ export function BottomNavigation({ active }: { active: "home" | "schedule" | "gu
   useEffect(() => {
     const category = normalizeScheduleFilter(localStorage.getItem(SCHEDULE_CATEGORY_KEY));
     const requestedDate = new URLSearchParams(window.location.search).get("date") ?? undefined;
+    const routeDate = getRouteDateContextFromSearch(window.location.search);
     const enabledDate = isValidDateOverride(requestedDate) ? requestedDate : undefined;
     const storedWeek = localStorage.getItem(SCHEDULE_WEEK_KEY);
     const week = enabledDate ? getCurrentWeek(getAppNow(enabledDate)).startDate : storedWeek;
@@ -21,7 +22,10 @@ export function BottomNavigation({ active }: { active: "home" | "schedule" | "gu
     if (isScheduleWeek(week)) query.set("week", week);
     if (category) query.set("category", category);
     setDateOverride(enabledDate);
-    if (query.size) setScheduleHref(withCurrentDateContext(`/schedule?${query.toString()}`, enabledDate));
+    if (query.size) {
+      const scheduleDate = isScheduleWeek(week) ? getDateContextForWeek(week, routeDate) : routeDate;
+      setScheduleHref(withDateContext(`/schedule?${query.toString()}`, scheduleDate));
+    }
   }, []);
 
   const items = [

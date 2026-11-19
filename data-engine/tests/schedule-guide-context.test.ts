@@ -14,7 +14,7 @@ import {
   getWeekEventActionHref,
   getWeekEventById,
 } from "../../app/_data/queries";
-import { getRouteDateContextFromSearch, withDateContext } from "../../app/_lib/internal-url";
+import { getDateContextForWeek, getRouteDateContextFromSearch, withDateContext, withInheritedDateContext } from "../../app/_lib/internal-url";
 
 test("past schedule actions preserve their selected date and exact Pokemon forms", () => {
   const week = getWeekByStartDate("2026-11-09");
@@ -41,6 +41,20 @@ test("guide route date context is independent from the Preview-only app clock ov
   assert.equal(getRouteDateContextFromSearch("?date=2026-02-31"), undefined);
   assert.equal(withDateContext("/pokemon/druddigon", "2026-11-13"), "/pokemon/druddigon?date=2026-11-13");
   assert.equal(withDateContext("https://example.com", "2026-11-13"), "https://example.com");
+});
+
+test("explicit event dates win over inherited route dates and week navigation normalizes stale dates", () => {
+  assert.equal(
+    withInheritedDateContext("/guide?event=weekday-three-star&date=2026-11-13", "2026-11-16"),
+    "/guide?event=weekday-three-star&date=2026-11-13",
+  );
+  assert.equal(
+    withInheritedDateContext("/guide?event=weekday-three-star", "2026-11-13"),
+    "/guide?event=weekday-three-star&date=2026-11-13",
+  );
+  assert.equal(getDateContextForWeek("2026-11-09", "2026-11-16"), "2026-11-09");
+  assert.equal(getDateContextForWeek("2026-11-09", "2026-11-13"), "2026-11-13");
+  assert.equal(getDateContextForWeek("2026-11-16", "2026-11-09"), "2026-11-16");
 });
 
 test("past and current guide pools do not mix", () => {
