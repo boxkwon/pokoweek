@@ -1,4 +1,5 @@
 import { getAppNow } from "../_lib/time";
+import { withDateContext } from "../_lib/internal-url";
 import { crossWeekEvents, eventsById, pokemonGuides, preparationPlans, weekGuides, type GuideCategory, type ScheduleFilter, type WeekEvent, type WeekGuide } from "./guide-data";
 
 const SEOUL_TIME_ZONE = "Asia/Seoul";
@@ -203,10 +204,13 @@ export function getImportantMilestones(events: readonly WeekEvent[], week: WeekG
   return milestones.sort((a, b) => b.event.priority - a.event.priority || `${a.dateKey}T${a.time}`.localeCompare(`${b.dateKey}T${b.time}`));
 }
 
-export function getWeekEventActionHref(event: WeekEvent) {
-  if (event.eventHref) return event.eventHref;
-  if (event.guidePokemonIds.length === 1) return `/pokemon/${event.guidePokemonIds[0]}`;
-  return `/guide?event=${encodeURIComponent(event.id)}`;
+export function getWeekEventActionHref(event: WeekEvent, dateContext?: string) {
+  const href = event.eventHref
+    ? event.eventHref
+    : event.guidePokemonIds.length === 1
+      ? `/pokemon/${event.guidePokemonIds[0]}`
+      : `/guide?event=${encodeURIComponent(event.id)}`;
+  return withDateContext(href, dateContext);
 }
 
 export function getWeekEventActionLabel(event: WeekEvent) {
@@ -215,6 +219,14 @@ export function getWeekEventActionLabel(event: WeekEvent) {
 
 export function getWeekEventById(week: WeekGuide, eventId: string | undefined) {
   return eventId ? week.events.find((event) => event.id === eventId) : undefined;
+}
+
+export function getGuideSelectionForEvent(event: WeekEvent) {
+  const selectableIds = new Set(event.guidePokemonIds);
+  return event.pokemon.map((entry) => ({
+    pokemon: entry,
+    guide: selectableIds.has(entry.id) ? getPokemonGuide(entry.id) : undefined,
+  }));
 }
 
 export function getPokemonGuide(guideId: string) {

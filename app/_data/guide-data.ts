@@ -310,6 +310,12 @@ export type PokemonGuide = {
     image?: PokemonImage;
     reason?: string;
     recommendedMove?: string;
+    battleMode?: "raid" | "mega" | "max" | "shadow";
+    verification?: {
+      status: "verified";
+      source: { name: string; url: string };
+      reviewedAt: string;
+    };
   }[];
   values: {
     raid?: number | null;

@@ -60,6 +60,7 @@ function hasUsableArtwork(event: WeekEvent) {
 
 function ScheduleEventRow({ event, dateKey }: { event: WeekEvent; dateKey: string }) {
   const ctaLabel = getWeekEventActionLabel(event);
+  const actionHref = getWeekEventActionHref(event, dateKey);
   const continuation = isRangeContinuation(event, dateKey);
   const showArtworkTrio = event.pokemon.length >= 3 && hasUsableArtwork(event);
   const artworkClass = event.pokemon.length === 2 ? "has-art-pair" : showArtworkTrio ? "has-art-trio" : event.pokemon.length >= 3 ? "has-art-group" : "has-single-art";
@@ -70,7 +71,7 @@ function ScheduleEventRow({ event, dateKey }: { event: WeekEvent; dateKey: strin
       <h3>{event.title}</h3>
       <p className="range-continuation-time">{formatRangeEventPeriod(event, dateKey, true)}</p>
     </div>
-    <PokemonGuideLink className="range-continuation-link" href={getWeekEventActionHref(event)} aria-label={`${event.title} ${ctaLabel}`}><ChevronIcon /></PokemonGuideLink>
+    <PokemonGuideLink className="range-continuation-link" href={actionHref} aria-label={`${event.title} ${ctaLabel}`}><ChevronIcon /></PokemonGuideLink>
   </article>;
 
   return <article className={`schedule-event-row ${event.priority === 5 ? "priority-five" : ""} ${artworkClass}`}>
@@ -87,7 +88,7 @@ function ScheduleEventRow({ event, dateKey }: { event: WeekEvent; dateKey: strin
     {event.pokemon.length === 2 ? <div className="schedule-event-art-pair" aria-label={event.pokemon.map((item) => item.name).join(", ")}>{event.pokemon.map((item) => <PokemonArtwork image={item.image} alt="" size="sm" key={item.id} />)}</div> : null}
     {showArtworkTrio ? <div className="schedule-event-art-trio" aria-label={event.pokemon.slice(0, 3).map((item) => item.name).join(", ")}>{event.pokemon.slice(0, 3).map((item) => <PokemonArtwork image={item.image} alt="" size="sm" key={item.id} />)}</div> : null}
     {event.pokemon.length >= 3 && !showArtworkTrio ? <span className="schedule-event-art-count" aria-label={`${event.pokemon.length}마리의 포켓몬`}>+{event.pokemon.length}</span> : null}
-    <PrimaryCTA className="schedule-row-cta" href={getWeekEventActionHref(event)}>{ctaLabel}</PrimaryCTA>
+    <PrimaryCTA className="schedule-row-cta" href={actionHref}>{ctaLabel}</PrimaryCTA>
   </article>;
 }
 
@@ -152,7 +153,7 @@ export default async function SchedulePage({ searchParams }: { searchParams: Sea
     <section className="schedule-important-board">
       <SectionHeader icon={<ClockIcon />} title="이번 주 놓치지 말 것" />
       {importantMilestones.length > 0 ? <div className="important-time-list">{importantMilestones.map((milestone) => {
-        return <PokemonGuideLink href={getWeekEventActionHref(milestone.event)} key={`${milestone.event.id}-${milestone.kind}`}>
+        return <PokemonGuideLink href={getWeekEventActionHref(milestone.event, milestone.dateKey)} key={`${milestone.event.id}-${milestone.kind}`}>
         <time><b>{formatCompactDate(milestone.dateKey)}</b><span>{milestone.time} · {milestone.meaning}</span></time>
         <p>{milestone.event.title}</p>
         <ChevronIcon />

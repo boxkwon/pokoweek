@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { APP_NAME } from "../_config/app";
-import { getDateContextFromSearch, withCurrentDateContext } from "../_lib/internal-url";
+import { getRouteDateContextFromSearch, withDateContext } from "../_lib/internal-url";
 import { ContextLink } from "./context-link";
 import { BackIcon, BookmarkIcon, ShareIcon } from "./icons";
 
@@ -12,7 +12,7 @@ export function AppHeader({ backHref, subtitle, context }: { backHref?: string; 
   const [dateContext, setDateContext] = useState<string>();
   const router = useRouter();
   useEffect(() => {
-    setDateContext(getDateContextFromSearch(window.location.search));
+    setDateContext(getRouteDateContextFromSearch(window.location.search));
   }, []);
   const share = async () => {
     if (navigator.share) await navigator.share({ title: document.title, url: location.href });
@@ -23,7 +23,7 @@ export function AppHeader({ backHref, subtitle, context }: { backHref?: string; 
     <header className="fresh-app-header">
       <div className="header-leading">
         {backHref
-          ? <button className="header-back" type="button" aria-label="이전 화면으로 돌아가기" onClick={() => window.history.length > 1 ? router.back() : router.push(withCurrentDateContext(backHref, dateContext))}><BackIcon /></button>
+          ? <button className="header-back" type="button" aria-label="이전 화면으로 돌아가기" onClick={() => window.history.length > 1 ? router.back() : router.push(withDateContext(backHref, dateContext))}><BackIcon /></button>
           : <ContextLink className="header-logo" href="/" aria-label={`${APP_NAME} 홈`}><span className="fresh-ball"><i /></span></ContextLink>}
       </div>
       <ContextLink className="fresh-brand" href="/">

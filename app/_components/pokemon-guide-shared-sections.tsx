@@ -1,8 +1,9 @@
 import type { PokemonGuide } from "../_data/guide-data";
-import { typeColors } from "../_data/guide-data";
-import { CategoryBadge, PrimaryCTA, SectionHeader, TypeBadge } from "./design-system";
+import { pokemonGuides, typeColors } from "../_data/guide-data";
+import { CategoryBadge, SectionHeader, TypeBadge } from "./design-system";
 import { CheckIcon, StarOutlineIcon, SwordsIcon, TargetIcon } from "./icons";
 import { PokemonArtwork } from "./pokemon-artwork";
+import { PokemonGuideLink } from "./pokemon-guide-link";
 
 type CounterMode = "raid" | "mega" | "max" | "shadow";
 
@@ -36,6 +37,16 @@ export function getCounterSectionDescription(guide: PokemonGuide) {
   return `${getCounterModes(guide).map((mode) => counterModeLabels[mode]).join("·")}에서 효과적인 포켓몬`;
 }
 
+export function getVerifiedCounters(guide: PokemonGuide, availableGuideIds = new Set(pokemonGuides.map((item) => item.id))) {
+  const applicableModes = new Set(getCounterModes(guide));
+  return guide.counters.filter((counter) =>
+    counter.verification?.status === "verified"
+    && Boolean(counter.verification.source.url)
+    && Boolean(counter.recommendedMove)
+    && Boolean(counter.battleMode && applicableModes.has(counter.battleMode))
+    && availableGuideIds.has(counter.pokemonId));
+}
+
 export function PokemonWeaknessSection({ guide }: { guide: PokemonGuide }) {
   if (guide.weaknesses.length === 0) return null;
   return <section className="weakness-board">
@@ -45,19 +56,18 @@ export function PokemonWeaknessSection({ guide }: { guide: PokemonGuide }) {
 }
 
 export function PokemonCounterSection({ guide }: { guide: PokemonGuide }) {
+  const counters = getVerifiedCounters(guide);
+  if (counters.length === 0) return null;
   return <section className="counter-board">
     <SectionHeader icon={<SwordsIcon />} title="추천 공격수" description={getCounterSectionDescription(guide)} />
-    {guide.dataStatus.counters === "ready" ? <>
-      <div className="reference-counter-grid">
-      {guide.counters.slice(0, 5).map((counter, index) => <article className={guide.counterRankingMode === "examples" ? "example" : (["gold", "silver", "bronze"][index] ?? "silver")} key={`${counter.pokemonId}-${index}`}>
+    <div className="reference-counter-grid">
+      {counters.slice(0, 5).map((counter, index) => <PokemonGuideLink className={guide.counterRankingMode === "examples" ? "example" : (["gold", "silver", "bronze"][index] ?? "silver")} href={`/pokemon/${counter.pokemonId}`} key={`${counter.pokemonId}-${index}`}>
         <b>{guide.counterRankingMode === "examples" ? "예시" : index + 1}</b>
         {counter.image ? <PokemonArtwork className="counter-artwork" image={counter.image} alt={counter.name} size="lg" /> : <span className="counter-artwork counter-artwork-placeholder" aria-hidden="true" />}
         <h3>{counter.name.split(" ").map((line) => <span key={line}>{line}</span>)}</h3>
         {counter.recommendedMove ? <p>{counter.recommendedMove}</p> : null}
-      </article>)}
-      </div>
-      <PrimaryCTA className="owned-pokemon-button" leading={<span className="mini-ball" />}>내가 가진 포켓몬으로 보기</PrimaryCTA>
-    </> : <p className="guide-data-missing" data-status="missing">검증된 추천 공격수 데이터를 준비 중이에요.</p>}
+      </PokemonGuideLink>)}
+    </div>
   </section>;
 }
 

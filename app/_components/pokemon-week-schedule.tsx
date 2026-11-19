@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { getCurrentWeek, getPokemonEventsForWeek, getWeekEventActionHref } from "../_data/queries";
-import { getDateContextFromSearch } from "../_lib/internal-url";
-import { getAppNow } from "../_lib/time";
+import { getRouteDateContextFromSearch } from "../_lib/internal-url";
+import { getAppNow, getDateAtSeoulNoon } from "../_lib/time";
 import { CategoryBadge, SectionHeader } from "./design-system";
 import { CalendarIcon, ChevronIcon } from "./icons";
 import { ContextLink } from "./context-link";
@@ -12,8 +12,8 @@ export function PokemonWeekSchedule({ pokemonId }: { pokemonId: string }) {
   const [now, setNow] = useState(() => getAppNow());
 
   useEffect(() => {
-    const dateContext = getDateContextFromSearch(window.location.search);
-    setNow(getAppNow(dateContext));
+    const dateContext = getRouteDateContextFromSearch(window.location.search);
+    setNow(dateContext ? getDateAtSeoulNoon(dateContext) : getAppNow());
   }, []);
 
   const week = useMemo(() => getCurrentWeek(now), [now]);
@@ -21,7 +21,7 @@ export function PokemonWeekSchedule({ pokemonId }: { pokemonId: string }) {
 
   return <section className="decision-guide-board pokemon-week-board">
     <SectionHeader icon={<CalendarIcon />} title="이번 주" />
-    {events.length > 0 ? <div className="pokemon-week-list">{events.map((event) => <ContextLink href={getWeekEventActionHref(event)} key={event.id}>
+    {events.length > 0 ? <div className="pokemon-week-list">{events.map((event) => <ContextLink href={getWeekEventActionHref(event, event.date)} key={event.id}>
       <CategoryBadge className={`schedule-category-badge category-${event.category}`}>{event.categoryLabel}</CategoryBadge>
       <div>
         <h3>{event.title}</h3>
