@@ -1,4 +1,4 @@
-import type { PokemonImage } from "../_components/pokemon-artwork";
+import type { PokemonImage } from "../_lib/pokemon-artwork";
 import { applyApprovedGuideOverlays } from "./approved-guide-adapter";
 
 export type CategoryColor = "legendary" | "mega" | "max" | "shadow" | "event" | "community";

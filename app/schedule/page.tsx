@@ -2,7 +2,7 @@ import { AppHeader } from "../_components/app-header";
 import { BottomNavigation } from "../_components/bottom-nav";
 import { CategoryBadge, EventTime, PrimaryCTA, RatingStars, SectionHeader } from "../_components/design-system";
 import { CalendarIcon, ChevronIcon, ClockIcon } from "../_components/icons";
-import { hasRealPokemonArtwork, PokemonArtwork } from "../_components/pokemon-artwork";
+import { PokemonArtwork } from "../_components/pokemon-artwork";
 import { PokemonGuideLink } from "../_components/pokemon-guide-link";
 import { SchedulePreferenceSync } from "../_components/schedule-preference-sync";
 import { ContextLink } from "../_components/context-link";
@@ -26,6 +26,7 @@ import {
 } from "../_data/queries";
 import { getAppNow, isValidDateOverride } from "../_lib/time";
 import { withCurrentDateContext } from "../_lib/internal-url";
+import { hasRealPokemonArtwork } from "../_lib/pokemon-artwork";
 
 const filters = [
   { key: "all", label: "전체" },

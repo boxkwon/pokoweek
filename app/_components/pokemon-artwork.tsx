@@ -3,20 +3,10 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { useEffect, useState } from "react";
-
-export type PokemonImage = {
-  src: string;
-  scale?: number;
-  objectPosition?: string;
-  placeholder?: boolean;
-};
+import { hasRealPokemonArtwork, type PokemonImage } from "../_lib/pokemon-artwork";
 
 type ArtworkSize = "sm" | "md" | "lg" | "hero";
 type ArtworkStyle = CSSProperties & { "--art-scale": number; "--art-position": string };
-
-export function hasRealPokemonArtwork(image: PokemonImage) {
-  return image.placeholder !== true && !image.src.includes("pokemon-placeholder");
-}
 
 export function PokemonArtwork({
   image,
