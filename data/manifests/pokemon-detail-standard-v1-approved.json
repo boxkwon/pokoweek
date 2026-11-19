@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "dataset": "pokemon-detail-standard-v1",
+  "targets": [
+    "cresselia",
+    "mega-banette",
+    "eternamax-eternatus"
+  ],
+  "candidateHash": "8a713d26b58cde537084eaa5a7c4a19805b167685127820d2250e5a381d3d11d",
+  "sourceSnapshotHash": "38cf9e8b80dc06a3f9b1558bccfe61ff23ce72124a99195106d1e6e7735db9a3",
+  "validationHash": "4fe018ecc67a97b371ecefd868fa3021c5dba312f6991d1631d83aa6683b8c41",
+  "approvedAt": "2026-11-19T05:13:20.347Z",
+  "approvedBy": "boxkwon",
+  "qaCommitSha": "6357fc35735f1784e529e9e2fc9690eeb04bec73",
+  "guides": [
+    {
+      "pokemonId": "cresselia",
+      "candidateGuideHash": "54418030717b2a3ee5d164ee23ee2dfb1dfe91928f123f200ec4379f4d4e0595",
+      "publicationGuideHash": "54418030717b2a3ee5d164ee23ee2dfb1dfe91928f123f200ec4379f4d4e0595"
+    },
+    {
+      "pokemonId": "mega-banette",
+      "candidateGuideHash": "90df24f16e18b3ff5726ecd6751210cb88c2c0742725686bba6b6d9a5478ddc4",
+      "publicationGuideHash": "90df24f16e18b3ff5726ecd6751210cb88c2c0742725686bba6b6d9a5478ddc4"
+    },
+    {
+      "pokemonId": "eternamax-eternatus",
+      "candidateGuideHash": "3574f940267a9b08455e02d5f9af3e119007aa257f6003dbe9fb1ed8d27207da",
+      "publicationGuideHash": "3574f940267a9b08455e02d5f9af3e119007aa257f6003dbe9fb1ed8d27207da"
+    }
+  ]
+}
