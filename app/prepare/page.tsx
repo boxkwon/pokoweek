@@ -18,7 +18,7 @@ import {
   getNextImportantEvent,
   getPreparationPlan,
   getUpcomingPreparationEvent,
-  getWeekEventActionHref,
+  resolveWeekEventAction,
 } from "../_data/queries";
 import { getAppNow, isValidDateOverride } from "../_lib/time";
 
@@ -51,11 +51,13 @@ export default function PreparePage() {
   const targetArtworkClasses = scheduleEvent.pokemon.length === 1
     ? ["home-hero-palkia"]
     : ["home-hero-dialga", "home-hero-palkia", "home-hero-duraludon"];
+  const scheduleAction = resolveWeekEventAction(scheduleEvent);
+  const nextAction = nextEvent ? resolveWeekEventAction(nextEvent) : undefined;
 
   return <main className="fresh-screen boss-screen prepare-screen">
     <AppHeader subtitle={APP_SUBTITLE} />
 
-    <ContextLink className="home-weekly-card prepare-event-card" href={getWeekEventActionHref(scheduleEvent)} aria-label={`${scheduleEvent.title} 상세 보기`}>
+    {scheduleAction.href ? <ContextLink className="home-weekly-card prepare-event-card" href={scheduleAction.href} aria-label={`${scheduleEvent.title} 상세 보기`}>
       <div className="home-weekly-hero">
         <Image className="wild-bg" src={event.heroImage} alt="" fill sizes="430px" priority />
         <span className="wild-shade" />
@@ -68,7 +70,9 @@ export default function PreparePage() {
         </div>
       </div>
       <div className="prepare-hero-meta"><b>{scheduleEvent.dayLabel} · {scheduleEvent.availabilityTime}</b><span>이 이벤트를 위해 지금 준비하세요</span></div>
-    </ContextLink>
+    </ContextLink> : <section className="home-weekly-card prepare-event-card">
+      <div className="prepare-hero-meta"><b>{scheduleEvent.title}</b><span>{scheduleAction.label}</span></div>
+    </section>}
 
     <section className="home-board prepare-progress-board">
       <SectionHeader icon={<TargetIcon />} title="준비도" />
@@ -102,14 +106,14 @@ export default function PreparePage() {
       <PreparationActionChecklist storageKey={storageKey} items={plan.tasks} />
     </section>
 
-    {nextEvent ? <section className="prepare-next-section">
+    {nextEvent && nextAction ? <section className="prepare-next-section">
       <SectionHeader icon={<ChevronIcon />} title="그 다음 이벤트" />
-      <PokemonGuideLink href={getWeekEventActionHref(nextEvent)}>
+      {nextAction.href ? <PokemonGuideLink href={nextAction.href}>
         <CategoryBadge className={`schedule-category-badge category-${nextEvent.category}`}>{nextEvent.categoryLabel}</CategoryBadge>
         <div><b>{nextEvent.title}</b><span>{nextEvent.dayLabel} · D-{Math.max(0, getDaysUntil(nextEvent.date, now))}</span></div>
         <RatingStars value={nextEvent.rating} />
         <ChevronIcon />
-      </PokemonGuideLink>
+      </PokemonGuideLink> : <article className="guide-index-unavailable"><div><b>{nextEvent.title}</b><span>{nextAction.label}</span></div></article>}
     </section> : null}
 
     <BottomNavigation active="prep" />

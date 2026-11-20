@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { AppHeader } from "../_components/app-header";
 import { BottomNavigation } from "../_components/bottom-nav";
 import { CategoryBadge, EventTime, PrimaryCTA, RatingStars, SectionHeader } from "../_components/design-system";
@@ -13,6 +14,7 @@ import {
   formatRangeEventPeriod,
   formatWeekRange,
   getAdjacentWeekKey,
+  getAvailableScheduleFilters,
   getCurrentWeek,
   getEventsByCategory,
   getEventsByDate,
@@ -22,12 +24,13 @@ import {
   isRangeContinuation,
   getWeekByStartDate,
   getWeekDays,
-  getWeekEventActionHref,
-  getWeekEventActionLabel,
+  normalizeScheduleCategoryForEvents,
+  resolveWeekEventAction,
 } from "../_data/queries";
 import { getAppNow, isDateKey, isValidDateOverride } from "../_lib/time";
 import { getDateContextForWeek, withDateContext } from "../_lib/internal-url";
 import { hasRealPokemonArtwork } from "../_lib/pokemon-artwork";
+import { normalizeScheduleFilter } from "../_lib/schedule-preferences";
 
 const tierFilters = [
   { key: "all", label: "전체 레이드" },
@@ -65,8 +68,7 @@ function hasUsableArtwork(event: WeekEvent) {
 }
 
 function ScheduleEventRow({ event, dateKey }: { event: WeekEvent; dateKey: string }) {
-  const ctaLabel = getWeekEventActionLabel(event);
-  const actionHref = getWeekEventActionHref(event, dateKey);
+  const action = resolveWeekEventAction(event, dateKey);
   const continuation = isRangeContinuation(event, dateKey);
   const showArtworkTrio = event.pokemon.length >= 3 && hasUsableArtwork(event);
   const artworkClass = event.pokemon.length === 2 ? "has-art-pair" : showArtworkTrio ? "has-art-trio" : event.pokemon.length >= 3 ? "has-art-group" : "has-single-art";
@@ -77,7 +79,9 @@ function ScheduleEventRow({ event, dateKey }: { event: WeekEvent; dateKey: strin
       <h3>{event.title}</h3>
       <p className="range-continuation-time">{formatRangeEventPeriod(event, dateKey, true)}</p>
     </div>
-    <PokemonGuideLink className="range-continuation-link" href={actionHref} aria-label={`${event.title} ${ctaLabel}`}><ChevronIcon /></PokemonGuideLink>
+    {action.href
+      ? <PokemonGuideLink className="range-continuation-link" href={action.href} aria-label={`${event.title} ${action.label}`}><ChevronIcon /></PokemonGuideLink>
+      : <span className="schedule-guide-unavailable compact">{action.label}</span>}
   </article>;
 
   return <article className={`schedule-event-row ${event.priority === 5 ? "priority-five" : ""} ${artworkClass}`}>
@@ -94,7 +98,9 @@ function ScheduleEventRow({ event, dateKey }: { event: WeekEvent; dateKey: strin
     {event.pokemon.length === 2 ? <div className="schedule-event-art-pair" aria-label={event.pokemon.map((item) => item.name).join(", ")}>{event.pokemon.map((item) => <PokemonArtwork image={item.image} alt="" size="sm" key={item.id} />)}</div> : null}
     {showArtworkTrio ? <div className="schedule-event-art-trio" aria-label={event.pokemon.slice(0, 3).map((item) => item.name).join(", ")}>{event.pokemon.slice(0, 3).map((item) => <PokemonArtwork image={item.image} alt="" size="sm" key={item.id} />)}</div> : null}
     {event.pokemon.length >= 3 && !showArtworkTrio ? <span className="schedule-event-art-count" aria-label={`${event.pokemon.length}마리의 포켓몬`}>+{event.pokemon.length}</span> : null}
-    <PrimaryCTA className="schedule-row-cta" href={actionHref}>{ctaLabel}</PrimaryCTA>
+    {action.href
+      ? <PrimaryCTA className="schedule-row-cta" href={action.href}>{action.label}</PrimaryCTA>
+      : <p className="schedule-guide-unavailable">{action.label}</p>}
   </article>;
 }
 
@@ -108,28 +114,37 @@ export default async function SchedulePage({ searchParams }: { searchParams: Sea
   const requestedWeek = firstValue(query.week);
   const week = getWeekByStartDate(isDateKey(requestedWeek) ? requestedWeek : currentWeek.startDate);
   const requestedCategory = firstValue(query.category);
-  const category: ScheduleCategory = filters.some((filter) => filter.key === requestedCategory) ? requestedCategory as ScheduleCategory : "all";
   const allEvents = getEventsByWeek(week);
+  const category = normalizeScheduleCategoryForEvents(allEvents, normalizeScheduleFilter(requestedCategory)) as ScheduleCategory;
+  if (requestedCategory && requestedCategory !== category) {
+    redirect(scheduleHref(week.startDate, category, routeDateContext));
+  }
   const visibleEvents = getEventsByCategory(allEvents, category as ScheduleFilter);
+  const availableCategories = getAvailableScheduleFilters(allEvents);
   const days = getWeekDays(week, now);
   const importantMilestones = getImportantMilestones(allEvents, week)
     .slice(0, 5)
     .sort((a, b) => `${a.dateKey}T${a.time}`.localeCompare(`${b.dateKey}T${b.time}`));
   const isCurrentWeek = week.startDate === currentWeek.startDate;
+  const previousWeekKey = getAdjacentWeekKey(week.startDate, -1);
+  const nextWeekKey = getAdjacentWeekKey(week.startDate, 1);
+  const previousCategory = normalizeScheduleCategoryForEvents(getEventsByWeek(getWeekByStartDate(previousWeekKey)), category) as ScheduleCategory;
+  const nextCategory = normalizeScheduleCategoryForEvents(getEventsByWeek(getWeekByStartDate(nextWeekKey)), category) as ScheduleCategory;
+  const currentCategory = normalizeScheduleCategoryForEvents(getEventsByWeek(currentWeek), category) as ScheduleCategory;
 
   return <main className="fresh-screen boss-screen schedule-screen">
     <AppHeader subtitle={APP_SUBTITLE} />
-    <SchedulePreferenceSync selectedCategory={category} selectedWeek={week.startDate} hasCategoryQuery={filters.some((filter) => filter.key === requestedCategory)} hasWeekQuery={isDateKey(requestedWeek)} dateContext={routeDateContext} />
+    <SchedulePreferenceSync availableCategories={availableCategories} selectedCategory={category} selectedWeek={week.startDate} hasCategoryQuery={requestedCategory === category} hasWeekQuery={isDateKey(requestedWeek)} dateContext={routeDateContext} />
 
     <section className="schedule-week-nav" aria-label="주차 이동">
-      <ContextLink href={scheduleHref(getAdjacentWeekKey(week.startDate, -1), category, routeDateContext)} aria-label="이전 주"><ChevronIcon /></ContextLink>
+      <ContextLink href={scheduleHref(previousWeekKey, previousCategory, routeDateContext)} aria-label="이전 주"><ChevronIcon /></ContextLink>
       <div>
         <b>{formatWeekRange(week)}</b>
         {isCurrentWeek
           ? <span>이번 주</span>
-          : <ContextLink href={scheduleHref(currentWeek.startDate, category, routeDateContext)}>이번 주로 돌아가기</ContextLink>}
+          : <ContextLink href={scheduleHref(currentWeek.startDate, currentCategory, routeDateContext)}>이번 주로 돌아가기</ContextLink>}
       </div>
-      <ContextLink href={scheduleHref(getAdjacentWeekKey(week.startDate, 1), category, routeDateContext)} aria-label="다음 주"><ChevronIcon /></ContextLink>
+      <ContextLink href={scheduleHref(nextWeekKey, nextCategory, routeDateContext)} aria-label="다음 주"><ChevronIcon /></ContextLink>
     </section>
 
     <div className="schedule-filter-groups">
@@ -167,11 +182,16 @@ export default async function SchedulePage({ searchParams }: { searchParams: Sea
     <section className="schedule-important-board">
       <SectionHeader icon={<ClockIcon />} title="이번 주 놓치지 말 것" />
       {importantMilestones.length > 0 ? <div className="important-time-list">{importantMilestones.map((milestone) => {
-        return <PokemonGuideLink href={getWeekEventActionHref(milestone.event, milestone.dateKey)} key={`${milestone.event.id}-${milestone.kind}`}>
-        <time><b>{formatCompactDate(milestone.dateKey)}</b><span>{milestone.time} · {milestone.meaning}</span></time>
+        const action = resolveWeekEventAction(milestone.event, milestone.dateKey);
+        const content = <><time><b>{formatCompactDate(milestone.dateKey)}</b><span>{milestone.time} · {milestone.meaning}</span></time>
         <p>{milestone.event.title}</p>
-        <ChevronIcon />
-      </PokemonGuideLink>})}</div> : <p className="schedule-empty">공식 발표된 중요 일정이 없어요.</p>}
+        {action.href ? <ChevronIcon /> : <span className="schedule-guide-unavailable compact">{action.label}</span>}</>;
+        return action.href ? <PokemonGuideLink href={action.href} key={`${milestone.event.id}-${milestone.kind}`}>
+        {content}
+      </PokemonGuideLink> : <article key={`${milestone.event.id}-${milestone.kind}`}>
+        {content}
+      </article>;
+      })}</div> : <p className="schedule-empty">공식 발표된 중요 일정이 없어요.</p>}
     </section>
 
     <BottomNavigation active="schedule" />

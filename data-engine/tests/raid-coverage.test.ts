@@ -1,11 +1,16 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  getAvailableScheduleFilters,
   getEventsByCategory,
   getEventsByDate,
   getGuideSelectionForEvent,
+  normalizeScheduleCategoryForEvents,
+  resolveWeekEventAction,
   getWeekByStartDate,
 } from "../../app/_data/queries";
+import type { WeekEvent } from "../../app/_data/guide-data";
+import { normalizeScheduleFilter } from "../../app/_lib/schedule-preferences";
 
 function uniqueRaidPokemonIds(weekStart: string) {
   const events = getEventsByCategory(getWeekByStartDate(weekStart).events, "all");
@@ -89,4 +94,92 @@ test("every added raid rotation records source and verification metadata", async
     assert(event.raidKind);
     assert(event.raidTier);
   }
+});
+
+test("single bosses without a registered guide render an unavailable state instead of a 404 href", () => {
+  const cases = [
+    ["2026-11-09", "weekend-three-star"],
+    ["2026-11-16", "shadow-tornadus-weekend-2026-11-21"],
+    ["2026-11-23", "super-mega-clefable-raid-day-2026"],
+  ] as const;
+
+  for (const [weekStart, eventId] of cases) {
+    const event = getWeekByStartDate(weekStart).events.find((entry) => entry.id === eventId);
+    assert(event);
+    assert.deepEqual(resolveWeekEventAction(event, event.date), { kind: "unavailable", label: "상세 공략 준비 중" });
+  }
+});
+
+test("all 60 weekly raid entries resolve to a valid guide or an explicit unavailable state", () => {
+  let entries = 0;
+  let validGuides = 0;
+  let unavailable = 0;
+  let brokenLinks = 0;
+  let wrongForms = 0;
+  const deduplicatedByWeek = new Map<string, boolean>();
+
+  for (const weekStart of ["2026-11-09", "2026-11-16", "2026-11-23"]) {
+    const events = getEventsByCategory(getWeekByStartDate(weekStart).events, "all");
+    for (const event of events) {
+      const selections = getGuideSelectionForEvent(event);
+      entries += selections.length;
+      for (const selection of selections) {
+        deduplicatedByWeek.set(`${weekStart}:${selection.pokemon.id}`, Boolean(selection.guide));
+        if (selection.guide) {
+          validGuides += 1;
+          if (selection.guide.id !== selection.pokemon.id) wrongForms += 1;
+        } else {
+          unavailable += 1;
+        }
+      }
+      const action = resolveWeekEventAction(event, event.date);
+      if (selections.length === 1 && !selections[0].guide && action.href) brokenLinks += 1;
+      if (action.kind === "guide" && !selections.some((selection) => selection.guide && action.href?.startsWith(`/pokemon/${selection.guide.id}`))) brokenLinks += 1;
+    }
+  }
+
+  const deduplicatedGuides = [...deduplicatedByWeek.values()].filter(Boolean).length;
+  assert.deepEqual({ entries, validGuides, unavailable, brokenLinks, wrongForms, deduplicatedEntries: deduplicatedByWeek.size, deduplicatedGuides }, {
+    entries: 68,
+    validGuides: 18,
+    unavailable: 50,
+    brokenLinks: 0,
+    wrongForms: 0,
+    deduplicatedEntries: 60,
+    deduplicatedGuides: 14,
+  });
+});
+
+test("multi-boss selection uses the same guide resolver for mixed and unavailable data", () => {
+  const week = getWeekByStartDate("2026-11-09");
+  const known = week.events.find((event) => event.id === "weekday-three-star");
+  assert(known);
+  assert.equal(resolveWeekEventAction(known).kind, "selection");
+
+  const mixed: WeekEvent = {
+    ...known,
+    id: "mixed-guide-test",
+    pokemon: [known.pokemon[0], { ...known.pokemon[1], id: "missing-form", href: "/pokemon/missing-form" }],
+    guidePokemonIds: [known.pokemon[0].id, "missing-form"],
+  };
+  const selection = getGuideSelectionForEvent(mixed);
+  assert(selection[0].guide);
+  assert.equal(selection[1].guide, undefined);
+  assert.equal(resolveWeekEventAction(mixed).kind, "selection");
+
+  const noGuides = getWeekByStartDate("2026-11-16").events.find((event) => event.id === "regular-three-star-2026-11-16");
+  assert(noGuides);
+  assert(getGuideSelectionForEvent(noGuides).every((entry) => !entry.guide));
+  assert.equal(resolveWeekEventAction(noGuides).kind, "selection");
+});
+
+test("a category that disappears in the destination week normalizes to all", () => {
+  const week23 = getEventsByCategory(getWeekByStartDate("2026-11-23").events, "special");
+  const week16 = getWeekByStartDate("2026-11-16").events;
+  assert(week23.length > 0);
+  assert(!getAvailableScheduleFilters(week16).includes("special"));
+  assert.equal(normalizeScheduleCategoryForEvents(week16, "special"), "all");
+  assert.equal(normalizeScheduleCategoryForEvents(week16, "tier3"), "tier3");
+  assert.equal(normalizeScheduleCategoryForEvents(getWeekByStartDate("2026-11-23").events, "tier3"), "tier3");
+  assert.equal(normalizeScheduleCategoryForEvents(week16, normalizeScheduleFilter("not-a-filter")), "all");
 });

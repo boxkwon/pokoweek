@@ -294,11 +294,11 @@ svg { display: block; }
 .preparation-progress { display: block; padding-top: var(--space-2); border-top: 1px solid #e0e5ec; color: #075fc7; font-size: var(--type-caption); text-align: right; }
 
 .home-schedule-board { padding: var(--space-1) var(--space-3) 0; border-radius: 0; background: transparent; box-shadow: none; }
-.home-schedule-list > a { min-height: 56px; display: grid; grid-template-columns: 40px 62px 1fr 18px; align-items: center; gap: var(--space-2); }
-.home-schedule-list > a + a { border-top: 1px solid #e0e5ec; }
+.home-schedule-list > a,.home-schedule-list > article { min-height: 56px; display: grid; grid-template-columns: 40px 62px 1fr auto; align-items: center; gap: var(--space-2); }
+.home-schedule-list > :is(a,article) + :is(a,article) { border-top: 1px solid #e0e5ec; }
 .home-schedule-list time { color: #082f69; font-size: var(--type-body); font-weight: 900; }
 .schedule-dot { justify-content: center; padding: var(--space-1); border-radius: 12px; color: #fff; font-size: 9px; font-weight: 900; text-align: center; }
-.home-schedule-list > a > div { min-width: 0; }
+.home-schedule-list > :is(a,article) > div { min-width: 0; }
 .home-schedule-list b,.home-schedule-list small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .home-schedule-list b { font-size: var(--type-body); }
 .home-schedule-list small { margin-top: 2px; color: var(--muted); font-size: 12px; font-weight: 700; }
@@ -331,6 +331,10 @@ svg { display: block; }
 .schedule-filters a.selected .filter-special { border-color: #7449b8; background: #7449b8; color: #fff; }
 .schedule-filters a.selected .filter-event { border-color: var(--category-event); background: var(--category-event); color: #563d00; }
 .schedule-rotation-note { margin: var(--space-2) 0 0; color: #52627d; font-size: var(--type-body); font-weight: 800; }
+.schedule-guide-unavailable { align-self: end; margin: 0; color: #6c778b; font-size: var(--type-caption); font-weight: 900; }
+.schedule-guide-unavailable.compact { max-width: 76px; text-align: right; line-height: 1.25; }
+.important-time-list article { display: grid; grid-template-columns: 124px minmax(0,1fr) auto; align-items: center; gap: var(--space-2); padding: var(--space-3) 0; border-bottom: 1px solid #dde2ea; }
+.important-time-list article:last-child { border-bottom: 0; }
 
 /* Guide index — reuses Home list density and Schedule filters */
 .guide-screen { background: #fbfbfc; }
@@ -603,9 +607,9 @@ svg { display: block; }
 .fusion-guide-return { margin: var(--space-2) var(--space-3) 0; }
 .fusion-guide-return .event-action-link { width: 100%; }
 .event-action-board > p { margin: 0 0 var(--space-3); color: #52627d; font-size: var(--type-body); font-weight: 750; line-height: 1.45; }
-.pokemon-week-list > a { min-height: 86px; display: grid; grid-template-columns: auto minmax(0,1fr) 18px; align-items: center; gap: var(--space-2); }
-.pokemon-week-list > a + a { border-top: 1px solid #e0e5ec; }
-.pokemon-week-list > a > div { min-width: 0; }
+.pokemon-week-list > a,.pokemon-week-list > article { min-height: 86px; display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: var(--space-2); }
+.pokemon-week-list > :is(a,article) + :is(a,article) { border-top: 1px solid #e0e5ec; }
+.pokemon-week-list > :is(a,article) > div { min-width: 0; }
 .pokemon-week-list h3 { margin: 0; color: #082f69; font-size: var(--type-card-title); line-height: 1.25; }
 .pokemon-week-list time { display: block; margin-top: 3px; color: #52627d; font-size: var(--type-caption); font-weight: 800; }
 .pokemon-week-list p { display: flex; gap: var(--space-1); margin: var(--space-1) 0 0; color: #273650; font-size: var(--type-caption); font-weight: 700; }

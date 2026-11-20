@@ -12,7 +12,7 @@ import { PreparationChecklist } from "./_components/preparation-checklist";
 import { ContextLink } from "./_components/context-link";
 import { APP_SUBTITLE } from "./_config/app";
 import { typeColors } from "./_data/guide-data";
-import { formatTodayLabel, getCurrentWeek, getDaysUntil, getFeaturedEventForDate, getTodayEvents, getUpcomingEvents, getWeekEventActionHref, getWeekEventActionLabel } from "./_data/queries";
+import { formatTodayLabel, getCurrentWeek, getDaysUntil, getFeaturedEventForDate, getTodayEvents, getUpcomingEvents, resolveWeekEventAction } from "./_data/queries";
 import { getAppNow, isValidDateOverride } from "./_lib/time";
 
 export default function HomePage() {
@@ -72,7 +72,9 @@ export default function HomePage() {
 
     <section className="home-board home-today-board">
       <SectionHeader icon={<ClockIcon />} title={`오늘 · ${formatTodayLabel(now)}`} />
-      {todayEvents.length > 0 ? <div className="home-today-list">{todayEvents.map((event) => <article className="home-today-event" key={event.id}>
+      {todayEvents.length > 0 ? <div className="home-today-list">{todayEvents.map((event) => {
+        const action = resolveWeekEventAction(event);
+        return <article className="home-today-event" key={event.id}>
         <div className="today-event-copy">
           <CategoryBadge className={`schedule-category category-${event.category}`}>{event.categoryLabel}</CategoryBadge>
           <EventTime className="today-time-lines" availabilityTime={event.availabilityTime} featuredHour={event.featuredHour} availabilityLabel="오늘 출현" featuredLabel={event.category === "max" ? "맥스배틀 시간" : event.category === "legendary" ? "레이드아워" : "집중 시간"} />
@@ -81,8 +83,8 @@ export default function HomePage() {
           {event.weaknesses ? <div className="today-weakness"><b>약점</b>{event.weaknesses.map((type) => <TypeBadge type={type} color={typeColors[type]} key={type} />)}</div> : null}
         </div>
         {event.pokemon[0] ? <PokemonArtwork className="today-pokemon-art" image={event.pokemon[0].image} alt={event.pokemon[0].name} size="md" /> : null}
-        <PrimaryCTA className="home-small-cta" href={getWeekEventActionHref(event)}>{getWeekEventActionLabel(event)}</PrimaryCTA>
-      </article>)}</div> : <p className="home-empty">오늘은 중요한 이벤트가 없어요.<br />이번 주 준비를 해두세요.</p>}
+        {action.href ? <PrimaryCTA className="home-small-cta" href={action.href}>{action.label}</PrimaryCTA> : <p className="schedule-guide-unavailable">{action.label}</p>}
+      </article>})}</div> : <p className="home-empty">오늘은 중요한 이벤트가 없어요.<br />이번 주 준비를 해두세요.</p>}
     </section>
 
     {featuredEvent && week.preparations.length > 0 ? <section className="home-board home-preparation-board">
@@ -94,12 +96,18 @@ export default function HomePage() {
     <section className="home-board home-schedule-board">
       <SectionHeader icon={<CalendarIcon />} title="이번 주 일정 미리보기" />
       <div className="home-schedule-list">
-        {upcomingEvents.map((event) => <PokemonGuideLink href={getWeekEventActionHref(event)} key={event.id}>
-          <time>{event.dayLabel}</time>
+        {upcomingEvents.map((event) => {
+          const action = resolveWeekEventAction(event);
+          const content = <><time>{event.dayLabel}</time>
           <CategoryBadge className={`schedule-dot category-${event.category}`}>{event.categoryLabel}</CategoryBadge>
           <div><b>{event.title}</b>{event.availabilityTime ? <small>{event.availabilityTime}</small> : null}</div>
-          <ChevronIcon />
-        </PokemonGuideLink>)}
+          {action.href ? <ChevronIcon /> : <span className="schedule-guide-unavailable compact">{action.label}</span>}</>;
+          return action.href ? <PokemonGuideLink href={action.href} key={event.id}>
+          {content}
+        </PokemonGuideLink> : <article className="home-schedule-unavailable" key={event.id}>
+          {content}
+        </article>;
+        })}
       </div>
       <PrimaryCTA className="home-schedule-cta" href={`/schedule?week=${week.startDate}&category=all`} trailing={false}>이번 주 전체 일정 보기 <span aria-hidden="true">→</span></PrimaryCTA>
     </section>

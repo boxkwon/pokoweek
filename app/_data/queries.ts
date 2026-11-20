@@ -107,6 +107,16 @@ export function hasEventsForCategory(events: readonly WeekEvent[], category: Sch
   return getEventsByCategory(events, category).length > 0;
 }
 
+export function getAvailableScheduleFilters(events: readonly WeekEvent[]) {
+  const filters: readonly ScheduleFilter[] = ["all", "tier5", "tier4", "tier3", "tier1", "normal", "mega", "shadow", "special", "max", "event"];
+  return filters.filter((filter) => filter === "all" || hasEventsForCategory(events, filter));
+}
+
+export function normalizeScheduleCategoryForEvents(events: readonly WeekEvent[], category: ScheduleFilter | undefined): ScheduleFilter {
+  if (!category || category === "all") return "all";
+  return hasEventsForCategory(events, category) ? category : "all";
+}
+
 export function getEventStartDateKey(event: WeekEvent) {
   return event.startAt?.slice(0, 10) ?? event.date;
 }
@@ -227,17 +237,42 @@ export function getImportantMilestones(events: readonly WeekEvent[], week: WeekG
   return milestones.sort((a, b) => b.event.priority - a.event.priority || `${a.dateKey}T${a.time}`.localeCompare(`${b.dateKey}T${b.time}`));
 }
 
+export type WeekEventAction = {
+  kind: "event" | "guide" | "selection" | "unavailable";
+  label: string;
+  href?: string;
+};
+
+export function resolveWeekEventAction(event: WeekEvent, dateContext?: string): WeekEventAction {
+  if (event.eventHref) {
+    return { kind: "event", label: "이벤트 상세", href: withDateContext(event.eventHref, dateContext) };
+  }
+
+  const selections = getGuideSelectionForEvent(event);
+  if (selections.length === 1) {
+    const guide = selections[0].guide;
+    return guide
+      ? { kind: "guide", label: "공략 보기", href: withDateContext(`/pokemon/${guide.id}`, dateContext) }
+      : { kind: "unavailable", label: "상세 공략 준비 중" };
+  }
+
+  if (selections.length > 1) {
+    return {
+      kind: "selection",
+      label: "공략 선택",
+      href: withDateContext(`/guide?event=${encodeURIComponent(event.id)}`, dateContext),
+    };
+  }
+
+  return { kind: "unavailable", label: "상세 공략 준비 중" };
+}
+
 export function getWeekEventActionHref(event: WeekEvent, dateContext?: string) {
-  const href = event.eventHref
-    ? event.eventHref
-    : event.guidePokemonIds.length === 1
-      ? `/pokemon/${event.guidePokemonIds[0]}`
-      : `/guide?event=${encodeURIComponent(event.id)}`;
-  return withDateContext(href, dateContext);
+  return resolveWeekEventAction(event, dateContext).href;
 }
 
 export function getWeekEventActionLabel(event: WeekEvent) {
-  return event.eventHref ? "이벤트 상세" : event.guidePokemonIds.length > 1 ? "공략 선택" : "공략 보기";
+  return resolveWeekEventAction(event).label;
 }
 
 export function getWeekEventById(week: WeekGuide, eventId: string | undefined) {
