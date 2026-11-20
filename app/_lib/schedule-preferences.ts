@@ -6,8 +6,12 @@ export const SCHEDULE_WEEK_KEY = "pokoweek:schedule-week";
 export const SCHEDULE_FILTERS: readonly ScheduleFilter[] = [
   "all",
   "tier5",
+  "tier4",
   "tier3",
+  "tier1",
+  "normal",
   "mega",
+  "special",
   "max",
   "shadow",
   "event",

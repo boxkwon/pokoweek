@@ -318,16 +318,19 @@ svg { display: block; }
 .schedule-week-nav b { display: block; color: #082f69; font-size: var(--type-card-title); line-height: 1.2; }
 .schedule-week-nav span,.schedule-week-nav div a { display: inline-block; margin-top: var(--space-1); color: var(--blue); font-size: var(--type-caption); font-weight: 900; }
 
-.schedule-filters { display: flex; gap: var(--space-2); overflow-x: auto; margin-top: var(--space-2); padding: 0 var(--space-3) var(--space-1); scrollbar-width: none; }
+.schedule-filter-groups { display: grid; gap: var(--space-1); margin-top: var(--space-2); }
+.schedule-filters { display: flex; gap: var(--space-2); overflow-x: auto; margin-top: 0; padding: 0 var(--space-3) var(--space-1); scrollbar-width: none; }
 .schedule-filters::-webkit-scrollbar { display: none; }
 .schedule-filters a { flex: 0 0 auto; }
 .schedule-filter-badge { min-width: 48px; height: 32px; justify-content: center; padding: 0 var(--space-3); border: 1px solid #d5dbe5; border-radius: 16px; background: #fff; color: #52627d; font-size: var(--type-caption); font-weight: 900; }
 .schedule-filters a.selected .filter-all { border-color: #082f69; background: #082f69; color: #fff; }
-.schedule-filters a.selected .filter-tier5,.schedule-filters a.selected .filter-tier3,.schedule-filters a.selected .filter-raid { border-color: var(--category-legendary); background: var(--category-legendary); color: #fff; }
+.schedule-filters a.selected .filter-tier5,.schedule-filters a.selected .filter-tier4,.schedule-filters a.selected .filter-tier3,.schedule-filters a.selected .filter-tier1,.schedule-filters a.selected .filter-normal,.schedule-filters a.selected .filter-raid { border-color: var(--category-legendary); background: var(--category-legendary); color: #fff; }
 .schedule-filters a.selected .filter-mega { border-color: var(--category-mega); background: var(--category-mega); color: #fff; }
 .schedule-filters a.selected .filter-max { border-color: var(--category-max); background: var(--category-max); color: #fff; }
 .schedule-filters a.selected .filter-shadow { border-color: var(--category-shadow); background: var(--category-shadow); color: #fff; }
+.schedule-filters a.selected .filter-special { border-color: #7449b8; background: #7449b8; color: #fff; }
 .schedule-filters a.selected .filter-event { border-color: var(--category-event); background: var(--category-event); color: #563d00; }
+.schedule-rotation-note { margin: var(--space-2) 0 0; color: #52627d; font-size: var(--type-body); font-weight: 800; }
 
 /* Guide index — reuses Home list density and Schedule filters */
 .guide-screen { background: #fbfbfc; }

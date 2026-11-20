@@ -1,6 +1,7 @@
 import { getAppNow } from "../_lib/time";
 import { withDateContext } from "../_lib/internal-url";
 import { crossWeekEvents, eventsById, pokemonGuides, preparationPlans, weekGuides, type GuideCategory, type ScheduleFilter, type WeekEvent, type WeekGuide } from "./guide-data";
+import { enrichRaidEvent, isRaidRotationEvent, raidCoverageEvents } from "./raid-rotation-data";
 
 const SEOUL_TIME_ZONE = "Asia/Seoul";
 
@@ -35,8 +36,18 @@ export function getWeekStartKey(date = getAppNow()) {
 
 export function getWeekByStartDate(startDate: string): WeekGuide {
   const existing = weekGuides.find((week) => week.startDate === startDate);
-  if (existing) return existing;
   const endDate = addDaysToDateKey(startDate, 6);
+  const coverage = raidCoverageEvents.filter((event) => getEventStartDateKey(event) <= endDate && getEventEndDateKey(event) >= startDate);
+  if (existing) {
+    const eventIds = new Set(existing.events.map((event) => event.id));
+    return {
+      ...existing,
+      events: [
+        ...existing.events.map(enrichRaidEvent),
+        ...coverage.filter((event) => !eventIds.has(event.id)),
+      ],
+    };
+  }
   return {
     id: startDate,
     startDate,
@@ -44,13 +55,17 @@ export function getWeekByStartDate(startDate: string): WeekGuide {
     featuredEventId: undefined,
     priorities: [],
     preparations: [],
-    events: crossWeekEvents.filter((event) => getEventStartDateKey(event) <= endDate && getEventEndDateKey(event) >= startDate),
+    events: [
+      ...crossWeekEvents.filter((event) => getEventStartDateKey(event) <= endDate && getEventEndDateKey(event) >= startDate).map(enrichRaidEvent),
+      ...coverage,
+    ],
   };
 }
 
 export function getCurrentWeek(date = getAppNow()): WeekGuide {
   const key = getSeoulDateKey(date);
-  return weekGuides.find((week) => week.startDate <= key && key <= week.endDate) ?? getWeekByStartDate(getWeekStartKey(date));
+  const existing = weekGuides.find((week) => week.startDate <= key && key <= week.endDate);
+  return getWeekByStartDate(existing?.startDate ?? getWeekStartKey(date));
 }
 
 export function getTodayEvents(week: WeekGuide, date = getAppNow()) {
@@ -75,13 +90,21 @@ export function getEventsByDate(events: readonly WeekEvent[], dateKey: string) {
 }
 
 export function getEventsByCategory(events: readonly WeekEvent[], category: ScheduleFilter) {
-  if (category === "all") return [...events];
+  if (category === "all") return events.filter(isRaidRotationEvent);
   if (category === "tier5") return events.filter((event) => event.raidTier === 5);
+  if (category === "tier4") return events.filter((event) => event.raidTier === 4);
   if (category === "tier3") return events.filter((event) => event.raidTier === 3);
-  if (category === "mega") return events.filter((event) => event.raidTier === "mega" || event.raidTier === "superMega" || event.category === "mega");
-  if (category === "shadow") return events.filter((event) => event.raidTier === "shadow" || event.category === "shadow");
+  if (category === "tier1") return events.filter((event) => event.raidTier === 1);
+  if (category === "normal") return events.filter((event) => event.raidKind === "normal");
+  if (category === "mega") return events.filter((event) => event.raidKind === "mega");
+  if (category === "shadow") return events.filter((event) => event.raidKind === "shadow");
+  if (category === "special") return events.filter((event) => event.raidKind === "special");
   if (category === "event") return events.filter((event) => event.category === "event" || event.category === "community");
   return events.filter((event) => event.category === category);
+}
+
+export function hasEventsForCategory(events: readonly WeekEvent[], category: ScheduleFilter) {
+  return getEventsByCategory(events, category).length > 0;
 }
 
 export function getEventStartDateKey(event: WeekEvent) {

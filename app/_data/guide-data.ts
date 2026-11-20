@@ -2,8 +2,10 @@ import type { PokemonImage } from "../_lib/pokemon-artwork";
 import { applyApprovedGuideOverlays } from "./approved-guide-adapter";
 
 export type CategoryColor = "legendary" | "mega" | "max" | "shadow" | "event" | "community";
-export type RaidTier = 1 | 3 | 5 | "mega" | "shadow" | "superMega";
-export type ScheduleFilter = "all" | "tier5" | "tier3" | "mega" | "max" | "shadow" | "event";
+export type RaidTier = 1 | 3 | 4 | 5 | "mega" | "shadow" | "superMega";
+export type RaidKind = "normal" | "mega" | "shadow" | "special";
+export type RaidVerificationStatus = "verified" | "corroborated" | "needs_review";
+export type ScheduleFilter = "all" | "tier5" | "tier4" | "tier3" | "tier1" | "normal" | "mega" | "shadow" | "special" | "max" | "event";
 export type GuideCategory = "raid" | "mega" | "max" | "shadow";
 export type ScheduleType = "single" | "range" | "featuredHour";
 export type BattleType = "raid" | "mega" | "max" | "gigantamax" | "shadow";
@@ -394,7 +396,16 @@ export type WeekEvent = {
   category: CategoryColor;
   categoryLabel: string;
   raidTier?: RaidTier;
-  rating: number;
+  raidKind?: RaidKind;
+  raidEventId?: string;
+  raidRegion?: string;
+  verification?: {
+    status: RaidVerificationStatus;
+    checkedAt: string;
+    sources: readonly { name: string; url: string }[];
+    note?: string;
+  };
+  rating?: number;
   priority: number;
   reason: string;
   pokemon: readonly PokemonEntry[];
@@ -468,6 +479,7 @@ export const pokemon = {
   duraludon: { id: "gigantamax-duraludon", name: "거다이맥스 두랄루돈", image: { src: "/images/pokemon/pm884.icon.png", scale: .92, objectPosition: "50% 57%" }, types: ["드래곤", "강철"], href: guideHref("gigantamax-duraludon") },
   reshiram: { id: "reshiram", name: "레시라무", image: { src: "/images/pokemon/pm643.icon.png", scale: .96, objectPosition: "50% 57%" }, types: ["불꽃", "드래곤"], href: guideHref("reshiram") },
   machamp: { id: "dynamax-machamp", name: "다이맥스 괴력몬", image: { src: "/images/pokemon/pm68.icon.png", scale: 1.02, objectPosition: "50% 55%" }, types: ["격투"], href: guideHref("dynamax-machamp") },
+  modernJacketMachamp: { id: "modern-jacket-machamp", name: "모던 재킷 괴력몬", image: { src: "/images/backgrounds/pokemon-placeholder.svg", scale: .82, objectPosition: "50% 50%", placeholder: true }, types: ["격투"], href: guideHref("modern-jacket-machamp") },
   excadrill: { id: "dynamax-excadrill", name: "다이맥스 몰드류", image: { src: "/images/pokemon/counter-530.png", scale: 1.04, objectPosition: "50% 56%" }, types: ["땅", "강철"], href: guideHref("dynamax-excadrill") },
   gardevoir: { id: "dynamax-gardevoir", name: "다이맥스 가디안", image: { src: "/images/pokemon/counter-282.png", scale: .98, objectPosition: "50% 56%" }, types: ["페어리", "에스퍼"], href: guideHref("dynamax-gardevoir") },
   druddigon: { id: "druddigon", name: "크리만", image: { src: "/images/pokemon/pm621.icon.png", scale: 1.02, objectPosition: "50% 56%" }, types: ["드래곤"], href: guideHref("druddigon") },

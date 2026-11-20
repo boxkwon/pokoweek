@@ -18,6 +18,7 @@ import {
   getEventsByDate,
   getEventsByWeek,
   getImportantMilestones,
+  hasEventsForCategory,
   isRangeContinuation,
   getWeekByStartDate,
   getWeekDays,
@@ -28,15 +29,24 @@ import { getAppNow, isDateKey, isValidDateOverride } from "../_lib/time";
 import { getDateContextForWeek, withDateContext } from "../_lib/internal-url";
 import { hasRealPokemonArtwork } from "../_lib/pokemon-artwork";
 
-const filters = [
-  { key: "all", label: "전체" },
+const tierFilters = [
+  { key: "all", label: "전체 레이드" },
   { key: "tier5", label: "5성" },
+  { key: "tier4", label: "4성" },
   { key: "tier3", label: "3성" },
+  { key: "tier1", label: "1성" },
+] as const;
+
+const kindFilters = [
+  { key: "normal", label: "일반" },
   { key: "mega", label: "메가" },
-  { key: "max", label: "맥스" },
   { key: "shadow", label: "그림자" },
+  { key: "special", label: "특별" },
+  { key: "max", label: "맥스" },
   { key: "event", label: "이벤트" },
 ] as const;
+
+const filters = [...tierFilters, ...kindFilters] as const;
 
 type ScheduleCategory = (typeof filters)[number]["key"];
 type SearchParams = Promise<{ week?: string | string[]; category?: string | string[]; date?: string | string[] }>;
@@ -77,7 +87,7 @@ function ScheduleEventRow({ event, dateKey }: { event: WeekEvent; dateKey: strin
       {event.scheduleType === "range"
         ? <p className="range-event-time">{formatRangeEventPeriod(event, dateKey)}</p>
         : <EventTime className="schedule-event-times" availabilityTime={event.availabilityTime} featuredHour={event.featuredHour} featuredLabel={event.category === "legendary" ? "레이드아워" : event.category === "max" ? "맥스배틀 시간" : "집중 시간"} />}
-      <div className="schedule-rating"><RatingStars value={event.rating} /><strong>{event.reason}</strong></div>
+      {event.rating ? <div className="schedule-rating"><RatingStars value={event.rating} /><strong>{event.reason}</strong></div> : <p className="schedule-rotation-note">{event.reason}</p>}
       {event.pokemon.length > 1 ? <ul className="schedule-pokemon-list">{event.pokemon.map((item) => <li key={item.id}>{item.name}</li>)}</ul> : null}
     </div>
     {event.pokemon.length === 1 ? <PokemonArtwork className="schedule-event-art" image={event.pokemon[0].image} alt={event.pokemon[0].name} size="sm" /> : null}
@@ -122,11 +132,18 @@ export default async function SchedulePage({ searchParams }: { searchParams: Sea
       <ContextLink href={scheduleHref(getAdjacentWeekKey(week.startDate, 1), category, routeDateContext)} aria-label="다음 주"><ChevronIcon /></ContextLink>
     </section>
 
-    <nav className="schedule-filters" aria-label="일정 카테고리">
-      {filters.map((filter) => <ContextLink aria-current={category === filter.key ? "page" : undefined} className={category === filter.key ? "selected" : ""} href={scheduleHref(week.startDate, filter.key, routeDateContext)} key={filter.key}>
-        <CategoryBadge className={`schedule-filter-badge filter-${filter.key} category-${filter.key}`}>{filter.label}</CategoryBadge>
-      </ContextLink>)}
-    </nav>
+    <div className="schedule-filter-groups">
+      <nav className="schedule-filters" aria-label="레이드 등급">
+        {tierFilters.filter((filter) => filter.key === "all" || hasEventsForCategory(allEvents, filter.key)).map((filter) => <ContextLink aria-current={category === filter.key ? "page" : undefined} className={category === filter.key ? "selected" : ""} href={scheduleHref(week.startDate, filter.key, routeDateContext)} key={filter.key}>
+          <CategoryBadge className={`schedule-filter-badge filter-${filter.key}`}>{filter.label}</CategoryBadge>
+        </ContextLink>)}
+      </nav>
+      <nav className="schedule-filters schedule-kind-filters" aria-label="레이드 종류와 기타 일정">
+        {kindFilters.filter((filter) => hasEventsForCategory(allEvents, filter.key)).map((filter) => <ContextLink aria-current={category === filter.key ? "page" : undefined} className={category === filter.key ? "selected" : ""} href={scheduleHref(week.startDate, filter.key, routeDateContext)} key={filter.key}>
+          <CategoryBadge className={`schedule-filter-badge filter-${filter.key}`}>{filter.label}</CategoryBadge>
+        </ContextLink>)}
+      </nav>
+    </div>
 
     <section className="schedule-list-section">
       <SectionHeader icon={<CalendarIcon />} title="주간 일정" />
