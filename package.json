@@ -17,6 +17,8 @@
     "data:preview:prepare": "tsx data-engine/scripts/preview-prepare.ts",
     "data:standardize:validate": "tsx data-engine/scripts/standardization-validate.ts",
     "data:standardize:preview": "tsx data-engine/scripts/standardization-preview.ts",
+    "data:coverage:validate": "tsx data-engine/scripts/coverage-validate.ts",
+    "data:coverage:preview": "tsx data-engine/scripts/coverage-preview.ts",
     "data:validate": "tsx data-engine/scripts/validate.ts",
     "data:test": "tsx --test data-engine/tests/*.test.ts"
   },

@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-20T14:30:00+09:00",
+  "reviewer": "Codex manual editorial review",
+  "sources": [
+    {
+      "id": "official:crowned-energy-zamazenta",
+      "url": "https://pokemongo.com/news/crowned-energy-resource-zacian-zamazenta",
+      "publisher": "Pokémon GO",
+      "claim": "방패왕 자마젠타는 아이언헤드를 배운 역전의 용사 자마젠타와 방패왕 에너지 1,000으로 처음 폼을 바꾸며, 아이언헤드는 거수탄으로 변한다. 이후 같은 개체의 폼 변경에는 에너지가 들지 않고, 방패왕 상태에서는 맥스배틀에 참가할 수 있다.",
+      "sourceHash": "f56538b6e4910904b2affce8cbd3e6bc097297b0b8d1d4c4108595558bf6e274"
+    },
+    {
+      "id": "official:road-to-unova-fusion-moves",
+      "url": "https://pokemongo.com/news/road-to-unova-event",
+      "publisher": "Pokémon GO",
+      "claim": "레이드에서 만난 레시라무는 크로스플레임, 제크로무는 크로스썬더를 배운 공식 이벤트 이력이 있으며 두 기술의 PvE/PvP 위력이 공개되었다.",
+      "sourceHash": "da893a288d012dfd8421fff54fa3cd2eae5b4fe938f9c033677b10a12962961f"
+    },
+    {
+      "id": "official:into-the-wild-2026",
+      "url": "https://pokemongo.com/en/news/into-the-wild-2026",
+      "publisher": "Pokémon GO",
+      "claim": "2026-11-09~11-13 크리만·꿈트렁 3성, 검왕 자시안·방패왕 자마젠타 5성 및 레이드아워가 공식 확인되었다.",
+      "sourceHash": "a70363bb297b3514a79a59e153716365cf846da137655bca068f4d403566ce6d"
+    },
+    {
+      "id": "official:steeled-resolve-2026",
+      "url": "https://pokemongo.com/en/news/steeled-resolve-2026",
+      "publisher": "Pokémon GO",
+      "claim": "꿈트렁이 Pokémon GO에 데뷔하며 3성 레이드에 등장한다고 공식 발표되었다.",
+      "sourceHash": "82f1682a85690efaff0bce88e9b767e93a2cc7d4b2bcb0f9438326ec792f83b4"
+    },
+    {
+      "id": "secondary:pogohub-zamazenta-crowned",
+      "url": "https://db.pokemongohub.net/pokemon/889-Crowned_Shield",
+      "publisher": "Pokémon GO Hub Database",
+      "claim": "방패왕 자마젠타의 능력치, 현재 기술, 레벨별 CP와 강화 비용을 PoGo API 스냅샷과 교차 확인했다.",
+      "sourceHash": "b755590c103dd2f36c51df57c977936cdcc2572c16b0557fb3aadc4e3e6e7998"
+    },
+    {
+      "id": "secondary:pogohub-druddigon",
+      "url": "https://db.pokemongohub.net/pokemon/621",
+      "publisher": "Pokémon GO Hub Database",
+      "claim": "크리만의 능력치, 현재 기술, 레벨별 CP와 레이드 역할을 PoGo API 스냅샷과 교차 확인했다.",
+      "sourceHash": "714794d77b7472514b834659e73bf1e27cd2fdf3910ee03e6a4b98b0f9973c61"
+    },
+    {
+      "id": "secondary:pogohub-orthworm",
+      "url": "https://db.pokemongohub.net/pokemon/968",
+      "publisher": "Pokémon GO Hub Database",
+      "claim": "꿈트렁의 능력치, 현재 기술, 레벨별 CP와 레이드·PvP 역할을 PoGo API 스냅샷과 교차 확인했다.",
+      "sourceHash": "e10d70af02c5fb2302c65c34b6509a0f9faaf183a345d19f3f9e4bd637b57847"
+    },
+    {
+      "id": "secondary:pogohub-reshiram",
+      "url": "https://db.pokemongohub.net/pokemon/643",
+      "publisher": "Pokémon GO Hub Database",
+      "claim": "레시라무의 능력치, 현재 기술, 레벨별 CP와 불꽃·드래곤 레이드 역할을 PoGo API 스냅샷과 교차 확인했다.",
+      "sourceHash": "01627b3dd5545ac0628437f6f4a925649a5d4f55dd527e7fdb657f90df043c10"
+    },
+    {
+      "id": "secondary:pogohub-zekrom",
+      "url": "https://db.pokemongohub.net/pokemon/644",
+      "publisher": "Pokémon GO Hub Database",
+      "claim": "제크로무의 능력치, 현재 기술, 레벨별 CP와 전기·드래곤 레이드 역할을 PoGo API 스냅샷과 교차 확인했다.",
+      "sourceHash": "9602fb8a86217572850b69433f4c8324a35c3dd72c3940133ad166152e0fa8ee"
+    }
+  ],
+  "limitations": [
+    "전체 공격수 순위나 실제 레이드 시뮬레이션을 새로 생성하지 않았다.",
+    "크리만과 꿈트렁의 PvP 리그별 최적 IV·매치업은 검증하지 않았다.",
+    "방패왕 자마젠타의 맥스기술 강화 비용과 PvP 최적 조합은 이번 후보에서 단정하지 않는다.",
+    "레시라무·제크로무의 크로스플레임·크로스썬더 습득 가능 여부는 실제 게임의 대단한 기술머신 화면을 최종 확인 대상으로 남긴다."
+  ]
+}

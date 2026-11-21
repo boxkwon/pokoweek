@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-20T14:30:00+09:00",
+  "sourceSnapshotHash": "1cd543cc13ba23cdfd9954fedaf8220d94054b2f8bba39af01080e25fc7bf4e6",
+  "sourceSnapshot": "data/raw/pogoapi/2026-11-17T00-49-59-500Z",
+  "pokemon": [
+    {
+      "id": "zamazenta-crowned",
+      "dexNumber": 889,
+      "displayName": "방패왕 자마젠타",
+      "form": "Crowned_shield",
+      "types": ["격투", "강철"],
+      "baseStats": { "attack": 250, "defense": 292, "stamina": 192 },
+      "moves": {
+        "fast": ["메탈클로", "얼음엄니"],
+        "charged": ["문포스", "인파이트", "기가임팩트"],
+        "special": ["거수탄"]
+      },
+      "progression": [
+        { "level": 30, "cp": 3576, "cumulativeCost": { "stardust": 75000, "candy": 66, "xlCandy": 0 } },
+        { "level": 35, "cp": 3874, "cumulativeCost": { "stardust": 137000, "candy": 130, "xlCandy": 0 } },
+        { "level": 40, "cp": 4172, "cumulativeCost": { "stardust": 225000, "candy": 248, "xlCandy": 0 } },
+        { "level": 50, "cp": 4717, "cumulativeCost": { "stardust": 475000, "candy": 248, "xlCandy": 296 } }
+      ],
+      "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:pokemon_types:d2979fa632e6", "pogoapi:current_pokemon_moves:8dff0aa9bb68", "official:crowned-energy-zamazenta", "secondary:pogohub-zamazenta-crowned"]
+    },
+    {
+      "id": "druddigon",
+      "dexNumber": 621,
+      "displayName": "크리만",
+      "form": "Normal",
+      "types": ["드래곤"],
+      "baseStats": { "attack": 213, "defense": 170, "stamina": 184 },
+      "moves": { "fast": ["드래곤테일", "물기"], "charged": ["드래곤클로", "깜짝베기", "파괴광선", "암석봉인"], "special": [] },
+      "progression": [
+        { "level": 30, "cp": 2342, "cumulativeCost": { "stardust": 75000, "candy": 66, "xlCandy": 0 } },
+        { "level": 35, "cp": 2537, "cumulativeCost": { "stardust": 137000, "candy": 130, "xlCandy": 0 } },
+        { "level": 40, "cp": 2732, "cumulativeCost": { "stardust": 225000, "candy": 248, "xlCandy": 0 } },
+        { "level": 50, "cp": 3088, "cumulativeCost": { "stardust": 475000, "candy": 248, "xlCandy": 296 } }
+      ],
+      "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:pokemon_types:d2979fa632e6", "pogoapi:current_pokemon_moves:8dff0aa9bb68", "official:into-the-wild-2026", "secondary:pogohub-druddigon"]
+    },
+    {
+      "id": "orthworm",
+      "dexNumber": 968,
+      "displayName": "꿈트렁",
+      "form": "Normal",
+      "types": ["강철"],
+      "baseStats": { "attack": 161, "defense": 219, "stamina": 172 },
+      "moves": { "fast": ["아이언테일", "진흙뿌리기"], "charged": ["암석봉인", "지진", "아이언헤드"], "special": [] },
+      "progression": [
+        { "level": 30, "cp": 1971, "cumulativeCost": { "stardust": 75000, "candy": 66, "xlCandy": 0 } },
+        { "level": 35, "cp": 2135, "cumulativeCost": { "stardust": 137000, "candy": 130, "xlCandy": 0 } },
+        { "level": 40, "cp": 2299, "cumulativeCost": { "stardust": 225000, "candy": 248, "xlCandy": 0 } },
+        { "level": 50, "cp": 2599, "cumulativeCost": { "stardust": 475000, "candy": 248, "xlCandy": 296 } }
+      ],
+      "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:pokemon_types:d2979fa632e6", "pogoapi:current_pokemon_moves:8dff0aa9bb68", "official:into-the-wild-2026", "official:steeled-resolve-2026", "secondary:pogohub-orthworm"]
+    },
+    {
+      "id": "zekrom",
+      "dexNumber": 644,
+      "displayName": "제크로무",
+      "form": "Normal",
+      "types": ["드래곤", "전기"],
+      "baseStats": { "attack": 275, "defense": 211, "stamina": 205 },
+      "moves": { "fast": ["용의숨결", "차지빔"], "charged": ["역린", "와일드볼트", "러스터캐논", "깨물어부수기"], "special": ["크로스썬더"] },
+      "progression": [
+        { "level": 30, "cp": 3462, "cumulativeCost": { "stardust": 75000, "candy": 66, "xlCandy": 0 } },
+        { "level": 35, "cp": 3750, "cumulativeCost": { "stardust": 137000, "candy": 130, "xlCandy": 0 } },
+        { "level": 40, "cp": 4038, "cumulativeCost": { "stardust": 225000, "candy": 248, "xlCandy": 0 } },
+        { "level": 50, "cp": 4565, "cumulativeCost": { "stardust": 475000, "candy": 248, "xlCandy": 296 } }
+      ],
+      "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:pokemon_types:d2979fa632e6", "pogoapi:current_pokemon_moves:8dff0aa9bb68", "official:road-to-unova-fusion-moves", "secondary:pogohub-zekrom"]
+    },
+    {
+      "id": "reshiram",
+      "dexNumber": 643,
+      "displayName": "레시라무",
+      "form": "Normal",
+      "types": ["드래곤", "불꽃"],
+      "baseStats": { "attack": 275, "defense": 211, "stamina": 205 },
+      "moves": { "fast": ["용의숨결", "불꽃엄니"], "charged": ["깨물어부수기", "오버히트", "용성군", "스톤에지"], "special": ["크로스플레임"] },
+      "progression": [
+        { "level": 30, "cp": 3462, "cumulativeCost": { "stardust": 75000, "candy": 66, "xlCandy": 0 } },
+        { "level": 35, "cp": 3750, "cumulativeCost": { "stardust": 137000, "candy": 130, "xlCandy": 0 } },
+        { "level": 40, "cp": 4038, "cumulativeCost": { "stardust": 225000, "candy": 248, "xlCandy": 0 } },
+        { "level": 50, "cp": 4565, "cumulativeCost": { "stardust": 475000, "candy": 248, "xlCandy": 296 } }
+      ],
+      "evidenceIds": ["pogoapi:pokemon_stats:ca23e7947d97", "pogoapi:pokemon_types:d2979fa632e6", "pogoapi:current_pokemon_moves:8dff0aa9bb68", "official:road-to-unova-fusion-moves", "secondary:pogohub-reshiram"]
+    }
+  ],
+  "progressionEvidenceIds": ["pogoapi:cp_multiplier:61c96ee36079", "pogoapi:pokemon_powerup_requirements:d8065e28e35b", "review:kyurem-power-up-costs", "reference:cp-formula"]
+}

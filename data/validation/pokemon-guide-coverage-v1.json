@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-20T14:40:00+09:00",
+  "normalizedHash": "d83617589bca24531c680aa6708ba0e0a7fa24c8a5379cd870514e2db016ab26",
+  "candidateHash": "4bd1e8524a90c168cb383449e51d4c1a95ee85651bcbafc3d1baf95831dbe034",
+  "structuralComplete": true,
+  "editorialReadiness": [
+    {
+      "pokemonId": "zamazenta-crowned",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "druddigon",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "orthworm",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "zekrom",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "reshiram",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    }
+  ],
+  "issues": [],
+  "approvalPerformed": false,
+  "publicationPerformed": false,
+  "validationHash": "2f95d550c1407231dd4962241ddeb53371ff2fc09e25c4cb3148dde6344d246e"
+}

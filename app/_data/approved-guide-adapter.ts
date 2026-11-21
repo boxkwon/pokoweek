@@ -1,6 +1,7 @@
 import approvedOverlays from "../../data/approved/app-guide-overlays.json";
 import previewOverlays from "../../data/preview/app-guide-overlays.json";
 import standardizationPreviewOverlays from "../../data/preview/pokemon-detail-standard-overlays.json";
+import coveragePreviewOverlays from "../../data/preview/pokemon-guide-coverage-overlays.json";
 
 type GuideRecord = { id: string } & Record<string, unknown>;
 
@@ -15,6 +16,7 @@ type ApprovedGuideOverlay = {
 const overlays = approvedOverlays as unknown as readonly ApprovedGuideOverlay[];
 const previews = previewOverlays as unknown as readonly ApprovedGuideOverlay[];
 const standardizationPreviews = standardizationPreviewOverlays as unknown as readonly ApprovedGuideOverlay[];
+const coveragePreviews = coveragePreviewOverlays as unknown as readonly ApprovedGuideOverlay[];
 
 function mergeGuide<T extends GuideRecord>(base: T, overlay: ApprovedGuideOverlay): T {
   return {
@@ -31,7 +33,7 @@ function mergeGuide<T extends GuideRecord>(base: T, overlay: ApprovedGuideOverla
 export function applyApprovedGuideOverlays<T extends GuideRecord>(guides: readonly T[]): T[] {
   const previewEnabled = process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES === "true"
     && process.env.VERCEL_ENV !== "production";
-  const activeOverlays = previewEnabled ? [...overlays, ...previews, ...standardizationPreviews] : overlays;
+  const activeOverlays = previewEnabled ? [...overlays, ...previews, ...standardizationPreviews, ...coveragePreviews] : overlays;
   const byId = new Map(activeOverlays.map((overlay) => [overlay.id, overlay]));
   return guides.map((guide) => {
     const overlay = byId.get(guide.id);
