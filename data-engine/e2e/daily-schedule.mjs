@@ -80,8 +80,30 @@ try {
   const orthwormText = await page.locator("body").innerText();
   assert.match(orthwormText, /슈퍼리그 CP 1,500 이하/);
   assert.match(orthwormText, /하이퍼리그 CP 2,500 이하/);
+
+  const timedCases = [
+    { date: "2026-11-21", category: "max", title: "무한다이맥스 무한다이노", time: /11:00\s*~\s*14:00/ },
+    { date: "2026-11-28", category: "special", title: "슈퍼 메가픽시", time: /11\/28 14:00\s*~\s*11\/28 17:00/ },
+    { date: "2026-11-25", category: "tier5", title: "테오키스 레이드아워", time: /18:00\s*~\s*19:00/ },
+    { date: "2026-11-19", category: "event", title: "스포트라이트 아워", time: /18:00\s*~\s*19:00/ },
+  ];
+  for (const item of timedCases) {
+    await page.goto(`${baseUrl}/schedule?date=${item.date}&category=${item.category}`, { waitUntil: "networkidle" });
+    const card = page.locator(".schedule-event-row", { hasText: item.title }).first();
+    assert.equal(await card.count(), 1, `${item.date}: missing ${item.title}`);
+    assert.equal(await card.locator(".schedule-date-cue", { hasText: "시간 한정" }).count(), 1, `${item.date}: missing time-limited badge`);
+    assert.match(await card.innerText(), item.time);
+    if (item.date === "2026-11-21" || item.date === "2026-11-28") {
+      await card.screenshot({ path: `/tmp/pokoweek-time-limited-${item.date}.png` });
+    }
+  }
+
+  await page.goto(`${baseUrl}/schedule?date=2026-11-24&category=tier5`, { waitUntil: "networkidle" });
+  const multiDayCard = page.locator(".schedule-event-row", { hasText: "크레세리아 · 다크라이" }).first();
+  assert.equal(await multiDayCard.count(), 1);
+  assert.equal(await multiDayCard.locator(".schedule-date-cue", { hasText: "시간 한정" }).count(), 0);
   await page.close();
-  console.log(JSON.stringify({ ok: true, viewports: [375, 390, 430], dates: ["2026-11-13", "2026-11-18", "2026-11-24", "2026-11-26"], candidateGuides: ["zamazenta-crowned", "zekrom", "reshiram", "orthworm"] }, null, 2));
+  console.log(JSON.stringify({ ok: true, viewports: [375, 390, 430], dates: ["2026-11-13", "2026-11-18", "2026-11-24", "2026-11-26"], timeLimitedDates: timedCases.map((item) => item.date), candidateGuides: ["zamazenta-crowned", "zekrom", "reshiram", "orthworm"] }, null, 2));
 } finally {
   await browser.close();
 }

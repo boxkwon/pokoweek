@@ -21,6 +21,7 @@ import {
   getEventsByWeek,
   getSeoulDateKey,
   hasEventsForCategory,
+  isTimeLimitedEvent,
   isRangeContinuation,
   getWeekByStartDate,
   getWeekDays,
@@ -68,7 +69,7 @@ function hasUsableArtwork(event: WeekEvent) {
 }
 
 function EventDateCue({ event, dateKey, isToday }: { event: WeekEvent; dateKey: string; isToday: boolean }) {
-  if (event.featuredHour) return <span className="schedule-date-cue time-limited">시간 한정</span>;
+  if (isTimeLimitedEvent(event)) return <span className="schedule-date-cue time-limited">시간 한정</span>;
   if (event.scheduleType !== "range") return null;
   if (getEventEndDateKey(event) === dateKey) return <span className="schedule-date-cue ending">{isToday ? "오늘 종료" : "이날 종료"}</span>;
   if (getEventStartDateKey(event) === dateKey) return <span className="schedule-date-cue starting">{isToday ? "오늘 시작" : "이날 시작"}</span>;

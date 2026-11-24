@@ -125,6 +125,20 @@ export function getEventEndDateKey(event: WeekEvent) {
   return event.endAt?.slice(0, 10) ?? event.date;
 }
 
+export function isTimeLimitedEvent(event: WeekEvent) {
+  if (event.featuredHour) return true;
+  if (!event.startAt || !event.endAt) return false;
+  if (getEventStartDateKey(event) !== getEventEndDateKey(event)) return false;
+
+  const start = Date.parse(event.startAt);
+  const end = Date.parse(event.endAt);
+  if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start || end - start >= 24 * 60 * 60 * 1000) return false;
+
+  const startTime = event.startAt.slice(11, 16);
+  const endTime = event.endAt.slice(11, 16);
+  return !(startTime === "00:00" && (endTime === "23:59" || endTime === "24:00"));
+}
+
 export function isRangeContinuation(event: WeekEvent, dateKey: string) {
   return event.scheduleType === "range" && getEventStartDateKey(event) < dateKey;
 }
