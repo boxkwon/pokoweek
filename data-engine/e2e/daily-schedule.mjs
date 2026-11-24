@@ -21,6 +21,13 @@ try {
     await expectDailyShell(page, "2026-11-24");
     const bodyOverflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
     assert.equal(bodyOverflow, false, `${width}px: horizontal overflow`);
+    await page.goto(`${baseUrl}/schedule?date=2026-11-19&category=event`, { waitUntil: "networkidle" });
+    const dynamaxTrails = page.locator(".schedule-event-row", { hasText: "Dynamax Trails" }).first();
+    assert.equal(await dynamaxTrails.count(), 1);
+    assert.equal(await dynamaxTrails.getByRole("link", { name: /이벤트 상세/ }).count(), 0);
+    assert.equal(await dynamaxTrails.locator(".range-continuation-link").count(), 0);
+    assert.match(await dynamaxTrails.innerText(), /상세 안내 미등록/);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth), false, `${width}px: event card horizontal overflow`);
     await page.screenshot({ path: `/tmp/pokoweek-daily-${width}.png`, fullPage: true });
     await page.close();
   }
@@ -80,6 +87,18 @@ try {
   const orthwormText = await page.locator("body").innerText();
   assert.match(orthwormText, /슈퍼리그 CP 1,500 이하/);
   assert.match(orthwormText, /하이퍼리그 CP 2,500 이하/);
+
+  await page.goto(`${baseUrl}/schedule?date=2026-11-14&category=event`, { waitUntil: "networkidle" });
+  const wildAreaCard = page.locator(".schedule-event-row", { hasText: "GO WILD AREA DAY 1" }).first();
+  const eventDetailLink = wildAreaCard.getByRole("link", { name: "이벤트 상세" });
+  assert.equal(await eventDetailLink.count(), 1);
+  assert.match(await eventDetailLink.getAttribute("href"), /^\/events\/go-wild-area-global-2026\?date=2026-11-14$/);
+  await eventDetailLink.click();
+  await page.waitForURL(/\/events\/go-wild-area-global-2026\?date=2026-11-14/);
+  assert.match(await page.locator("body").innerText(), /GO WILD AREA 2026/);
+  await page.goBack({ waitUntil: "networkidle" });
+  assert.match(page.url(), /date=2026-11-14/);
+  assert.match(page.url(), /category=event/);
 
   const timedCases = [
     { date: "2026-11-21", category: "max", title: "무한다이맥스 무한다이노", time: /11:00\s*~\s*14:00/ },

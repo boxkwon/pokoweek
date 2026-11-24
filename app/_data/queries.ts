@@ -257,9 +257,22 @@ export type WeekEventAction = {
   href?: string;
 };
 
+const registeredEventDetailHrefs = new Set<string>(
+  Object.values(eventsById)
+    .map((event) => event.href)
+    .filter((href) => href.startsWith("/events/")),
+);
+
+export function getRegisteredEventDetailHref(event: WeekEvent) {
+  if (!event.eventHref) return undefined;
+  const pathname = event.eventHref.split("?")[0].split("#")[0];
+  return registeredEventDetailHrefs.has(pathname) ? event.eventHref : undefined;
+}
+
 export function resolveWeekEventAction(event: WeekEvent, dateContext?: string): WeekEventAction {
-  if (event.eventHref) {
-    return { kind: "event", label: "이벤트 상세", href: withDateContext(event.eventHref, dateContext) };
+  const eventDetailHref = getRegisteredEventDetailHref(event);
+  if (eventDetailHref) {
+    return { kind: "event", label: "이벤트 상세", href: withDateContext(eventDetailHref, dateContext) };
   }
 
   const selections = getGuideSelectionForEvent(event);
@@ -278,7 +291,7 @@ export function resolveWeekEventAction(event: WeekEvent, dateContext?: string): 
     };
   }
 
-  return { kind: "unavailable", label: "상세 공략 준비 중" };
+  return { kind: "unavailable", label: event.category === "event" ? "상세 안내 미등록" : "상세 공략 준비 중" };
 }
 
 export function getWeekEventActionHref(event: WeekEvent, dateContext?: string) {
