@@ -44,7 +44,7 @@ test("recommended moves belong to each normalized form and limited moves keep ac
         if (move) assert.ok(chargedMoves.has(move.name), `${candidate.pokemonId}: invalid charged move`);
       }
       const isLimited = [moveset.fastMove, moveset.chargedMove, moveset.chargedMove2]
-        .some((move) => move?.tags?.some((tag: string) => tag === "elite_tm" || tag === "event_limited"));
+        .some((move) => move?.tags?.some((tag: string) => tag === "elite_tm" || tag === "elite_tm_check" || tag === "event_limited"));
       if (isLimited) assert.ok(moveset.conditions?.length, `${candidate.pokemonId}: limited move requires conditions`);
     }
   }
@@ -96,4 +96,29 @@ test("coverage overlays are Preview-only and never replace Production guides", {
 test("existing approved Production overlays remain byte-for-byte unchanged", async () => {
   const bytes = await readFile(path.join(process.cwd(), "data/approved/app-guide-overlays.json"));
   assert.equal(createHash("sha256").update(bytes).digest("hex"), "1d990193006a1c4b815dd87b49b974fc093c87ecf9933822081428d165f97e53");
+});
+
+test("coverage QA copy keeps form-change, limited-move, and PvP caps accurate", async () => {
+  const bundle = CoverageGuideCandidateBundleSchema.parse(await readJson("data/candidates/pokemon-guide-coverage-v1.json"));
+  const byId = new Map(bundle.candidates.map((candidate) => [candidate.pokemonId, candidate.guide]));
+
+  const zamazenta = byId.get("zamazenta-crowned")!;
+  const zamazentaText = JSON.stringify(zamazenta);
+  assert.match(zamazentaText, /아이언헤드를 배운 역전의 용사 자마젠타/);
+  assert.match(zamazentaText, /실드 에너지/);
+  assert.doesNotMatch(zamazentaText, /융합/);
+  assert.deepEqual(zamazenta.movesets.raid?.chargedMove?.tags ?? [], []);
+  assert.match(zamazenta.movesets.raid?.conditions?.join(" ") ?? "", /폼을 바꿀 때 전환/);
+
+  for (const id of ["zekrom", "reshiram"] as const) {
+    const guide = byId.get(id)!;
+    assert.deepEqual(guide.movesets.raid?.chargedMove?.tags, ["elite_tm_check"]);
+    assert.match(guide.movesets.raid?.conditions?.join(" ") ?? "", /습득 가능한지는.*확인/);
+  }
+
+  const orthworm = byId.get("orthworm")!;
+  const firstAction = (orthworm.investment.order as { label: string; reason: string }[])[0];
+  assert.match(firstAction.label, /슈퍼리그 CP 1,500 이하/);
+  assert.match(firstAction.label, /하이퍼리그 CP 2,500 이하/);
+  assert.match(firstAction.reason, /최적 IV를 단정하지 않습니다/);
 });

@@ -115,7 +115,7 @@ export const StandardizedGuideDatasetSchema = z.object({
 });
 
 const GuideUseCaseSchema = z.object({ rating: z.number().int().min(1).max(5).nullable(), reason: z.string().min(1) });
-const GuideMoveSchema = z.object({ name: z.string().min(1), tags: z.array(z.enum(["fast_tm", "charged_tm", "elite_tm", "event_limited"])).optional() });
+const GuideMoveSchema = z.object({ name: z.string().min(1), tags: z.array(z.enum(["fast_tm", "charged_tm", "elite_tm", "elite_tm_check", "event_limited"])).optional() });
 const GuideMovesetSchema = z.object({
   fastMove: GuideMoveSchema.optional(),
   chargedMove: GuideMoveSchema.optional(),

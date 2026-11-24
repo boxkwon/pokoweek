@@ -142,7 +142,7 @@ svg { display: block; }
 .guide-data-missing { margin: 0; padding: var(--space-3); border: 1px solid #dce2ea; border-radius: var(--radius-sm); color: #59677d; font-size: 13px; font-weight: 800; line-height: 1.45; text-align: center; }
 
 /* Bottom navigation */
-.fresh-bottom-nav { width: min(calc(100% - 24px),406px); height: var(--bottom-nav-height); position: fixed; right: 0; bottom: calc(var(--bottom-nav-gap) + env(safe-area-inset-bottom,0px)); left: 0; z-index: 90; display: grid; grid-template-columns: repeat(4,1fr); margin: auto; padding: var(--space-2); border-radius: 26px; background: rgba(255,255,255,.97); box-shadow: 0 5px 22px rgba(15,35,71,.18); }
+.fresh-bottom-nav { width: min(calc(100% - 24px),406px); height: var(--bottom-nav-height); position: fixed; right: 0; bottom: calc(var(--bottom-nav-gap) + env(safe-area-inset-bottom,0px)); left: 0; z-index: 90; display: grid; grid-template-columns: repeat(3,1fr); margin: auto; padding: var(--space-2); border-radius: 26px; background: rgba(255,255,255,.97); box-shadow: 0 5px 22px rgba(15,35,71,.18); }
 .fresh-bottom-nav a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border-radius: 18px; color: #536078; font-size: 12px; font-weight: 800; }
 .fresh-bottom-nav a.active { background: #deecff; color: #045fd2; }
 .fresh-bottom-nav svg { width: 26px; height: 26px; }
@@ -330,6 +330,25 @@ svg { display: block; }
 .schedule-filters a.selected .filter-shadow { border-color: var(--category-shadow); background: var(--category-shadow); color: #fff; }
 .schedule-filters a.selected .filter-special { border-color: #7449b8; background: #7449b8; color: #fff; }
 .schedule-filters a.selected .filter-event { border-color: var(--category-event); background: var(--category-event); color: #563d00; }
+.schedule-day-tabs { min-height: 70px; display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 2px; margin: var(--space-2) var(--space-3) 0; padding: var(--space-1); border: 1px solid #dce2ea; border-radius: var(--radius-lg); background: #fff; }
+.schedule-day-tabs a { min-width: 0; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; border-radius: var(--radius-sm); color: #52627d; }
+.schedule-day-tabs span { font-size: 12px; font-weight: 850; }
+.schedule-day-tabs b { font-size: 16px; line-height: 1.1; }
+.schedule-day-tabs small { position: absolute; right: 0; bottom: 2px; left: 0; color: var(--blue); font-size: 9px; font-weight: 900; text-align: center; }
+.schedule-day-tabs a.today:not(.selected) { background: #eef5ff; color: var(--blue); }
+.schedule-day-tabs a.selected { background: #082f69; color: #fff; }
+.schedule-day-tabs a.selected small { color: #fff; }
+.schedule-day-tabs a.saturday:not(.selected) { color: #476d9f; }
+.schedule-day-tabs a.sunday:not(.selected) { color: #a14b5c; }
+.schedule-selected-date-summary { margin: 0 0 var(--space-2); color: #67758a; font-size: var(--type-caption); font-weight: 750; line-height: 1.4; }
+.schedule-selected-day { overflow: hidden; border-top: 2px solid #0a397d; border-bottom: 1px solid #dce2ea; background: #fff; }
+.schedule-selected-day.today { border-top-color: var(--blue); }
+.schedule-event-labels { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-1); }
+.schedule-date-cue { min-height: 24px; display: inline-flex; align-items: center; padding: 2px var(--space-2); border-radius: 12px; background: #eef5ff; color: var(--blue); font-size: 12px; font-weight: 900; }
+.schedule-date-cue.ending { background: #fff0ed; color: #a33a2c; }
+.schedule-date-cue.starting { background: #edf8ef; color: #28703c; }
+.schedule-daily-list { margin-top: var(--space-2); }
+.schedule-daily-list .schedule-event-row { padding-right: var(--space-2); }
 .schedule-rotation-note { margin: var(--space-2) 0 0; color: #52627d; font-size: var(--type-body); font-weight: 800; }
 .schedule-guide-unavailable { align-self: end; margin: 0; color: #6c778b; font-size: var(--type-caption); font-weight: 900; }
 .schedule-guide-unavailable.compact { max-width: 76px; text-align: right; line-height: 1.25; }

@@ -57,6 +57,7 @@ const moveTagLabels = {
   fast_tm: "일반 기술머신",
   charged_tm: "스페셜 기술머신",
   elite_tm: "대단한 기술머신 필요",
+  elite_tm_check: "대단한 기술머신스페셜 습득 가능 여부 확인",
   event_limited: "이벤트 한정 기술",
 } as const;
 

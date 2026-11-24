@@ -1,7 +1,7 @@
 [
   {
     "id": "zamazenta-crowned",
-    "validationHash": "2f95d550c1407231dd4962241ddeb53371ff2fc09e25c4cb3148dde6344d246e",
+    "validationHash": "88c1f4d178fdf1c897d37c0f1be66bb4bc4e0b2d2d64adeb698aa7c81f9c16f0",
     "previewOnly": true,
     "guide": {
       "formName": "방패왕 · 폼 변경",
@@ -11,7 +11,7 @@
       "verdictLabel": "맥스·강철 전력이 필요하면 육성",
       "presentationMode": "training-first",
       "reason": "거수탄과 높은 내구를 활용할 목적이 있을 때 투자",
-      "summary": "아이언헤드를 배운 역전의 용사 자마젠타와 방패왕 에너지 1,000을 먼저 준비하세요. 폼 변경 뒤에는 거수탄과 실제 사용 모드를 확인하고 단계적으로 강화합니다.",
+      "summary": "아이언헤드를 배운 역전의 용사 자마젠타 1마리와 실드 에너지 1,000을 먼저 준비하세요. 폼 변경 뒤에는 거수탄과 실제 사용 모드를 확인하고 단계적으로 강화합니다.",
       "useCases": {
         "raid": {
           "rating": null,
@@ -35,13 +35,10 @@
             ]
           },
           "chargedMove": {
-            "name": "거수탄",
-            "tags": [
-              "event_limited"
-            ]
+            "name": "거수탄"
           },
           "conditions": [
-            "역전의 용사 자마젠타가 아이언헤드를 배운 상태에서 방패왕으로 폼을 바꾸면 거수탄으로 변합니다.",
+            "거수탄은 이벤트 한정 기술이 아니라, 아이언헤드를 알고 있는 역전의 용사 자마젠타가 방패왕으로 폼을 바꿀 때 전환되는 기술입니다.",
             "거수탄은 일반 기술머신으로 직접 맞추는 기술이 아닙니다."
           ],
           "reason": "강철 타입 역할을 일치시키는 조합입니다."
@@ -54,7 +51,7 @@
             ]
           },
           "conditions": [
-            "방패왕 폼에서만 사용하며 맥스배틀 기술 강화 수준은 게임 안에서 확인하세요."
+            "폼 변경 때 아이언헤드가 거수탄으로 전환됩니다. 방패왕 폼에서만 사용하며 맥스배틀 기술 강화 수준은 게임 안에서 확인하세요."
           ],
           "reason": "방패왕 자마젠타는 다이맥스하지 않아도 거수탄을 맥스기술처럼 사용합니다."
         }
@@ -68,7 +65,7 @@
           },
           {
             "id": "collect-shield-energy",
-            "label": "방패왕 에너지 1,000 확보",
+            "label": "실드 에너지 1,000 확보",
             "reason": "선택한 개체의 첫 폼 변경에 사용합니다."
           },
           {
@@ -218,19 +215,19 @@
         "ivAdvice": "ready"
       },
       "recommendations": [
-        "아이언헤드를 배운 개체와 방패왕 에너지 1,000부터 확인",
-        "폼 변경 후 거수탄을 확인하고 Lv.30부터 사용성 점검",
+        "아이언헤드를 배운 역전의 용사 자마젠타 1마리와 실드 에너지 1,000부터 확인",
+        "폼 변경 때 아이언헤드가 거수탄으로 전환되는지 확인",
         "Lv.50·기술 해방·맥스기술은 역할이 확정된 한 마리에만 투자"
       ],
       "source": {
-        "name": "Pokémon GO · 방패왕 에너지와 폼 변경",
+        "name": "Pokémon GO · 실드 에너지와 폼 변경",
         "url": "https://pokemongo.com/news/crowned-energy-resource-zacian-zamazenta"
       },
       "actionGuide": {
         "id": "zamazenta-crowned-form-change",
         "type": "form_change",
         "title": "방패왕 폼 변경 확인",
-        "summary": "아이언헤드를 배운 역전의 용사 자마젠타와 방패왕 에너지 1,000이 필요합니다.",
+        "summary": "아이언헤드를 배운 역전의 용사 자마젠타 1마리와 실드 에너지 1,000이 필요한 폼 변경입니다.",
         "goals": [
           {
             "id": "crowned-shield",
@@ -241,25 +238,26 @@
                 "id": "hero-zamazenta",
                 "type": "pokemon",
                 "pokemonId": "zamazenta-crowned",
+                "label": "아이언헤드를 배운 역전의 용사 자마젠타",
                 "amount": 1,
-                "note": "아이언헤드를 배운 역전의 용사 자마젠타"
+                "note": "방패왕 폼 변경에 사용할 개체"
               },
               {
                 "id": "shield-energy",
                 "type": "energy",
                 "energyId": "crowned-shield-energy",
-                "label": "방패왕 에너지",
+                "label": "실드 에너지",
                 "amount": 1000
               }
             ],
             "steps": [
               {
                 "id": "check-iron-head",
-                "title": "아이언헤드 보유 확인"
+                "title": "역전의 용사 자마젠타의 아이언헤드 확인"
               },
               {
                 "id": "check-energy",
-                "title": "방패왕 에너지 1,000 확인"
+                "title": "실드 에너지 1,000 확인"
               },
               {
                 "id": "change-form",
@@ -267,21 +265,21 @@
               },
               {
                 "id": "check-behemoth-bash",
-                "title": "거수탄으로 바뀌었는지 확인"
+                "title": "아이언헤드가 거수탄으로 전환됐는지 확인"
               }
             ],
             "checklist": [
               {
                 "id": "zamazenta-individual",
-                "label": "폼을 바꿀 좋은 개체를 골랐나요?"
+                "label": "폼을 바꿀 역전의 용사 자마젠타를 골랐나요?"
               },
               {
                 "id": "zamazenta-iron-head",
-                "label": "아이언헤드를 알고 있나요?"
+                "label": "그 개체가 아이언헤드를 알고 있나요?"
               },
               {
                 "id": "zamazenta-energy",
-                "label": "방패왕 에너지 1,000이 있나요?"
+                "label": "실드 에너지 1,000이 있나요?"
               }
             ],
             "warnings": [
@@ -304,7 +302,7 @@
   },
   {
     "id": "druddigon",
-    "validationHash": "2f95d550c1407231dd4962241ddeb53371ff2fc09e25c4cb3148dde6344d246e",
+    "validationHash": "88c1f4d178fdf1c897d37c0f1be66bb4bc4e0b2d2d64adeb698aa7c81f9c16f0",
     "previewOnly": true,
     "guide": {
       "formName": "일반 · 도감 우선",
@@ -505,7 +503,7 @@
   },
   {
     "id": "orthworm",
-    "validationHash": "2f95d550c1407231dd4962241ddeb53371ff2fc09e25c4cb3148dde6344d246e",
+    "validationHash": "88c1f4d178fdf1c897d37c0f1be66bb4bc4e0b2d2d64adeb698aa7c81f9c16f0",
     "previewOnly": true,
     "guide": {
       "formName": "일반 · PvP 조건부",
@@ -556,8 +554,8 @@
         "order": [
           {
             "id": "choose-orthworm-league",
-            "label": "사용할 PvP 리그부터 결정",
-            "reason": "리그마다 CP 상한과 필요한 개체·레벨이 다릅니다."
+            "label": "슈퍼리그 CP 1,500 이하 또는 하이퍼리그 CP 2,500 이하 중 목표 선택",
+            "reason": "리그마다 CP 상한과 필요한 개체·레벨이 다르며, 검증 없이 최적 IV를 단정하지 않습니다."
           },
           {
             "id": "check-orthworm-iv",
@@ -718,7 +716,7 @@
   },
   {
     "id": "zekrom",
-    "validationHash": "2f95d550c1407231dd4962241ddeb53371ff2fc09e25c4cb3148dde6344d246e",
+    "validationHash": "88c1f4d178fdf1c897d37c0f1be66bb4bc4e0b2d2d64adeb698aa7c81f9c16f0",
     "previewOnly": true,
     "guide": {
       "formName": "일반 · 전기 레이드",
@@ -753,13 +751,12 @@
           "chargedMove": {
             "name": "크로스썬더",
             "tags": [
-              "elite_tm",
-              "event_limited"
+              "elite_tm_check"
             ]
           },
           "conditions": [
             "크로스썬더는 공식 이벤트에서 레이드 포획 보상 기술로 제공된 이력이 있습니다.",
-            "현재 대단한 기술머신스페셜로 습득 가능한지는 사용 전 게임 기술 목록에서 확인하세요.",
+            "현재 대단한 기술머신스페셜로 습득 가능한지는 사용 전 게임 기술 목록에서 확인하세요. 항상 습득 가능하다고 단정하지 않습니다.",
             "크로스썬더가 없다면 와일드볼트를 임시 전기 기술로 사용할 수 있습니다."
           ],
           "reason": "전기 타입 역할을 일치시키는 우선 조합입니다."
@@ -938,7 +935,7 @@
   },
   {
     "id": "reshiram",
-    "validationHash": "2f95d550c1407231dd4962241ddeb53371ff2fc09e25c4cb3148dde6344d246e",
+    "validationHash": "88c1f4d178fdf1c897d37c0f1be66bb4bc4e0b2d2d64adeb698aa7c81f9c16f0",
     "previewOnly": true,
     "guide": {
       "formName": "일반 · 불꽃 레이드",
@@ -973,13 +970,12 @@
           "chargedMove": {
             "name": "크로스플레임",
             "tags": [
-              "elite_tm",
-              "event_limited"
+              "elite_tm_check"
             ]
           },
           "conditions": [
             "크로스플레임은 공식 이벤트에서 레이드 포획 보상 기술로 제공된 이력이 있습니다.",
-            "현재 대단한 기술머신스페셜로 습득 가능한지는 사용 전 게임 기술 목록에서 확인하세요.",
+            "현재 대단한 기술머신스페셜로 습득 가능한지는 사용 전 게임 기술 목록에서 확인하세요. 항상 습득 가능하다고 단정하지 않습니다.",
             "크로스플레임이 없다면 오버히트를 임시 불꽃 기술로 사용할 수 있습니다."
           ],
           "reason": "불꽃 타입 역할을 일치시키는 우선 조합입니다."

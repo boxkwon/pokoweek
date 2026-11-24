@@ -60,7 +60,7 @@ function validateMoves(candidate: CoverageGuideCandidate, pokemon: ReturnType<ty
       }
     }
     const limited = [moveset.fastMove, moveset.chargedMove, moveset.chargedMove2]
-      .some((move) => move?.tags?.some((tag: string) => tag === "elite_tm" || tag === "event_limited"));
+      .some((move) => move?.tags?.some((tag: string) => tag === "elite_tm" || tag === "elite_tm_check" || tag === "event_limited"));
     if (limited && !moveset.conditions?.length) {
       issues.push({ pokemonId: candidate.pokemonId, code: "missing_move_condition", message: `${mode}: 한정 기술 습득 조건이 없습니다.`, severity: "error" });
     }

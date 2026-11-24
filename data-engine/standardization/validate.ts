@@ -95,7 +95,7 @@ function checkMoves(candidate: StandardGuideCandidate, dataset: ReturnType<typeo
       }
     }
     const hasLimitedMove = [moveset.fastMove, moveset.chargedMove, moveset.chargedMove2]
-      .some((move) => move?.tags?.some((tag) => tag === "elite_tm" || tag === "event_limited"));
+      .some((move) => move?.tags?.some((tag) => tag === "elite_tm" || tag === "elite_tm_check" || tag === "event_limited"));
     if (hasLimitedMove && (!moveset.conditions || moveset.conditions.length === 0)) {
       issues.push({ pokemonId: candidate.pokemonId, code: "missing_acquisition_condition", message: `${mode}: 한정 기술의 습득 조건 안내가 없습니다.`, severity: "error" });
     }

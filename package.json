@@ -19,6 +19,7 @@
     "data:standardize:preview": "tsx data-engine/scripts/standardization-preview.ts",
     "data:coverage:validate": "tsx data-engine/scripts/coverage-validate.ts",
     "data:coverage:preview": "tsx data-engine/scripts/coverage-preview.ts",
+    "e2e:daily": "node data-engine/e2e/daily-schedule.mjs",
     "data:validate": "tsx data-engine/scripts/validate.ts",
     "data:test": "tsx --test data-engine/tests/*.test.ts"
   },

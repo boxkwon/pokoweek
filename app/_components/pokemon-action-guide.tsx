@@ -48,7 +48,7 @@ function combineRequirements(goals: readonly ActionGoal[]) {
 }
 
 function getRequirementLabel(requirement: ActionRequirement) {
-  if (requirement.type === "pokemon") return getPokemonEntry(requirement.pokemonId)?.name ?? "포켓몬";
+  if (requirement.type === "pokemon") return requirement.label ?? getPokemonEntry(requirement.pokemonId)?.name ?? "포켓몬";
   if (requirement.type === "candy") return `${getPokemonEntry(requirement.pokemonId)?.name ?? "포켓몬"} 사탕`;
   return requirement.label;
 }
@@ -237,7 +237,7 @@ export function PokemonActionGuide({
         <b>몇 마리를 남겨야 하나요?</b>
         {pokemonRequirements.map((requirement) => <p key={requirementKey(requirement)}>
           <strong>{getRequirementLabel(requirement)}</strong>
-          <span>융합용 {requirement.amount}마리 보관</span>
+          <span>{actionGuide.type === "fusion" ? "융합용" : actionGuide.type === "form_change" ? "폼 변경용" : "준비용"} {requirement.amount}마리 보관</span>
         </p>)}
       </div> : null}
     </div> : null}

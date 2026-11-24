@@ -23,7 +23,7 @@ export type GuideUseCase = {
 
 export type GuideMove = {
   name: string;
-  tags?: readonly ("fast_tm" | "charged_tm" | "elite_tm" | "event_limited")[];
+  tags?: readonly ("fast_tm" | "charged_tm" | "elite_tm" | "elite_tm_check" | "event_limited")[];
 };
 
 export type GuideMoveset = {
@@ -174,6 +174,7 @@ export type ActionRequirement =
       type: "pokemon";
       pokemonId: string;
       amount: number;
+      label?: string;
       note?: string;
     }
   | {

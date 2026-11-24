@@ -5,10 +5,10 @@ import { getCurrentWeek } from "../_data/queries";
 import { getDateContextForWeek, getRouteDateContextFromSearch, withCurrentDateContext, withDateContext } from "../_lib/internal-url";
 import { isScheduleWeek, normalizeScheduleFilter, SCHEDULE_CATEGORY_KEY, SCHEDULE_WEEK_KEY } from "../_lib/schedule-preferences";
 import { getAppNow, isValidDateOverride } from "../_lib/time";
-import { BagIcon, CalendarIcon, HomeIcon, SwordsIcon } from "./icons";
+import { BagIcon, CalendarIcon, SwordsIcon } from "./icons";
 import { ContextLink } from "./context-link";
 
-export function BottomNavigation({ active }: { active: "home" | "schedule" | "guide" | "prep" }) {
+export function BottomNavigation({ active }: { active: "schedule" | "guide" | "prep" }) {
   const [scheduleHref, setScheduleHref] = useState("/schedule");
   const [dateOverride, setDateOverride] = useState<string>();
   useEffect(() => {
@@ -29,7 +29,6 @@ export function BottomNavigation({ active }: { active: "home" | "schedule" | "gu
   }, []);
 
   const items = [
-    { key: "home", href: withCurrentDateContext("/", dateOverride), label: "홈", icon: <HomeIcon /> },
     { key: "schedule", href: scheduleHref, label: "일정", icon: <CalendarIcon /> },
     { key: "guide", href: withCurrentDateContext("/guide", dateOverride), label: "공략", icon: <SwordsIcon /> },
     { key: "prep", href: withCurrentDateContext("/prepare", dateOverride), label: "준비", icon: <BagIcon /> },
