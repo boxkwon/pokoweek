@@ -14,7 +14,7 @@ import {
   getWeekEventActionHref,
   getWeekEventById,
 } from "../../app/_data/queries";
-import { getDateContextForWeek, getRouteDateContextFromSearch, withDateContext, withInheritedDateContext } from "../../app/_lib/internal-url";
+import { getDateContextForWeek, getRouteDateContextFromSearch, getScheduleNavigationContext, withDateContext, withInheritedDateContext, withInheritedNavigationContext, withScheduleNavigationContext } from "../../app/_lib/internal-url";
 
 test("past schedule actions preserve their selected date and exact Pokemon forms", () => {
   const week = getWeekByStartDate("2026-11-09");
@@ -55,6 +55,36 @@ test("explicit event dates win over inherited route dates and week navigation no
   assert.equal(getDateContextForWeek("2026-11-09", "2026-11-16"), "2026-11-09");
   assert.equal(getDateContextForWeek("2026-11-09", "2026-11-13"), "2026-11-13");
   assert.equal(getDateContextForWeek("2026-11-16", "2026-11-09"), "2026-11-16");
+});
+
+test("bottom navigation context keeps schedule week, date, and category across tabs", () => {
+  const scheduleContext = getScheduleNavigationContext(
+    "/schedule",
+    "?week=2026-11-09&date=2026-11-13&category=tier3",
+  );
+  assert.deepEqual(scheduleContext, { week: "2026-11-09", date: "2026-11-13", category: "tier3" });
+  assert.equal(
+    withScheduleNavigationContext("/guide", scheduleContext),
+    "/guide?week=2026-11-09&date=2026-11-13&scheduleCategory=tier3",
+  );
+
+  const guideContext = getScheduleNavigationContext(
+    "/guide",
+    "?category=raid&week=2026-11-09&date=2026-11-13&scheduleCategory=tier3",
+  );
+  assert.deepEqual(guideContext, scheduleContext);
+  assert.equal(
+    withScheduleNavigationContext("/schedule", guideContext),
+    "/schedule?week=2026-11-09&date=2026-11-13&category=tier3",
+  );
+  assert.equal(
+    withInheritedNavigationContext(
+      "/prepare",
+      "/guide",
+      "?category=raid&week=2026-11-09&date=2026-11-13&scheduleCategory=tier3",
+    ),
+    "/prepare?date=2026-11-13&week=2026-11-09&scheduleCategory=tier3",
+  );
 });
 
 test("past and current guide pools do not mix", () => {

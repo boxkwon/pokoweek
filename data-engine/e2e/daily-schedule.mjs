@@ -15,6 +15,30 @@ async function expectDailyShell(page, date) {
   assert.equal(await page.locator(".schedule-day-list").count(), 0);
 }
 
+function readScheduleContext(url) {
+  const parsed = new URL(url);
+  return {
+    week: parsed.searchParams.get("week"),
+    date: parsed.searchParams.get("date"),
+    category: parsed.searchParams.get("category"),
+    scheduleCategory: parsed.searchParams.get("scheduleCategory"),
+  };
+}
+
+async function clickBottomTab(page, label, pathname) {
+  await page.locator(".fresh-bottom-nav a", { hasText: label }).click();
+  await page.waitForURL((url) => url.pathname === pathname);
+  await page.waitForLoadState("networkidle");
+}
+
+async function expectScheduleContext(page, expected) {
+  const context = readScheduleContext(page.url());
+  assert.equal(context.week, expected.week);
+  assert.equal(context.date, expected.date);
+  assert.equal(context.category, expected.category);
+  assert.equal(await page.locator(".schedule-day-tabs a[aria-current='date'] b").innerText(), String(Number(expected.date.slice(-2))));
+}
+
 try {
   for (const width of [375, 390, 430]) {
     const page = await browser.newPage({ viewport: { width, height: 844 } });
@@ -28,6 +52,12 @@ try {
     assert.equal(await dynamaxTrails.locator(".range-continuation-link").count(), 0);
     assert.match(await dynamaxTrails.innerText(), /상세 안내 미등록/);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth), false, `${width}px: event card horizontal overflow`);
+    await page.goto(`${baseUrl}/schedule?week=2026-11-23&date=2026-11-26&category=all`, { waitUntil: "networkidle" });
+    await clickBottomTab(page, "공략", "/guide");
+    assert.deepEqual(readScheduleContext(page.url()), { week: "2026-11-23", date: "2026-11-26", category: null, scheduleCategory: "all" });
+    await clickBottomTab(page, "일정", "/schedule");
+    await expectScheduleContext(page, { week: "2026-11-23", date: "2026-11-26", category: "all" });
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth), false, `${width}px: restored schedule horizontal overflow`);
     await page.screenshot({ path: `/tmp/pokoweek-daily-${width}.png`, fullPage: true });
     await page.close();
   }
@@ -35,6 +65,17 @@ try {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
   await expectDailyShell(page, "2026-11-18");
 
+  const currentContext = { week: "2026-11-23", date: "2026-11-26", category: "all" };
+  await page.goto(`${baseUrl}/schedule?week=${currentContext.week}&date=${currentContext.date}&category=${currentContext.category}`, { waitUntil: "networkidle" });
+  await clickBottomTab(page, "준비", "/prepare");
+  await clickBottomTab(page, "일정", "/schedule");
+  await expectScheduleContext(page, currentContext);
+  await clickBottomTab(page, "공략", "/guide");
+  await clickBottomTab(page, "준비", "/prepare");
+  await clickBottomTab(page, "일정", "/schedule");
+  await expectScheduleContext(page, currentContext);
+
+  await page.goto(`${baseUrl}/schedule?date=2026-11-18`, { waitUntil: "networkidle" });
   await page.locator(".schedule-day-tabs a", { hasText: "19" }).click();
   await page.waitForURL(/date=2026-11-19/);
   assert.match(await page.locator(".schedule-list-section h2").innerText(), /19일/);
@@ -64,6 +105,37 @@ try {
   await page.waitForURL(/\/schedule\?/);
   assert.match(page.url(), /date=2026-11-13/);
   assert.match(page.url(), /category=tier3/);
+
+  const pastContext = { week: "2026-11-09", date: "2026-11-13", category: "tier3" };
+  await page.goto(`${baseUrl}/schedule?week=${pastContext.week}&date=${pastContext.date}&category=${pastContext.category}`, { waitUntil: "networkidle" });
+  await clickBottomTab(page, "공략", "/guide");
+  assert.deepEqual(readScheduleContext(page.url()), { week: pastContext.week, date: pastContext.date, category: null, scheduleCategory: pastContext.category });
+  await page.locator(".guide-filters a", { hasText: "레이드" }).click();
+  await page.waitForURL(/category=raid/);
+  assert.deepEqual(readScheduleContext(page.url()), { week: pastContext.week, date: pastContext.date, category: "raid", scheduleCategory: pastContext.category });
+  await clickBottomTab(page, "준비", "/prepare");
+  assert.deepEqual(readScheduleContext(page.url()), { week: pastContext.week, date: pastContext.date, category: null, scheduleCategory: pastContext.category });
+  await clickBottomTab(page, "일정", "/schedule");
+  await expectScheduleContext(page, pastContext);
+
+  await page.reload({ waitUntil: "networkidle" });
+  await expectScheduleContext(page, pastContext);
+  await clickBottomTab(page, "준비", "/prepare");
+  await page.goBack({ waitUntil: "networkidle" });
+  await expectScheduleContext(page, pastContext);
+  await page.goForward({ waitUntil: "networkidle" });
+  assert.deepEqual(readScheduleContext(page.url()), { week: pastContext.week, date: pastContext.date, category: null, scheduleCategory: pastContext.category });
+  await clickBottomTab(page, "일정", "/schedule");
+  await expectScheduleContext(page, pastContext);
+
+  await page.goto(`${baseUrl}/schedule?week=2026-11-16&date=2026-11-18&category=all`, { waitUntil: "networkidle" });
+  await page.getByLabel("다음 주").click();
+  await page.waitForURL(/week=2026-11-23/);
+  const nextWeekContext = readScheduleContext(page.url());
+  assert.deepEqual(nextWeekContext, { week: "2026-11-23", date: "2026-11-25", category: "all", scheduleCategory: null });
+  await clickBottomTab(page, "공략", "/guide");
+  await clickBottomTab(page, "일정", "/schedule");
+  await expectScheduleContext(page, { week: "2026-11-23", date: "2026-11-25", category: "all" });
 
   for (const date of ["2026-11-13", "2026-11-18", "2026-11-24", "2026-11-26"]) {
     await page.goto(`${baseUrl}/schedule?date=${date}`, { waitUntil: "networkidle" });
