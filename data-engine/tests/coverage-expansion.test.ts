@@ -69,7 +69,7 @@ test("each candidate answers progression, second move, XL, resources, IV, and ac
   }
 });
 
-test("coverage overlays are Preview-only and never replace Production guides", { concurrency: false }, async () => {
+test("approved coverage overlays load in Production without the Candidate flag", { concurrency: false }, async () => {
   const previousFlag = process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES;
   const previousEnv = process.env.VERCEL_ENV;
   const base = COVERAGE_TARGETS.map((id) => ({ id, verdictLabel: "legacy", marker: id }));
@@ -81,12 +81,13 @@ test("coverage overlays are Preview-only and never replace Production guides", {
 
     process.env.VERCEL_ENV = "production";
     const production = applyApprovedGuideOverlays(base);
-    assert.ok(production.every((guide) => guide.verdictLabel === "legacy"));
+    assert.ok(production.every((guide) => guide.verdictLabel !== "legacy"));
 
     process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES = "false";
     process.env.VERCEL_ENV = "preview";
     const disabledPreview = applyApprovedGuideOverlays(base);
-    assert.ok(disabledPreview.every((guide) => guide.verdictLabel === "legacy"));
+    assert.ok(disabledPreview.every((guide) => guide.verdictLabel !== "legacy"));
+    assert.deepEqual(disabledPreview, production);
   } finally {
     process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES = previousFlag;
     process.env.VERCEL_ENV = previousEnv;
@@ -95,7 +96,7 @@ test("coverage overlays are Preview-only and never replace Production guides", {
 
 test("existing approved Production overlays remain byte-for-byte unchanged", async () => {
   const bytes = await readFile(path.join(process.cwd(), "data/approved/app-guide-overlays.json"));
-  assert.equal(createHash("sha256").update(bytes).digest("hex"), "1d990193006a1c4b815dd87b49b974fc093c87ecf9933822081428d165f97e53");
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), "94a20712029609bb494a8aefd8043891e5d99c6b48fcebfefc5383e30b673b09");
 });
 
 test("coverage QA copy keeps form-change, limited-move, and PvP caps accurate", async () => {

@@ -80,6 +80,7 @@ test("standardization approval and publication are idempotent and preserve Kyure
   const options = await approvalOptions(dataRoot);
   const approvedPath = path.join(dataRoot, "approved", "app-guide-overlays.json");
   const before = await readFixtureFromPath(approvedPath) as { id: string; guide: Record<string, unknown> }[];
+  const beforeIds = before.map((overlay) => overlay.id);
   const kyuremBefore = new Map(before.map((overlay) => [overlay.id, sha256(overlay)]));
 
   const firstApproval = await approveStandardGuides({ ...options, dryRun: false });
@@ -94,9 +95,7 @@ test("standardization approval and publication are idempotent and preserve Kyure
   assert.equal(secondPublish.noOp, true);
   assert.equal(firstPublish.resultHash, secondPublish.resultHash);
   assert.equal(new Set(firstPublish.overlays.map((overlay) => overlay.id)).size, firstPublish.overlays.length);
-  assert.deepEqual(firstPublish.overlays.map((overlay) => overlay.id), [
-    "kyurem", "white-kyurem", "black-kyurem", ...STANDARD_GUIDE_TARGETS,
-  ]);
+  assert.deepEqual(firstPublish.overlays.map((overlay) => overlay.id), beforeIds);
   for (const id of ["kyurem", "white-kyurem", "black-kyurem"]) {
     assert.equal(sha256(firstPublish.overlays.find((overlay) => overlay.id === id)), kyuremBefore.get(id));
   }

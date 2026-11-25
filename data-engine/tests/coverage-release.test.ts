@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { cp, mkdtemp, readFile } from "node:fs/promises";
+import { cp, mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -29,6 +29,13 @@ async function createIsolatedDataRoot() {
   for (const directory of ["normalized", "candidates", "evidence", "preview", "approved", "manifests"]) {
     await cp(path.join(process.cwd(), "data", directory), path.join(root, directory), { recursive: true });
   }
+  const paths = getCoveragePaths(root);
+  await rm(paths.approval, { force: true });
+  const approved = await readJson(paths.approvedOverlays) as { id: string }[];
+  await writeJsonAtomic(
+    paths.approvedOverlays,
+    approved.filter((overlay) => !COVERAGE_TARGETS.includes(overlay.id as typeof COVERAGE_TARGETS[number])),
+  );
   return root;
 }
 
@@ -203,4 +210,27 @@ test("coverage manual Evidence uses the official Shield Energy name only", async
   const evidenceText = await readFile(evidencePath, "utf8");
   assert.match(evidenceText, /실드 에너지 1,000/);
   assert.doesNotMatch(evidenceText, /방패왕 에너지/);
+});
+
+test("canonical coverage approval and publication are already idempotent", async () => {
+  const manifest = await readJson(getCoveragePaths().approval) as {
+    approvedBy: string;
+    qaCommitSha: string;
+    approvedAt: string;
+    candidateHash: string;
+  };
+  const options = {
+    reviewer: manifest.approvedBy,
+    qaCommitSha: manifest.qaCommitSha,
+    approvedAt: manifest.approvedAt,
+    expectedCandidateHash: manifest.candidateHash,
+    targets: COVERAGE_TARGETS,
+  } as const;
+  const approval = await approveCoverageGuides({ ...options, dryRun: true });
+  const publication = await publishCoverageGuides({ targets: COVERAGE_TARGETS, dryRun: true });
+  assert.equal(approval.noOp, true);
+  assert.equal(publication.noOp, true);
+  assert.deepEqual(publication.changedIds, []);
+  assert.deepEqual(publication.deletedIds, []);
+  assert.equal(publication.overlays.length, 11);
 });
