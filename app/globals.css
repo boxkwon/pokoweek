@@ -689,6 +689,38 @@ svg { display: block; }
 .schedule-row-cta svg { width: 17px; height: 17px; }
 .schedule-empty { margin: 0; padding: var(--space-4) var(--space-3); color: #7a8495; font-size: var(--type-caption); font-weight: 800; }
 
+.schedule-event-row.schedule-raid-row { padding: 0; }
+.schedule-event-row.schedule-raid-row.range-continuation { min-height: 0; display: block; padding: 0; }
+.schedule-raid-touch-target { width: 100%; min-height: 96px; display: grid; grid-template-columns: auto minmax(0,1fr) minmax(48px,auto); align-items: center; gap: var(--space-2); padding: var(--space-3); border: 0; background: transparent; color: inherit; font: inherit; text-align: left; text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: rgba(7,95,201,.14); }
+.schedule-raid-touch-target:active { background: #eef5ff; }
+.schedule-raid-touch-target:focus-visible { outline: 3px solid rgba(7,95,201,.35); outline-offset: -3px; }
+.schedule-raid-row .schedule-event-copy { min-width: 0; min-height: 0; padding-right: 0; }
+.schedule-raid-row.range-continuation .schedule-event-copy { padding-right: 0; }
+.schedule-raid-artworks { position: relative; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+.schedule-raid-artworks.count-1 { width: 68px; height: 68px; }
+.schedule-raid-artworks.count-1 .pokemon-artwork { width: 68px; height: 68px; }
+.schedule-raid-artworks.count-2 { width: 92px; height: 68px; justify-content: flex-start; }
+.schedule-raid-artworks.count-2 .pokemon-artwork { width: 62px; height: 62px; flex: 0 0 auto; }
+.schedule-raid-artworks.count-2 .pokemon-artwork + .pokemon-artwork { margin-left: -32px; }
+.schedule-raid-artworks.count-3,.schedule-raid-artworks.count-4 { width: 108px; min-height: 108px; display: grid; grid-template-columns: repeat(2,52px); grid-auto-rows: 52px; gap: 4px; }
+.schedule-raid-artworks.count-3 .pokemon-artwork,.schedule-raid-artworks.count-4 .pokemon-artwork { width: 52px; height: 52px; }
+.schedule-raid-artworks .pokemon-artwork { filter: drop-shadow(0 3px 3px rgba(13,32,59,.16)); }
+.schedule-raid-action-cue { min-width: 48px; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: var(--space-1); color: var(--blue); }
+.schedule-raid-action-cue small { max-width: 64px; font-size: 12px; font-weight: 900; line-height: 1.2; text-align: right; }
+.schedule-raid-action-cue svg { width: 19px; height: 19px; }
+.schedule-guide-dialog-backdrop { position: fixed; z-index: 120; inset: 0; display: grid; place-items: center; padding: var(--space-4); background: rgba(8,25,51,.45); }
+.schedule-guide-dialog { width: min(100%,340px); padding: var(--space-4); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 12px 32px rgba(8,25,51,.22); }
+.schedule-guide-dialog b { display: block; color: #082f69; font-size: var(--type-card-title); line-height: 1.3; }
+.schedule-guide-dialog p { margin: var(--space-2) 0 var(--space-4); color: #52627d; font-size: var(--type-body); font-weight: 750; line-height: 1.5; }
+.schedule-guide-dialog button { width: 100%; min-height: 44px; border: 0; border-radius: var(--radius-md); background: var(--blue); color: #fff; font-size: var(--type-body); font-weight: 900; cursor: pointer; }
+
+@media (max-width: 390px) {
+  .schedule-raid-touch-target { grid-template-columns: auto minmax(0,1fr) 48px; gap: var(--space-1); padding-right: var(--space-2); padding-left: var(--space-2); }
+  .schedule-raid-artworks.count-3,.schedule-raid-artworks.count-4 { width: 100px; min-height: 100px; grid-template-columns: repeat(2,48px); grid-auto-rows: 48px; }
+  .schedule-raid-artworks.count-3 .pokemon-artwork,.schedule-raid-artworks.count-4 .pokemon-artwork { width: 48px; height: 48px; }
+  .schedule-raid-row .schedule-event-times p { grid-template-columns: 1fr; gap: 0; }
+}
+
 .schedule-important-board { margin: var(--space-4) var(--space-3) 0; padding: var(--space-3); border-radius: var(--radius-lg); background: #fff; box-shadow: 0 3px 12px rgba(13,36,75,.12); }
 .schedule-important-board > header { margin-bottom: var(--space-1); }
 .important-time-list > a { min-height: 58px; display: grid; grid-template-columns: 130px minmax(0,1fr) 18px; align-items: center; gap: var(--space-2); }

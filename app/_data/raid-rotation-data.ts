@@ -15,6 +15,54 @@ const PLACEHOLDER: PokemonImage = {
   placeholder: true,
 };
 
+type RaidArtworkMatch = "exact_form" | "base_form";
+type RaidArtworkAsset = {
+  image: PokemonImage;
+  match: RaidArtworkMatch;
+  source: "existing" | "pokeapi_sprites";
+};
+
+function artwork(
+  src: string,
+  match: RaidArtworkMatch = "exact_form",
+  source: RaidArtworkAsset["source"] = "pokeapi_sprites",
+  scale = 1,
+): RaidArtworkAsset {
+  return { image: { src, scale, objectPosition: "50% 54%" }, match, source };
+}
+
+export const raidRotationArtwork = {
+  shadowTornadus: artwork("/images/pokemon/pokemon_icon_641_11.png", "base_form", "existing"),
+  alolanMarowak: artwork("/images/pokemon/pokeapi-10115-alolan-marowak.png"),
+  liepard: artwork("/images/pokemon/pokeapi-510-liepard.png"),
+  golurk: artwork("/images/pokemon/pokeapi-623-golurk.png"),
+  alolanMeowth: artwork("/images/pokemon/pokeapi-10107-alolan-meowth.png"),
+  misdreavus: artwork("/images/pokemon/pokeapi-200-misdreavus.png"),
+  galarianYamask: artwork("/images/pokemon/pokeapi-10179-galarian-yamask.png"),
+  sandygast: artwork("/images/pokemon/pokeapi-769-sandygast.png"),
+  shadowPrinplup: artwork("/images/pokemon/pokeapi-394-prinplup.png", "base_form"),
+  shadowPiloswine: artwork("/images/pokemon/pokeapi-221-piloswine.png", "base_form"),
+  shadowPoliwhirl: artwork("/images/pokemon/pokeapi-61-poliwhirl.png", "base_form"),
+  shadowLarvitar: artwork("/images/pokemon/pokeapi-246-larvitar.png", "base_form"),
+  shadowMudkip: artwork("/images/pokemon/pokeapi-258-mudkip.png", "base_form"),
+  shadowMakuhita: artwork("/images/pokemon/pokeapi-296-makuhita.png", "base_form"),
+  shadowCranidos: artwork("/images/pokemon/pokeapi-408-cranidos.png", "base_form"),
+  deoxysNormal: artwork("/images/pokemon/pokeapi-386-deoxys-normal.png"),
+  deoxysAttack: artwork("/images/pokemon/pokemon_icon_386_11.png", "exact_form", "existing"),
+  deoxysDefense: artwork("/images/pokemon/pokemon_icon_386_12.png", "exact_form", "existing"),
+  deoxysSpeed: artwork("/images/pokemon/pokemon_icon_386_13.png", "exact_form", "existing"),
+  megaMetagross: artwork("/images/pokemon/pm376.fMEGA.icon.png", "exact_form", "existing"),
+  sunCrownPikachu: artwork("/images/pokemon/pokeapi-25-pikachu.png", "base_form"),
+  moonCrownPikachu: artwork("/images/pokemon/pokeapi-25-pikachu.png", "base_form"),
+  sunScarfEspeon: artwork("/images/pokemon/pokeapi-196-espeon.png", "base_form"),
+  moonScarfUmbreon: artwork("/images/pokemon/pokeapi-197-umbreon.png", "base_form"),
+  megaBeedrill: artwork("/images/pokemon/pokeapi-10090-mega-beedrill.png"),
+  megaHoundoom: artwork("/images/pokemon/pokeapi-10048-mega-houndoom.png"),
+  megaSableye: artwork("/images/pokemon/pokemon_icon_302_51.png", "exact_form", "existing"),
+  megaManectric: artwork("/images/pokemon/pokemon_icon_310_51.png", "exact_form", "existing"),
+  superMegaClefable: artwork("/images/pokemon/pokeapi-36-clefable.png", "base_form"),
+} satisfies Record<string, RaidArtworkAsset>;
+
 function raidPokemon(
   id: string,
   name: string,
@@ -25,35 +73,35 @@ function raidPokemon(
 }
 
 export const raidRotationPokemon = {
-  shadowTornadus: raidPokemon("shadow-tornadus-incarnate", "그림자 토네로스 화신폼", ["비행"], { src: "/images/pokemon/pokemon_icon_641_11.png", scale: 1, objectPosition: "50% 54%" }),
-  alolanMarowak: raidPokemon("alolan-marowak", "알로라 텅구리", ["불꽃", "고스트"]),
-  liepard: raidPokemon("liepard", "레파르다스", ["악"]),
-  golurk: raidPokemon("golurk", "골루그", ["땅", "고스트"]),
-  alolanMeowth: raidPokemon("alolan-meowth", "알로라 나옹", ["악"]),
-  misdreavus: raidPokemon("misdreavus", "무우마", ["고스트"]),
-  galarianYamask: raidPokemon("galarian-yamask", "가라르 데스마스", ["땅", "고스트"]),
-  sandygast: raidPokemon("sandygast", "모래꿍", ["고스트", "땅"]),
-  shadowPrinplup: raidPokemon("shadow-prinplup", "그림자 팽도리", ["물"]),
-  shadowPiloswine: raidPokemon("shadow-piloswine", "그림자 메꾸리", ["얼음", "땅"]),
-  shadowPoliwhirl: raidPokemon("shadow-poliwhirl", "그림자 슈륙챙이", ["물"]),
-  shadowLarvitar: raidPokemon("shadow-larvitar", "그림자 애버라스", ["바위", "땅"]),
-  shadowMudkip: raidPokemon("shadow-mudkip", "그림자 물짱이", ["물"]),
-  shadowMakuhita: raidPokemon("shadow-makuhita", "그림자 마크탕", ["격투"]),
-  shadowCranidos: raidPokemon("shadow-cranidos", "그림자 두개도스", ["바위"]),
-  deoxysNormal: raidPokemon("deoxys-normal", "테오키스 노말폼", ["에스퍼"]),
-  deoxysAttack: raidPokemon("deoxys-attack", "테오키스 어택폼", ["에스퍼"], { src: "/images/pokemon/pokemon_icon_386_11.png", scale: 1, objectPosition: "50% 54%" }),
-  deoxysDefense: raidPokemon("deoxys-defense", "테오키스 디펜스폼", ["에스퍼"], { src: "/images/pokemon/pokemon_icon_386_12.png", scale: 1, objectPosition: "50% 54%" }),
-  deoxysSpeed: raidPokemon("deoxys-speed", "테오키스 스피드폼", ["에스퍼"], { src: "/images/pokemon/pokemon_icon_386_13.png", scale: 1, objectPosition: "50% 54%" }),
-  megaMetagross: raidPokemon("mega-metagross", "메가메타그로스", ["강철", "에스퍼"], { src: "/images/pokemon/pm376.fMEGA.icon.png", scale: 1, objectPosition: "50% 54%" }),
-  sunCrownPikachu: raidPokemon("pikachu-sun-crown", "태양 왕관 피카츄", ["전기"]),
-  moonCrownPikachu: raidPokemon("pikachu-moon-crown", "달 왕관 피카츄", ["전기"]),
-  sunScarfEspeon: raidPokemon("espeon-sun-scarf", "태양 스카프 에브이", ["에스퍼"]),
-  moonScarfUmbreon: raidPokemon("umbreon-moon-scarf", "달 스카프 블래키", ["악"]),
-  megaBeedrill: raidPokemon("mega-beedrill", "메가독침붕", ["벌레", "독"]),
-  megaHoundoom: raidPokemon("mega-houndoom", "메가헬가", ["악", "불꽃"]),
-  megaSableye: raidPokemon("mega-sableye", "메가깜까미", ["악", "고스트"], { src: "/images/pokemon/pokemon_icon_302_51.png", scale: 1, objectPosition: "50% 54%" }),
-  megaManectric: raidPokemon("mega-manectric", "메가썬더볼트", ["전기"], { src: "/images/pokemon/pokemon_icon_310_51.png", scale: 1, objectPosition: "50% 54%" }),
-  superMegaClefable: raidPokemon("super-mega-clefable", "슈퍼 메가픽시", ["페어리"]),
+  shadowTornadus: raidPokemon("shadow-tornadus-incarnate", "그림자 토네로스 화신폼", ["비행"], raidRotationArtwork.shadowTornadus.image),
+  alolanMarowak: raidPokemon("alolan-marowak", "알로라 텅구리", ["불꽃", "고스트"], raidRotationArtwork.alolanMarowak.image),
+  liepard: raidPokemon("liepard", "레파르다스", ["악"], raidRotationArtwork.liepard.image),
+  golurk: raidPokemon("golurk", "골루그", ["땅", "고스트"], raidRotationArtwork.golurk.image),
+  alolanMeowth: raidPokemon("alolan-meowth", "알로라 나옹", ["악"], raidRotationArtwork.alolanMeowth.image),
+  misdreavus: raidPokemon("misdreavus", "무우마", ["고스트"], raidRotationArtwork.misdreavus.image),
+  galarianYamask: raidPokemon("galarian-yamask", "가라르 데스마스", ["땅", "고스트"], raidRotationArtwork.galarianYamask.image),
+  sandygast: raidPokemon("sandygast", "모래꿍", ["고스트", "땅"], raidRotationArtwork.sandygast.image),
+  shadowPrinplup: raidPokemon("shadow-prinplup", "그림자 팽도리", ["물"], raidRotationArtwork.shadowPrinplup.image),
+  shadowPiloswine: raidPokemon("shadow-piloswine", "그림자 메꾸리", ["얼음", "땅"], raidRotationArtwork.shadowPiloswine.image),
+  shadowPoliwhirl: raidPokemon("shadow-poliwhirl", "그림자 슈륙챙이", ["물"], raidRotationArtwork.shadowPoliwhirl.image),
+  shadowLarvitar: raidPokemon("shadow-larvitar", "그림자 애버라스", ["바위", "땅"], raidRotationArtwork.shadowLarvitar.image),
+  shadowMudkip: raidPokemon("shadow-mudkip", "그림자 물짱이", ["물"], raidRotationArtwork.shadowMudkip.image),
+  shadowMakuhita: raidPokemon("shadow-makuhita", "그림자 마크탕", ["격투"], raidRotationArtwork.shadowMakuhita.image),
+  shadowCranidos: raidPokemon("shadow-cranidos", "그림자 두개도스", ["바위"], raidRotationArtwork.shadowCranidos.image),
+  deoxysNormal: raidPokemon("deoxys-normal", "테오키스 노말폼", ["에스퍼"], raidRotationArtwork.deoxysNormal.image),
+  deoxysAttack: raidPokemon("deoxys-attack", "테오키스 어택폼", ["에스퍼"], raidRotationArtwork.deoxysAttack.image),
+  deoxysDefense: raidPokemon("deoxys-defense", "테오키스 디펜스폼", ["에스퍼"], raidRotationArtwork.deoxysDefense.image),
+  deoxysSpeed: raidPokemon("deoxys-speed", "테오키스 스피드폼", ["에스퍼"], raidRotationArtwork.deoxysSpeed.image),
+  megaMetagross: raidPokemon("mega-metagross", "메가메타그로스", ["강철", "에스퍼"], raidRotationArtwork.megaMetagross.image),
+  sunCrownPikachu: raidPokemon("pikachu-sun-crown", "태양 왕관 피카츄", ["전기"], raidRotationArtwork.sunCrownPikachu.image),
+  moonCrownPikachu: raidPokemon("pikachu-moon-crown", "달 왕관 피카츄", ["전기"], raidRotationArtwork.moonCrownPikachu.image),
+  sunScarfEspeon: raidPokemon("espeon-sun-scarf", "태양 스카프 에브이", ["에스퍼"], raidRotationArtwork.sunScarfEspeon.image),
+  moonScarfUmbreon: raidPokemon("umbreon-moon-scarf", "달 스카프 블래키", ["악"], raidRotationArtwork.moonScarfUmbreon.image),
+  megaBeedrill: raidPokemon("mega-beedrill", "메가독침붕", ["벌레", "독"], raidRotationArtwork.megaBeedrill.image),
+  megaHoundoom: raidPokemon("mega-houndoom", "메가헬가", ["악", "불꽃"], raidRotationArtwork.megaHoundoom.image),
+  megaSableye: raidPokemon("mega-sableye", "메가깜까미", ["악", "고스트"], raidRotationArtwork.megaSableye.image),
+  megaManectric: raidPokemon("mega-manectric", "메가썬더볼트", ["전기"], raidRotationArtwork.megaManectric.image),
+  superMegaClefable: raidPokemon("super-mega-clefable", "슈퍼 메가픽시", ["페어리"], raidRotationArtwork.superMegaClefable.image),
 } satisfies Record<string, PokemonEntry>;
 
 const sources = {

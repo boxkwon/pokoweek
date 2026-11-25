@@ -5,6 +5,7 @@ import { CategoryBadge, EventTime, PrimaryCTA, RatingStars, SectionHeader } from
 import { CalendarIcon, ChevronIcon } from "../_components/icons";
 import { PokemonArtwork } from "../_components/pokemon-artwork";
 import { PokemonGuideLink } from "../_components/pokemon-guide-link";
+import { ScheduleRaidAction } from "../_components/schedule-raid-action";
 import { SchedulePreferenceSync } from "../_components/schedule-preference-sync";
 import { ContextLink } from "../_components/context-link";
 import { APP_SUBTITLE } from "../_config/app";
@@ -76,11 +77,46 @@ function EventDateCue({ event, dateKey, isToday }: { event: WeekEvent; dateKey: 
   return null;
 }
 
+function RaidArtworkGroup({ event }: { event: WeekEvent }) {
+  return <span className={`schedule-raid-artworks count-${Math.min(event.pokemon.length, 4)}`} aria-label={event.pokemon.map((item) => item.name).join(", ")}>
+    {event.pokemon.map((item) => <PokemonArtwork image={item.image} alt={item.name} size="sm" key={item.id} />)}
+  </span>;
+}
+
+function ScheduleRaidEventRow({ event, dateKey, isToday }: { event: WeekEvent; dateKey: string; isToday: boolean }) {
+  const action = resolveWeekEventAction(event, dateKey);
+  const continuation = isRangeContinuation(event, dateKey);
+  const pokemonNames = event.pokemon.map((item) => item.name).join(" · ");
+
+  return <article className={`schedule-event-row schedule-raid-row ${event.priority === 5 ? "priority-five" : ""} ${continuation ? "range-continuation" : ""}`}>
+    <ScheduleRaidAction action={action} pokemonNames={pokemonNames}>
+      <RaidArtworkGroup event={event} />
+      <div className="schedule-event-copy">
+        <div className="schedule-event-labels"><CategoryBadge className={`schedule-category-badge category-${event.category}`}>{event.categoryLabel}</CategoryBadge><EventDateCue event={event} dateKey={dateKey} isToday={isToday} /></div>
+        <h3>{event.title}</h3>
+        {continuation
+          ? <p className="range-continuation-time">{formatRangeEventPeriod(event, dateKey, true)}</p>
+          : event.scheduleType === "range"
+            ? <p className="range-event-time">{formatRangeEventPeriod(event, dateKey)}</p>
+            : <EventTime className="schedule-event-times" availabilityTime={event.availabilityTime} featuredHour={event.featuredHour} featuredLabel={event.category === "legendary" ? "레이드아워" : "집중 시간"} />}
+        {!continuation && (event.rating
+          ? <div className="schedule-rating"><RatingStars value={event.rating} /><strong>{event.reason}</strong></div>
+          : <p className="schedule-rotation-note">{event.reason}</p>)}
+        {event.pokemon.length > 1 ? <ul className="schedule-pokemon-list">{event.pokemon.map((item) => <li key={item.id}>{item.name}</li>)}</ul> : null}
+      </div>
+    </ScheduleRaidAction>
+  </article>;
+}
+
 function ScheduleEventRow({ event, dateKey, isToday }: { event: WeekEvent; dateKey: string; isToday: boolean }) {
   const action = resolveWeekEventAction(event, dateKey);
   const continuation = isRangeContinuation(event, dateKey);
   const showArtworkTrio = event.pokemon.length >= 3 && hasUsableArtwork(event);
   const artworkClass = event.pokemon.length === 2 ? "has-art-pair" : showArtworkTrio ? "has-art-trio" : event.pokemon.length >= 3 ? "has-art-group" : "has-single-art";
+
+  if (typeof event.raidTier !== "undefined") {
+    return <ScheduleRaidEventRow event={event} dateKey={dateKey} isToday={isToday} />;
+  }
 
   if (continuation) return <article className="schedule-event-row range-continuation">
     <div className="schedule-event-copy">

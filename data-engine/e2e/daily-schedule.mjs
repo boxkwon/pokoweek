@@ -58,6 +58,19 @@ try {
     await clickBottomTab(page, "일정", "/schedule");
     await expectScheduleContext(page, { week: "2026-11-23", date: "2026-11-26", category: "all" });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth), false, `${width}px: restored schedule horizontal overflow`);
+
+    await page.goto(`${baseUrl}/schedule?date=2026-11-18&category=shadow`, { waitUntil: "networkidle" });
+    const shadowThreeStar = page.locator(".schedule-raid-row", { hasText: "그림자 팽도리 · 메꾸리 · 슈륙챙이" }).first();
+    assert.equal(await shadowThreeStar.count(), 1);
+    assert.equal(await shadowThreeStar.locator(".schedule-raid-artworks img").count(), 3);
+    assert.equal(await shadowThreeStar.locator(".schedule-raid-touch-target").count(), 1);
+    assert.equal(await shadowThreeStar.locator("img").evaluateAll((images) => images.every((image) => image.complete && image.naturalWidth > 0)), true);
+    await shadowThreeStar.locator("img").first().click();
+    await page.waitForURL(/\/guide\?event=shadow-three-star-2026-11/);
+    assert.match(await page.locator("body").innerText(), /그림자 팽도리/);
+    await page.goBack({ waitUntil: "networkidle" });
+    assert.match(page.url(), /date=2026-11-18/);
+    assert.match(page.url(), /category=shadow/);
     await page.screenshot({ path: `/tmp/pokoweek-daily-${width}.png`, fullPage: true });
     await page.close();
   }
@@ -193,6 +206,37 @@ try {
   const multiDayCard = page.locator(".schedule-event-row", { hasText: "크레세리아 · 다크라이" }).first();
   assert.equal(await multiDayCard.count(), 1);
   assert.equal(await multiDayCard.locator(".schedule-date-cue", { hasText: "시간 한정" }).count(), 0);
+
+  await page.goto(`${baseUrl}/schedule?date=2026-11-09&category=tier5`, { waitUntil: "networkidle" });
+  const zacianHour = page.locator(".schedule-raid-row", { hasText: "검왕 자시안 레이드아워" }).first();
+  await zacianHour.locator("img").click();
+  await page.waitForURL(/\/pokemon\/zacian-crowned\?date=2026-11-09/);
+  await page.goBack({ waitUntil: "networkidle" });
+  assert.match(page.url(), /category=tier5/);
+
+  const unavailableCases = [
+    { date: "2026-11-14", category: "tier3", title: "모던 재킷 괴력몬", image: /pm68\.icon\.png/ },
+    { date: "2026-11-21", category: "shadow", title: "그림자 토네로스 화신폼", image: /pokemon_icon_641_11\.png/ },
+    { date: "2026-11-28", category: "special", title: "슈퍼 메가픽시", image: /pokeapi-36-clefable\.png/ },
+  ];
+  for (const item of unavailableCases) {
+    await page.goto(`${baseUrl}/schedule?date=${item.date}&category=${item.category}`, { waitUntil: "networkidle" });
+    const card = page.locator(".schedule-raid-row", { hasText: item.title }).first();
+    assert.match(await card.locator("img").getAttribute("src"), item.image);
+    const before = page.url();
+    await card.locator("img").click();
+    const dialog = page.getByRole("dialog");
+    assert.equal(await dialog.count(), 1);
+    assert.match(await dialog.innerText(), new RegExp(item.title));
+    assert.equal(page.url(), before);
+    await dialog.getByRole("button", { name: "확인" }).click();
+    assert.equal(await dialog.count(), 0);
+  }
+
+  await page.goto(`${baseUrl}/schedule?date=2026-11-26&category=mega`, { waitUntil: "networkidle" });
+  const megaMetagross = page.locator(".schedule-raid-row", { hasText: "메가메타그로스" }).first();
+  assert.match(await megaMetagross.locator("img").getAttribute("src"), /pm376\.fMEGA\.icon\.png/);
+  assert.equal(await megaMetagross.locator("img").evaluate((image) => image.complete && image.naturalWidth > 0), true);
   await page.close();
   console.log(JSON.stringify({ ok: true, viewports: [375, 390, 430], dates: ["2026-11-13", "2026-11-18", "2026-11-24", "2026-11-26"], timeLimitedDates: timedCases.map((item) => item.date), candidateGuides: ["zamazenta-crowned", "zekrom", "reshiram", "orthworm"] }, null, 2));
 } finally {

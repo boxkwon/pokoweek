@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { access } from "node:fs/promises";
+import path from "node:path";
 import test from "node:test";
 import {
   getAvailableScheduleFilters,
@@ -10,6 +12,8 @@ import {
   getWeekByStartDate,
 } from "../../app/_data/queries";
 import type { WeekEvent } from "../../app/_data/guide-data";
+import { raidRotationArtwork } from "../../app/_data/raid-rotation-data";
+import { hasRealPokemonArtwork } from "../../app/_lib/pokemon-artwork";
 import { normalizeScheduleFilter } from "../../app/_lib/schedule-preferences";
 
 function uniqueRaidPokemonIds(weekStart: string) {
@@ -38,6 +42,27 @@ test("all raid view contains every registered rotation independently of guide av
     "shadow-mudkip",
   ].sort());
   assert.equal(getEventsByCategory(week.events, "tier4").length, 0);
+});
+
+test("all 41 audited raid boss forms have a loadable local artwork mapping", async () => {
+  const unique = new Map<string, WeekEvent["pokemon"][number]>();
+  for (const weekStart of ["2026-11-09", "2026-11-16", "2026-11-23"]) {
+    for (const event of getEventsByCategory(getWeekByStartDate(weekStart).events, "all")) {
+      for (const entry of event.pokemon) unique.set(entry.id, entry);
+    }
+  }
+
+  assert.equal(unique.size, 41);
+  for (const entry of unique.values()) {
+    assert.equal(hasRealPokemonArtwork(entry.image), true, `${entry.id}: placeholder artwork`);
+    assert(entry.image.src.startsWith("/images/pokemon/"), `${entry.id}: non-local artwork`);
+    await assert.doesNotReject(() => access(path.join(process.cwd(), "public", entry.image.src)));
+  }
+
+  const rotationAssets = Object.values(raidRotationArtwork);
+  assert.equal(rotationAssets.filter((asset) => asset.match === "exact_form").length, 16);
+  assert.equal(rotationAssets.filter((asset) => asset.match === "base_form").length, 13);
+  assert.equal(rotationAssets.filter((asset) => asset.image.placeholder === true).length, 0);
 });
 
 test("raid difficulty and kind filters remain independent", () => {
