@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "dataset": "pokemon-guide-coverage-v1",
+  "targets": [
+    "zamazenta-crowned",
+    "druddigon",
+    "orthworm",
+    "zekrom",
+    "reshiram"
+  ],
+  "candidateHash": "7d65b15d23f03ff5789cfd56c3830ee848d6d73c3f31180602a144d2b8e655b7",
+  "sourceSnapshotHash": "1cd543cc13ba23cdfd9954fedaf8220d94054b2f8bba39af01080e25fc7bf4e6",
+  "validationHash": "66bcfc215771212d5cdb8525c6a661b0f29344b82c931a0a35b8037309f0c645",
+  "approvedAt": "2026-11-25T23:07:57.000Z",
+  "approvedBy": "boxkwon",
+  "qaCommitSha": "f08d221bf2be1b52ba42758d9098ecbd8ec3927d",
+  "guides": [
+    {
+      "pokemonId": "zamazenta-crowned",
+      "candidateGuideHash": "1bb99fdf81e1d425b5bf4c029763328bf5aa80253714cda0ddec4b7680907b92",
+      "publicationGuideHash": "1bb99fdf81e1d425b5bf4c029763328bf5aa80253714cda0ddec4b7680907b92"
+    },
+    {
+      "pokemonId": "druddigon",
+      "candidateGuideHash": "511b3e331c19c22df42059795751a4d52ac145fac527aed633146bde7f6062f2",
+      "publicationGuideHash": "511b3e331c19c22df42059795751a4d52ac145fac527aed633146bde7f6062f2"
+    },
+    {
+      "pokemonId": "orthworm",
+      "candidateGuideHash": "9f5b876fb73e50691183842213f6150367aaf9b3a9de8bda3d2b1a687b0b8b97",
+      "publicationGuideHash": "9f5b876fb73e50691183842213f6150367aaf9b3a9de8bda3d2b1a687b0b8b97"
+    },
+    {
+      "pokemonId": "zekrom",
+      "candidateGuideHash": "028faf3abbfc6f975d063556f60b9a4412de16641449046e0c829b7772b3e784",
+      "publicationGuideHash": "028faf3abbfc6f975d063556f60b9a4412de16641449046e0c829b7772b3e784"
+    },
+    {
+      "pokemonId": "reshiram",
+      "candidateGuideHash": "636a8b0dc177656f2e02d9eaedc40e171c41408d235fe614b2757eb00680dd53",
+      "publicationGuideHash": "636a8b0dc177656f2e02d9eaedc40e171c41408d235fe614b2757eb00680dd53"
+    }
+  ]
+}
