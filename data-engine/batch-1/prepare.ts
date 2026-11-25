@@ -84,7 +84,7 @@ function guideFor(id: BatchOnePokemonId, normalized: any) {
     counters: [],
     counterRankingMode: "examples" as const,
     dataStatus: baseDataStatus,
-    rating: 1,
+    rating: null,
   };
   const p = normalized.progression;
   if (id === "super-mega-clefable") return {

@@ -1,7 +1,7 @@
 [
   {
     "id": "super-mega-clefable",
-    "validationHash": "525a591c7b36e8009a9d3afb179dac4bb49ee7061bd7cf5a1d9c5b949df227c9",
+    "validationHash": "c22535af9feee6ce40bbbf7b594fc17638519fb9b69c6042c6fc034b9c8548a5",
     "previewOnly": true,
     "guide": {
       "name": "슈퍼 메가픽시",
@@ -212,12 +212,12 @@
       ],
       "category": "mega",
       "categoryLabel": "슈퍼 메가",
-      "rating": 1
+      "rating": null
     }
   },
   {
     "id": "mega-metagross",
-    "validationHash": "525a591c7b36e8009a9d3afb179dac4bb49ee7061bd7cf5a1d9c5b949df227c9",
+    "validationHash": "c22535af9feee6ce40bbbf7b594fc17638519fb9b69c6042c6fc034b9c8548a5",
     "previewOnly": true,
     "guide": {
       "name": "메가메타그로스",
@@ -431,12 +431,12 @@
       ],
       "category": "mega",
       "categoryLabel": "메가 레이드",
-      "rating": 1
+      "rating": null
     }
   },
   {
     "id": "shadow-cranidos",
-    "validationHash": "525a591c7b36e8009a9d3afb179dac4bb49ee7061bd7cf5a1d9c5b949df227c9",
+    "validationHash": "c22535af9feee6ce40bbbf7b594fc17638519fb9b69c6042c6fc034b9c8548a5",
     "previewOnly": true,
     "guide": {
       "name": "그림자 두개도스",
@@ -610,12 +610,12 @@
       ],
       "category": "shadow",
       "categoryLabel": "그림자 1성",
-      "rating": 1
+      "rating": null
     }
   },
   {
     "id": "shadow-tornadus-incarnate",
-    "validationHash": "525a591c7b36e8009a9d3afb179dac4bb49ee7061bd7cf5a1d9c5b949df227c9",
+    "validationHash": "c22535af9feee6ce40bbbf7b594fc17638519fb9b69c6042c6fc034b9c8548a5",
     "previewOnly": true,
     "guide": {
       "name": "그림자 토네로스 화신폼",
@@ -799,12 +799,12 @@
       ],
       "category": "shadow",
       "categoryLabel": "그림자 5성",
-      "rating": 1
+      "rating": null
     }
   },
   {
     "id": "deoxys-defense",
-    "validationHash": "525a591c7b36e8009a9d3afb179dac4bb49ee7061bd7cf5a1d9c5b949df227c9",
+    "validationHash": "c22535af9feee6ce40bbbf7b594fc17638519fb9b69c6042c6fc034b9c8548a5",
     "previewOnly": true,
     "guide": {
       "name": "테오키스 디펜스폼",
@@ -1102,7 +1102,7 @@
       ],
       "category": "raid",
       "categoryLabel": "5성 레이드",
-      "rating": 1
+      "rating": null
     }
   }
 ]

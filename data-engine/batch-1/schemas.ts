@@ -59,7 +59,7 @@ const AppGuideSchema = StandardAppGuideProjectionSchema.extend({
   types: z.array(z.enum(["강철", "드래곤", "격투", "땅", "불꽃", "물", "얼음", "전기", "악", "페어리", "에스퍼", "비행", "독", "고스트", "벌레", "바위", "풀", "노말"])).min(1).max(2),
   category: z.enum(["raid", "mega", "max", "shadow"]),
   categoryLabel: z.string().min(1),
-  rating: z.number().int().min(1).max(5),
+  rating: z.number().int().min(1).max(5).nullable(),
 });
 
 export const BatchOneCandidateSchema = z.object({

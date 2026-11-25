@@ -244,7 +244,7 @@
         ],
         "category": "mega",
         "categoryLabel": "슈퍼 메가",
-        "rating": 1
+        "rating": null
       }
     },
     {
@@ -487,7 +487,7 @@
         ],
         "category": "mega",
         "categoryLabel": "메가 레이드",
-        "rating": 1
+        "rating": null
       }
     },
     {
@@ -688,7 +688,7 @@
         ],
         "category": "shadow",
         "categoryLabel": "그림자 1성",
-        "rating": 1
+        "rating": null
       }
     },
     {
@@ -899,7 +899,7 @@
         ],
         "category": "shadow",
         "categoryLabel": "그림자 5성",
-        "rating": 1
+        "rating": null
       }
     },
     {
@@ -1225,7 +1225,7 @@
         ],
         "category": "raid",
         "categoryLabel": "5성 레이드",
-        "rating": 1
+        "rating": null
       }
     }
   ]

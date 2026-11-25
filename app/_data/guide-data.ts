@@ -278,7 +278,7 @@ export type PokemonGuide = {
   types: readonly PokemonType[];
   category: GuideCategory;
   categoryLabel: string;
-  rating: 1 | 2 | 3 | 4 | 5;
+  rating: 1 | 2 | 3 | 4 | 5 | null;
   reason: string;
   heroBackground?: string;
   overallRating?: 1 | 2 | 3 | 4 | 5 | null;
