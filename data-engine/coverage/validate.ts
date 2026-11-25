@@ -21,6 +21,8 @@ export function getCoveragePaths(root = dataRoot) {
     validation: path.join(root, "validation", "pokemon-guide-coverage-v1.json"),
     editorial: path.join(root, "validation", "pokemon-guide-coverage-v1.md"),
     preview: path.join(root, "preview", "pokemon-guide-coverage-overlays.json"),
+    approval: path.join(root, "manifests", "pokemon-guide-coverage-v1-approved.json"),
+    approvedOverlays: path.join(root, "approved", "app-guide-overlays.json"),
   } as const;
 }
 

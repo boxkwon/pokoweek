@@ -80,5 +80,23 @@ export const CoverageGuideCandidateBundleSchema = z.object({
   candidates: z.array(CoverageGuideCandidateSchema).length(5),
 });
 
+export const CoverageGuideApprovalManifestSchema = z.object({
+  schemaVersion: z.literal(1),
+  dataset: z.literal("pokemon-guide-coverage-v1"),
+  targets: z.array(CoveragePokemonIdSchema).length(5),
+  candidateHash: Sha256Schema,
+  sourceSnapshotHash: Sha256Schema,
+  validationHash: Sha256Schema,
+  approvedAt: DateTimeSchema,
+  approvedBy: z.string().min(1),
+  qaCommitSha: z.string().regex(/^[0-9a-f]{40}$/),
+  guides: z.array(z.object({
+    pokemonId: CoveragePokemonIdSchema,
+    candidateGuideHash: Sha256Schema,
+    publicationGuideHash: Sha256Schema,
+  })).length(5),
+});
+
 export type CoveragePokemonId = z.infer<typeof CoveragePokemonIdSchema>;
 export type CoverageGuideCandidate = z.infer<typeof CoverageGuideCandidateSchema>;
+export type CoverageGuideApprovalManifest = z.infer<typeof CoverageGuideApprovalManifestSchema>;

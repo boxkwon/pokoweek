@@ -1,4 +1,6 @@
 import { hasFlag, readOption, requireOption } from "../lib/args";
+import { approveCoverageGuides } from "../coverage/release";
+import { COVERAGE_TARGETS, getCoveragePaths } from "../coverage/validate";
 import { approveManualCandidates } from "../manual/approval";
 import { approveStandardGuides, STANDARD_GUIDE_TARGETS } from "../standardization/release";
 
@@ -28,6 +30,34 @@ async function main() {
       dryRun,
       noOp: result.noOp,
       candidateHash: result.manifest.candidateHash,
+      guides: result.manifest.guides,
+      publicationPerformed: false,
+    }, null, 2));
+    return;
+  }
+  if (dataset === "pokemon-guide-coverage-v1") {
+    const result = await approveCoverageGuides({
+      reviewer: requireOption("reviewer"),
+      qaCommitSha: requireOption("qa-commit"),
+      expectedCandidateHash: requireOption("candidate-hash"),
+      targets: targets(),
+      dryRun,
+      ...(readOption("approved-at") ? { approvedAt: readOption("approved-at") } : {}),
+    });
+    const paths = getCoveragePaths();
+    console.log(JSON.stringify({
+      stage: "approve",
+      dataset: "pokemon-guide-coverage-v1",
+      targets: COVERAGE_TARGETS,
+      dryRun,
+      noOp: result.noOp,
+      existingApprovedCount: result.existingApprovedCount,
+      newApprovedCount: result.newApprovedCount,
+      expectedTotalApprovedCount: result.expectedTotalApprovedCount,
+      candidateHash: result.manifest.candidateHash,
+      manifestSemanticHash: result.manifestSemanticHash,
+      manifestFileHash: result.manifestFileHash,
+      changedFiles: [paths.approval],
       guides: result.manifest.guides,
       publicationPerformed: false,
     }, null, 2));
