@@ -65,6 +65,21 @@ test("all 41 audited raid boss forms have a loadable local artwork mapping", asy
   assert.equal(rotationAssets.filter((asset) => asset.image.placeholder === true).length, 0);
 });
 
+test("shadow Prinplup keeps one species identity across ID, copy, artwork, and guide selection", () => {
+  const event = getWeekByStartDate("2026-11-16").events.find((entry) => entry.id === "shadow-three-star-2026-11");
+  assert(event);
+  const prinplup = event.pokemon[0];
+  assert.equal(prinplup.id, "shadow-prinplup");
+  assert.equal(prinplup.name, "그림자 팽태자");
+  assert.equal(prinplup.image.src, "/images/pokemon/pokeapi-394-prinplup.png");
+  assert.match(event.title, /그림자 팽태자/);
+  assert.doesNotMatch(event.title, /그림자 팽도리/);
+  const selection = getGuideSelectionForEvent(event);
+  assert.equal(selection[0].pokemon.id, "shadow-prinplup");
+  assert.equal(selection[0].pokemon.name, "그림자 팽태자");
+  assert.equal(selection[0].guide, undefined);
+});
+
 test("raid difficulty and kind filters remain independent", () => {
   const week = getWeekByStartDate("2026-11-23");
   const megaIds = new Set(getEventsByCategory(week.events, "mega").flatMap((event) => event.pokemon.map((entry) => entry.id)));

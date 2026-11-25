@@ -60,14 +60,16 @@ try {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth), false, `${width}px: restored schedule horizontal overflow`);
 
     await page.goto(`${baseUrl}/schedule?date=2026-11-18&category=shadow`, { waitUntil: "networkidle" });
-    const shadowThreeStar = page.locator(".schedule-raid-row", { hasText: "그림자 팽도리 · 메꾸리 · 슈륙챙이" }).first();
+    const shadowThreeStar = page.locator(".schedule-raid-row", { hasText: "그림자 팽태자 · 메꾸리 · 슈륙챙이" }).first();
     assert.equal(await shadowThreeStar.count(), 1);
     assert.equal(await shadowThreeStar.locator(".schedule-raid-artworks img").count(), 3);
     assert.equal(await shadowThreeStar.locator(".schedule-raid-touch-target").count(), 1);
+    assert.equal(await shadowThreeStar.locator("img").first().getAttribute("alt"), "그림자 팽태자");
+    assert.match(await shadowThreeStar.locator("img").first().getAttribute("src"), /pokeapi-394-prinplup\.png/);
     assert.equal(await shadowThreeStar.locator("img").evaluateAll((images) => images.every((image) => image.complete && image.naturalWidth > 0)), true);
     await shadowThreeStar.locator("img").first().click();
     await page.waitForURL(/\/guide\?event=shadow-three-star-2026-11/);
-    assert.match(await page.locator("body").innerText(), /그림자 팽도리/);
+    assert.match(await page.locator("body").innerText(), /그림자 팽태자/);
     await page.goBack({ waitUntil: "networkidle" });
     assert.match(page.url(), /date=2026-11-18/);
     assert.match(page.url(), /category=shadow/);
@@ -232,6 +234,41 @@ try {
     await dialog.getByRole("button", { name: "확인" }).click();
     assert.equal(await dialog.count(), 0);
   }
+
+  await page.goto(`${baseUrl}/schedule?date=2026-11-28&category=all`, { waitUntil: "networkidle" });
+  const tornadusTrigger = page.locator(".schedule-raid-row", { hasText: "그림자 토네로스 화신폼" }).first().locator(".schedule-raid-touch-target");
+  const clefableTrigger = page.locator(".schedule-raid-row", { hasText: "슈퍼 메가픽시" }).first().locator(".schedule-raid-touch-target");
+  await tornadusTrigger.focus();
+  await page.keyboard.press("Enter");
+  const trappedDialog = page.getByRole("dialog");
+  assert.equal(await trappedDialog.count(), 1);
+  const closeButton = trappedDialog.getByRole("button", { name: "확인" });
+  assert.equal(await closeButton.evaluate((element) => document.activeElement === element), true);
+  await page.keyboard.press("Tab");
+  assert.equal(await closeButton.evaluate((element) => document.activeElement === element), true);
+  await page.keyboard.press("Shift+Tab");
+  assert.equal(await closeButton.evaluate((element) => document.activeElement === element), true);
+  assert.equal(await page.locator("main").evaluate((element) => element.inert), true);
+  await page.keyboard.press("Enter");
+  assert.equal(await page.getByRole("dialog").count(), 0);
+  await page.waitForFunction(() => document.activeElement?.getAttribute("aria-label")?.includes("그림자 토네로스 화신폼"));
+  assert.equal(await tornadusTrigger.evaluate((element) => document.activeElement === element), true);
+  assert.equal(await page.locator("main").evaluate((element) => element.inert), false);
+  const clefableBox = await clefableTrigger.boundingBox();
+  assert(clefableBox);
+  await page.keyboard.press("Space");
+  assert.equal(await page.getByRole("dialog").count(), 1);
+  assert.match(await page.getByRole("dialog").innerText(), /그림자 토네로스 화신폼/);
+  await page.mouse.click(clefableBox.x + clefableBox.width / 2, clefableBox.y + clefableBox.height / 2);
+  assert.equal(await page.getByRole("dialog").count(), 0);
+  assert.equal(await page.locator("body").getByText("슈퍼 메가픽시", { exact: true }).count() > 0, true);
+  await page.waitForFunction(() => document.activeElement?.getAttribute("aria-label")?.includes("그림자 토네로스 화신폼"));
+  await tornadusTrigger.click();
+  assert.equal(await page.getByRole("dialog").count(), 1);
+  await page.keyboard.press("Escape");
+  assert.equal(await page.getByRole("dialog").count(), 0);
+  await page.waitForFunction(() => document.activeElement?.getAttribute("aria-label")?.includes("그림자 토네로스 화신폼"));
+  assert.equal(await tornadusTrigger.evaluate((element) => document.activeElement === element), true);
 
   await page.goto(`${baseUrl}/schedule?date=2026-11-26&category=mega`, { waitUntil: "networkidle" });
   const megaMetagross = page.locator(".schedule-raid-row", { hasText: "메가메타그로스" }).first();
