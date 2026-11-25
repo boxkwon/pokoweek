@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-26T18:30:00+09:00",
+  "records": [
+    {
+      "id": "official:super-mega-clefable-2026",
+      "sourceId": "pokemon-go-clefable-super-mega-raid-day-2026",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/en/news/clefable-super-mega-raid-day-2026",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-26T18:30:00+09:00",
+      "sourceHash": "649802ff45063a1023ce55d23e175c60b82928d374f5c999e21db0efa25dbc5c",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "슈퍼 메가픽시 레이드데이, 슈퍼 맥스 해금, 문포스트+ 규칙을 확인했다.",
+      "paths": [
+        "pokemon.super-mega-clefable.mechanics"
+      ]
+    },
+    {
+      "id": "official:shadow-raids-rules",
+      "sourceId": "pokemon-go-shadow-raids",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/news/shadow-raids",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-26T18:30:00+09:00",
+      "sourceHash": "ced3b5e2645fdf7d1a25acbd33954d467c4d8ce96e552fccca1cf007f86bef0b",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "그림자 레이드의 보스 강화·정화 결정이 일반형과 다른 판단이며 일괄 정화를 권장하지 않는 근거로 사용했다.",
+      "paths": [
+        "pokemon.shadow-cranidos",
+        "pokemon.shadow-tornadus-incarnate"
+      ]
+    },
+    {
+      "id": "secondary:mega-metagross-rotation-2026",
+      "sourceId": "leekduck-mega-metagross-november-2026",
+      "sourceType": "manual",
+      "url": "https://leekduck.com/events/mega-metagross-in-mega-raids-november-2026/",
+      "publisher": "Leek Duck",
+      "reviewedAt": "2026-11-26T18:30:00+09:00",
+      "sourceHash": "bc65f94f8c25fb005cec65d435d47e14fc5cfa26054856b63c35c9cb10ff84b1",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "2026-11-25부터 메가메타그로스 레이드 로테이션을 보조 확인했다.",
+      "paths": [
+        "schedule.mega-metagross"
+      ]
+    },
+    {
+      "id": "secondary:deoxys-rotation-2026",
+      "sourceId": "leekduck-deoxys-november-2026",
+      "sourceType": "manual",
+      "url": "https://leekduck.com/events/deoxys-normal-defense-attack-speed-formes-in-5-star-raid-battles-november-2026/",
+      "publisher": "Leek Duck",
+      "reviewedAt": "2026-11-26T18:30:00+09:00",
+      "sourceHash": "168dc21536ac1cc39907c60605f0484dfdf6adaba3ad21f6ba6bbf90cb4d0ab4",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "테오키스 4개 폼 로테이션에서 디펜스폼을 독립 폼으로 확인했다.",
+      "paths": [
+        "schedule.deoxys-defense"
+      ]
+    }
+  ]
+}

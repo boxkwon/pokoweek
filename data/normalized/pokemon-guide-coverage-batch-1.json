@@ -1,0 +1,367 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-26T18:30:00+09:00",
+  "sourceSnapshot": "data/raw/pogoapi/2026-11-17T00-49-59-500Z",
+  "sourceSnapshotHash": "233d11ac47d395eb6354452e8780992f8eb0d4893b756d47e0e0c9f154183e70",
+  "pokemon": [
+    {
+      "id": "super-mega-clefable",
+      "dexNumber": 36,
+      "displayName": "슈퍼 메가픽시",
+      "form": "super-mega-clefable",
+      "sourceForm": "Normal",
+      "types": [
+        "페어리"
+      ],
+      "baseStats": {
+        "attack": 178,
+        "defense": 162,
+        "stamina": 216
+      },
+      "moves": {
+        "fast": [
+          "차지빔",
+          "사두기",
+          "애교부리기",
+          "요정의바람"
+        ],
+        "charged": [
+          "매지컬샤인",
+          "사이코키네시스",
+          "문포스",
+          "코멧펌치",
+          "스피드스타",
+          "드레인키스"
+        ],
+        "eliteFast": [
+          "막치기"
+        ],
+        "eliteCharged": [],
+        "special": [
+          "문포스트+"
+        ]
+      },
+      "progression": [
+        {
+          "level": 30,
+          "cp": 2089,
+          "cumulativeCost": {
+            "stardust": 75000,
+            "candy": 66,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 35,
+          "cp": 2263,
+          "cumulativeCost": {
+            "stardust": 137000,
+            "candy": 130,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 40,
+          "cp": 2437,
+          "cumulativeCost": {
+            "stardust": 225000,
+            "candy": 248,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 50,
+          "cp": 2755,
+          "cumulativeCost": {
+            "stardust": 475000,
+            "candy": 248,
+            "xlCandy": 296
+          }
+        }
+      ],
+      "progressionBasis": "owned_base_form",
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+      ]
+    },
+    {
+      "id": "mega-metagross",
+      "dexNumber": 376,
+      "displayName": "메가메타그로스",
+      "form": "mega-metagross",
+      "sourceForm": "Normal",
+      "types": [
+        "강철",
+        "에스퍼"
+      ],
+      "baseStats": {
+        "attack": 257,
+        "defense": 228,
+        "stamina": 190
+      },
+      "moves": {
+        "fast": [
+          "불릿펌치",
+          "사두기",
+          "연속자르기"
+        ],
+        "charged": [
+          "사이코키네시스",
+          "러스터캐논",
+          "지진"
+        ],
+        "eliteFast": [
+          "섬도클로"
+        ],
+        "eliteCharged": [
+          "코멧펌치"
+        ],
+        "special": []
+      },
+      "progression": [
+        {
+          "level": 30,
+          "cp": 3250,
+          "cumulativeCost": {
+            "stardust": 75000,
+            "candy": 66,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 35,
+          "cp": 3520,
+          "cumulativeCost": {
+            "stardust": 137000,
+            "candy": 130,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 40,
+          "cp": 3791,
+          "cumulativeCost": {
+            "stardust": 225000,
+            "candy": 248,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 50,
+          "cp": 4286,
+          "cumulativeCost": {
+            "stardust": 475000,
+            "candy": 248,
+            "xlCandy": 296
+          }
+        }
+      ],
+      "progressionBasis": "owned_base_form",
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+      ]
+    },
+    {
+      "id": "shadow-cranidos",
+      "dexNumber": 408,
+      "displayName": "그림자 두개도스",
+      "form": "shadow-cranidos",
+      "sourceForm": "Normal",
+      "types": [
+        "바위"
+      ],
+      "baseStats": {
+        "attack": 218,
+        "defense": 71,
+        "stamina": 167
+      },
+      "moves": {
+        "fast": [
+          "사두기",
+          "돌진"
+        ],
+        "charged": [
+          "암석봉인",
+          "원시의힘",
+          "불도저"
+        ],
+        "eliteFast": [],
+        "eliteCharged": [],
+        "special": []
+      },
+      "progression": [
+        {
+          "level": 30,
+          "cp": 1560,
+          "cumulativeCost": null
+        },
+        {
+          "level": 35,
+          "cp": 1690,
+          "cumulativeCost": null
+        },
+        {
+          "level": 40,
+          "cp": 1820,
+          "cumulativeCost": null
+        },
+        {
+          "level": 50,
+          "cp": 2058,
+          "cumulativeCost": null
+        }
+      ],
+      "progressionBasis": "shadow_game_check",
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+      ]
+    },
+    {
+      "id": "shadow-tornadus-incarnate",
+      "dexNumber": 641,
+      "displayName": "그림자 토네로스 화신폼",
+      "form": "shadow-tornadus-incarnate",
+      "sourceForm": "Incarnate",
+      "types": [
+        "비행"
+      ],
+      "baseStats": {
+        "attack": 266,
+        "defense": 164,
+        "stamina": 188
+      },
+      "moves": {
+        "fast": [
+          "물기",
+          "에어슬래시"
+        ],
+        "charged": [
+          "풀묶기",
+          "악의파동",
+          "파괴광선",
+          "폭풍"
+        ],
+        "eliteFast": [],
+        "eliteCharged": [],
+        "special": []
+      },
+      "progression": [
+        {
+          "level": 30,
+          "cp": 2867,
+          "cumulativeCost": null
+        },
+        {
+          "level": 35,
+          "cp": 3106,
+          "cumulativeCost": null
+        },
+        {
+          "level": 40,
+          "cp": 3345,
+          "cumulativeCost": null
+        },
+        {
+          "level": 50,
+          "cp": 3782,
+          "cumulativeCost": null
+        }
+      ],
+      "progressionBasis": "shadow_game_check",
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+      ]
+    },
+    {
+      "id": "deoxys-defense",
+      "dexNumber": 386,
+      "displayName": "테오키스 디펜스폼",
+      "form": "deoxys-defense",
+      "sourceForm": "Defense",
+      "types": [
+        "에스퍼"
+      ],
+      "baseStats": {
+        "attack": 144,
+        "defense": 330,
+        "stamina": 137
+      },
+      "moves": {
+        "fast": [
+          "사두기",
+          "카운터"
+        ],
+        "charged": [
+          "사이코부스트",
+          "10만볼트",
+          "스톤샤워"
+        ],
+        "eliteFast": [],
+        "eliteCharged": [],
+        "special": []
+      },
+      "progression": [
+        {
+          "level": 30,
+          "cp": 1949,
+          "cumulativeCost": {
+            "stardust": 75000,
+            "candy": 66,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 35,
+          "cp": 2111,
+          "cumulativeCost": {
+            "stardust": 137000,
+            "candy": 130,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 40,
+          "cp": 2274,
+          "cumulativeCost": {
+            "stardust": 225000,
+            "candy": 248,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 50,
+          "cp": 2570,
+          "cumulativeCost": {
+            "stardust": 475000,
+            "candy": 248,
+            "xlCandy": 296
+          }
+        }
+      ],
+      "progressionBasis": "current_form",
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+      ]
+    }
+  ]
+}

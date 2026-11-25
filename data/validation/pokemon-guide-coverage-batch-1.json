@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-26T18:30:00+09:00",
+  "normalizedHash": "5d92c9e275ede06c2e5b2a7eb7656a7ef01a1d0069f42c6deed94034f731156f",
+  "candidateHash": "281d75b4265ce052cc18c20d0ed69d8a2e4b8f495b6131a4bb62a880ea2df734",
+  "approvedOverlayHashBefore": "94a20712029609bb494a8aefd8043891e5d99c6b48fcebfefc5383e30b673b09",
+  "targets": [
+    "super-mega-clefable",
+    "mega-metagross",
+    "shadow-cranidos",
+    "shadow-tornadus-incarnate",
+    "deoxys-defense"
+  ],
+  "structuralComplete": true,
+  "editorialReadiness": [
+    {
+      "pokemonId": "super-mega-clefable",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "mega-metagross",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "shadow-cranidos",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "shadow-tornadus-incarnate",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "deoxys-defense",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    }
+  ],
+  "issues": [],
+  "approvalPerformed": false,
+  "publicationPerformed": false,
+  "validationHash": "525a591c7b36e8009a9d3afb179dac4bb49ee7061bd7cf5a1d9c5b949df227c9"
+}
