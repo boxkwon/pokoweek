@@ -58,9 +58,9 @@ test("coverage release recognizes the dataset and exact five-Pokemon allowlist",
   assert.equal(plan.manifest.dataset, "pokemon-guide-coverage-v1");
   assert.deepEqual(plan.manifest.targets, [...COVERAGE_TARGETS]);
   assert.equal(plan.manifest.guides.length, 5);
-  assert.equal(plan.existingApprovedCount, 6);
+  assert.equal(plan.existingApprovedCount, 11);
   assert.equal(plan.newApprovedCount, 5);
-  assert.equal(plan.expectedTotalApprovedCount, 11);
+  assert.equal(plan.expectedTotalApprovedCount, 16);
   assert.equal(plan.manifest.validationHash, coverageValidationFingerprint(plan.report));
   await assert.rejects(
     () => planCoverageGuideApproval({ ...options, targets: COVERAGE_TARGETS.slice(0, 4) }),
@@ -91,7 +91,7 @@ test("coverage approve and publish dry-runs return deterministic hashes without 
   });
   assert.deepEqual(publication.changedIds, [...COVERAGE_TARGETS]);
   assert.deepEqual(publication.deletedIds, []);
-  assert.equal(publication.overlays.length, 11);
+  assert.equal(publication.overlays.length, 16);
   assert.equal(publication.resultFileHash, coverageFileHash(publication.overlays));
   assert.equal(await readFile(paths.approvedOverlays, "utf8"), approvedBefore);
 });
@@ -118,8 +118,8 @@ test("coverage approval and publication are idempotent and preserve all existing
   assert.equal(firstPublish.resultHash, secondPublish.resultHash);
   assert.equal(firstPublish.resultFileHash, secondPublish.resultFileHash);
   assert.equal(firstPublishedBytes, secondPublishedBytes);
-  assert.equal(firstPublish.overlays.length, 11);
-  assert.equal(new Set(firstPublish.overlays.map((overlay) => overlay.id)).size, 11);
+  assert.equal(firstPublish.overlays.length, 16);
+  assert.equal(new Set(firstPublish.overlays.map((overlay) => overlay.id)).size, 16);
   assert.deepEqual(secondPublish.changedIds, []);
   assert.deepEqual(secondPublish.deletedIds, []);
   for (const [id, hash] of existingHashes) {
@@ -232,5 +232,5 @@ test("canonical coverage approval and publication are already idempotent", async
   assert.equal(publication.noOp, true);
   assert.deepEqual(publication.changedIds, []);
   assert.deepEqual(publication.deletedIds, []);
-  assert.equal(publication.overlays.length, 11);
+  assert.equal(publication.overlays.length, 16);
 });

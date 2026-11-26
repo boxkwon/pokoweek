@@ -9,7 +9,8 @@ import { projectCandidateForApp } from "../manual/projection";
 test("approved overlays leave unrelated production guide objects unchanged", () => {
   const guides = [{ id: "unpublished-guide", reason: "legacy" }];
   const result = applyApprovedGuideOverlays(guides);
-  assert.deepEqual(result, guides);
+  assert.deepEqual(result[0], guides[0]);
+  assert.ok(result.some((guide) => guide.id === "super-mega-clefable"));
 });
 
 test("published Kyurem overlay is applied without inventing a performance rating", () => {

@@ -136,17 +136,19 @@ test("every added raid rotation records source and verification metadata", async
   }
 });
 
-test("single bosses without a registered guide render an unavailable state instead of a 404 href", () => {
+test("single bosses resolve to a guide only after an approved guide exists", () => {
   const cases = [
     ["2026-11-09", "weekend-three-star"],
     ["2026-11-16", "shadow-tornadus-weekend-2026-11-21"],
     ["2026-11-23", "super-mega-clefable-raid-day-2026"],
   ] as const;
 
-  for (const [weekStart, eventId] of cases) {
+  for (const [index, [weekStart, eventId]] of cases.entries()) {
     const event = getWeekByStartDate(weekStart).events.find((entry) => entry.id === eventId);
     assert(event);
-    assert.deepEqual(resolveWeekEventAction(event, event.date), { kind: "unavailable", label: "상세 공략 준비 중" });
+    const action = resolveWeekEventAction(event, event.date);
+    if (index === 0) assert.deepEqual(action, { kind: "unavailable", label: "상세 공략 준비 중" });
+    else assert.equal(action.kind, "guide");
   }
 });
 
@@ -181,12 +183,12 @@ test("all 60 weekly raid entries resolve to a valid guide or an explicit unavail
   const deduplicatedGuides = [...deduplicatedByWeek.values()].filter(Boolean).length;
   assert.deepEqual({ entries, validGuides, unavailable, brokenLinks, wrongForms, deduplicatedEntries: deduplicatedByWeek.size, deduplicatedGuides }, {
     entries: 68,
-    validGuides: 18,
-    unavailable: 50,
+    validGuides: 27,
+    unavailable: 41,
     brokenLinks: 0,
     wrongForms: 0,
     deduplicatedEntries: 60,
-    deduplicatedGuides: 14,
+    deduplicatedGuides: 22,
   });
 });
 

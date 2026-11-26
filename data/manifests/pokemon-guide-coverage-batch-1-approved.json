@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "dataset": "pokemon-guide-coverage-batch-1",
+  "targets": [
+    "super-mega-clefable",
+    "mega-metagross",
+    "shadow-cranidos",
+    "shadow-tornadus-incarnate",
+    "deoxys-defense"
+  ],
+  "candidateHash": "f828c6ed6b2ab9073dcda1472d571285ddfc4e615b1d2a7850de9f99e0ac0eae",
+  "sourceSnapshotHash": "233d11ac47d395eb6354452e8780992f8eb0d4893b756d47e0e0c9f154183e70",
+  "validationHash": "522d5cd4d93ab8088a22d10ad262532430f93638b8da6191a3fa44fb34cdfe06",
+  "approvedAt": "2026-11-26T12:00:00.000Z",
+  "approvedBy": "boxkwon",
+  "qaCommitSha": "538e4598f08db6e10e351dbae49972184fb8b225",
+  "guides": [
+    {
+      "pokemonId": "super-mega-clefable",
+      "candidateGuideHash": "b706b3a9525aa04a5a31598afaec36ea396aebf3a41a0868eba24b37bbb95714",
+      "publicationGuideHash": "b706b3a9525aa04a5a31598afaec36ea396aebf3a41a0868eba24b37bbb95714"
+    },
+    {
+      "pokemonId": "mega-metagross",
+      "candidateGuideHash": "a5d301118e5483ade7c30a7aeffc3d552bcf35bcb9d3255f09155601b225e22b",
+      "publicationGuideHash": "a5d301118e5483ade7c30a7aeffc3d552bcf35bcb9d3255f09155601b225e22b"
+    },
+    {
+      "pokemonId": "shadow-cranidos",
+      "candidateGuideHash": "e0fe78a6e8f8a28a1cebc19ee5c850bdf7117d91844cb434268d402ab3439aa3",
+      "publicationGuideHash": "e0fe78a6e8f8a28a1cebc19ee5c850bdf7117d91844cb434268d402ab3439aa3"
+    },
+    {
+      "pokemonId": "shadow-tornadus-incarnate",
+      "candidateGuideHash": "b263e68473a28452c37def80b3fded79319596beb75f94a0c69b82c6834108b7",
+      "publicationGuideHash": "b263e68473a28452c37def80b3fded79319596beb75f94a0c69b82c6834108b7"
+    },
+    {
+      "pokemonId": "deoxys-defense",
+      "candidateGuideHash": "a618f4c06538258a4f708ac238279d59c14d3e8469238f03a451fb99662f9f23",
+      "publicationGuideHash": "a618f4c06538258a4f708ac238279d59c14d3e8469238f03a451fb99662f9f23"
+    }
+  ]
+}

@@ -19,6 +19,7 @@ export function getBatchOnePaths(root = dataRoot) {
     priority: path.join(root, "validation", "pokemon-guide-coverage-batch-1-priority.md"),
     preview: path.join(root, "preview", "pokemon-guide-coverage-batch-1-overlays.json"),
     approved: path.join(root, "approved", "app-guide-overlays.json"),
+    approval: path.join(root, "manifests", "pokemon-guide-coverage-batch-1-approved.json"),
   } as const;
 }
 
@@ -56,6 +57,36 @@ function validateMoves(candidate: BatchOneCandidate, pokemon: ReturnType<typeof 
   }
 }
 
+function validateFinalDataGuards(candidate: BatchOneCandidate, issues: Issue[]) {
+  const serialized = JSON.stringify(candidate.guide);
+  if (candidate.pokemonId === "shadow-cranidos" || candidate.pokemonId === "shadow-tornadus-incarnate") {
+    const progression = candidate.guide.progression as { costStatus?: string; stages?: { cumulativeCost?: unknown }[] } | undefined;
+    if (progression?.costStatus !== "check_in_game" || progression.stages?.some((stage) => stage.cumulativeCost !== null)) {
+      issues.push({ pokemonId: candidate.pokemonId, code: "unverified_shadow_cost", message: "Shadow 강화 비용은 확정 숫자로 게시할 수 없습니다.", severity: "error" });
+    }
+    if (!/(게임에서|게임 내).*확인/.test(serialized)) {
+      issues.push({ pokemonId: candidate.pokemonId, code: "missing_shadow_cost_caveat", message: "Shadow 비용 게임 내 확인 문구가 필요합니다.", severity: "error" });
+    }
+  }
+  if (/문포스트\+/.test(serialized)) {
+    issues.push({ pokemonId: candidate.pokemonId, code: "invalid_localized_move", message: "Moonblast+ 한국어 명칭은 문포스+입니다.", severity: "error" });
+  }
+  if (candidate.pokemonId === "super-mega-clefable" && !serialized.includes("문포스+")) {
+    issues.push({ pokemonId: candidate.pokemonId, code: "missing_super_mega_move", message: "문포스+ 규칙이 누락됐습니다.", severity: "error" });
+  }
+  if (candidate.pokemonId === "mega-metagross") {
+    if (!/현재 습득 가능 여부를 게임에서 확인/.test(serialized) || !/일반 메타그로스.*메가 진화 중 전투 CP가 아닙니다/.test(serialized)) {
+      issues.push({ pokemonId: candidate.pokemonId, code: "mega_metagross_guard", message: "코멧펀치 조건 또는 기본형 CP 안내가 불충분합니다.", severity: "error" });
+    }
+  }
+  if (candidate.pokemonId === "deoxys-defense") {
+    const caps = candidate.guide.pvpLeagueTargets?.map((item) => item.cpLimit);
+    if (JSON.stringify(caps) !== JSON.stringify([1500, 2500]) || !serialized.includes("최적 IV 순위를 생성하지 않았") || /\b\d+(?:\.\d+)?%\b/.test(serialized)) {
+      issues.push({ pokemonId: candidate.pokemonId, code: "unsupported_pvp_claim", message: "PvP CP 상한 또는 미검증 IV·승률 표현을 확인하세요.", severity: "error" });
+    }
+  }
+}
+
 export async function validateBatchOne(root = dataRoot) {
   const paths = getBatchOnePaths(root);
   const [normalizedRaw, candidatesRaw, evidenceRaw, registryRaw, approvedBytes] = await Promise.all([
@@ -75,6 +106,7 @@ export async function validateBatchOne(root = dataRoot) {
     const pokemon = normalized.pokemon.find((item) => item.id === candidate.pokemonId);
     if (!pokemon) issues.push({ pokemonId: candidate.pokemonId, code: "missing_normalized", message: "정규화 데이터 누락", severity: "error" });
     else validateMoves(candidate, pokemon, issues);
+    validateFinalDataGuards(candidate, issues);
     if (candidate.generatedBy.sourcePackageHash !== packageHash) issues.push({ pokemonId: candidate.pokemonId, code: "package_hash_mismatch", message: "입력 패키지 해시 불일치", severity: "error" });
     for (const evidenceId of candidate.evidenceIds) if (!knownEvidence.has(evidenceId)) issues.push({ pokemonId: candidate.pokemonId, code: "missing_evidence", message: evidenceId, severity: "error" });
     const blockers = editorialBlockers(candidate);

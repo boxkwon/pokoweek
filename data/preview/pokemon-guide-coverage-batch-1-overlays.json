@@ -1,7 +1,7 @@
 [
   {
     "id": "super-mega-clefable",
-    "validationHash": "c22535af9feee6ce40bbbf7b594fc17638519fb9b69c6042c6fc034b9c8548a5",
+    "validationHash": "c80217581899ca953a297dfa190365049922eff42d7b20a7d4d1c873bc6e5688",
     "previewOnly": true,
     "guide": {
       "name": "슈퍼 메가픽시",
@@ -21,7 +21,7 @@
       "useCases": {
         "mega": {
           "rating": null,
-          "reason": "페어리 타입 메가 보너스와 문포스트+ 활용이 핵심이며, 전체 메가 공격수 순위는 미평가입니다."
+          "reason": "페어리 타입 메가 보너스와 문포스+ 활용이 핵심이며, 전체 메가 공격수 순위는 미평가입니다."
         },
         "raid": {
           "rating": null,
@@ -37,13 +37,13 @@
             ]
           },
           "chargedMove": {
-            "name": "문포스트+",
+            "name": "문포스+",
             "tags": [
               "event_limited"
             ]
           },
           "conditions": [
-            "문포스트+는 메가진화 중인 픽시가 사용하는 추가 스페셜 기술입니다.",
+            "문포스+는 메가진화 중인 픽시가 사용하는 추가 스페셜 기술입니다.",
             "슈퍼 맥스는 지원 포켓몬만 해금할 수 있으며 메가 레벨 3 달성 후 추가 메가에너지 투자가 필요합니다."
           ],
           "reason": "메가 시스템과 전용 추가 기술을 함께 보는 조합입니다."
@@ -184,7 +184,7 @@
         "raid": null
       },
       "valueReasons": {
-        "mega": "공식 슈퍼 맥스·문포스트+ 규칙은 확인했으나 전체 순위는 미평가입니다.",
+        "mega": "공식 슈퍼 맥스·문포스+ 규칙은 확인했으나 전체 순위는 미평가입니다.",
         "raid": "시뮬레이션 없이 절대 성능을 단정하지 않습니다."
       },
       "dataStatus": {
@@ -217,7 +217,7 @@
   },
   {
     "id": "mega-metagross",
-    "validationHash": "c22535af9feee6ce40bbbf7b594fc17638519fb9b69c6042c6fc034b9c8548a5",
+    "validationHash": "c80217581899ca953a297dfa190365049922eff42d7b20a7d4d1c873bc6e5688",
     "previewOnly": true,
     "guide": {
       "name": "메가메타그로스",
@@ -436,7 +436,7 @@
   },
   {
     "id": "shadow-cranidos",
-    "validationHash": "c22535af9feee6ce40bbbf7b594fc17638519fb9b69c6042c6fc034b9c8548a5",
+    "validationHash": "c80217581899ca953a297dfa190365049922eff42d7b20a7d4d1c873bc6e5688",
     "previewOnly": true,
     "guide": {
       "name": "그림자 두개도스",
@@ -615,7 +615,7 @@
   },
   {
     "id": "shadow-tornadus-incarnate",
-    "validationHash": "c22535af9feee6ce40bbbf7b594fc17638519fb9b69c6042c6fc034b9c8548a5",
+    "validationHash": "c80217581899ca953a297dfa190365049922eff42d7b20a7d4d1c873bc6e5688",
     "previewOnly": true,
     "guide": {
       "name": "그림자 토네로스 화신폼",
@@ -804,7 +804,7 @@
   },
   {
     "id": "deoxys-defense",
-    "validationHash": "c22535af9feee6ce40bbbf7b594fc17638519fb9b69c6042c6fc034b9c8548a5",
+    "validationHash": "c80217581899ca953a297dfa190365049922eff42d7b20a7d4d1c873bc6e5688",
     "previewOnly": true,
     "guide": {
       "name": "테오키스 디펜스폼",

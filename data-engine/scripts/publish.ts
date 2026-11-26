@@ -3,6 +3,8 @@ import { publishCoverageGuides } from "../coverage/release";
 import { COVERAGE_TARGETS, getCoveragePaths } from "../coverage/validate";
 import { publishApprovedCandidates } from "../manual/approval";
 import { publishStandardGuides, STANDARD_GUIDE_TARGETS } from "../standardization/release";
+import { publishBatchOne } from "../batch-1/release";
+import { BATCH_ONE_TARGETS, getBatchOnePaths } from "../batch-1/validate";
 
 function targets() {
   const raw = requireOption("pokemon");
@@ -63,6 +65,12 @@ async function main() {
       deletedIds: result.deletedIds,
       published: result.manifest.guides,
     }, null, 2));
+    return;
+  }
+  if (dataset === "pokemon-guide-coverage-batch-1") {
+    const virtualApproval = dryRun ? { reviewer: requireOption("reviewer"), qaCommitSha: requireOption("qa-commit"), expectedCandidateHash: requireOption("candidate-hash"), targets: targets(), ...(readOption("approved-at") ? { approvedAt: readOption("approved-at") } : {}) } : undefined;
+    const result = await publishBatchOne({ targets: targets(), dryRun, virtualApproval });
+    console.log(JSON.stringify({ stage: "publish", dataset, targets: BATCH_ONE_TARGETS, dryRun, noOp: result.noOp, existingApprovedCount: result.overlays.length - result.changedIds.length, newOrChangedCount: result.changedIds.length, deletedCount: result.deletedIds.length, expectedTotalApprovedCount: result.overlays.length, existingHash: result.existingHash, resultHash: result.resultHash, resultFileHash: result.resultFileHash, changedFiles: [getBatchOnePaths().approved], changedIds: result.changedIds, deletedIds: result.deletedIds, published: result.manifest.guides }, null, 2));
     return;
   }
   if (dataset !== "kyurem-family") throw new Error(`Unsupported publication dataset: ${dataset}`);

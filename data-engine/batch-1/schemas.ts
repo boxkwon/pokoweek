@@ -96,5 +96,22 @@ export const BatchOneEvidenceSchema = z.object({
   records: z.array(EvidenceRecordSchema).min(1),
 });
 
+export const BatchOneApprovalManifestSchema = z.object({
+  schemaVersion: z.literal(1),
+  dataset: z.literal("pokemon-guide-coverage-batch-1"),
+  targets: z.array(BatchOnePokemonIdSchema).length(5),
+  candidateHash: Sha256Schema,
+  sourceSnapshotHash: Sha256Schema,
+  validationHash: Sha256Schema,
+  approvedAt: DateTimeSchema,
+  approvedBy: z.string().min(1),
+  qaCommitSha: z.string().regex(/^[0-9a-f]{40}$/),
+  guides: z.array(z.object({
+    pokemonId: BatchOnePokemonIdSchema,
+    candidateGuideHash: Sha256Schema,
+    publicationGuideHash: Sha256Schema,
+  })).length(5),
+});
+
 export type BatchOnePokemonId = z.infer<typeof BatchOnePokemonIdSchema>;
 export type BatchOneCandidate = z.infer<typeof BatchOneCandidateSchema>;

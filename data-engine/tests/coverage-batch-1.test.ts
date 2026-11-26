@@ -60,7 +60,7 @@ test("shadow costs are not presented as ordinary costs and PvP caps remain expli
   assert.match(JSON.stringify(deoxys), /최적 IV.*생성하지 않/);
 });
 
-test("Preview appends five candidate routes while Production keeps them unavailable", { concurrency: false }, async () => {
+test("Preview and published Production expose the five reviewed Batch 1 routes", { concurrency: false }, async () => {
   const previousFlag = process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES;
   const previousEnv = process.env.VERCEL_ENV;
   const base = [{ id: "kyurem", name: "큐레무" }];
@@ -73,16 +73,16 @@ test("Preview appends five candidate routes while Production keeps them unavaila
     process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES = "false";
     process.env.VERCEL_ENV = "production";
     const production = applyApprovedGuideOverlays(base);
-    for (const id of BATCH_ONE_TARGETS) assert.ok(!production.some((guide) => guide.id === id));
+    for (const id of BATCH_ONE_TARGETS) assert.ok(production.some((guide) => guide.id === id));
   } finally {
     process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES = previousFlag;
     process.env.VERCEL_ENV = previousEnv;
   }
 });
 
-test("the 11-guide approved overlay remains byte-for-byte unchanged", async () => {
+test("the 16-guide approved overlay matches the published Batch 1 release", async () => {
   const bytes = await readFile(path.join(root, "data/approved/app-guide-overlays.json"));
-  assert.equal(createHash("sha256").update(bytes).digest("hex"), "94a20712029609bb494a8aefd8043891e5d99c6b48fcebfefc5383e30b673b09");
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), "796a1d015084b9aee8d5e33035f4573521e1da535b26af26d3bb4aca2b2091de");
   const overlays = JSON.parse(bytes.toString()) as { id: string }[];
-  assert.equal(overlays.length, 11);
+  assert.equal(overlays.length, 16);
 });

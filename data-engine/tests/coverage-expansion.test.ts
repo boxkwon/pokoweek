@@ -96,7 +96,7 @@ test("approved coverage overlays load in Production without the Candidate flag",
 
 test("existing approved Production overlays remain byte-for-byte unchanged", async () => {
   const bytes = await readFile(path.join(process.cwd(), "data/approved/app-guide-overlays.json"));
-  assert.equal(createHash("sha256").update(bytes).digest("hex"), "94a20712029609bb494a8aefd8043891e5d99c6b48fcebfefc5383e30b673b09");
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), "796a1d015084b9aee8d5e33035f4573521e1da535b26af26d3bb4aca2b2091de");
 });
 
 test("coverage QA copy keeps form-change, limited-move, and PvP caps accurate", async () => {

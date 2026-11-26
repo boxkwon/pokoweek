@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-11-26T18:30:00+09:00",
-  "normalizedHash": "5d92c9e275ede06c2e5b2a7eb7656a7ef01a1d0069f42c6deed94034f731156f",
-  "candidateHash": "56dd200cb902a2d4fdd5ae5ddb644dddc6037b62dd93db2659f53619c758ee5b",
+  "normalizedHash": "3dceb559bf9dbf63de39c9ebcc504b818e5856f27cfc4fa574a3e8226bd8a84c",
+  "candidateHash": "f828c6ed6b2ab9073dcda1472d571285ddfc4e615b1d2a7850de9f99e0ac0eae",
   "approvedOverlayHashBefore": "94a20712029609bb494a8aefd8043891e5d99c6b48fcebfefc5383e30b673b09",
   "targets": [
     "super-mega-clefable",
@@ -47,5 +47,5 @@
   "issues": [],
   "approvalPerformed": false,
   "publicationPerformed": false,
-  "validationHash": "c22535af9feee6ce40bbbf7b594fc17638519fb9b69c6042c6fc034b9c8548a5"
+  "validationHash": "c80217581899ca953a297dfa190365049922eff42d7b20a7d4d1c873bc6e5688"
 }

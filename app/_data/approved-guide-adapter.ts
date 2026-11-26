@@ -11,6 +11,7 @@ type ApprovedGuideOverlay = {
   validationHash: string;
   approvedAt?: string;
   previewOnly?: boolean;
+  standalone?: boolean;
   guide: Record<string, unknown>;
 };
 
@@ -49,6 +50,10 @@ function appendPreviewGuides<T extends GuideRecord>(guides: readonly T[], select
   ];
 }
 
+function appendStandaloneGuides<T extends GuideRecord>(guides: readonly T[], selectedOverlays: readonly ApprovedGuideOverlay[]) {
+  return appendPreviewGuides(guides, selectedOverlays.filter((overlay) => overlay.standalone === true));
+}
+
 /**
  * Applies only explicitly published guide projections. An empty approved file
  * is intentionally a no-op so the current production data remains intact.
@@ -58,5 +63,6 @@ export function applyApprovedGuideOverlays<T extends GuideRecord>(guides: readon
     && process.env.VERCEL_ENV !== "production";
   const activeOverlays = previewEnabled ? [...overlays, ...previews, ...standardizationPreviews, ...coveragePreviews, ...batchOnePreviews] : overlays;
   const merged = applyGuideOverlayRecords(guides, activeOverlays);
-  return previewEnabled ? appendPreviewGuides(merged, batchOnePreviews) : merged;
+  const withPublishedStandalone = appendStandaloneGuides(merged, overlays);
+  return previewEnabled ? appendPreviewGuides(withPublishedStandalone, batchOnePreviews) : withPublishedStandalone;
 }

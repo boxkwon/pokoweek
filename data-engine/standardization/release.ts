@@ -15,6 +15,7 @@ export type GuideOverlay = {
   validationHash: string;
   approvedAt?: string;
   previewOnly?: boolean;
+  standalone?: boolean;
   guide: Record<string, unknown>;
 };
 
