@@ -1,7 +1,7 @@
 [
   {
     "id": "deoxys-normal",
-    "validationHash": "63667fa58894c3a618a3db52f54810dcc2dfd1902c3d6bd97809901818cc7f0c",
+    "validationHash": "37fe972ab3480e30a5cd66798dfd91f65acbd0847cba32d7b85948e609000b2e",
     "previewOnly": true,
     "guide": {
       "name": "테오키스 노말폼",
@@ -30,7 +30,7 @@
       "movesets": {
         "raid": {
           "fastMove": {
-            "name": "사두기",
+            "name": "사념의박치기",
             "tags": [
               "fast_tm"
             ]
@@ -213,7 +213,7 @@
   },
   {
     "id": "deoxys-attack",
-    "validationHash": "63667fa58894c3a618a3db52f54810dcc2dfd1902c3d6bd97809901818cc7f0c",
+    "validationHash": "37fe972ab3480e30a5cd66798dfd91f65acbd0847cba32d7b85948e609000b2e",
     "previewOnly": true,
     "guide": {
       "name": "테오키스 어택폼",
@@ -242,7 +242,7 @@
       "movesets": {
         "raid": {
           "fastMove": {
-            "name": "사두기",
+            "name": "사념의박치기",
             "tags": [
               "fast_tm"
             ]
@@ -425,7 +425,7 @@
   },
   {
     "id": "deoxys-speed",
-    "validationHash": "63667fa58894c3a618a3db52f54810dcc2dfd1902c3d6bd97809901818cc7f0c",
+    "validationHash": "37fe972ab3480e30a5cd66798dfd91f65acbd0847cba32d7b85948e609000b2e",
     "previewOnly": true,
     "guide": {
       "name": "테오키스 스피드폼",
@@ -454,7 +454,7 @@
       "movesets": {
         "raid": {
           "fastMove": {
-            "name": "사두기",
+            "name": "사념의박치기",
             "tags": [
               "fast_tm"
             ]
@@ -637,7 +637,7 @@
   },
   {
     "id": "shadow-piloswine",
-    "validationHash": "63667fa58894c3a618a3db52f54810dcc2dfd1902c3d6bd97809901818cc7f0c",
+    "validationHash": "37fe972ab3480e30a5cd66798dfd91f65acbd0847cba32d7b85948e609000b2e",
     "previewOnly": true,
     "guide": {
       "name": "그림자 메꾸리",
@@ -845,7 +845,7 @@
   },
   {
     "id": "shadow-mudkip",
-    "validationHash": "63667fa58894c3a618a3db52f54810dcc2dfd1902c3d6bd97809901818cc7f0c",
+    "validationHash": "37fe972ab3480e30a5cd66798dfd91f65acbd0847cba32d7b85948e609000b2e",
     "previewOnly": true,
     "guide": {
       "name": "그림자 물짱이",

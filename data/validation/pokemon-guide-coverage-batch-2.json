@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-11-26T20:30:00+09:00",
-  "normalizedHash": "7279096d8844d6900954d92a8ae1ceb51b96d1cbc9258e7a8bddd0e4e9aba24b",
-  "candidateHash": "badc27f9a0992d9f62c0305a5a32c55cf6c3efe4f20db5334388c670fb630bcb",
+  "normalizedHash": "e0efaf64e1c35e5940cf6eb4966f6e96ab4c9acf6440b8c3cfb5ce80feb32ca5",
+  "candidateHash": "aa2521490396310b95894fb2447dea658491b8db62f17c96a70bf5839f1d6883",
   "approvedOverlayHashBefore": "796a1d015084b9aee8d5e33035f4573521e1da535b26af26d3bb4aca2b2091de",
   "targets": [
     "deoxys-normal",
@@ -48,5 +48,5 @@
   "issues": [],
   "approvalPerformed": false,
   "publicationPerformed": false,
-  "validationHash": "63667fa58894c3a618a3db52f54810dcc2dfd1902c3d6bd97809901818cc7f0c"
+  "validationHash": "37fe972ab3480e30a5cd66798dfd91f65acbd0847cba32d7b85948e609000b2e"
 }

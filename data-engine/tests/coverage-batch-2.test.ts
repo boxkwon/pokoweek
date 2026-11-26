@@ -31,6 +31,7 @@ test("Deoxys forms preserve distinct stats, moves, and decisions", async () => {
   assert.deepEqual(stats["deoxys-normal"], { attack: 345, defense: 115, stamina: 137 });
   assert.deepEqual(stats["deoxys-attack"], { attack: 414, defense: 46, stamina: 137 });
   assert.deepEqual(stats["deoxys-speed"], { attack: 230, defense: 218, stamina: 137 });
+  assert.ok(normalized.pokemon.filter((item) => item.id.startsWith("deoxys-")).every((item) => item.moves.fast.includes("사념의박치기")));
   const bundle = BatchTwoCandidateBundleSchema.parse(await json("data/candidates/pokemon-guide-coverage-batch-2.json"));
   assert.equal(new Set(bundle.candidates.filter((item) => item.pokemonId.startsWith("deoxys-")).map((item) => item.guide.summary)).size, 3);
 });

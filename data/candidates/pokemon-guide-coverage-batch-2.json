@@ -14,7 +14,7 @@
         "model": "gpt-6.2-sol",
         "promptVersion": "pokemon-guide-coverage-batch-2-v1",
         "generatedAt": "2026-11-26T20:30:00+09:00",
-        "sourcePackageHash": "7279096d8844d6900954d92a8ae1ceb51b96d1cbc9258e7a8bddd0e4e9aba24b"
+        "sourcePackageHash": "e0efaf64e1c35e5940cf6eb4966f6e96ab4c9acf6440b8c3cfb5ce80feb32ca5"
       },
       "review": {
         "status": "pending"
@@ -60,7 +60,7 @@
         "movesets": {
           "raid": {
             "fastMove": {
-              "name": "사두기",
+              "name": "사념의박치기",
               "tags": [
                 "fast_tm"
               ]
@@ -249,7 +249,7 @@
         "model": "gpt-6.2-sol",
         "promptVersion": "pokemon-guide-coverage-batch-2-v1",
         "generatedAt": "2026-11-26T20:30:00+09:00",
-        "sourcePackageHash": "7279096d8844d6900954d92a8ae1ceb51b96d1cbc9258e7a8bddd0e4e9aba24b"
+        "sourcePackageHash": "e0efaf64e1c35e5940cf6eb4966f6e96ab4c9acf6440b8c3cfb5ce80feb32ca5"
       },
       "review": {
         "status": "pending"
@@ -295,7 +295,7 @@
         "movesets": {
           "raid": {
             "fastMove": {
-              "name": "사두기",
+              "name": "사념의박치기",
               "tags": [
                 "fast_tm"
               ]
@@ -484,7 +484,7 @@
         "model": "gpt-6.2-sol",
         "promptVersion": "pokemon-guide-coverage-batch-2-v1",
         "generatedAt": "2026-11-26T20:30:00+09:00",
-        "sourcePackageHash": "7279096d8844d6900954d92a8ae1ceb51b96d1cbc9258e7a8bddd0e4e9aba24b"
+        "sourcePackageHash": "e0efaf64e1c35e5940cf6eb4966f6e96ab4c9acf6440b8c3cfb5ce80feb32ca5"
       },
       "review": {
         "status": "pending"
@@ -530,7 +530,7 @@
         "movesets": {
           "raid": {
             "fastMove": {
-              "name": "사두기",
+              "name": "사념의박치기",
               "tags": [
                 "fast_tm"
               ]
@@ -719,7 +719,7 @@
         "model": "gpt-6.2-sol",
         "promptVersion": "pokemon-guide-coverage-batch-2-v1",
         "generatedAt": "2026-11-26T20:30:00+09:00",
-        "sourcePackageHash": "7279096d8844d6900954d92a8ae1ceb51b96d1cbc9258e7a8bddd0e4e9aba24b"
+        "sourcePackageHash": "e0efaf64e1c35e5940cf6eb4966f6e96ab4c9acf6440b8c3cfb5ce80feb32ca5"
       },
       "review": {
         "status": "pending"
@@ -949,7 +949,7 @@
         "model": "gpt-6.2-sol",
         "promptVersion": "pokemon-guide-coverage-batch-2-v1",
         "generatedAt": "2026-11-26T20:30:00+09:00",
-        "sourcePackageHash": "7279096d8844d6900954d92a8ae1ceb51b96d1cbc9258e7a8bddd0e4e9aba24b"
+        "sourcePackageHash": "e0efaf64e1c35e5940cf6eb4966f6e96ab4c9acf6440b8c3cfb5ce80feb32ca5"
       },
       "review": {
         "status": "pending"
