@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "dataset": "pokemon-guide-coverage-batch-2",
+  "targets": [
+    "deoxys-normal",
+    "deoxys-attack",
+    "deoxys-speed",
+    "shadow-piloswine",
+    "shadow-mudkip"
+  ],
+  "candidateHash": "aa2521490396310b95894fb2447dea658491b8db62f17c96a70bf5839f1d6883",
+  "sourceSnapshotHash": "233d11ac47d395eb6354452e8780992f8eb0d4893b756d47e0e0c9f154183e70",
+  "validationHash": "71257f890a55c172dd988abf600a9701c9835d7392b924a8b44761f5a2373793",
+  "approvedAt": "2026-11-26T15:57:13+09:00",
+  "approvedBy": "boxkwon",
+  "qaCommitSha": "908d9d9d2a12080e0d842bfe6a1b603e4e90b269",
+  "guides": [
+    {
+      "pokemonId": "deoxys-normal",
+      "candidateGuideHash": "af0f070782de394bdaffce0453129446cd30b6fe78ea77e21fb36b20d6f4d972",
+      "publicationGuideHash": "af0f070782de394bdaffce0453129446cd30b6fe78ea77e21fb36b20d6f4d972"
+    },
+    {
+      "pokemonId": "deoxys-attack",
+      "candidateGuideHash": "1466098765395b38743273d30d6d8f73745449a711a82e7f87411d86014e17d4",
+      "publicationGuideHash": "1466098765395b38743273d30d6d8f73745449a711a82e7f87411d86014e17d4"
+    },
+    {
+      "pokemonId": "deoxys-speed",
+      "candidateGuideHash": "ae7e42e0a3e4980c556becc6703e499357d950ea284698ff02a548001b369ab5",
+      "publicationGuideHash": "ae7e42e0a3e4980c556becc6703e499357d950ea284698ff02a548001b369ab5"
+    },
+    {
+      "pokemonId": "shadow-piloswine",
+      "candidateGuideHash": "7edd23224b088db1f6fe0921e146baa9d9c26137b8c11520c5cedcbb8520be2c",
+      "publicationGuideHash": "7edd23224b088db1f6fe0921e146baa9d9c26137b8c11520c5cedcbb8520be2c"
+    },
+    {
+      "pokemonId": "shadow-mudkip",
+      "candidateGuideHash": "fafaf008494fda9674fe709c9695c21e25c31b812ef79b91cb5d832eee7a9eb5",
+      "publicationGuideHash": "fafaf008494fda9674fe709c9695c21e25c31b812ef79b91cb5d832eee7a9eb5"
+    }
+  ]
+}

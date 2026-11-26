@@ -19,6 +19,7 @@ export function getBatchTwoPaths(root = dataRoot) {
     priority: path.join(root, "validation", "pokemon-guide-coverage-batch-2-priority.md"),
     preview: path.join(root, "preview", "pokemon-guide-coverage-batch-2-overlays.json"),
     approved: path.join(root, "approved", "app-guide-overlays.json"),
+    approval: path.join(root, "manifests", "pokemon-guide-coverage-batch-2-approved.json"),
   } as const;
 }
 

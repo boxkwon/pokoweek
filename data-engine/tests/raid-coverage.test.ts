@@ -183,12 +183,12 @@ test("all 60 weekly raid entries resolve to a valid guide or an explicit unavail
   const deduplicatedGuides = [...deduplicatedByWeek.values()].filter(Boolean).length;
   assert.deepEqual({ entries, validGuides, unavailable, brokenLinks, wrongForms, deduplicatedEntries: deduplicatedByWeek.size, deduplicatedGuides }, {
     entries: 68,
-    validGuides: 27,
-    unavailable: 41,
+    validGuides: 37,
+    unavailable: 31,
     brokenLinks: 0,
     wrongForms: 0,
     deduplicatedEntries: 60,
-    deduplicatedGuides: 22,
+    deduplicatedGuides: 29,
   });
 });
 

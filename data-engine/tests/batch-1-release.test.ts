@@ -35,18 +35,18 @@ test("Batch 1 final guards and exact allowlist pass only for the five reviewed g
   await assert.rejects(() => approveBatchOne({ ...opts, targets: BATCH_ONE_TARGETS.slice(0, 4), dryRun: true }), /Targets must be exactly/);
 });
 
-test("Batch 1 dry-run preserves 11 guides and projects exactly five standalone guides", async () => {
+test("Batch 1 dry-run preserves the other 16 guides and projects exactly five standalone guides", async () => {
   const root = await isolatedRoot();
   const before = await readFile(getBatchOnePaths(root).approved, "utf8");
   const opts = await options(root);
   const approval = await approveBatchOne({ ...opts, dryRun: true });
   const publication = await publishBatchOne({ targets: BATCH_ONE_TARGETS, dataRoot: root, dryRun: true, virtualApproval: opts });
-  assert.equal(approval.existingApprovedCount, 11);
+  assert.equal(approval.existingApprovedCount, 16);
   assert.equal(approval.newApprovedCount, 5);
-  assert.equal(approval.expectedTotalApprovedCount, 16);
+  assert.equal(approval.expectedTotalApprovedCount, 21);
   assert.deepEqual(publication.changedIds, [...BATCH_ONE_TARGETS]);
   assert.deepEqual(publication.deletedIds, []);
-  assert.equal(publication.overlays.length, 16);
+  assert.equal(publication.overlays.length, 21);
   assert.ok(publication.overlays.filter((item) => BATCH_ONE_TARGETS.includes(item.id as typeof BATCH_ONE_TARGETS[number])).every((item) => item.standalone === true));
   assert.equal(await readFile(getBatchOnePaths(root).approved, "utf8"), before);
 });

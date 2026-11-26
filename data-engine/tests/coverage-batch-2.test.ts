@@ -46,7 +46,7 @@ test("Shadow guides never expose ordinary costs and evolution moves are validate
   assert.match(JSON.stringify(bundle.candidates.find((item) => item.pokemonId === "shadow-mudkip")), /현재 대단한 기술머신스페셜 사용 가능 여부는 게임에서 확인/);
 });
 
-test("Batch 2 appears only in candidate Preview and never in Production mode", { concurrency: false }, () => {
+test("published Batch 2 appears without the Candidate flag and matches Preview routes", { concurrency: false }, () => {
   const oldFlag = process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES;
   const oldEnv = process.env.VERCEL_ENV;
   try {
@@ -57,15 +57,15 @@ test("Batch 2 appears only in candidate Preview and never in Production mode", {
     process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES = "false";
     process.env.VERCEL_ENV = "production";
     const production = applyApprovedGuideOverlays([{ id: "kyurem", name: "큐레무" }]);
-    for (const id of BATCH_TWO_TARGETS) assert.ok(!production.some((item) => item.id === id));
+    for (const id of BATCH_TWO_TARGETS) assert.ok(production.some((item) => item.id === id));
   } finally {
     process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES = oldFlag;
     process.env.VERCEL_ENV = oldEnv;
   }
 });
 
-test("the approved 16-guide overlay remains byte-identical", async () => {
+test("the approved 21-guide overlay matches the Batch 2 publication", async () => {
   const bytes = await readFile(path.join(root, "data/approved/app-guide-overlays.json"));
-  assert.equal(createHash("sha256").update(bytes).digest("hex"), "796a1d015084b9aee8d5e33035f4573521e1da535b26af26d3bb4aca2b2091de");
-  assert.equal((JSON.parse(bytes.toString()) as unknown[]).length, 16);
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), "d12581d560314069a849e671e5bcce95577d9e68b161c011789d720bae8e72f3");
+  assert.equal((JSON.parse(bytes.toString()) as unknown[]).length, 21);
 });

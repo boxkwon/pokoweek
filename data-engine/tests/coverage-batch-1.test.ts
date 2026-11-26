@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
@@ -80,9 +79,9 @@ test("Preview and published Production expose the five reviewed Batch 1 routes",
   }
 });
 
-test("the 16-guide approved overlay matches the published Batch 1 release", async () => {
+test("the approved overlay retains all five published Batch 1 guides after Batch 2", async () => {
   const bytes = await readFile(path.join(root, "data/approved/app-guide-overlays.json"));
-  assert.equal(createHash("sha256").update(bytes).digest("hex"), "796a1d015084b9aee8d5e33035f4573521e1da535b26af26d3bb4aca2b2091de");
   const overlays = JSON.parse(bytes.toString()) as { id: string }[];
-  assert.equal(overlays.length, 16);
+  assert.equal(overlays.length, 21);
+  for (const id of BATCH_ONE_TARGETS) assert.ok(overlays.some((overlay) => overlay.id === id));
 });

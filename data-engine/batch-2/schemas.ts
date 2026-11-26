@@ -40,5 +40,17 @@ export const BatchTwoCandidateSchema = z.object({
 });
 export const BatchTwoCandidateBundleSchema = z.object({ schemaVersion: z.literal(1), runId: z.string().min(1), generatedAt: DateTimeSchema, sourceSnapshotHash: Sha256Schema, promptVersion: z.literal("pokemon-guide-coverage-batch-2-v1"), usage: z.null(), candidates: z.array(BatchTwoCandidateSchema).length(5) });
 export const BatchTwoEvidenceSchema = z.object({ schemaVersion: z.literal(1), generatedAt: DateTimeSchema, records: z.array(EvidenceRecordSchema).min(1) });
+export const BatchTwoApprovalManifestSchema = z.object({
+  schemaVersion: z.literal(1),
+  dataset: z.literal("pokemon-guide-coverage-batch-2"),
+  targets: z.array(BatchTwoPokemonIdSchema).length(5),
+  candidateHash: Sha256Schema,
+  sourceSnapshotHash: Sha256Schema,
+  validationHash: Sha256Schema,
+  approvedAt: DateTimeSchema,
+  approvedBy: z.string().min(1),
+  qaCommitSha: z.string().regex(/^[0-9a-f]{40}$/),
+  guides: z.array(z.object({ pokemonId: BatchTwoPokemonIdSchema, candidateGuideHash: Sha256Schema, publicationGuideHash: Sha256Schema })).length(5),
+});
 export type BatchTwoPokemonId = z.infer<typeof BatchTwoPokemonIdSchema>;
 export type BatchTwoCandidate = z.infer<typeof BatchTwoCandidateSchema>;

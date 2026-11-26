@@ -94,9 +94,9 @@ test("approved coverage overlays load in Production without the Candidate flag",
   }
 });
 
-test("existing approved Production overlays remain byte-for-byte unchanged", async () => {
+test("approved Production overlay matches the current 21-guide publication", async () => {
   const bytes = await readFile(path.join(process.cwd(), "data/approved/app-guide-overlays.json"));
-  assert.equal(createHash("sha256").update(bytes).digest("hex"), "796a1d015084b9aee8d5e33035f4573521e1da535b26af26d3bb4aca2b2091de");
+  assert.equal(createHash("sha256").update(bytes).digest("hex"), "d12581d560314069a849e671e5bcce95577d9e68b161c011789d720bae8e72f3");
 });
 
 test("coverage QA copy keeps form-change, limited-move, and PvP caps accurate", async () => {
