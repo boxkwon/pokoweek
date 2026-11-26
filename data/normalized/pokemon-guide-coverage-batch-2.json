@@ -1,0 +1,391 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-26T20:30:00+09:00",
+  "sourceSnapshot": "data/raw/pogoapi/2026-11-17T00-49-59-500Z",
+  "sourceSnapshotHash": "233d11ac47d395eb6354452e8780992f8eb0d4893b756d47e0e0c9f154183e70",
+  "pokemon": [
+    {
+      "id": "deoxys-normal",
+      "dexNumber": 386,
+      "displayName": "테오키스 노말폼",
+      "form": "deoxys-normal",
+      "sourceForm": "Normal",
+      "types": [
+        "에스퍼"
+      ],
+      "baseStats": {
+        "attack": 345,
+        "defense": 115,
+        "stamina": 137
+      },
+      "moves": {
+        "fast": [
+          "사두기",
+          "차지빔"
+        ],
+        "charged": [
+          "사이코부스트",
+          "10만볼트",
+          "파괴광선"
+        ],
+        "eliteFast": [],
+        "eliteCharged": [],
+        "evolutionFast": [],
+        "evolutionCharged": [],
+        "evolutionEliteFast": [],
+        "evolutionEliteCharged": []
+      },
+      "progression": [
+        {
+          "level": 30,
+          "cp": 2709,
+          "cumulativeCost": {
+            "stardust": 75000,
+            "candy": 66,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 35,
+          "cp": 2935,
+          "cumulativeCost": {
+            "stardust": 137000,
+            "candy": 130,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 40,
+          "cp": 3160,
+          "cumulativeCost": {
+            "stardust": 225000,
+            "candy": 248,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 50,
+          "cp": 3573,
+          "cumulativeCost": {
+            "stardust": 475000,
+            "candy": 248,
+            "xlCandy": 296
+          }
+        }
+      ],
+      "progressionBasis": "current_form",
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+      ]
+    },
+    {
+      "id": "deoxys-attack",
+      "dexNumber": 386,
+      "displayName": "테오키스 어택폼",
+      "form": "deoxys-attack",
+      "sourceForm": "Attack",
+      "types": [
+        "에스퍼"
+      ],
+      "baseStats": {
+        "attack": 414,
+        "defense": 46,
+        "stamina": 137
+      },
+      "moves": {
+        "fast": [
+          "사두기",
+          "독찌르기"
+        ],
+        "charged": [
+          "사이코부스트",
+          "전자포",
+          "악의파동"
+        ],
+        "eliteFast": [],
+        "eliteCharged": [],
+        "evolutionFast": [],
+        "evolutionCharged": [],
+        "evolutionEliteFast": [],
+        "evolutionEliteCharged": []
+      },
+      "progression": [
+        {
+          "level": 30,
+          "cp": 2211,
+          "cumulativeCost": {
+            "stardust": 75000,
+            "candy": 66,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 35,
+          "cp": 2395,
+          "cumulativeCost": {
+            "stardust": 137000,
+            "candy": 130,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 40,
+          "cp": 2580,
+          "cumulativeCost": {
+            "stardust": 225000,
+            "candy": 248,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 50,
+          "cp": 2916,
+          "cumulativeCost": {
+            "stardust": 475000,
+            "candy": 248,
+            "xlCandy": 296
+          }
+        }
+      ],
+      "progressionBasis": "current_form",
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+      ]
+    },
+    {
+      "id": "deoxys-speed",
+      "dexNumber": 386,
+      "displayName": "테오키스 스피드폼",
+      "form": "deoxys-speed",
+      "sourceForm": "Speed",
+      "types": [
+        "에스퍼"
+      ],
+      "baseStats": {
+        "attack": 230,
+        "defense": 218,
+        "stamina": 137
+      },
+      "moves": {
+        "fast": [
+          "사두기",
+          "차지빔"
+        ],
+        "charged": [
+          "사이코부스트",
+          "10만볼트",
+          "스피드스타"
+        ],
+        "eliteFast": [],
+        "eliteCharged": [],
+        "evolutionFast": [],
+        "evolutionCharged": [],
+        "evolutionEliteFast": [],
+        "evolutionEliteCharged": []
+      },
+      "progression": [
+        {
+          "level": 30,
+          "cp": 2468,
+          "cumulativeCost": {
+            "stardust": 75000,
+            "candy": 66,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 35,
+          "cp": 2674,
+          "cumulativeCost": {
+            "stardust": 137000,
+            "candy": 130,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 40,
+          "cp": 2879,
+          "cumulativeCost": {
+            "stardust": 225000,
+            "candy": 248,
+            "xlCandy": 0
+          }
+        },
+        {
+          "level": 50,
+          "cp": 3255,
+          "cumulativeCost": {
+            "stardust": 475000,
+            "candy": 248,
+            "xlCandy": 296
+          }
+        }
+      ],
+      "progressionBasis": "current_form",
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "pogoapi:pokemon_powerup_requirements:d8065e28e35b"
+      ]
+    },
+    {
+      "id": "shadow-piloswine",
+      "dexNumber": 221,
+      "displayName": "그림자 메꾸리",
+      "form": "shadow-piloswine",
+      "sourceForm": "Normal",
+      "types": [
+        "얼음",
+        "땅"
+      ],
+      "baseStats": {
+        "attack": 181,
+        "defense": 138,
+        "stamina": 225
+      },
+      "moves": {
+        "fast": [
+          "얼음조각",
+          "눈싸라기"
+        ],
+        "charged": [
+          "눈사태",
+          "불도저",
+          "스톤엣지",
+          "10만마력",
+          "고드름침"
+        ],
+        "eliteFast": [],
+        "eliteCharged": [],
+        "evolutionTarget": "맘모꾸리",
+        "evolutionFast": [
+          "진흙뿌리기",
+          "눈싸라기"
+        ],
+        "evolutionCharged": [
+          "눈사태",
+          "불도저",
+          "스톤엣지",
+          "10만마력",
+          "고드름침"
+        ],
+        "evolutionEliteFast": [],
+        "evolutionEliteCharged": [
+          "원시의힘"
+        ]
+      },
+      "progression": [
+        {
+          "level": 30,
+          "cp": 2010,
+          "cumulativeCost": null
+        },
+        {
+          "level": 35,
+          "cp": 2178,
+          "cumulativeCost": null
+        },
+        {
+          "level": 40,
+          "cp": 2345,
+          "cumulativeCost": null
+        },
+        {
+          "level": 50,
+          "cp": 2652,
+          "cumulativeCost": null
+        }
+      ],
+      "progressionBasis": "shadow_game_check",
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079"
+      ]
+    },
+    {
+      "id": "shadow-mudkip",
+      "dexNumber": 258,
+      "displayName": "그림자 물짱이",
+      "form": "shadow-mudkip",
+      "sourceForm": "Normal",
+      "types": [
+        "물"
+      ],
+      "baseStats": {
+        "attack": 126,
+        "defense": 93,
+        "stamina": 137
+      },
+      "moves": {
+        "fast": [
+          "몸통박치기",
+          "물총"
+        ],
+        "charged": [
+          "굴파기",
+          "오물폭탄",
+          "밟기"
+        ],
+        "eliteFast": [],
+        "eliteCharged": [],
+        "evolutionTarget": "대짱이",
+        "evolutionFast": [
+          "머드숏",
+          "물총"
+        ],
+        "evolutionCharged": [
+          "지진",
+          "오물웨이브",
+          "파도타기",
+          "탁류",
+          "오물폭탄"
+        ],
+        "evolutionEliteFast": [],
+        "evolutionEliteCharged": [
+          "하이드로캐논"
+        ]
+      },
+      "progression": [
+        {
+          "level": 30,
+          "cp": 967,
+          "cumulativeCost": null
+        },
+        {
+          "level": 35,
+          "cp": 1047,
+          "cumulativeCost": null
+        },
+        {
+          "level": 40,
+          "cp": 1128,
+          "cumulativeCost": null
+        },
+        {
+          "level": 50,
+          "cp": 1275,
+          "cumulativeCost": null
+        }
+      ],
+      "progressionBasis": "shadow_game_check",
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079"
+      ]
+    }
+  ]
+}

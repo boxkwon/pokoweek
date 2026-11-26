@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-26T20:30:00+09:00",
+  "normalizedHash": "7279096d8844d6900954d92a8ae1ceb51b96d1cbc9258e7a8bddd0e4e9aba24b",
+  "candidateHash": "badc27f9a0992d9f62c0305a5a32c55cf6c3efe4f20db5334388c670fb630bcb",
+  "approvedOverlayHashBefore": "796a1d015084b9aee8d5e33035f4573521e1da535b26af26d3bb4aca2b2091de",
+  "targets": [
+    "deoxys-normal",
+    "deoxys-attack",
+    "deoxys-speed",
+    "shadow-piloswine",
+    "shadow-mudkip"
+  ],
+  "selectedFifth": "shadow-mudkip",
+  "structuralComplete": true,
+  "editorialReadiness": [
+    {
+      "pokemonId": "deoxys-normal",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "deoxys-attack",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "deoxys-speed",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "shadow-piloswine",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    },
+    {
+      "pokemonId": "shadow-mudkip",
+      "structuralComplete": true,
+      "editorialReady": true,
+      "blockers": []
+    }
+  ],
+  "issues": [],
+  "approvalPerformed": false,
+  "publicationPerformed": false,
+  "validationHash": "63667fa58894c3a618a3db52f54810dcc2dfd1902c3d6bd97809901818cc7f0c"
+}

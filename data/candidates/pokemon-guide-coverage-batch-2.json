@@ -1,0 +1,1167 @@
+{
+  "schemaVersion": 1,
+  "runId": "manual-ai-d-grade-batch-2-2026-11-26",
+  "generatedAt": "2026-11-26T20:30:00+09:00",
+  "sourceSnapshotHash": "233d11ac47d395eb6354452e8780992f8eb0d4893b756d47e0e0c9f154183e70",
+  "promptVersion": "pokemon-guide-coverage-batch-2-v1",
+  "usage": null,
+  "candidates": [
+    {
+      "pokemonId": "deoxys-normal",
+      "generationMethod": "manual_ai",
+      "generatedBy": {
+        "provider": "codex",
+        "model": "gpt-6.2-sol",
+        "promptVersion": "pokemon-guide-coverage-batch-2-v1",
+        "generatedAt": "2026-11-26T20:30:00+09:00",
+        "sourcePackageHash": "7279096d8844d6900954d92a8ae1ceb51b96d1cbc9258e7a8bddd0e4e9aba24b"
+      },
+      "review": {
+        "status": "pending"
+      },
+      "evidenceConfidence": "medium",
+      "editorialStatus": "ready",
+      "editorialLimitations": [
+        "절대 레이드 순위·PvP 티어를 산출하지 않았다.",
+        "실전 시뮬레이션 없이 강화를 확정 권장하지 않는다."
+      ],
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+        "official:deoxys-form-rotation"
+      ],
+      "guide": {
+        "name": "테오키스 노말폼",
+        "formName": "노말폼",
+        "image": {
+          "src": "/images/pokemon/pokeapi-386-deoxys-normal.png",
+          "alt": "테오키스 노말폼",
+          "scale": 1
+        },
+        "overallRating": null,
+        "verdict": "hold",
+        "verdictLabel": "노말폼은 도감 등록 후 강화 보류",
+        "presentationMode": "training-first",
+        "reason": "높은 공격력만으로 실전 투자 가치를 확정하지 않음",
+        "summary": "사이코부스트 여부와 노말폼 ID를 확인하세요. 레이드 순위나 시뮬레이션 근거가 없으므로 도감 등록 후 강화를 보류합니다.",
+        "useCases": {
+          "raid": {
+            "rating": null,
+            "reason": "에스퍼 약점 레이드에 투입할 수는 있지만 절대 순위는 미평가입니다."
+          },
+          "pvp": {
+            "rating": null,
+            "reason": "PvP 시뮬레이션·리그별 매치업 근거가 없어 티어를 단정하지 않습니다."
+          }
+        },
+        "movesets": {
+          "raid": {
+            "fastMove": {
+              "name": "사두기",
+              "tags": [
+                "fast_tm"
+              ]
+            },
+            "chargedMove": {
+              "name": "사이코부스트",
+              "tags": [
+                "charged_tm"
+              ]
+            },
+            "conditions": [
+              "해당 폼의 현재 일반 기술 목록에서 확인했습니다."
+            ],
+            "reason": "에스퍼 자속 조합이지만 절대 성능은 미평가입니다."
+          }
+        },
+        "investment": {
+          "order": [
+            {
+              "id": "form",
+              "label": "테오키스 폼 확인"
+            },
+            {
+              "id": "move",
+              "label": "현재 기술 확인"
+            },
+            {
+              "id": "compare",
+              "label": "보유 에스퍼 전력과 비교"
+            },
+            {
+              "id": "hold",
+              "label": "비교 근거가 없으면 강화 보류"
+            }
+          ],
+          "powerUp": "hold",
+          "stardust": "hold",
+          "candy": "hold",
+          "secondMove": "low",
+          "xlCandy": "hold",
+          "rareCandy": "low",
+          "eliteTm": "not_needed"
+        },
+        "investmentReasons": {
+          "powerUp": "실전 비교 근거 전에는 Lv.30 이상 강화하지 마세요.",
+          "stardust": "해당 폼을 실제 투입할 목표가 있을 때만 사용하세요.",
+          "candy": "다른 테오키스 폼과 공유하는 사탕을 보존하세요.",
+          "secondMove": "레이드 단일 역할에는 필수가 아닙니다.",
+          "xlCandy": "실전 가치를 확인하기 전에 XL을 쓰지 마세요."
+        },
+        "progression": {
+          "ivLabel": "15/15/15 테오키스 노말폼 기준 예상 CP",
+          "costBaselineLabel": "Lv.20 일반 개체 기준 누적 비용",
+          "costStatus": "verified",
+          "costNote": "강화를 권하는 표가 아닙니다.",
+          "stages": [
+            {
+              "level": 30,
+              "cp": 2709,
+              "cumulativeCost": {
+                "stardust": 75000,
+                "candy": 66,
+                "xlCandy": 0
+              },
+              "decision": "hold",
+              "reason": "CP 참고용",
+              "stopCondition": "Lv.30 이상 투자 근거를 먼저 확인하세요."
+            },
+            {
+              "level": 35,
+              "cp": 2935,
+              "cumulativeCost": {
+                "stardust": 137000,
+                "candy": 130,
+                "xlCandy": 0
+              },
+              "decision": "hold",
+              "reason": "CP 참고용",
+              "stopCondition": "실전 투입 근거가 없으면 멈추세요.",
+              "incrementalCost": {
+                "stardust": 62000,
+                "candy": 64,
+                "xlCandy": 0
+              }
+            },
+            {
+              "level": 40,
+              "cp": 3160,
+              "cumulativeCost": {
+                "stardust": 225000,
+                "candy": 248,
+                "xlCandy": 0
+              },
+              "decision": "hold",
+              "reason": "CP 참고용",
+              "stopCondition": "XL을 쓰지 마세요.",
+              "incrementalCost": {
+                "stardust": 88000,
+                "candy": 118,
+                "xlCandy": 0
+              }
+            },
+            {
+              "level": 50,
+              "cp": 3573,
+              "cumulativeCost": {
+                "stardust": 475000,
+                "candy": 248,
+                "xlCandy": 296
+              },
+              "decision": "hold",
+              "reason": "XL 투자 보류",
+              "stopCondition": "절대 순위 근거 없이 Lv.50을 권하지 않습니다.",
+              "incrementalCost": {
+                "stardust": 250000,
+                "candy": 0,
+                "xlCandy": 296
+              }
+            }
+          ]
+        },
+        "progressionContext": {
+          "mode": "reference",
+          "title": "해당 폼 CP 참고",
+          "notice": "15/15/15 기준 참고값이며 강화 목표가 아닙니다."
+        },
+        "ivAdvice": {
+          "general": "폼 ID를 우선 확인하고, 레이드용을 검토할 때만 공격 IV를 비교하세요.",
+          "raid": "해당 폼의 실제 투입 여부를 먼저 정하세요.",
+          "pvp": "최적 IV·리그 순위를 생성하지 않았습니다."
+        },
+        "weaknesses": [
+          {
+            "type": "벌레"
+          },
+          {
+            "type": "고스트"
+          },
+          {
+            "type": "악"
+          }
+        ],
+        "counters": [],
+        "counterRankingMode": "examples",
+        "values": {
+          "raid": null,
+          "pvp": null
+        },
+        "valueReasons": {
+          "raid": "실전 순위는 미평가입니다.",
+          "pvp": "매치업 시뮬레이션을 하지 않았습니다."
+        },
+        "dataStatus": {
+          "counters": "missing",
+          "values": "ready",
+          "useCases": "ready",
+          "movesets": "ready",
+          "investment": "ready",
+          "ivAdvice": "ready"
+        },
+        "recommendations": [
+          "폼 ID 확인",
+          "도감 등록 우선",
+          "실전 비교 전에는 XL·해방 보류"
+        ],
+        "source": {
+          "name": "PoGo API · Deoxys form data",
+          "url": "https://pogoapi.net/"
+        },
+        "battleTypes": [
+          "raid"
+        ],
+        "types": [
+          "에스퍼"
+        ],
+        "category": "raid",
+        "categoryLabel": "5성 레이드",
+        "rating": null
+      }
+    },
+    {
+      "pokemonId": "deoxys-attack",
+      "generationMethod": "manual_ai",
+      "generatedBy": {
+        "provider": "codex",
+        "model": "gpt-6.2-sol",
+        "promptVersion": "pokemon-guide-coverage-batch-2-v1",
+        "generatedAt": "2026-11-26T20:30:00+09:00",
+        "sourcePackageHash": "7279096d8844d6900954d92a8ae1ceb51b96d1cbc9258e7a8bddd0e4e9aba24b"
+      },
+      "review": {
+        "status": "pending"
+      },
+      "evidenceConfidence": "medium",
+      "editorialStatus": "ready",
+      "editorialLimitations": [
+        "절대 레이드 순위·PvP 티어를 산출하지 않았다.",
+        "실전 시뮬레이션 없이 강화를 확정 권장하지 않는다."
+      ],
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+        "official:deoxys-form-rotation"
+      ],
+      "guide": {
+        "name": "테오키스 어택폼",
+        "formName": "어택폼 · 고공격 저내구",
+        "image": {
+          "src": "/images/pokemon/pokemon_icon_386_11.png",
+          "alt": "테오키스 어택폼",
+          "scale": 1
+        },
+        "overallRating": null,
+        "verdict": "hold",
+        "verdictLabel": "어택폼은 Lv.30 실험 전에 투자 보류",
+        "presentationMode": "training-first",
+        "reason": "매우 높은 공격과 매우 낮은 방어를 함께 판단",
+        "summary": "공격 능력치는 높지만 방어가 매우 낮습니다. 실제 레이드 생존성과 팀 조합을 확인하기 전에는 Lv.40·50 투자를 권하지 않습니다.",
+        "useCases": {
+          "raid": {
+            "rating": null,
+            "reason": "높은 공격력은 장점이지만 낮은 내구로 인한 실전 손실을 시뮬레이션하지 않았습니다."
+          },
+          "pvp": {
+            "rating": null,
+            "reason": "PvP 시뮬레이션·리그별 매치업 근거가 없어 티어를 단정하지 않습니다."
+          }
+        },
+        "movesets": {
+          "raid": {
+            "fastMove": {
+              "name": "사두기",
+              "tags": [
+                "fast_tm"
+              ]
+            },
+            "chargedMove": {
+              "name": "사이코부스트",
+              "tags": [
+                "charged_tm"
+              ]
+            },
+            "conditions": [
+              "해당 폼의 현재 일반 기술 목록에서 확인했습니다."
+            ],
+            "reason": "에스퍼 자속 조합이지만 절대 성능은 미평가입니다."
+          }
+        },
+        "investment": {
+          "order": [
+            {
+              "id": "form",
+              "label": "테오키스 폼 확인"
+            },
+            {
+              "id": "move",
+              "label": "현재 기술 확인"
+            },
+            {
+              "id": "compare",
+              "label": "보유 에스퍼 전력과 비교"
+            },
+            {
+              "id": "hold",
+              "label": "비교 근거가 없으면 강화 보류"
+            }
+          ],
+          "powerUp": "hold",
+          "stardust": "hold",
+          "candy": "hold",
+          "secondMove": "low",
+          "xlCandy": "hold",
+          "rareCandy": "low",
+          "eliteTm": "not_needed"
+        },
+        "investmentReasons": {
+          "powerUp": "실전 비교 근거 전에는 Lv.30 이상 강화하지 마세요.",
+          "stardust": "해당 폼을 실제 투입할 목표가 있을 때만 사용하세요.",
+          "candy": "다른 테오키스 폼과 공유하는 사탕을 보존하세요.",
+          "secondMove": "레이드 단일 역할에는 필수가 아닙니다.",
+          "xlCandy": "실전 가치를 확인하기 전에 XL을 쓰지 마세요."
+        },
+        "progression": {
+          "ivLabel": "15/15/15 테오키스 어택폼 기준 예상 CP",
+          "costBaselineLabel": "Lv.20 일반 개체 기준 누적 비용",
+          "costStatus": "verified",
+          "costNote": "강화를 권하는 표가 아닙니다.",
+          "stages": [
+            {
+              "level": 30,
+              "cp": 2211,
+              "cumulativeCost": {
+                "stardust": 75000,
+                "candy": 66,
+                "xlCandy": 0
+              },
+              "decision": "hold",
+              "reason": "CP 참고용",
+              "stopCondition": "Lv.30 이상 투자 근거를 먼저 확인하세요."
+            },
+            {
+              "level": 35,
+              "cp": 2395,
+              "cumulativeCost": {
+                "stardust": 137000,
+                "candy": 130,
+                "xlCandy": 0
+              },
+              "decision": "hold",
+              "reason": "CP 참고용",
+              "stopCondition": "실전 투입 근거가 없으면 멈추세요.",
+              "incrementalCost": {
+                "stardust": 62000,
+                "candy": 64,
+                "xlCandy": 0
+              }
+            },
+            {
+              "level": 40,
+              "cp": 2580,
+              "cumulativeCost": {
+                "stardust": 225000,
+                "candy": 248,
+                "xlCandy": 0
+              },
+              "decision": "hold",
+              "reason": "CP 참고용",
+              "stopCondition": "XL을 쓰지 마세요.",
+              "incrementalCost": {
+                "stardust": 88000,
+                "candy": 118,
+                "xlCandy": 0
+              }
+            },
+            {
+              "level": 50,
+              "cp": 2916,
+              "cumulativeCost": {
+                "stardust": 475000,
+                "candy": 248,
+                "xlCandy": 296
+              },
+              "decision": "hold",
+              "reason": "XL 투자 보류",
+              "stopCondition": "절대 순위 근거 없이 Lv.50을 권하지 않습니다.",
+              "incrementalCost": {
+                "stardust": 250000,
+                "candy": 0,
+                "xlCandy": 296
+              }
+            }
+          ]
+        },
+        "progressionContext": {
+          "mode": "reference",
+          "title": "해당 폼 CP 참고",
+          "notice": "15/15/15 기준 참고값이며 강화 목표가 아닙니다."
+        },
+        "ivAdvice": {
+          "general": "폼 ID를 우선 확인하고, 레이드용을 검토할 때만 공격 IV를 비교하세요.",
+          "raid": "해당 폼의 실제 투입 여부를 먼저 정하세요.",
+          "pvp": "최적 IV·리그 순위를 생성하지 않았습니다."
+        },
+        "weaknesses": [
+          {
+            "type": "벌레"
+          },
+          {
+            "type": "고스트"
+          },
+          {
+            "type": "악"
+          }
+        ],
+        "counters": [],
+        "counterRankingMode": "examples",
+        "values": {
+          "raid": null,
+          "pvp": null
+        },
+        "valueReasons": {
+          "raid": "실전 순위는 미평가입니다.",
+          "pvp": "매치업 시뮬레이션을 하지 않았습니다."
+        },
+        "dataStatus": {
+          "counters": "missing",
+          "values": "ready",
+          "useCases": "ready",
+          "movesets": "ready",
+          "investment": "ready",
+          "ivAdvice": "ready"
+        },
+        "recommendations": [
+          "폼 ID 확인",
+          "도감 등록 우선",
+          "실전 비교 전에는 XL·해방 보류"
+        ],
+        "source": {
+          "name": "PoGo API · Deoxys form data",
+          "url": "https://pogoapi.net/"
+        },
+        "battleTypes": [
+          "raid"
+        ],
+        "types": [
+          "에스퍼"
+        ],
+        "category": "raid",
+        "categoryLabel": "5성 레이드",
+        "rating": null
+      }
+    },
+    {
+      "pokemonId": "deoxys-speed",
+      "generationMethod": "manual_ai",
+      "generatedBy": {
+        "provider": "codex",
+        "model": "gpt-6.2-sol",
+        "promptVersion": "pokemon-guide-coverage-batch-2-v1",
+        "generatedAt": "2026-11-26T20:30:00+09:00",
+        "sourcePackageHash": "7279096d8844d6900954d92a8ae1ceb51b96d1cbc9258e7a8bddd0e4e9aba24b"
+      },
+      "review": {
+        "status": "pending"
+      },
+      "evidenceConfidence": "medium",
+      "editorialStatus": "ready",
+      "editorialLimitations": [
+        "절대 레이드 순위·PvP 티어를 산출하지 않았다.",
+        "실전 시뮬레이션 없이 강화를 확정 권장하지 않는다."
+      ],
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "pogoapi:pokemon_powerup_requirements:d8065e28e35b",
+        "official:deoxys-form-rotation"
+      ],
+      "guide": {
+        "name": "테오키스 스피드폼",
+        "formName": "스피드폼",
+        "image": {
+          "src": "/images/pokemon/pokemon_icon_386_13.png",
+          "alt": "테오키스 스피드폼",
+          "scale": 1
+        },
+        "overallRating": null,
+        "verdict": "hold",
+        "verdictLabel": "스피드폼은 도감 등록 후 강화 보류",
+        "presentationMode": "training-first",
+        "reason": "균형적인 능력치가 레이드·PvP 투자 가치를 자동으로 증명하지 않음",
+        "summary": "스피드폼은 노말·어택·디펜스폼과 별도입니다. 레이드 순위나 PvP 매치업 근거가 없으므로 수집 후 강화를 보류하세요.",
+        "useCases": {
+          "raid": {
+            "rating": null,
+            "reason": "레이드·PvP 모두 실전 비교 근거가 부족하여 순위를 생성하지 않습니다."
+          },
+          "pvp": {
+            "rating": null,
+            "reason": "PvP 시뮬레이션·리그별 매치업 근거가 없어 티어를 단정하지 않습니다."
+          }
+        },
+        "movesets": {
+          "raid": {
+            "fastMove": {
+              "name": "사두기",
+              "tags": [
+                "fast_tm"
+              ]
+            },
+            "chargedMove": {
+              "name": "사이코부스트",
+              "tags": [
+                "charged_tm"
+              ]
+            },
+            "conditions": [
+              "해당 폼의 현재 일반 기술 목록에서 확인했습니다."
+            ],
+            "reason": "에스퍼 자속 조합이지만 절대 성능은 미평가입니다."
+          }
+        },
+        "investment": {
+          "order": [
+            {
+              "id": "form",
+              "label": "테오키스 폼 확인"
+            },
+            {
+              "id": "move",
+              "label": "현재 기술 확인"
+            },
+            {
+              "id": "compare",
+              "label": "보유 에스퍼 전력과 비교"
+            },
+            {
+              "id": "hold",
+              "label": "비교 근거가 없으면 강화 보류"
+            }
+          ],
+          "powerUp": "hold",
+          "stardust": "hold",
+          "candy": "hold",
+          "secondMove": "low",
+          "xlCandy": "hold",
+          "rareCandy": "low",
+          "eliteTm": "not_needed"
+        },
+        "investmentReasons": {
+          "powerUp": "실전 비교 근거 전에는 Lv.30 이상 강화하지 마세요.",
+          "stardust": "해당 폼을 실제 투입할 목표가 있을 때만 사용하세요.",
+          "candy": "다른 테오키스 폼과 공유하는 사탕을 보존하세요.",
+          "secondMove": "레이드 단일 역할에는 필수가 아닙니다.",
+          "xlCandy": "실전 가치를 확인하기 전에 XL을 쓰지 마세요."
+        },
+        "progression": {
+          "ivLabel": "15/15/15 테오키스 스피드폼 기준 예상 CP",
+          "costBaselineLabel": "Lv.20 일반 개체 기준 누적 비용",
+          "costStatus": "verified",
+          "costNote": "강화를 권하는 표가 아닙니다.",
+          "stages": [
+            {
+              "level": 30,
+              "cp": 2468,
+              "cumulativeCost": {
+                "stardust": 75000,
+                "candy": 66,
+                "xlCandy": 0
+              },
+              "decision": "hold",
+              "reason": "CP 참고용",
+              "stopCondition": "Lv.30 이상 투자 근거를 먼저 확인하세요."
+            },
+            {
+              "level": 35,
+              "cp": 2674,
+              "cumulativeCost": {
+                "stardust": 137000,
+                "candy": 130,
+                "xlCandy": 0
+              },
+              "decision": "hold",
+              "reason": "CP 참고용",
+              "stopCondition": "실전 투입 근거가 없으면 멈추세요.",
+              "incrementalCost": {
+                "stardust": 62000,
+                "candy": 64,
+                "xlCandy": 0
+              }
+            },
+            {
+              "level": 40,
+              "cp": 2879,
+              "cumulativeCost": {
+                "stardust": 225000,
+                "candy": 248,
+                "xlCandy": 0
+              },
+              "decision": "hold",
+              "reason": "CP 참고용",
+              "stopCondition": "XL을 쓰지 마세요.",
+              "incrementalCost": {
+                "stardust": 88000,
+                "candy": 118,
+                "xlCandy": 0
+              }
+            },
+            {
+              "level": 50,
+              "cp": 3255,
+              "cumulativeCost": {
+                "stardust": 475000,
+                "candy": 248,
+                "xlCandy": 296
+              },
+              "decision": "hold",
+              "reason": "XL 투자 보류",
+              "stopCondition": "절대 순위 근거 없이 Lv.50을 권하지 않습니다.",
+              "incrementalCost": {
+                "stardust": 250000,
+                "candy": 0,
+                "xlCandy": 296
+              }
+            }
+          ]
+        },
+        "progressionContext": {
+          "mode": "reference",
+          "title": "해당 폼 CP 참고",
+          "notice": "15/15/15 기준 참고값이며 강화 목표가 아닙니다."
+        },
+        "ivAdvice": {
+          "general": "폼 ID를 우선 확인하고, 레이드용을 검토할 때만 공격 IV를 비교하세요.",
+          "raid": "해당 폼의 실제 투입 여부를 먼저 정하세요.",
+          "pvp": "최적 IV·리그 순위를 생성하지 않았습니다."
+        },
+        "weaknesses": [
+          {
+            "type": "벌레"
+          },
+          {
+            "type": "고스트"
+          },
+          {
+            "type": "악"
+          }
+        ],
+        "counters": [],
+        "counterRankingMode": "examples",
+        "values": {
+          "raid": null,
+          "pvp": null
+        },
+        "valueReasons": {
+          "raid": "실전 순위는 미평가입니다.",
+          "pvp": "매치업 시뮬레이션을 하지 않았습니다."
+        },
+        "dataStatus": {
+          "counters": "missing",
+          "values": "ready",
+          "useCases": "ready",
+          "movesets": "ready",
+          "investment": "ready",
+          "ivAdvice": "ready"
+        },
+        "recommendations": [
+          "폼 ID 확인",
+          "도감 등록 우선",
+          "실전 비교 전에는 XL·해방 보류"
+        ],
+        "source": {
+          "name": "PoGo API · Deoxys form data",
+          "url": "https://pogoapi.net/"
+        },
+        "battleTypes": [
+          "raid"
+        ],
+        "types": [
+          "에스퍼"
+        ],
+        "category": "raid",
+        "categoryLabel": "5성 레이드",
+        "rating": null
+      }
+    },
+    {
+      "pokemonId": "shadow-piloswine",
+      "generationMethod": "manual_ai",
+      "generatedBy": {
+        "provider": "codex",
+        "model": "gpt-6.2-sol",
+        "promptVersion": "pokemon-guide-coverage-batch-2-v1",
+        "generatedAt": "2026-11-26T20:30:00+09:00",
+        "sourcePackageHash": "7279096d8844d6900954d92a8ae1ceb51b96d1cbc9258e7a8bddd0e4e9aba24b"
+      },
+      "review": {
+        "status": "pending"
+      },
+      "evidenceConfidence": "medium",
+      "editorialStatus": "ready",
+      "editorialLimitations": [
+        "Shadow 누적 강화 비용은 게임 내에서 확인한다.",
+        "정화·진화 판단을 일괄 적용하지 않는다."
+      ],
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "official:shadow-raid-rules-batch2"
+      ],
+      "guide": {
+        "name": "그림자 메꾸리",
+        "formName": "그림자 · 맘모꾸리 진화 준비",
+        "image": {
+          "src": "/images/pokemon/pokeapi-221-piloswine.png",
+          "alt": "그림자 메꾸리",
+          "scale": 1
+        },
+        "overallRating": null,
+        "verdict": "conditional",
+        "verdictLabel": "맘모꾸리로 쓸 개체만 보관",
+        "presentationMode": "training-first",
+        "reason": "진화 전 강화보다 진화 후 역할·기술을 먼저 확정",
+        "summary": "메꾸리 상태에서는 강화를 보류하고, 맘모꾸리로 진화한 후 눈싸라기·눈사태 또는 진흙뿌리기·10만마력 역할을 정하세요. 정화는 자동 권장하지 않습니다.",
+        "useCases": {
+          "raid": {
+            "rating": null,
+            "reason": "맘모꾸리 진화 후 타입 역할을 정하되 절대 공격수 순위는 미평가입니다."
+          },
+          "pvp": {
+            "rating": null,
+            "reason": "PvP 투입 시 리그 CP·개체값·팀 구성을 별도로 계산하세요."
+          },
+          "special": {
+            "rating": null,
+            "reason": "Shadow 상태 유지와 정화를 근거 없이 일괄 권장하지 않습니다."
+          }
+        },
+        "movesets": {
+          "raid": {
+            "fastMove": {
+              "name": "눈싸라기",
+              "tags": [
+                "fast_tm"
+              ]
+            },
+            "chargedMove": {
+              "name": "눈사태",
+              "tags": [
+                "charged_tm"
+              ]
+            },
+            "conditions": [
+              "맘모꾸리 진화 후 얼음 역할을 선택할 때의 조합입니다.",
+              "땅 역할은 진흙뿌리기·10만마력을 진화 후 확인하세요."
+            ],
+            "reason": "진화 후 얼음·땅 중 하나를 선택합니다."
+          }
+        },
+        "investment": {
+          "order": [
+            {
+              "id": "keep",
+              "label": "진화할 Shadow 개체 보관"
+            },
+            {
+              "id": "role",
+              "label": "맘모꾸리 역할 선택"
+            },
+            {
+              "id": "move",
+              "label": "진화·한정 기술 조건 확인"
+            },
+            {
+              "id": "evolve",
+              "label": "확정한 개체만 진화"
+            },
+            {
+              "id": "30",
+              "label": "진화 후 Lv.30에서 사용성 확인"
+            },
+            {
+              "id": "40",
+              "label": "반복 사용 시 Lv.40"
+            },
+            {
+              "id": "xl",
+              "label": "장기 주력일 때만 XL"
+            }
+          ],
+          "powerUp": "hold",
+          "stardust": "hold",
+          "candy": "recommended",
+          "secondMove": "conditional",
+          "xlCandy": "hold",
+          "rareCandy": "low",
+          "eliteTm": "not_needed"
+        },
+        "investmentReasons": {
+          "powerUp": "진화 전 강화를 보류하고 진화 후 Lv.30에서 사용성을 확인하세요.",
+          "stardust": "Shadow 보정 비용을 게임 내에서 확인한 한 마리에만 쓰세요.",
+          "candy": "진화에 필요한 사탕을 먼저 보존하세요.",
+          "secondMove": "PvP를 실제 사용할 때만 해방을 검토하세요.",
+          "xlCandy": "진화 후 Lv.40 사용 빈도를 확인하기 전에는 쓰지 마세요."
+        },
+        "progression": {
+          "ivLabel": "15/15/15 그림자 메꾸리 기준 예상 CP",
+          "costBaselineLabel": "Shadow 보정 비용은 게임에서 확인",
+          "costStatus": "check_in_game",
+          "costNote": "일반 포켓몬 누적 비용을 Shadow 확정 비용으로 표시하지 않았습니다.",
+          "stages": [
+            {
+              "level": 30,
+              "cp": 2010,
+              "cumulativeCost": null,
+              "decision": "hold",
+              "reason": "진화 전 강화 보류",
+              "stopCondition": "진화 목표를 먼저 정하세요."
+            },
+            {
+              "level": 35,
+              "cp": 2178,
+              "cumulativeCost": null,
+              "decision": "hold",
+              "reason": "진화 전 강화 보류",
+              "stopCondition": "진화 전에는 멈추세요."
+            },
+            {
+              "level": 40,
+              "cp": 2345,
+              "cumulativeCost": null,
+              "decision": "hold",
+              "reason": "진화 전 강화 보류",
+              "stopCondition": "진화 후 기술을 확인하세요."
+            },
+            {
+              "level": 50,
+              "cp": 2652,
+              "cumulativeCost": null,
+              "decision": "hold",
+              "reason": "진화 전 XL 보류",
+              "stopCondition": "XL을 쓰지 마세요."
+            }
+          ]
+        },
+        "progressionContext": {
+          "mode": "reference",
+          "title": "진화 전 CP 참고",
+          "notice": "강화 추천이 아닙니다. 맘모꾸리 진화 전 보관 개체 참고용입니다."
+        },
+        "ivAdvice": {
+          "general": "진화해 맘모꾸리로 쓸 개체만 보관하고 정화를 일괄 권장하지 않습니다.",
+          "raid": "레이드용은 진화 후 공격 IV와 기술을 함께 확인하세요.",
+          "pvp": "최적 IV·리그 순위를 생성하지 않았습니다."
+        },
+        "weaknesses": [
+          {
+            "type": "격투"
+          },
+          {
+            "type": "불꽃"
+          },
+          {
+            "type": "풀"
+          },
+          {
+            "type": "물"
+          },
+          {
+            "type": "강철"
+          }
+        ],
+        "counters": [],
+        "counterRankingMode": "examples",
+        "values": {
+          "raid": null,
+          "pvp": null,
+          "special": null
+        },
+        "valueReasons": {
+          "raid": "진화 후 역할은 있지만 절대 순위는 미평가입니다.",
+          "pvp": "매치업 근거가 없어 조건부로 남깁니다.",
+          "special": "Shadow 유지·정화를 자동 결정하지 않습니다."
+        },
+        "dataStatus": {
+          "counters": "missing",
+          "values": "ready",
+          "useCases": "ready",
+          "movesets": "ready",
+          "investment": "ready",
+          "ivAdvice": "ready"
+        },
+        "recommendations": [
+          "진화 전 강화 보류",
+          "진화 후 맘모꾸리 기술 확인",
+          "Lv.30에서 사용성을 확인한 후만 추가 투자"
+        ],
+        "source": {
+          "name": "PoGo API · Piloswine/Mamoswine data",
+          "url": "https://pogoapi.net/"
+        },
+        "battleTypes": [
+          "shadow",
+          "raid"
+        ],
+        "types": [
+          "얼음",
+          "땅"
+        ],
+        "category": "shadow",
+        "categoryLabel": "그림자 3성",
+        "rating": null
+      }
+    },
+    {
+      "pokemonId": "shadow-mudkip",
+      "generationMethod": "manual_ai",
+      "generatedBy": {
+        "provider": "codex",
+        "model": "gpt-6.2-sol",
+        "promptVersion": "pokemon-guide-coverage-batch-2-v1",
+        "generatedAt": "2026-11-26T20:30:00+09:00",
+        "sourcePackageHash": "7279096d8844d6900954d92a8ae1ceb51b96d1cbc9258e7a8bddd0e4e9aba24b"
+      },
+      "review": {
+        "status": "pending"
+      },
+      "evidenceConfidence": "medium",
+      "editorialStatus": "ready",
+      "editorialLimitations": [
+        "Shadow 누적 강화 비용은 게임 내에서 확인한다.",
+        "정화·진화 판단을 일괄 적용하지 않는다."
+      ],
+      "evidenceIds": [
+        "pogoapi:pokemon_stats:ca23e7947d97",
+        "pogoapi:pokemon_types:d2979fa632e6",
+        "pogoapi:current_pokemon_moves:8dff0aa9bb68",
+        "pogoapi:cp_multiplier:61c96ee36079",
+        "official:shadow-raid-rules-batch2",
+        "official:mudkip-community-day-hydro-cannon"
+      ],
+      "guide": {
+        "name": "그림자 물짱이",
+        "formName": "그림자 · 대짱이 진화 준비",
+        "image": {
+          "src": "/images/pokemon/pokeapi-258-mudkip.png",
+          "alt": "그림자 물짱이",
+          "scale": 1
+        },
+        "overallRating": null,
+        "verdict": "conditional",
+        "verdictLabel": "대짱이로 쓸 개체만 보관",
+        "presentationMode": "training-first",
+        "reason": "진화 전 강화보다 진화 후 역할·기술을 먼저 확정",
+        "summary": "물짱이 상태에서 강화하지 말고 대짱이 진화 목표를 먼저 정하세요. 하이드로캐논은 과거 진화 한정 기술이므로 현재 습득 가능 여부를 확인한 후 진화·투자하세요.",
+        "useCases": {
+          "raid": {
+            "rating": null,
+            "reason": "대짱이 진화 후 타입 역할을 정하되 절대 공격수 순위는 미평가입니다."
+          },
+          "pvp": {
+            "rating": null,
+            "reason": "PvP 투입 시 리그 CP·개체값·팀 구성을 별도로 계산하세요."
+          },
+          "special": {
+            "rating": null,
+            "reason": "Shadow 상태 유지와 정화를 근거 없이 일괄 권장하지 않습니다."
+          }
+        },
+        "movesets": {
+          "raid": {
+            "fastMove": {
+              "name": "머드숏",
+              "tags": [
+                "fast_tm"
+              ]
+            },
+            "chargedMove": {
+              "name": "하이드로캐논",
+              "tags": [
+                "elite_tm_check",
+                "event_limited"
+              ]
+            },
+            "conditions": [
+              "하이드로캐논은 과거 커뮤니티 데이 진화 한정 기술입니다.",
+              "현재 대단한 기술머신스페셜 사용 가능 여부는 게임에서 확인하세요."
+            ],
+            "reason": "대짱이 진화 후 물 역할을 위한 조합이며 습득 조건 확인이 먼저입니다."
+          }
+        },
+        "investment": {
+          "order": [
+            {
+              "id": "keep",
+              "label": "진화할 Shadow 개체 보관"
+            },
+            {
+              "id": "role",
+              "label": "대짱이 역할 선택"
+            },
+            {
+              "id": "move",
+              "label": "진화·한정 기술 조건 확인"
+            },
+            {
+              "id": "evolve",
+              "label": "확정한 개체만 진화"
+            },
+            {
+              "id": "30",
+              "label": "진화 후 Lv.30에서 사용성 확인"
+            },
+            {
+              "id": "40",
+              "label": "반복 사용 시 Lv.40"
+            },
+            {
+              "id": "xl",
+              "label": "장기 주력일 때만 XL"
+            }
+          ],
+          "powerUp": "hold",
+          "stardust": "hold",
+          "candy": "recommended",
+          "secondMove": "conditional",
+          "xlCandy": "hold",
+          "rareCandy": "low",
+          "eliteTm": "conditional"
+        },
+        "investmentReasons": {
+          "powerUp": "진화 전 강화를 보류하고 진화 후 Lv.30에서 사용성을 확인하세요.",
+          "stardust": "Shadow 보정 비용을 게임 내에서 확인한 한 마리에만 쓰세요.",
+          "candy": "진화에 필요한 사탕을 먼저 보존하세요.",
+          "secondMove": "PvP를 실제 사용할 때만 해방을 검토하세요.",
+          "xlCandy": "진화 후 Lv.40 사용 빈도를 확인하기 전에는 쓰지 마세요."
+        },
+        "progression": {
+          "ivLabel": "15/15/15 그림자 물짱이 기준 예상 CP",
+          "costBaselineLabel": "Shadow 보정 비용은 게임에서 확인",
+          "costStatus": "check_in_game",
+          "costNote": "일반 포켓몬 누적 비용을 Shadow 확정 비용으로 표시하지 않았습니다.",
+          "stages": [
+            {
+              "level": 30,
+              "cp": 967,
+              "cumulativeCost": null,
+              "decision": "hold",
+              "reason": "진화 전 강화 보류",
+              "stopCondition": "진화 목표를 먼저 정하세요."
+            },
+            {
+              "level": 35,
+              "cp": 1047,
+              "cumulativeCost": null,
+              "decision": "hold",
+              "reason": "진화 전 강화 보류",
+              "stopCondition": "진화 전에는 멈추세요."
+            },
+            {
+              "level": 40,
+              "cp": 1128,
+              "cumulativeCost": null,
+              "decision": "hold",
+              "reason": "진화 전 강화 보류",
+              "stopCondition": "진화 후 기술을 확인하세요."
+            },
+            {
+              "level": 50,
+              "cp": 1275,
+              "cumulativeCost": null,
+              "decision": "hold",
+              "reason": "진화 전 XL 보류",
+              "stopCondition": "XL을 쓰지 마세요."
+            }
+          ]
+        },
+        "progressionContext": {
+          "mode": "reference",
+          "title": "진화 전 CP 참고",
+          "notice": "강화 추천이 아닙니다. 대짱이 진화 전 보관 개체 참고용입니다."
+        },
+        "ivAdvice": {
+          "general": "진화해 대짱이로 쓸 개체만 보관하고 정화를 일괄 권장하지 않습니다.",
+          "raid": "레이드용은 진화 후 공격 IV와 기술을 함께 확인하세요.",
+          "pvp": "최적 IV·리그 순위를 생성하지 않았습니다."
+        },
+        "weaknesses": [
+          {
+            "type": "풀"
+          },
+          {
+            "type": "전기"
+          }
+        ],
+        "counters": [],
+        "counterRankingMode": "examples",
+        "values": {
+          "raid": null,
+          "pvp": null,
+          "special": null
+        },
+        "valueReasons": {
+          "raid": "진화 후 역할은 있지만 절대 순위는 미평가입니다.",
+          "pvp": "매치업 근거가 없어 조건부로 남깁니다.",
+          "special": "Shadow 유지·정화를 자동 결정하지 않습니다."
+        },
+        "dataStatus": {
+          "counters": "missing",
+          "values": "ready",
+          "useCases": "ready",
+          "movesets": "ready",
+          "investment": "ready",
+          "ivAdvice": "ready"
+        },
+        "recommendations": [
+          "진화 전 강화 보류",
+          "진화 후 대짱이 기술 확인",
+          "Lv.30에서 사용성을 확인한 후만 추가 투자"
+        ],
+        "source": {
+          "name": "Pokémon GO · Mudkip Community Day Classic",
+          "url": "https://pokemongo.com/news/community-day-classic-mudkip-april-2022"
+        },
+        "battleTypes": [
+          "shadow",
+          "raid"
+        ],
+        "types": [
+          "물"
+        ],
+        "category": "shadow",
+        "categoryLabel": "그림자 1성",
+        "rating": null
+      }
+    }
+  ]
+}

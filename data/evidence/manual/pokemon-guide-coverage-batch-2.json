@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-26T20:30:00+09:00",
+  "records": [
+    {
+      "id": "official:deoxys-form-rotation",
+      "sourceId": "pokemon-go-february-2022-deoxys",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/news/february-2022-content-update",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-26T20:30:00+09:00",
+      "sourceHash": "c890e63f3585da65f3d89dc3eaaed73bfad3e5bf5b08efae1d162368c829ec0f",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "노말·어택·디펜스·스피드폼을 서로 다른 폼으로 확인했다.",
+      "paths": [
+        "pokemon.deoxys.forms"
+      ]
+    },
+    {
+      "id": "official:shadow-raid-rules-batch2",
+      "sourceId": "pokemon-go-shadow-raids",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/news/shadow-raids",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-26T20:30:00+09:00",
+      "sourceHash": "1131076c5b224212bf5be49a0571eed8640d3aad7186a5231390c546cd800dcc",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "Shadow 포켓몬의 별도 투자·정화 판단 근거로 사용했다.",
+      "paths": [
+        "pokemon.shadow-piloswine",
+        "pokemon.shadow-mudkip"
+      ]
+    },
+    {
+      "id": "official:mudkip-community-day-hydro-cannon",
+      "sourceId": "pokemon-go-mudkip-community-day-classic-2022",
+      "sourceType": "manual",
+      "url": "https://pokemongo.com/news/community-day-classic-mudkip-april-2022",
+      "publisher": "Pokémon GO",
+      "reviewedAt": "2026-11-26T20:30:00+09:00",
+      "sourceHash": "dc0ff3f05903cb3d1b1ffeeb25f5f836c9a9431ad564bbaa5d4bada906f621f9",
+      "reviewStatus": "reviewed",
+      "rawCollected": false,
+      "claim": "과거 이벤트에서 늪짱이를 진화해 하이드로캐논 대짱이를 얻는 조건을 확인했다. 현재 Elite TM 가능 여부는 별도 확인 대상이다.",
+      "paths": [
+        "pokemon.shadow-mudkip.evolutionMove"
+      ]
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import previewOverlays from "../../data/preview/app-guide-overlays.json";
 import standardizationPreviewOverlays from "../../data/preview/pokemon-detail-standard-overlays.json";
 import coveragePreviewOverlays from "../../data/preview/pokemon-guide-coverage-overlays.json";
 import batchOnePreviewOverlays from "../../data/preview/pokemon-guide-coverage-batch-1-overlays.json";
+import batchTwoPreviewOverlays from "../../data/preview/pokemon-guide-coverage-batch-2-overlays.json";
 
 type GuideRecord = { id: string } & Record<string, unknown>;
 
@@ -20,6 +21,7 @@ const previews = previewOverlays as unknown as readonly ApprovedGuideOverlay[];
 const standardizationPreviews = standardizationPreviewOverlays as unknown as readonly ApprovedGuideOverlay[];
 const coveragePreviews = coveragePreviewOverlays as unknown as readonly ApprovedGuideOverlay[];
 const batchOnePreviews = batchOnePreviewOverlays as unknown as readonly ApprovedGuideOverlay[];
+const batchTwoPreviews = batchTwoPreviewOverlays as unknown as readonly ApprovedGuideOverlay[];
 
 function mergeGuide<T extends GuideRecord>(base: T, overlay: ApprovedGuideOverlay): T {
   return {
@@ -61,8 +63,8 @@ function appendStandaloneGuides<T extends GuideRecord>(guides: readonly T[], sel
 export function applyApprovedGuideOverlays<T extends GuideRecord>(guides: readonly T[]): T[] {
   const previewEnabled = process.env.NEXT_PUBLIC_ENABLE_CANDIDATE_GUIDES === "true"
     && process.env.VERCEL_ENV !== "production";
-  const activeOverlays = previewEnabled ? [...overlays, ...previews, ...standardizationPreviews, ...coveragePreviews, ...batchOnePreviews] : overlays;
+  const activeOverlays = previewEnabled ? [...overlays, ...previews, ...standardizationPreviews, ...coveragePreviews, ...batchOnePreviews, ...batchTwoPreviews] : overlays;
   const merged = applyGuideOverlayRecords(guides, activeOverlays);
   const withPublishedStandalone = appendStandaloneGuides(merged, overlays);
-  return previewEnabled ? appendPreviewGuides(withPublishedStandalone, batchOnePreviews) : withPublishedStandalone;
+  return previewEnabled ? appendPreviewGuides(appendPreviewGuides(withPublishedStandalone, batchOnePreviews), batchTwoPreviews) : withPublishedStandalone;
 }

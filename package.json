@@ -22,6 +22,9 @@
     "data:batch1:prepare": "tsx data-engine/scripts/batch-1-prepare.ts",
     "data:batch1:validate": "tsx data-engine/scripts/batch-1-validate.ts",
     "data:batch1:preview": "tsx data-engine/scripts/batch-1-preview.ts",
+    "data:batch2:prepare": "tsx data-engine/scripts/batch-2-prepare.ts",
+    "data:batch2:validate": "tsx data-engine/scripts/batch-2-validate.ts",
+    "data:batch2:preview": "tsx data-engine/scripts/batch-2-preview.ts",
     "e2e:daily": "node data-engine/e2e/daily-schedule.mjs",
     "data:validate": "tsx data-engine/scripts/validate.ts",
     "data:test": "tsx --test data-engine/tests/*.test.ts"
